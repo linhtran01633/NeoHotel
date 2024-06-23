@@ -1,143 +1,34 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
-    <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.10.2/dist/cdn.min.js" defer></script>
-</head>
-<body>
-    <header class="h-[60px] sm:h-[84px] z-[2] bg-black text-gray-100">
-        <div class="max-w-[1080px] h-[60px] sm:h-[84px] container flex justify-between mx-auto">
-            <a aria-label="Back to homepage" class="flex items-center p-6" href="/">
-                <div class="relative w-[50px] h-[50px] sm:w-[75px] sm:h-[75px]">
-                    <img alt="neo-hotel-logo" src="/logo/logo.webp" loading="lazy" decoding="async" data-nimg="fill" sizes="100vw" style="position: absolute; height: 100%; width: 100%; inset: 0px; color: transparent;">
-                </div>
-            </a>
-            <div class="items-center justify-end flex-shrink-0 hidden lg:flex lg:flex-1">
-                <ul class="items-stretch hidden lg:flex">
-                    <li>
-                        <a class="flex text-white self-baseline h-full active border-customColor text-customColor border-b-2 hover:text-customColor items-center mx-4 mb-1 " href="/">{{ __('home') }}</a>
-                    </li>
-                    <li>
-                        <a class="flex text-white self-baseline h-full  hover:text-customColor items-center mx-4 mb-1 " href="/about-us">{{ __('aboutus') }}</a>
-                    </li>
-                    <li>
-                        <a class="flex text-white self-baseline h-full  hover:text-customColor items-center mx-4 mb-1 " href="/services">{{ __('services') }}</a>
-                    </li>
-                    <li>
-                        <a class="flex text-white self-baseline h-full  hover:text-customColor items-center mx-4 mb-1 " href="/rooms">{{ __('rooms') }}</a>
-                    </li>
-                    <li>
-                        <a class="flex text-white self-baseline h-full  hover:text-customColor items-center mx-4 mb-1 " href="/activities">{{ __('activities') }}</a>
-                    </li>
-                    <li>
-                        <a class="flex text-white self-baseline h-full  hover:text-customColor items-center mx-4 mb-1 " href="/faq">{{ __('contact') }}</a>
-                    </li>
-                    <li>
-                        <a class="flex text-white self-baseline h-full  hover:text-customColor items-center mx-4 mb-1 " href="/contact">{{ __('faq') }}</a>
-                    </li>
-                </ul>
-            <div class="relative inline-block text-left" data-headlessui-state="" x-data="{ popup_local: false }">
-                <button @click="popup_local = ! popup_local" class="items-center inline-flex w-[80px] justify-center rounded-md bg-black/20 px-4 py-2 text-sm font-medium text-white hover:bg-black/30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/75" id="headlessui-menu-button-:r5e:" type="button" aria-haspopup="menu" aria-expanded="false" data-headlessui-state="">
-                    <div class="w-5">
-                        <svg xmlns="http://www.w3.org/2000/svg" id="flag-icons-vn" viewBox="0 0 640 480">
-                            <defs>
-                                <clipPath id="vn-a">
-                                    <path fill-opacity=".7" d="M-85.3 0h682.6v512H-85.3z"></path>
-                                </clipPath>
-                            </defs>
-                            <g fill-rule="evenodd" clip-path="url(#vn-a)" transform="translate(80)scale(.9375)">
-                                <path fill="#da251d" d="M-128 0h768v512h-768z"></path>
-                                <path fill="#ff0" d="M349.6 381 260 314.3l-89 67.3L204 272l-89-67.7 110.1-1 34.2-109.4L294 203l110.1.1-88.5 68.4 33.9 109.6z"></path>
-                            </g>
-                        </svg>
-                    </div>
-                    <span class="ml-2 text-white self-center hover:text-[#DBB98E]">VN</span>
-                </button>
+@extends('app_layout')
 
-                <div x-show="popup_local" class="absolute w-[140px] z-50 right-0 mt-2 origin-top-right divide-y divide-gray-100 rounded-md bg-white shadow-lg ring-1 ring-black/5 focus:outline-none hover:text-[#DBB98E] transform opacity-100 scale-100" aria-labelledby="headlessui-menu-button-:r5e:" id="headlessui-menu-items-:r5k:" role="menu" tabindex="0" data-headlessui-state="open">
-                    <div class="px-1 py-1 " role="none">
-                        <a class="text-gray-900 group flex w-full items-end rounded-md px-2 py-2 text-sm hover:bg-slate-100" id="headlessui-menu-item-:r5l:" role="menuitem" tabindex="-1" data-headlessui-state="" href="{{ url('locale/en') }}">
-                            <div class="w-4 h-4">
-                                <svg xmlns="http://www.w3.org/2000/svg" id="flag-icons-gb" viewBox="0 0 640 480">
-                                    <path fill="#012169" d="M0 0h640v480H0z"></path>
-                                    <path fill="#FFF" d="m75 0 244 181L562 0h78v62L400 241l240 178v61h-80L320 301 81 480H0v-60l239-178L0 64V0z"></path>
-                                    <path fill="#C8102E" d="m424 281 216 159v40L369 281zm-184 20 6 35L54 480H0zM640 0v3L391 191l2-44L590 0zM0 0l239 176h-60L0 42z"></path>
-                                    <path fill="#FFF" d="M241 0v480h160V0zM0 160v160h640V160z"></path><path fill="#C8102E" d="M0 193v96h640v-96zM273 0v480h96V0z"></path>
-                                </svg>
-                            </div>
-                            <div class="ml-2   text-base font-normal leading-tight">English</div>
-                        </a>
-                        <a class="text-gray-900 group flex w-full items-end rounded-md px-2 py-2 text-sm hover:bg-slate-100" id="headlessui-menu-item-:r5m:" role="menuitem" tabindex="-1" data-headlessui-state="" href="{{ url('locale/ja') }}">
-                            <div class="w-4 h-4">
-                                <svg xmlns="http://www.w3.org/2000/svg" id="flag-icons-jp" viewBox="0 0 640 480">
-                                    <defs>
-                                        <clipPath id="jp-a">
-                                            <path fill-opacity=".7" d="M-88 32h640v480H-88z"></path>
-                                        </clipPath>
-                                    </defs>
-                                    <g fill-rule="evenodd" stroke-width="1pt" clip-path="url(#jp-a)" transform="translate(88 -32)">
-                                        <path fill="#fff" d="M-128 32h720v480h-720z"></path>
-                                        <circle cx="523.1" cy="344.1" r="194.9" fill="#bc002d" transform="translate(-168.4 8.6)scale(.76554)"></circle>
-                                    </g>
-                                </svg>
-                            </div>
-                            <div class="ml-2   text-base font-normal leading-tight">日本語</div>
-                        </a>
-                        <a class="text-gray-900 group flex w-full items-end rounded-md px-2 py-2 text-sm hover:bg-slate-100" id="headlessui-menu-item-:r5n:" role="menuitem" tabindex="-1" data-headlessui-state="" href="{{ url('locale/vn') }}">
-                            <div class="w-4 h-4 ">
-                                <svg xmlns="http://www.w3.org/2000/svg" id="flag-icons-vn" viewBox="0 0 640 480">
-                                    <defs>
-                                        <clipPath id="vn-a">
-                                            <path fill-opacity=".7" d="M-85.3 0h682.6v512H-85.3z"></path>
-                                        </clipPath>
-                                    </defs>
-                                    <g fill-rule="evenodd" clip-path="url(#vn-a)" transform="translate(80)scale(.9375)">
-                                        <path fill="#da251d" d="M-128 0h768v512h-768z"></path>
-                                        <path fill="#ff0" d="M349.6 381 260 314.3l-89 67.3L204 272l-89-67.7 110.1-1 34.2-109.4L294 203l110.1.1-88.5 68.4 33.9 109.6z"></path>
-                                    </g>
-                                </svg>
-                            </div>
-                            <div class="ml-2   text-base font-normal leading-tight">Tiếng Việt</div>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </header>
-
-
+@section('content')
     <section class="flex-1 flex flex-col">
         <main class="flex-1 flex flex-col ">
             <div class="isolate slide-container relative flex-1">
-                <div class="swiper swiper-initialized swiper-horizontal swiper-backface-hidden" id="main">
+                <div class="swiper swiper-container swiper-initialized swiper-horizontal swiper-backface-hidden" id="main">
                     <div class="swiper-wrapper" style="transition-duration: 2000ms; transform: translate3d(-4632px, 0px, 0px);">
                         <div class="swiper-slide swiper-slide-next" style="width: 1158px;" data-swiper-slide-index="0">
                             <div class="relative min-h-[calc(100vh-60px)] sm:min-h-[calc(100vh-92px-84px)]">
-                                <img alt="Slide one" decoding="async" data-nimg="fill" class="thumbnail absolute object-left sm:object-center w-full object-fill" sizes="100vw" srcset="/_next/image?url=%2Fhomeslide%2Fhomeslide1.jpg&amp;w=640&amp;q=100 640w, /_next/image?url=%2Fhomeslide%2Fhomeslide1.jpg&amp;w=750&amp;q=100 750w, /_next/image?url=%2Fhomeslide%2Fhomeslide1.jpg&amp;w=828&amp;q=100 828w, /_next/image?url=%2Fhomeslide%2Fhomeslide1.jpg&amp;w=1080&amp;q=100 1080w, /_next/image?url=%2Fhomeslide%2Fhomeslide1.jpg&amp;w=1200&amp;q=100 1200w, /_next/image?url=%2Fhomeslide%2Fhomeslide1.jpg&amp;w=1920&amp;q=100 1920w, /_next/image?url=%2Fhomeslide%2Fhomeslide1.jpg&amp;w=2048&amp;q=100 2048w, /_next/image?url=%2Fhomeslide%2Fhomeslide1.jpg&amp;w=3840&amp;q=100 3840w" src="/_next/image?url=%2Fhomeslide%2Fhomeslide1.jpg&amp;w=3840&amp;q=100" style="position: absolute; height: 100%; width: 100%; inset: 0px; color: transparent;">
+                                <img alt="Slide one" src="/homeslide/homeslide1.jpg" decoding="async" data-nimg="fill" class="thumbnail absolute object-left sm:object-center w-full object-fill" sizes="100vw" style="position: absolute; height: 100%; width: 100%; inset: 0px; color: transparent;">
                             </div>
                         </div>
                         <div class="swiper-slide" style="width: 1158px;" data-swiper-slide-index="1">
                             <div class="relative min-h-[calc(100vh-60px)] sm:min-h-[calc(100vh-92px-84px)]">
-                                <img alt="Slide one" decoding="async" data-nimg="fill" class="thumbnail absolute object-left sm:object-center w-full object-fill" sizes="100vw" srcset="/_next/image?url=%2Fhomeslide%2Fhomeslide2.jpg&amp;w=640&amp;q=100 640w, /_next/image?url=%2Fhomeslide%2Fhomeslide2.jpg&amp;w=750&amp;q=100 750w, /_next/image?url=%2Fhomeslide%2Fhomeslide2.jpg&amp;w=828&amp;q=100 828w, /_next/image?url=%2Fhomeslide%2Fhomeslide2.jpg&amp;w=1080&amp;q=100 1080w, /_next/image?url=%2Fhomeslide%2Fhomeslide2.jpg&amp;w=1200&amp;q=100 1200w, /_next/image?url=%2Fhomeslide%2Fhomeslide2.jpg&amp;w=1920&amp;q=100 1920w, /_next/image?url=%2Fhomeslide%2Fhomeslide2.jpg&amp;w=2048&amp;q=100 2048w, /_next/image?url=%2Fhomeslide%2Fhomeslide2.jpg&amp;w=3840&amp;q=100 3840w" src="/_next/image?url=%2Fhomeslide%2Fhomeslide2.jpg&amp;w=3840&amp;q=100" style="position: absolute; height: 100%; width: 100%; inset: 0px; color: transparent;">
+                                <img alt="Slide one" src="/homeslide/homeslide2.jpg" decoding="async" data-nimg="fill" class="thumbnail absolute object-left sm:object-center w-full object-fill" sizes="100vw" style="position: absolute; height: 100%; width: 100%; inset: 0px; color: transparent;">
                             </div>
                         </div>
                         <div class="swiper-slide" style="width: 1158px;" data-swiper-slide-index="2">
                             <div class="relative min-h-[calc(100vh-60px)] sm:min-h-[calc(100vh-92px-84px)]">
-                                <img alt="Slide two" decoding="async" data-nimg="fill" class="thumbnail absolute object-left sm:object-center w-full object-fill" sizes="100vw" srcset="/_next/image?url=%2Fhomeslide%2Fhomeslide3.jpg&amp;w=640&amp;q=100 640w, /_next/image?url=%2Fhomeslide%2Fhomeslide3.jpg&amp;w=750&amp;q=100 750w, /_next/image?url=%2Fhomeslide%2Fhomeslide3.jpg&amp;w=828&amp;q=100 828w, /_next/image?url=%2Fhomeslide%2Fhomeslide3.jpg&amp;w=1080&amp;q=100 1080w, /_next/image?url=%2Fhomeslide%2Fhomeslide3.jpg&amp;w=1200&amp;q=100 1200w, /_next/image?url=%2Fhomeslide%2Fhomeslide3.jpg&amp;w=1920&amp;q=100 1920w, /_next/image?url=%2Fhomeslide%2Fhomeslide3.jpg&amp;w=2048&amp;q=100 2048w, /_next/image?url=%2Fhomeslide%2Fhomeslide3.jpg&amp;w=3840&amp;q=100 3840w" src="/_next/image?url=%2Fhomeslide%2Fhomeslide3.jpg&amp;w=3840&amp;q=100" style="position: absolute; height: 100%; width: 100%; inset: 0px; color: transparent;">
+                                <img alt="Slide two" src="/homeslide/homeslide3.jpg" decoding="async" data-nimg="fill" class="thumbnail absolute object-left sm:object-center w-full object-fill" sizes="100vw" style="position: absolute; height: 100%; width: 100%; inset: 0px; color: transparent;">
                             </div>
                         </div>
                         <div class="swiper-slide swiper-slide-prev" style="width: 1158px;" data-swiper-slide-index="3">
                             <div class="relative min-h-[calc(100vh-60px)] sm:min-h-[calc(100vh-92px-84px)]">
-                                <img alt="Slide two" decoding="async" data-nimg="fill" class="thumbnail absolute object-left sm:object-center w-full object-fill" sizes="100vw" srcset="/_next/image?url=%2Fhomeslide%2Fhomeslide4.jpg&amp;w=640&amp;q=100 640w, /_next/image?url=%2Fhomeslide%2Fhomeslide4.jpg&amp;w=750&amp;q=100 750w, /_next/image?url=%2Fhomeslide%2Fhomeslide4.jpg&amp;w=828&amp;q=100 828w, /_next/image?url=%2Fhomeslide%2Fhomeslide4.jpg&amp;w=1080&amp;q=100 1080w, /_next/image?url=%2Fhomeslide%2Fhomeslide4.jpg&amp;w=1200&amp;q=100 1200w, /_next/image?url=%2Fhomeslide%2Fhomeslide4.jpg&amp;w=1920&amp;q=100 1920w, /_next/image?url=%2Fhomeslide%2Fhomeslide4.jpg&amp;w=2048&amp;q=100 2048w, /_next/image?url=%2Fhomeslide%2Fhomeslide4.jpg&amp;w=3840&amp;q=100 3840w" src="/_next/image?url=%2Fhomeslide%2Fhomeslide4.jpg&amp;w=3840&amp;q=100" style="position: absolute; height: 100%; width: 100%; inset: 0px; color: transparent;">
+                                <img alt="Slide two" src="/homeslide/homeslide4.jpg" decoding="async" data-nimg="fill" class="thumbnail absolute object-left sm:object-center w-full object-fill" sizes="100vw" style="position: absolute; height: 100%; width: 100%; inset: 0px; color: transparent;">
                             </div>
                         </div>
                         <div class="swiper-slide swiper-slide-active" data-swiper-slide-index="4" style="width: 1158px;">
                             <div class="relative min-h-[calc(100vh-60px)] sm:min-h-[calc(100vh-92px-84px)]">
-                                <img alt="Slide two" decoding="async" data-nimg="fill" class="thumbnail absolute object-left sm:object-center w-full object-fill" sizes="100vw" srcset="/_next/image?url=%2Fhomeslide%2Fhomeslide5.jpg&amp;w=640&amp;q=100 640w, /_next/image?url=%2Fhomeslide%2Fhomeslide5.jpg&amp;w=750&amp;q=100 750w, /_next/image?url=%2Fhomeslide%2Fhomeslide5.jpg&amp;w=828&amp;q=100 828w, /_next/image?url=%2Fhomeslide%2Fhomeslide5.jpg&amp;w=1080&amp;q=100 1080w, /_next/image?url=%2Fhomeslide%2Fhomeslide5.jpg&amp;w=1200&amp;q=100 1200w, /_next/image?url=%2Fhomeslide%2Fhomeslide5.jpg&amp;w=1920&amp;q=100 1920w, /_next/image?url=%2Fhomeslide%2Fhomeslide5.jpg&amp;w=2048&amp;q=100 2048w, /_next/image?url=%2Fhomeslide%2Fhomeslide5.jpg&amp;w=3840&amp;q=100 3840w" src="/_next/image?url=%2Fhomeslide%2Fhomeslide5.jpg&amp;w=3840&amp;q=100" style="position: absolute; height: 100%; width: 100%; inset: 0px; color: transparent;">
+                                <img alt="Slide two" src="/homeslide/homeslide5.jpg" decoding="async" data-nimg="fill" class="thumbnail absolute object-left sm:object-center w-full object-fill" sizes="100vw" style="position: absolute; height: 100%; width: 100%; inset: 0px; color: transparent;">
                             </div>
                         </div>
                     </div>
@@ -166,11 +57,11 @@
                                     </div>
                                 </div>
                                 <div class="text-white text-base font-normal uppercase leading-tight">Bữa sáng phục vụ tận phòng</div>
-                                <h1 class="text-white font-normal uppercase leading-10 lantern-hotel-title text-[32px]">LANTERN HOTEL</h1>
+                                <h1 class="text-white font-normal uppercase leading-10 lantern-hotel-title text-[32px]">{{__('home.slider.title')}}</h1>
                             </div>
                         </div>
                         <button class="text-white text-base font-medium leading-tight">
-                            <div class="w-40 hover:bg-black/30 p-3 border border-white justify-center items-center gap-2.5 inline-flex">Xem ngay
+                            <div class="w-40 hover:bg-black/30 p-3 border border-white justify-center items-center gap-2.5 inline-flex">{{__('home.slider.buttonText')}}
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" width="20">
                                     <path fill-rule="evenodd" d="M2 10a.75.75 0 01.75-.75h12.59l-2.1-1.95a.75.75 0 111.02-1.1l3.5 3.25a.75.75 0 010 1.1l-3.5 3.25a.75.75 0 11-1.02-1.1l2.1-1.95H2.75A.75.75 0 012 10z" clip-rule="evenodd"></path>
                                 </svg>
@@ -179,12 +70,12 @@
                     </div>
                 </div>
                 <div class="absolute right-0 top-[50%] z-[2]">
-                    <button type="button" class="disabled:bg-black/30 z-5 mr-2 arrow-left arrow ml-2 bg-black px-2 py-2 text-sm font-medium text-white hover:bg-black/30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/75">
+                    <button type="button" class="button-prev-slide disabled:bg-black/30 z-5 mr-2 arrow-left arrow ml-2 bg-black px-2 py-2 text-sm font-medium text-white hover:bg-black/30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/75">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" width="20">
                             <path fill-rule="evenodd" d="M18 10a.75.75 0 01-.75.75H4.66l2.1 1.95a.75.75 0 11-1.02 1.1l-3.5-3.25a.75.75 0 010-1.1l3.5-3.25a.75.75 0 111.02 1.1l-2.1 1.95h12.59A.75.75 0 0118 10z" clip-rule="evenodd"></path>
                         </svg>
                     </button>
-                    <button type="button" class="disabled:bg-black/30 z-5 arrow-right arrow mr-2 bg-black px-2 py-2 text-sm font-medium text-white hover:bg-black/30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/75">
+                    <button type="button" class="button-next-slide  disabled:bg-black/30 z-5 arrow-right arrow mr-2 bg-black px-2 py-2 text-sm font-medium text-white hover:bg-black/30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/75">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" width="20">
                             <path fill-rule="evenodd" d="M2 10a.75.75 0 01.75-.75h12.59l-2.1-1.95a.75.75 0 111.02-1.1l3.5 3.25a.75.75 0 010 1.1l-3.5 3.25a.75.75 0 11-1.02-1.1l2.1-1.95H2.75A.75.75 0 012 10z" clip-rule="evenodd"></path>
                         </svg>
@@ -193,5 +84,88 @@
             </div>
         </main>
     </section>
-</body>
-</html>
+
+    <div class="fixed z-50 bottom-0 booking-wrapper w-full bg-[#633511] backdrop-blur-lg ">
+        <div class="h-5 sm:h-full flex max-w-[1080px] m-auto items-center justify-center gap-5 py-6 px-4">
+            <div class="hidden sm:block w-full">
+                <form class="w-full grid sm:grid-flow-col sm:grid-rows-1 gap-3">
+                    <div class="flex-[1 1 340px] min-w-[195px]">
+                        <div class="w-full border h-11  border-white  bg-[#633511] hover:bg-[#7E502C]">
+                            <div class="ant-picker ant-picker-range ant-picker-borderless css-1gtsgz1 custom-range-picker flex-2 h-11 rounded-none w-full border text-white">
+                                <div class="ant-picker-input ant-picker-input-active">
+                                    <input readonly="" placeholder="Ngày nhận phòng" size="12" autocomplete="off" value="">
+                                </div>
+                                <div class="ant-picker-range-separator">
+                                    <span aria-label="to" class="ant-picker-separator">
+                                        <span role="img" aria-label="swap-right" class="anticon anticon-swap-right">
+                                            <svg viewBox="0 0 1024 1024" focusable="false" data-icon="swap-right" width="1em" height="1em" fill="currentColor" aria-hidden="true">
+                                                <path d="M873.1 596.2l-164-208A32 32 0 00684 376h-64.8c-6.7 0-10.4 7.7-6.3 13l144.3 183H152c-4.4 0-8 3.6-8 8v60c0 4.4 3.6 8 8 8h695.9c26.8 0 41.7-30.8 25.2-51.8z"></path>
+                                            </svg>
+                                        </span>
+                                    </span>
+                                </div>
+                                <div class="ant-picker-input">
+                                    <input readonly="" placeholder="Ngày trả phòng" size="12" autocomplete="off" value="">
+                                </div>
+                                <div class="ant-picker-active-bar" style="left: 0px; width: 150px; position: absolute;"></div>
+                                <span class="ant-picker-suffix">
+                                    <span role="img" aria-label="calendar" class="anticon anticon-calendar">
+                                        <svg viewBox="64 64 896 896" focusable="false" data-icon="calendar" width="1em" height="1em" fill="currentColor" aria-hidden="true">
+                                            <path d="M880 184H712v-64c0-4.4-3.6-8-8-8h-56c-4.4 0-8 3.6-8 8v64H384v-64c0-4.4-3.6-8-8-8h-56c-4.4 0-8 3.6-8 8v64H144c-17.7 0-32 14.3-32 32v664c0 17.7 14.3 32 32 32h736c17.7 0 32-14.3 32-32V216c0-17.7-14.3-32-32-32zm-40 656H184V460h656v380zM184 392V256h128v48c0 4.4 3.6 8 8 8h56c4.4 0 8-3.6 8-8v-48h256v48c0 4.4 3.6 8 8 8h56c4.4 0 8-3.6 8-8v-48h128v136H184z"></path>
+                                        </svg>
+                                    </span>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                        <div class="flex-[1 1 340px] min-w-[140px] relative">
+                            <button type="button" class="flex !justify-start border font-medium	leading-tight flex justify-center w-full h-11 px-4 py-3 text-white bg-[#633511] hover:bg-[#7E502C]">
+                                <p class="text-[#E6E6E6] text-base font-normal leading-tight">Khách hàng</p>
+                            </button>
+                            <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg" class="absolute right-2 top-6 transform -translate-y-1/2" style="fill: white;">
+                                <path d="M6.00002 8.25C5.95077 8.25005 5.902 8.24037 5.8565 8.22151C5.811 8.20266 5.76968 8.175 5.7349 8.14013L1.9849 4.39013C1.83837 4.24359 1.83837 4.00631 1.9849 3.85988C2.13143 3.71344 2.36871 3.71334 2.51515 3.85988L6.00002 7.34475L9.4849 3.85988C9.63143 3.71334 9.86871 3.71334 10.0151 3.85988C10.1616 4.00641 10.1617 4.24369 10.0151 4.39013L6.26515 8.14013C6.23037 8.175 6.18905 8.20266 6.14355 8.22151C6.09805 8.24037 6.04927 8.25005 6.00002 8.25Z"></path>
+                            </svg>
+                    </div>
+                    <div class="flex-[1 1 165px] min-w-[155px] relative ">
+                        <button type="button" class="border flex !justify-start font-medium	leading-tight flex justify-center w-full h-11 px-4 py-3 text-white bg-[#633511] hover:bg-[#7E502C]">
+                            <p class="text-[#E6E6E6] text-base font-normal leading-tight lantern-hotel-title">LANTERN HOTEL</p>
+                        </button>
+                        <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg" class="absolute right-2 top-6 transform -translate-y-1/2" style="fill: white;">
+                            <path d="M6.00002 8.25C5.95077 8.25005 5.902 8.24037 5.8565 8.22151C5.811 8.20266 5.76968 8.175 5.7349 8.14013L1.9849 4.39013C1.83837 4.24359 1.83837 4.00631 1.9849 3.85988C2.13143 3.71344 2.36871 3.71334 2.51515 3.85988L6.00002 7.34475L9.4849 3.85988C9.63143 3.71334 9.86871 3.71334 10.0151 3.85988C10.1616 4.00641 10.1617 4.24369 10.0151 4.39013L6.26515 8.14013C6.23037 8.175 6.18905 8.20266 6.14355 8.22151C6.09805 8.24037 6.04927 8.25005 6.00002 8.25Z"></path>
+                        </svg>
+                    </div>
+                    <div class="flex-[1 1 155px] min-w-[100px]">
+                        <button type="submit" class="rounded-none w-full h-11 bg-[#FFFF] hover:bg-[#DBB98E] text-yellow-900 text-base font-medium">{{__('button.booknow')}}</button>
+                    </div>
+                </form>
+            </div>
+            <div class="sm:hidden w-full">
+                <div>
+                    <button class="p-4 w-full">
+                        <span class="text-white font-medium">Đặt phòng</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+        var swiper = new Swiper('.swiper-container', {
+            loop: true, // Cho phép lặp lại các slide
+            navigation: {
+            nextEl: '.button-next-slide',
+            prevEl: '.button-prev-slide',
+            },
+            pagination: {
+            el: '.swiper-pagination',
+            clickable: true,
+            },
+            autoplay: {
+            delay: 3000,
+            disableOnInteraction: false,
+            },
+        });
+        });
+    </script>
+@endsection

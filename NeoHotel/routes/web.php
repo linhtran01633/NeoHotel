@@ -23,7 +23,6 @@ $room_type = [
 
 Route::get('locale/{locale}', function ($locale) {
     if (in_array($locale, ['en', 'ja', 'vn'])) {
-        \Log::info($locale);
         Session::put('locale', $locale);
     }
     return redirect()->back();
@@ -32,6 +31,16 @@ Route::get('locale/{locale}', function ($locale) {
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/about-us', function () {
+    return view('about_us');
+});
+
+
+Route::get('/services', function () {
+    return view('services');
+});
+
 
 Route::get('/dashboard', function () {
     $data = ['10', '20', '30', '5'];
