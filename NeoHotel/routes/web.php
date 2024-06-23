@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use Illuminate\Support\Facades\Session;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -13,6 +13,42 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+$room_type = [
+    '0' => 'Economy No Window',
+    '1' => 'Standard',
+    '2' => 'Deluxe Back',
+    '3' => 'Deluxe Front',
+    '4' => 'Executive',
+];
+
+Route::get('locale/{locale}', function ($locale) {
+    if (in_array($locale, ['en', 'ja', 'vn'])) {
+        \Log::info($locale);
+        Session::put('locale', $locale);
+    }
+    return redirect()->back();
+});
+
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/dashboard', function () {
+    $data = ['10', '20', '30', '5'];
+    $labelses = ['tháng3', 'tháng 4', 'tháng 5', 'tháng 6'];
+
+    return view('admin.dashboard')->with(['data' => $data, 'labelses' => $labelses]);
+})->name('dashboard');
+
+Route::get('/dashboard/booking', function () {
+    return view('admin.booking');
+})->name('admin.booking');
+
+Route::get('/dashboard/room', function () use($room_type) {
+    return view('admin.room')->with(['room_type' => $room_type]);
+})->name('admin.room');
+
+Route::get('/dashboard/customer', function () {
+    return view('admin.customer');
+})->name('admin.customer');
+
