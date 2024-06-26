@@ -108,7 +108,7 @@
                                 <div class="w-full mb-[12px]">
                                     <h5 class="font-medium">Vị trí</h5>
                                 </div>
-                                <p class="flex-1 w-full   text-base font-light leading-tight whitespace-pre-line text-justify">Gần chợ Bến Thành (cách 8 phút đi bộ), tiện lợi cho di chuyển và khám phá</p>
+                                <p class="flex-1 w-full   text-base font-light leading-tight whitespace-pre-line text-justify">{{__('services.Location')}}</p>
                             </div>
                             <div class="flex flex-col pr-0 sm:pr-[24px]  sm:border-b sm:border-[#E6E6E6]-800 pb-[32px] sm:py-[40px]">
                                 <div class="w-full mb-[12px] flex-col items-center justify-center">
@@ -119,7 +119,7 @@
                                 </div>
                                 <div class="w-full mb-[12px]">
                                     <h5 class="font-medium">Loại phòng</h5>
-                                </div><p class="flex-1 w-full text-base font-light leading-tight whitespace-pre-line text-justify">Đa dạng phù hợp với từng đối tượng khách (Economy, Standard, Deluxe và Executive)</p>
+                                </div><p class="flex-1 w-full text-base font-light leading-tight whitespace-pre-line text-justify">{{__('services.Room')}}</p>
                             </div>
                             <div class="flex flex-col pr-0 sm:pr-[24px]  sm:border-b sm:border-[#E6E6E6]-800 pb-[32px] sm:py-[40px]">
                                 <div class="w-full mb-[12px] flex-col items-center justify-center">
@@ -131,7 +131,7 @@
                                 <div class="w-full mb-[12px]">
                                     <h5 class="font-medium">Thiết bị</h5>
                                 </div>
-                                <p class="flex-1 w-full   text-base font-light leading-tight whitespace-pre-line text-justify">Cần dùng đầy đủ cho khách du lịch</p>
+                                <p class="flex-1 w-full   text-base font-light leading-tight whitespace-pre-line text-justify">{{__('services.Facilities')}}</p>
                             </div>
                             <div class="flex flex-col pr-0 sm:pr-[24px]  sm:border-b sm:border-[#E6E6E6]-800 pb-[32px] sm:py-[40px]">
                                 <div class="w-full mb-[12px] flex-col items-center justify-center">
@@ -143,7 +143,7 @@
                                 <div class="w-full mb-[12px]">
                                     <h5 class="font-medium">Thức uống</h5>
                                 </div>
-                                <p class="flex-1 w-full   text-base font-light leading-tight whitespace-pre-line text-justify">Miễn phí đặc biệt theo mùa từ 6:00 đến 23:00 hàng ngày</p>
+                                <p class="flex-1 w-full   text-base font-light leading-tight whitespace-pre-line text-justify">{{__('services.Special_complimentary_service')}}</p>
                             </div>
                             <div class="flex flex-col pr-0 sm:pr-[24px]  sm:border-b sm:border-[#E6E6E6]-800 pb-[32px] sm:py-[40px]">
                                 <div class="w-full mb-[12px] flex-col items-center justify-center">
@@ -155,7 +155,7 @@
                                 <div class="w-full mb-[12px]">
                                     <h5 class="font-medium">Bữa sáng</h5>
                                 </div>
-                                <p class="flex-1 w-full   text-base font-light leading-tight whitespace-pre-line text-justify">Phục vụ tận phòng theo phong cách địa phương, với menu thay đổi mỗi 3~4 ngày</p>
+                                <p class="flex-1 w-full   text-base font-light leading-tight whitespace-pre-line text-justify">{{__('services.Breakfast')}}</p>
                             </div>
                             <div class="flex flex-col pr-0 sm:pr-[24px]  sm:border-b sm:border-[#E6E6E6]-800 pb-[32px] sm:py-[40px]">
                                 <div class="w-full mb-[12px] flex-col items-center justify-center">
@@ -167,7 +167,7 @@
                                 <div class="w-full mb-[12px]">
                                     <h5 class="font-medium">Dịch vụ</h5>
                                 </div>
-                                <p class="flex-1 w-full   text-base font-light leading-tight whitespace-pre-line text-justify">Tư vấn, và tổ chức tham quan theo yêu cầu (nửa ngày, một ngày, 1~3 đêm), liên hệ trước và sau khi đặt phòng</p>
+                                <p class="flex-1 w-full   text-base font-light leading-tight whitespace-pre-line text-justify">{{__('services.Tour')}}</p>
                             </div>
                             <div class="flex flex-col pr-0 sm:pr-[24px]   pb-[32px] sm:py-[40px]">
                                 <div class="w-full mb-[12px] flex-col items-center justify-center">
@@ -179,7 +179,7 @@
                                 <div class="w-full mb-[12px]">
                                     <h5 class="font-medium">Nhân viên</h5>
                                 </div>
-                                <p class="flex-1 w-full   text-base font-light leading-tight whitespace-pre-line text-justify">Tận tình, am hiểu địa phương, có khả năng ngoại ngữ</p>
+                                <p class="flex-1 w-full   text-base font-light leading-tight whitespace-pre-line text-justify">{{__('services.Team')}}</p>
                             </div>
                             <div class="flex flex-col pr-0 sm:pr-[24px]   pb-[32px] sm:py-[40px]">
                                 <div class="w-full mb-[12px] flex-col items-center justify-center">
@@ -191,7 +191,7 @@
                                 <div class="w-full mb-[12px]">
                                     <h5 class="font-medium">Thông tin</h5>
                                 </div>
-                                <p class="flex-1 w-full   text-base font-light leading-tight whitespace-pre-line text-justify">Bản đồ thông tin du lịch độc đáo, tin cậy, cập nhật</p>
+                                <p class="flex-1 w-full   text-base font-light leading-tight whitespace-pre-line text-justify">{{__('services.Information')}}</p>
                             </div>
                             <div class="flex flex-col pr-0 sm:pr-[24px]   pb-[32px] sm:py-[40px]">
                                 <div class="w-full mb-[12px] flex-col items-center justify-center">
@@ -203,7 +203,7 @@
                                 <div class="w-full mb-[12px]">
                                     <h5 class="font-medium">3G sim</h5>
                                 </div>
-                                <p class="flex-1 w-full   text-base font-light leading-tight whitespace-pre-line text-justify">Miễn phí 3G, wifi</p>
+                                <p class="flex-1 w-full   text-base font-light leading-tight whitespace-pre-line text-justify">{{__('services.3G_sim')}}</p>
                             </div>
                         </div>
                     </div>

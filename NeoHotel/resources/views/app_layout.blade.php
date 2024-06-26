@@ -36,10 +36,10 @@
                         <a class="flex text-white self-baseline h-full  hover:text-customColor items-center mx-4 mb-1 " href="/activities">{{ __('screen.title.activities') }}</a>
                     </li>
                     <li>
-                        <a class="flex text-white self-baseline h-full  hover:text-customColor items-center mx-4 mb-1 " href="/faq">{{ __('screen.title.contact') }}</a>
+                        <a class="flex text-white self-baseline h-full  hover:text-customColor items-center mx-4 mb-1 " href="/faq">{{ __('screen.title.faq') }}</a>
                     </li>
                     <li>
-                        <a class="flex text-white self-baseline h-full  hover:text-customColor items-center mx-4 mb-1 " href="/contact">{{ __('screen.title.faq') }}</a>
+                        <a class="flex text-white self-baseline h-full  hover:text-customColor items-center mx-4 mb-1 " href="/contact">{{ __('screen.title.contact') }}</a>
                     </li>
                 </ul>
             <div class="relative inline-block text-left" data-headlessui-state="" x-data="{ popup_local: false }">

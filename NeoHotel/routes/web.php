@@ -41,6 +41,13 @@ Route::get('/services', function () {
     return view('services');
 });
 
+Route::get('/activities', function () {
+    return view('activities');
+});
+
+Route::get('/contact', function () {
+    return view('contact');
+});
 
 Route::get('/dashboard', function () {
     $data = ['10', '20', '30', '5'];

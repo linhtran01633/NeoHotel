@@ -228,3 +228,34 @@ main {
     padding-left: clamp(1rem, 3vw, 1.5rem);
     padding-right: clamp(1rem, 3vw, 1.5rem);
 }
+
+
+:where(.css-125enb3).ant-input:placeholder-shown {
+    text-overflow: ellipsis;
+}
+:where(.css-125enb3).ant-input {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 4px 11px;
+    color: rgba(0, 0, 0, 0.88);
+    font-size: 14px;
+    line-height: 1.5714285714285714;
+    list-style: none;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+    position: relative;
+    display: inline-block;
+    width: 100%;
+    min-width: 0;
+    background-color: #ffffff;
+    background-image: none;
+    border-width: 1px;
+    border-style: solid;
+    border-color: #d9d9d9;
+    border-radius: 6px;
+    transition: all 0.2s;
+}
+
+.ant-input-number, .ant-input-number-group-addon, .ant-picker, .ant-select-selector, input, textarea {
+    height: 44px;
+    border-radius: 0 !important;
+}
