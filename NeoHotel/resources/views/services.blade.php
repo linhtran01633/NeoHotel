@@ -41,19 +41,19 @@
                         </div>
                         <div class="contentWrapper-img flex-1 ">
                             <div class="relative w-[320px] sm:w-[460px] m-auto">
-                                <div class="swiper swiper-initialized swiper-horizontal swiper-ios mb-3 absolute z-0 swiper-backface-hidden">
+                                <div class="swiper swiper-initialized swiper-horizontal swiper-ios mb-3 absolute z-0 swiper-backface-hidden" id="slide_services">
                                     <div class="swiper-wrapper" style="transform: translate3d(0px, 0px, 0px);">
                                         <div class="swiper-slide overflow-hidden swiper-slide-active" style="width: 460px;" data-swiper-slide-index="0">
-                                            <img alt="service provider" loading="lazy" width="546" height="364" decoding="async" data-nimg="1" class="w-full min-w-[300px] h-full object-center object-cover aspect-[3/2] transform transition-transform duration-300 hover:scale-110" srcset="/_next/image?url=%2Fserviceslide%2Fserviceslideopt1.webp&amp;w=640&amp;q=100 1x, /_next/image?url=%2Fserviceslide%2Fserviceslideopt1.webp&amp;w=1200&amp;q=100 2x" src="/_next/image?url=%2Fserviceslide%2Fserviceslideopt1.webp&amp;w=1200&amp;q=100" style="color: transparent;">
+                                            <img src="/serviceslide/serviceslideopt1.webp" loading="lazy" width="546" height="364" decoding="async" data-nimg="1" class="w-full min-w-[300px] h-full object-center object-cover aspect-[3/2] transform transition-transform duration-300 hover:scale-110" style="color: transparent;">
                                         </div>
                                         <div class="swiper-slide overflow-hidden swiper-slide-next" style="width: 460px;" data-swiper-slide-index="1">
-                                            <img alt="service provider" loading="lazy" width="546" height="364" decoding="async" data-nimg="1" class="w-full min-w-[300px] h-full object-center object-cover aspect-[3/2] transform transition-transform duration-300 hover:scale-110" srcset="/_next/image?url=%2Fserviceslide%2Fserviceslideopt2.webp&amp;w=640&amp;q=100 1x, /_next/image?url=%2Fserviceslide%2Fserviceslideopt2.webp&amp;w=1200&amp;q=100 2x" src="/_next/image?url=%2Fserviceslide%2Fserviceslideopt2.webp&amp;w=1200&amp;q=100" style="color: transparent;">
+                                            <img src="/serviceslide/serviceslideopt2.webp" loading="lazy" width="546" height="364" decoding="async" data-nimg="1" class="w-full min-w-[300px] h-full object-center object-cover aspect-[3/2] transform transition-transform duration-300 hover:scale-110" style="color: transparent;">
                                         </div>
                                         <div class="swiper-slide overflow-hidden" style="width: 460px;" data-swiper-slide-index="2">
-                                            <img alt="service provider" loading="lazy" width="546" height="364" decoding="async" data-nimg="1" class="w-full min-w-[300px] h-full object-center object-cover aspect-[3/2] transform transition-transform duration-300 hover:scale-110" srcset="/_next/image?url=%2Fserviceslide%2Fserviceslideopt3.webp&amp;w=640&amp;q=100 1x, /_next/image?url=%2Fserviceslide%2Fserviceslideopt3.webp&amp;w=1200&amp;q=100 2x" src="/_next/image?url=%2Fserviceslide%2Fserviceslideopt3.webp&amp;w=1200&amp;q=100" style="color: transparent;">
+                                            <img src="/serviceslide/serviceslideopt3.webp" loading="lazy" width="546" height="364" decoding="async" data-nimg="1" class="w-full min-w-[300px] h-full object-center object-cover aspect-[3/2] transform transition-transform duration-300 hover:scale-110" style="color: transparent;">
                                         </div>
                                         <div class="swiper-slide overflow-hidden" data-swiper-slide-index="3" style="width: 460px;">
-                                            <img alt="service provider" loading="lazy" width="546" height="364" decoding="async" data-nimg="1" class="w-full min-w-[300px] h-full object-center object-cover aspect-[3/2] transform transition-transform duration-300 hover:scale-110" srcset="/_next/image?url=%2Fserviceslide%2Fserviceslideopt4.webp&amp;w=640&amp;q=100 1x, /_next/image?url=%2Fserviceslide%2Fserviceslideopt4.webp&amp;w=1200&amp;q=100 2x" src="/_next/image?url=%2Fserviceslide%2Fserviceslideopt4.webp&amp;w=1200&amp;q=100" style="color: transparent;">
+                                            <img src="/serviceslide/serviceslideopt4.webp" loading="lazy" width="546" height="364" decoding="async" data-nimg="1" class="w-full min-w-[300px] h-full object-center object-cover aspect-[3/2] transform transition-transform duration-300 hover:scale-110" style="color: transparent;">
                                         </div>
                                     </div>
                                 </div>
@@ -61,32 +61,32 @@
                                     <div class="swiper-wrapper" style="transform: translate3d(0px, 0px, 0px);">
                                         <div class="swiper-slide swiper-slide-visible swiper-slide-fully-visible swiper-slide-active swiper-slide-thumb-active" style="width: 109px; margin-right: 8px;">
                                             <div class="h-[50px] sm:h-[102px] w-[131px]">
-                                                <img alt="service provider" loading="lazy" decoding="async" data-nimg="fill" class="w-full min-w-[100] h-full object-center object-cover aspect-[3/2]" sizes="10vw" srcset="/_next/image?url=%2Fserviceslide%2Fserviceslideopt1.webp&amp;w=64&amp;q=100 64w, /_next/image?url=%2Fserviceslide%2Fserviceslideopt1.webp&amp;w=96&amp;q=100 96w, /_next/image?url=%2Fserviceslide%2Fserviceslideopt1.webp&amp;w=128&amp;q=100 128w, /_next/image?url=%2Fserviceslide%2Fserviceslideopt1.webp&amp;w=256&amp;q=100 256w, /_next/image?url=%2Fserviceslide%2Fserviceslideopt1.webp&amp;w=384&amp;q=100 384w, /_next/image?url=%2Fserviceslide%2Fserviceslideopt1.webp&amp;w=640&amp;q=100 640w, /_next/image?url=%2Fserviceslide%2Fserviceslideopt1.webp&amp;w=750&amp;q=100 750w, /_next/image?url=%2Fserviceslide%2Fserviceslideopt1.webp&amp;w=828&amp;q=100 828w, /_next/image?url=%2Fserviceslide%2Fserviceslideopt1.webp&amp;w=1080&amp;q=100 1080w, /_next/image?url=%2Fserviceslide%2Fserviceslideopt1.webp&amp;w=1200&amp;q=100 1200w, /_next/image?url=%2Fserviceslide%2Fserviceslideopt1.webp&amp;w=1920&amp;q=100 1920w, /_next/image?url=%2Fserviceslide%2Fserviceslideopt1.webp&amp;w=2048&amp;q=100 2048w, /_next/image?url=%2Fserviceslide%2Fserviceslideopt1.webp&amp;w=3840&amp;q=100 3840w" src="/_next/image?url=%2Fserviceslide%2Fserviceslideopt1.webp&amp;w=3840&amp;q=100" style="position: absolute; height: 100%; width: 100%; inset: 0px; color: transparent;">
+                                                <img src="/serviceslide/serviceslideopt1.webp" loading="lazy" decoding="async" data-nimg="fill" class="w-full min-w-[100] h-full object-center object-cover aspect-[3/2]" sizes="10vw" style="position: absolute; height: 100%; width: 100%; inset: 0px; color: transparent;">
                                             </div>
                                         </div>
                                         <div class="swiper-slide swiper-slide-visible swiper-slide-fully-visible swiper-slide-next" style="width: 109px; margin-right: 8px;">
                                             <div class="h-[50px] sm:h-[102px] w-[131px]">
-                                                <img alt="service provider" loading="lazy" decoding="async" data-nimg="fill" class="w-full min-w-[100] h-full object-center object-cover aspect-[3/2]" sizes="10vw" srcset="/_next/image?url=%2Fserviceslide%2Fserviceslideopt2.webp&amp;w=64&amp;q=100 64w, /_next/image?url=%2Fserviceslide%2Fserviceslideopt2.webp&amp;w=96&amp;q=100 96w, /_next/image?url=%2Fserviceslide%2Fserviceslideopt2.webp&amp;w=128&amp;q=100 128w, /_next/image?url=%2Fserviceslide%2Fserviceslideopt2.webp&amp;w=256&amp;q=100 256w, /_next/image?url=%2Fserviceslide%2Fserviceslideopt2.webp&amp;w=384&amp;q=100 384w, /_next/image?url=%2Fserviceslide%2Fserviceslideopt2.webp&amp;w=640&amp;q=100 640w, /_next/image?url=%2Fserviceslide%2Fserviceslideopt2.webp&amp;w=750&amp;q=100 750w, /_next/image?url=%2Fserviceslide%2Fserviceslideopt2.webp&amp;w=828&amp;q=100 828w, /_next/image?url=%2Fserviceslide%2Fserviceslideopt2.webp&amp;w=1080&amp;q=100 1080w, /_next/image?url=%2Fserviceslide%2Fserviceslideopt2.webp&amp;w=1200&amp;q=100 1200w, /_next/image?url=%2Fserviceslide%2Fserviceslideopt2.webp&amp;w=1920&amp;q=100 1920w, /_next/image?url=%2Fserviceslide%2Fserviceslideopt2.webp&amp;w=2048&amp;q=100 2048w, /_next/image?url=%2Fserviceslide%2Fserviceslideopt2.webp&amp;w=3840&amp;q=100 3840w" src="/_next/image?url=%2Fserviceslide%2Fserviceslideopt2.webp&amp;w=3840&amp;q=100" style="position: absolute; height: 100%; width: 100%; inset: 0px; color: transparent;">
+                                                <img src="/serviceslide/serviceslideopt2.webp" loading="lazy" decoding="async" data-nimg="fill" class="w-full min-w-[100] h-full object-center object-cover aspect-[3/2]" sizes="10vw" style="position: absolute; height: 100%; width: 100%; inset: 0px; color: transparent;">
                                             </div>
                                         </div>
                                         <div class="swiper-slide swiper-slide-visible swiper-slide-fully-visible" style="width: 109px; margin-right: 8px;">
                                             <div class="h-[50px] sm:h-[102px] w-[131px]">
-                                                <img alt="service provider" loading="lazy" decoding="async" data-nimg="fill" class="w-full min-w-[100] h-full object-center object-cover aspect-[3/2]" sizes="10vw" srcset="/_next/image?url=%2Fserviceslide%2Fserviceslideopt3.webp&amp;w=64&amp;q=100 64w, /_next/image?url=%2Fserviceslide%2Fserviceslideopt3.webp&amp;w=96&amp;q=100 96w, /_next/image?url=%2Fserviceslide%2Fserviceslideopt3.webp&amp;w=128&amp;q=100 128w, /_next/image?url=%2Fserviceslide%2Fserviceslideopt3.webp&amp;w=256&amp;q=100 256w, /_next/image?url=%2Fserviceslide%2Fserviceslideopt3.webp&amp;w=384&amp;q=100 384w, /_next/image?url=%2Fserviceslide%2Fserviceslideopt3.webp&amp;w=640&amp;q=100 640w, /_next/image?url=%2Fserviceslide%2Fserviceslideopt3.webp&amp;w=750&amp;q=100 750w, /_next/image?url=%2Fserviceslide%2Fserviceslideopt3.webp&amp;w=828&amp;q=100 828w, /_next/image?url=%2Fserviceslide%2Fserviceslideopt3.webp&amp;w=1080&amp;q=100 1080w, /_next/image?url=%2Fserviceslide%2Fserviceslideopt3.webp&amp;w=1200&amp;q=100 1200w, /_next/image?url=%2Fserviceslide%2Fserviceslideopt3.webp&amp;w=1920&amp;q=100 1920w, /_next/image?url=%2Fserviceslide%2Fserviceslideopt3.webp&amp;w=2048&amp;q=100 2048w, /_next/image?url=%2Fserviceslide%2Fserviceslideopt3.webp&amp;w=3840&amp;q=100 3840w" src="/_next/image?url=%2Fserviceslide%2Fserviceslideopt3.webp&amp;w=3840&amp;q=100" style="position: absolute; height: 100%; width: 100%; inset: 0px; color: transparent;">
+                                                <img src="/serviceslide/serviceslideopt3.webp" loading="lazy" decoding="async" data-nimg="fill" class="w-full min-w-[100] h-full object-center object-cover aspect-[3/2]" sizes="10vw" style="position: absolute; height: 100%; width: 100%; inset: 0px; color: transparent;">
                                             </div>
                                         </div>
                                         <div class="swiper-slide swiper-slide-visible swiper-slide-fully-visible" style="width: 109px; margin-right: 8px;">
                                             <div class="h-[50px] sm:h-[102px] w-[131px]">
-                                                <img alt="service provider" loading="lazy" decoding="async" data-nimg="fill" class="w-full min-w-[100] h-full object-center object-cover aspect-[3/2]" sizes="10vw" srcset="/_next/image?url=%2Fserviceslide%2Fserviceslideopt4.webp&amp;w=64&amp;q=100 64w, /_next/image?url=%2Fserviceslide%2Fserviceslideopt4.webp&amp;w=96&amp;q=100 96w, /_next/image?url=%2Fserviceslide%2Fserviceslideopt4.webp&amp;w=128&amp;q=100 128w, /_next/image?url=%2Fserviceslide%2Fserviceslideopt4.webp&amp;w=256&amp;q=100 256w, /_next/image?url=%2Fserviceslide%2Fserviceslideopt4.webp&amp;w=384&amp;q=100 384w, /_next/image?url=%2Fserviceslide%2Fserviceslideopt4.webp&amp;w=640&amp;q=100 640w, /_next/image?url=%2Fserviceslide%2Fserviceslideopt4.webp&amp;w=750&amp;q=100 750w, /_next/image?url=%2Fserviceslide%2Fserviceslideopt4.webp&amp;w=828&amp;q=100 828w, /_next/image?url=%2Fserviceslide%2Fserviceslideopt4.webp&amp;w=1080&amp;q=100 1080w, /_next/image?url=%2Fserviceslide%2Fserviceslideopt4.webp&amp;w=1200&amp;q=100 1200w, /_next/image?url=%2Fserviceslide%2Fserviceslideopt4.webp&amp;w=1920&amp;q=100 1920w, /_next/image?url=%2Fserviceslide%2Fserviceslideopt4.webp&amp;w=2048&amp;q=100 2048w, /_next/image?url=%2Fserviceslide%2Fserviceslideopt4.webp&amp;w=3840&amp;q=100 3840w" src="/_next/image?url=%2Fserviceslide%2Fserviceslideopt4.webp&amp;w=3840&amp;q=100" style="position: absolute; height: 100%; width: 100%; inset: 0px; color: transparent;">
+                                                <img src="/serviceslide/serviceslideopt4.webp" loading="lazy" decoding="async" data-nimg="fill" class="w-full min-w-[100] h-full object-center object-cover aspect-[3/2]" sizes="10vw" style="position: absolute; height: 100%; width: 100%; inset: 0px; color: transparent;">
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                <button type="button" class="absolute top-[50%] disabled:bg-black/30 left-0 z-10 arrow-left arrow ml-2 bg-black px-2 py-2 text-sm font-medium text-white hover:bg-black/30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/75">
+                                <button type="button" id="button-next-slide_services" class="absolute top-[50%] disabled:bg-black/30 left-0 z-10 arrow-left arrow ml-2 bg-black px-2 py-2 text-sm font-medium text-white hover:bg-black/30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/75">
                                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" width="20">
                                         <path fill-rule="evenodd" d="M18 10a.75.75 0 01-.75.75H4.66l2.1 1.95a.75.75 0 11-1.02 1.1l-3.5-3.25a.75.75 0 010-1.1l3.5-3.25a.75.75 0 111.02 1.1l-2.1 1.95h12.59A.75.75 0 0118 10z" clip-rule="evenodd"></path>
                                     </svg>
                                 </button>
-                                <button type="button" class="absolute top-[50%] disabled:bg-black/30 right-0 z-10 arrow-right arrow mr-2 bg-black px-2 py-2 text-sm font-medium text-white hover:bg-black/30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/75">
+                                <button type="button" id="button-prev-slide_services" class="absolute top-[50%] disabled:bg-black/30 right-0 z-10 arrow-right arrow mr-2 bg-black px-2 py-2 text-sm font-medium text-white hover:bg-black/30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/75">
                                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" width="20">
                                         <path fill-rule="evenodd" d="M2 10a.75.75 0 01.75-.75h12.59l-2.1-1.95a.75.75 0 111.02-1.1l3.5 3.25a.75.75 0 010 1.1l-3.5 3.25a.75.75 0 11-1.02-1.1l2.1-1.95H2.75A.75.75 0 012 10z" clip-rule="evenodd"></path>
                                     </svg>
@@ -106,9 +106,9 @@
                                     </svg>
                                 </div>
                                 <div class="w-full mb-[12px]">
-                                    <h5 class="font-medium">Vị trí</h5>
+                                    <h5 class="font-medium">{{__('services.title.Location')}}</h5>
                                 </div>
-                                <p class="flex-1 w-full   text-base font-light leading-tight whitespace-pre-line text-justify">{{__('services.Location')}}</p>
+                                <p class="flex-1 w-full text-base font-light leading-tight whitespace-pre-line text-justify">{{__('services.Location')}}</p>
                             </div>
                             <div class="flex flex-col pr-0 sm:pr-[24px]  sm:border-b sm:border-[#E6E6E6]-800 pb-[32px] sm:py-[40px]">
                                 <div class="w-full mb-[12px] flex-col items-center justify-center">
@@ -118,7 +118,7 @@
                                     </svg>
                                 </div>
                                 <div class="w-full mb-[12px]">
-                                    <h5 class="font-medium">Loại phòng</h5>
+                                    <h5 class="font-medium">{{__('services.title.Room')}}</h5>
                                 </div><p class="flex-1 w-full text-base font-light leading-tight whitespace-pre-line text-justify">{{__('services.Room')}}</p>
                             </div>
                             <div class="flex flex-col pr-0 sm:pr-[24px]  sm:border-b sm:border-[#E6E6E6]-800 pb-[32px] sm:py-[40px]">
@@ -129,7 +129,7 @@
                                     </svg>
                                 </div>
                                 <div class="w-full mb-[12px]">
-                                    <h5 class="font-medium">Thiết bị</h5>
+                                    <h5 class="font-medium">{{__('services.title.Facilities')}}</h5>
                                 </div>
                                 <p class="flex-1 w-full   text-base font-light leading-tight whitespace-pre-line text-justify">{{__('services.Facilities')}}</p>
                             </div>
@@ -141,7 +141,7 @@
                                     </svg>
                                 </div>
                                 <div class="w-full mb-[12px]">
-                                    <h5 class="font-medium">Thức uống</h5>
+                                    <h5 class="font-medium">{{__('services.title.Special_complimentary_service')}}</h5>
                                 </div>
                                 <p class="flex-1 w-full   text-base font-light leading-tight whitespace-pre-line text-justify">{{__('services.Special_complimentary_service')}}</p>
                             </div>
@@ -153,7 +153,7 @@
                                     </svg>
                                 </div>
                                 <div class="w-full mb-[12px]">
-                                    <h5 class="font-medium">Bữa sáng</h5>
+                                    <h5 class="font-medium">{{__('services.title.Breakfast')}}</h5>
                                 </div>
                                 <p class="flex-1 w-full   text-base font-light leading-tight whitespace-pre-line text-justify">{{__('services.Breakfast')}}</p>
                             </div>
@@ -165,7 +165,7 @@
                                     </svg>
                                 </div>
                                 <div class="w-full mb-[12px]">
-                                    <h5 class="font-medium">Dịch vụ</h5>
+                                    <h5 class="font-medium">{{__('services.title.Tour')}}</h5>
                                 </div>
                                 <p class="flex-1 w-full   text-base font-light leading-tight whitespace-pre-line text-justify">{{__('services.Tour')}}</p>
                             </div>
@@ -177,7 +177,7 @@
                                     </svg>
                                 </div>
                                 <div class="w-full mb-[12px]">
-                                    <h5 class="font-medium">Nhân viên</h5>
+                                    <h5 class="font-medium">{{__('services.title.Team')}}</h5>
                                 </div>
                                 <p class="flex-1 w-full   text-base font-light leading-tight whitespace-pre-line text-justify">{{__('services.Team')}}</p>
                             </div>
@@ -189,7 +189,7 @@
                                     </svg>
                                 </div>
                                 <div class="w-full mb-[12px]">
-                                    <h5 class="font-medium">Thông tin</h5>
+                                    <h5 class="font-medium">{{__('services.title.Information')}}</h5>
                                 </div>
                                 <p class="flex-1 w-full   text-base font-light leading-tight whitespace-pre-line text-justify">{{__('services.Information')}}</p>
                             </div>
@@ -201,7 +201,7 @@
                                     </svg>
                                 </div>
                                 <div class="w-full mb-[12px]">
-                                    <h5 class="font-medium">3G sim</h5>
+                                    <h5 class="font-medium">{{__('services.title.3G_sim')}}</h5>
                                 </div>
                                 <p class="flex-1 w-full   text-base font-light leading-tight whitespace-pre-line text-justify">{{__('services.3G_sim')}}</p>
                             </div>
@@ -210,5 +210,24 @@
                 </div>
             </div>
         </main>
+        @include('footer')
+        @include('popup_booking')
     </section>
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var swiper_econowin = new Swiper('#slide_services', {
+                loop: true, // Cho phép lặp lại các slide
+                navigation: {
+                nextEl: '#button-next-slide_services',
+                prevEl: '#button-prev-slide_services',
+                },
+                pagination: {
+                el: '.swiper-pagination',
+                clickable: true,
+                },
+                autoplay: false,
+            });
+        });
+    </script>
 @endsection

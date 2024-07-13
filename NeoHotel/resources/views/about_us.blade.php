@@ -192,4 +192,6 @@
             </div>
         </main>
     </section>
+    @include('footer')
+    @include('popup_booking')
 @endsection

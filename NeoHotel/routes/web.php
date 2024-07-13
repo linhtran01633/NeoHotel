@@ -28,6 +28,10 @@ Route::get('locale/{locale}', function ($locale) {
     return redirect()->back();
 });
 
+Route::get('/test', function () {
+    return view('test');
+});
+
 Route::get('/', function () {
     return view('welcome');
 });
@@ -41,8 +45,16 @@ Route::get('/services', function () {
     return view('services');
 });
 
+Route::get('/rooms', function () {
+    return view('rooms');
+});
+
 Route::get('/activities', function () {
     return view('activities');
+});
+
+Route::get('/faq', function () {
+    return view('faq');
 });
 
 Route::get('/contact', function () {

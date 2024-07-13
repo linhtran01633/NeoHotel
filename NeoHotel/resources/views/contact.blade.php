@@ -34,41 +34,34 @@
                                     <div class="grid grid-cols-1 grid-rows-4 md:grid-cols-2 md:grid-rows-2 gap-x-5 gap-y-5 sm:gap-y-10">
                                         <div class="flex flex-col gap-y-3 ">
                                             <label>
-                                                <span class="label inline font-medium text-[xsContent] text-[16px] line-clamp-5">Tên</span>
+                                                <span class="label inline font-medium text-[xsContent] text-[16px] line-clamp-5">{{__('contact.name')}}</span>
                                                 <span class="text-red-600 ml-1">*</span>
                                             </label>
                                             <input placeholder="Type here" class="ant-input css-125enb3 sc-gsTDqH jWFWON css-125enb3" type="text" value="" name="name">
                                         </div>
                                         <div class="flex flex-col gap-y-3">
                                             <label>
-                                                <span class="label inline font-medium text-[xsContent] text-[16px] line-clamp-5">Giới tính</span>
+                                                <span class="label inline font-medium text-[xsContent] text-[16px] line-clamp-5">{{__('contact.sex')}}</span>
                                             </label>
                                             <div class="ant-select sc-bdfCDU iknHgW css-125enb3 ant-select-single ant-select-show-arrow" name="sex">
                                                 <div class="ant-select-selector">
-                                                    <span class="ant-select-selection-search">
-                                                        <input autocomplete="off" class="ant-select-selection-search-input" role="combobox" aria-expanded="false" aria-haspopup="listbox" aria-owns="rc_select_0_list" aria-autocomplete="list" aria-controls="rc_select_0_list" readonly="" unselectable="on" type="search" value="" style="opacity: 0;" id="rc_select_0">
-                                                    </span>
-                                                    <span class="ant-select-selection-item" title="Ms.">Ms.</span>
+                                                    <select name="sex" class="w-full h-[44px] border border-[#d9d9d9]">
+                                                        <option value="0">Ms.</option>
+                                                        <option value="1">Mr.</option>
+                                                    </select>
                                                 </div>
-                                                <span class="ant-select-arrow" unselectable="on" aria-hidden="true" style="user-select: none;">
-                                                    <span role="img" aria-label="down" class="anticon anticon-down ant-select-suffix">
-                                                        <svg viewBox="64 64 896 896" focusable="false" data-icon="down" width="1em" height="1em" fill="currentColor" aria-hidden="true">
-                                                            <path d="M884 256h-75c-5.1 0-9.9 2.5-12.9 6.6L512 654.2 227.9 262.6c-3-4.1-7.8-6.6-12.9-6.6h-75c-6.5 0-10.3 7.4-6.5 12.7l352.6 486.1c12.8 17.6 39 17.6 51.7 0l352.6-486.1c3.9-5.3.1-12.7-6.4-12.7z"></path>
-                                                        </svg>
-                                                    </span>
-                                                </span>
                                             </div>
                                         </div>
                                         <div class="flex flex-col gap-y-3 ">
                                             <label>
-                                                <span class="label inline font-medium text-[xsContent] text-[16px] line-clamp-5">Email</span>
+                                                <span class="label inline font-medium text-[xsContent] text-[16px] line-clamp-5">{{__('contact.email')}}</span>
                                                 <span class="text-red-600 ml-1">*</span>
                                             </label>
                                             <input placeholder="Type here" class="ant-input css-125enb3 sc-gsTDqH jWFWON css-125enb3" type="text" value="" name="email">
                                         </div>
                                         <div class="flex flex-col gap-y-3 ">
                                             <label>
-                                                <span class="label inline font-medium text-[xsContent] text-[16px] line-clamp-5">Số điện thoại</span>
+                                                <span class="label inline font-medium text-[xsContent] text-[16px] line-clamp-5">{{__('contact.phone')}}</span>
                                                 <span class="text-red-600 ml-1">*</span>
                                             </label>
                                             <input placeholder="Type here" class="ant-input css-125enb3 sc-gsTDqH jWFWON css-125enb3" type="text" value="" name="phone">
@@ -77,14 +70,14 @@
                                     <div class="sm:col-span-2">
                                         <div class="flex flex-col gap-y-3 ">
                                             <label>
-                                                <span class="label inline font-medium text-[xsContent] text-[16px] line-clamp-5">Yêu cầu</span>
+                                                <span class="label inline font-medium text-[xsContent] text-[16px] line-clamp-5">{{__('contact.inquiry')}}</span>
                                                 <span class="text-red-600 ml-1">*</span>
                                             </label>
                                             <textarea name="inquiry" placeholder="Type here" class="ant-input css-125enb3" style="resize: none; height: 100px;"></textarea>
                                         </div>
                                     </div>
                                     <div class="w-[154px] self-end">
-                                        <button class="disabled:bg-black/30 self-end font-medium	leading-tight flex justify-center w-full h-11 px-4 py-3 text-white bg-[#633511] hover:bg-[#7E502C]" type="submit">Gửi yêu cầu</button>
+                                        <button class="disabled:bg-black/30 self-end font-medium	leading-tight flex justify-center w-full h-11 px-4 py-3 text-white bg-[#633511] hover:bg-[#7E502C]" type="submit">{{__('contact.button_submit')}}</button>
                                     </div>
                                 </div>
                             </form>
@@ -116,7 +109,7 @@
                                         </svg>
                                     </div>
                                     <div class="flex flex-col flex-1">
-                                        <h4 class="text-xl">Số điện thoại</h4>
+                                        <h4 class="text-xl">{{__('contact.phone')}}</h4>
                                         <p class="  text-base font-normal">(+84) 28 3925 2691</p>
                                     </div>
                                 </div>
@@ -135,7 +128,7 @@
                                         </svg>
                                     </div>
                                     <div class="flex flex-col flex-1">
-                                        <h4 class="text-xl">Email</h4>
+                                        <h4 class="text-xl">{{__('contact.email')}}</h4>
                                         <p class="  text-base font-normal">lantern@neo-hospitality.com</p>
                                     </div>
                                 </div>
@@ -156,7 +149,7 @@
                                         </svg>
                                     </div>
                                     <div class="flex flex-col flex-1">
-                                        <h4 class="text-xl">Địa chỉ</h4>
+                                        <h4 class="text-xl">{{__('contact.address')}}</h4>
                                         <p class="  text-base font-normal">122 Le Lai Street, Ben Thanh Ward, District 1, Ho Chi Minh City</p>
                                     </div>
                                 </div>
@@ -167,4 +160,6 @@
             </div>
         </main>
     </section>
+    @include('footer')
+    @include('popup_booking')
 @endsection

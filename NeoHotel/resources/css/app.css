@@ -259,3 +259,8 @@ main {
     height: 44px;
     border-radius: 0 !important;
 }
+
+.py-xlClamp {
+    padding-top: clamp(2rem, 3vw, 3.75rem);
+    padding-bottom: clamp(2rem, 3vw, 3.75rem);
+}
