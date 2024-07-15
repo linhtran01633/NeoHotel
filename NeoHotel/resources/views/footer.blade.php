@@ -6,8 +6,8 @@
                     <div class="about-us-wrapper col-span-full sm:col-span-full sm:row-span-1 lg:col-span-2 lg:row-span-1">
                         <div class=" justify-center pt-4 space-x-4 lg:pt-0 lg:col-end-13">
                             <div class="flex flex-col gap-5">
-                                <p class="text-xl font-medium text-orange-300">About us</p>
-                                <p class="text-[#E6E6E6] text-base font-normal leading-tight text-justify">With an ambition to renewal the local hospitality service, we try to find the new value for every traditional little thing.</p>
+                                <p class="text-xl font-medium text-orange-300">{{__('footer.title.About_us')}}</p>
+                                <p class="text-[#E6E6E6] text-base font-normal leading-tight text-justify">{{__('footer.About_us')}}</p>
                                 <div class="w-12 h-0.5 bg-yellow-900"></div>
                             </div>
                             <div class="flex pt-2">
@@ -30,19 +30,19 @@
                         </div>
                     </div>
                     <div class="explore-wrapper grid-rows-4 grid-flow-col col-span-full sm:row-start-2 sm:col-span-1 lg:col-span-2 lg:row-span-1 ">
-                        <p class="text-xl font-medium text-orange-300 mb-5">Explore</p>
+                        <p class="text-xl font-medium text-orange-300 mb-5">{{__('footer.title.Explore')}}</p>
                         <ul class="grid grid-rows-4 grid-flow-col !list-inside gap-[10px]">
-                            <li class="customLi hover:text-customColor"><a href="/en"><span class="text-[#E6E6E6] text-base font-normal leading-tight !text-[#E6E6E6] hover:text-customColor">Home</span></a></li>
-                            <li class="customLi hover:text-customColor"><a href="/en/about-us"><span class="text-[#E6E6E6] text-base font-normal leading-tight !text-[#E6E6E6] hover:text-customColor">About us</span></a></li>
-                            <li class="customLi hover:text-customColor"><a href="/en/services"><span class="text-[#E6E6E6] text-base font-normal leading-tight !text-[#E6E6E6] hover:text-customColor">Hotel concept &amp; service</span></a></li>
-                            <li class="customLi hover:text-customColor"><a href="/en/rooms"><span class="text-[#E6E6E6] text-base font-normal leading-tight !text-[#E6E6E6] hover:text-customColor">Rooms</span></a></li>
-                            <li class="customLi hover:text-customColor"><a href="/en/activities"><span class="text-[#E6E6E6] text-base font-normal leading-tight !text-[#E6E6E6] hover:text-customColor">Activities</span></a></li>
-                            <li class="customLi hover:text-customColor"><a href="/en/faq"><span class="text-[#E6E6E6] text-base font-normal leading-tight !text-[#E6E6E6] hover:text-customColor">FAQ</span></a></li>
-                            <li class="customLi hover:text-customColor"><a href="/en/contact"><span class="text-[#E6E6E6] text-base font-normal leading-tight !text-[#E6E6E6] hover:text-customColor">Contact</span></a></li>
+                            <li class="customLi hover:text-customColor"><a href="/"><span class="text-[#E6E6E6] text-base font-normal leading-tight !text-[#E6E6E6] hover:text-customColor">{{ __('screen.title.home') }}</span></a></li>
+                            <li class="customLi hover:text-customColor"><a href="/about-us"><span class="text-[#E6E6E6] text-base font-normal leading-tight !text-[#E6E6E6] hover:text-customColor">{{ __('screen.title.aboutus') }}</span></a></li>
+                            <li class="customLi hover:text-customColor"><a href="/services"><span class="text-[#E6E6E6] text-base font-normal leading-tight !text-[#E6E6E6] hover:text-customColor">{{ __('screen.title.services') }}</span></a></li>
+                            <li class="customLi hover:text-customColor"><a href="/rooms"><span class="text-[#E6E6E6] text-base font-normal leading-tight !text-[#E6E6E6] hover:text-customColor">{{ __('screen.title.rooms') }}</span></a></li>
+                            <li class="customLi hover:text-customColor"><a href="/activities"><span class="text-[#E6E6E6] text-base font-normal leading-tight !text-[#E6E6E6] hover:text-customColor">{{ __('screen.title.activities') }}</span></a></li>
+                            <li class="customLi hover:text-customColor"><a href="/faq"><span class="text-[#E6E6E6] text-base font-normal leading-tight !text-[#E6E6E6] hover:text-customColor">{{ __('screen.title.faq') }}</span></a></li>
+                            <li class="customLi hover:text-customColor"><a href="/contact"><span class="text-[#E6E6E6] text-base font-normal leading-tight !text-[#E6E6E6] hover:text-customColor">{{ __('screen.title.contact') }}</span></a></li>
                         </ul>
                     </div>
                     <div class="contact-wrapper col-span-full sm:row-span-2 sm:col-start-2 lg:col-span-2 lg:row-span-1">
-                        <p class="text-xl font-medium text-orange-300 mb-5">Contact</p>
+                        <p class="text-xl font-medium text-orange-300 mb-5">{{__('footer.title.Contact')}}</p>
                         <div class="flex flex-col gap-5">
                             <div class="items-start flex gap-3">
                                 <div class="w-[16px]">
@@ -50,7 +50,7 @@
                                         <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 01-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z"></path>
                                     </svg>
                                 </div>
-                                <div class="flex-1"><span class="text-[#E6E6E6] text-base font-normal leading-tight">(+84) 28 3925 2691</span></div>
+                                <div class="flex-1"><span class="text-[#E6E6E6] text-base font-normal leading-tight">{{__('footer.Contact.phone')}}</span></div>
                             </div>
                             <div class="items-start flex gap-3">
                                 <div class="w-[16px]">
@@ -58,7 +58,7 @@
                                         <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75"></path>
                                     </svg>
                                 </div>
-                                <div class="flex-1"><span class="text-[#E6E6E6] text-base font-normal leading-tight">lantern@neo-hospitality.com</span></div>
+                                <div class="flex-1"><span class="text-[#E6E6E6] text-base font-normal leading-tight">{{__('footer.Contact.email')}}</span></div>
                             </div>
                             <div class="items-start flex gap-3">
                                 <div class="w-[16px]">
@@ -67,7 +67,7 @@
                                         <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z"></path>
                                     </svg>
                                 </div>
-                                <div class="flex-1"><span class="text-[#E6E6E6] text-base font-normal leading-tight">122 Le Lai Street, Ben Thanh Ward, District 1, Ho Chi Minh City</span></div>
+                                <div class="flex-1"><span class="text-[#E6E6E6] text-base font-normal leading-tight">{{__('footer.Contact.address')}}</span></div>
                             </div>
                         </div>
                     </div>

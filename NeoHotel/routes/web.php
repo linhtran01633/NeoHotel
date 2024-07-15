@@ -61,6 +61,11 @@ Route::get('/contact', function () {
     return view('contact');
 });
 
+Route::get('/booking', function () {
+    return view('booking');
+});
+
+
 Route::get('/dashboard', function () {
     $data = ['10', '20', '30', '5'];
     $labelses = ['tháng3', 'tháng 4', 'tháng 5', 'tháng 6'];

@@ -273,6 +273,20 @@
 
     "placeholder.booking_date" : "Ngày nhận phòng -> Ngày trả phòng",
 
+    "footer.title.About_us" : "Về chúng tôi",
+    "footer.About_us" : "Với mong muốn góp phần làm mới ngành dịch vụ địa phương, chúng tôi luôn cố gắng mang đến những giá trị mới cho những điều truyền thống nhỏ bé.",
+    "footer.title.Explore" : "Khám phá",
+    "footer.title.Contact" : "Liên hệ",
+    "footer.Contact.phone" : "(+84) 28 3925 2691",
+    "footer.Contact.email" : "lantern@neo-hospitality.com",
+    "footer.Contact.address" : "122 Le Lai Street, Ben Thanh Ward, District 1, Ho Chi Minh City",
+
+    "slide.tab1" : "Đội ngũ nhân viên đa ngôn ngữ",
+    "slide.tab2" : "Tiện nghi",
+    "slide.tab3" : "Không gian ấn tượng",
+    "slide.tab4" : "Bữa sáng phục vụ tận phòng",
+    "slide.tab5" : "Ẩm thực đường phố",
+
     "linh" : "123"
 }
 

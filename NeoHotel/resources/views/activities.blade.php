@@ -1,5 +1,6 @@
 @extends('app_layout')
 @section('content')
+    @include('header')
     <section class="flex-1 flex flex-col">
         <main class="flex-1 flex flex-col ">
             <div>

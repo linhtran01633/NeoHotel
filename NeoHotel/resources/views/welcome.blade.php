@@ -1,34 +1,40 @@
 @extends('app_layout')
 
 @section('content')
+    @include('header')
     <section class="flex-1 flex flex-col">
         <main class="flex-1 flex flex-col ">
             <div class="isolate slide-container relative flex-1">
                 <div class="swiper swiper-container swiper-initialized swiper-horizontal swiper-backface-hidden" id="main">
                     <div class="swiper-wrapper" style="transition-duration: 2000ms; transform: translate3d(-4632px, 0px, 0px);">
-                        <div class="swiper-slide swiper-slide-next" style="width: 1158px;" data-swiper-slide-index="0">
+                        <div class="swiper-slide" style="width: 1158px;" data-title="{{__('slide.tab1')}}">
                             <div class="relative min-h-[calc(100vh-60px)] sm:min-h-[calc(100vh-92px-84px)]">
-                                <img alt="Slide one" src="/homeslide/homeslide1.jpg" decoding="async" data-nimg="fill" class="thumbnail absolute object-left sm:object-center w-full object-fill" sizes="100vw" style="position: absolute; height: 100%; width: 100%; inset: 0px; color: transparent;">
+                                <img alt="Slide one" src="/homeslide/homeslide1.webp" decoding="async" data-nimg="fill" class="hidden sm:block thumbnail absolute object-left sm:object-center w-full object-fill" sizes="100vw" style="position: absolute; height: 100%; width: 100%; inset: 0px; color: transparent;">
+                                <img alt="Slide one" src="/homeslide/homeslide_mobile1.webp" decoding="async" data-nimg="fill" class="block sm:hidden thumbnail absolute object-left sm:object-center w-full object-fill" sizes="100vw" style="position: absolute; height: 100%; width: 100%; inset: 0px; color: transparent;">
                             </div>
                         </div>
-                        <div class="swiper-slide" style="width: 1158px;" data-swiper-slide-index="1">
+                        <div class="swiper-slide" style="width: 1158px;" data-title="{{__('slide.tab2')}}">
                             <div class="relative min-h-[calc(100vh-60px)] sm:min-h-[calc(100vh-92px-84px)]">
-                                <img alt="Slide one" src="/homeslide/homeslide2.jpg" decoding="async" data-nimg="fill" class="thumbnail absolute object-left sm:object-center w-full object-fill" sizes="100vw" style="position: absolute; height: 100%; width: 100%; inset: 0px; color: transparent;">
+                                <img alt="Slide one" src="/homeslide/homeslide2.webp" decoding="async" data-nimg="fill" class="hidden sm:block thumbnail absolute object-left sm:object-center w-full object-fill" sizes="100vw" style="position: absolute; height: 100%; width: 100%; inset: 0px; color: transparent;">
+                                <img alt="Slide one" src="/homeslide/homeslide_mobile2.webp" decoding="async" data-nimg="fill" class="block sm:hidden thumbnail absolute object-left sm:object-center w-full object-fill" sizes="100vw" style="position: absolute; height: 100%; width: 100%; inset: 0px; color: transparent;">
                             </div>
                         </div>
-                        <div class="swiper-slide" style="width: 1158px;" data-swiper-slide-index="2">
+                        <div class="swiper-slide" style="width: 1158px;" data-title="{{__('slide.tab3')}}">
                             <div class="relative min-h-[calc(100vh-60px)] sm:min-h-[calc(100vh-92px-84px)]">
-                                <img alt="Slide two" src="/homeslide/homeslide3.jpg" decoding="async" data-nimg="fill" class="thumbnail absolute object-left sm:object-center w-full object-fill" sizes="100vw" style="position: absolute; height: 100%; width: 100%; inset: 0px; color: transparent;">
+                                <img alt="Slide two" src="/homeslide/homeslide3.webp" decoding="async" data-nimg="fill" class="hidden sm:block thumbnail absolute object-left sm:object-center w-full object-fill" sizes="100vw" style="position: absolute; height: 100%; width: 100%; inset: 0px; color: transparent;">
+                                <img alt="Slide two" src="/homeslide/homeslide_mobile3.webp" decoding="async" data-nimg="fill" class="block sm:hidden thumbnail absolute object-left sm:object-center w-full object-fill" sizes="100vw" style="position: absolute; height: 100%; width: 100%; inset: 0px; color: transparent;">
                             </div>
                         </div>
-                        <div class="swiper-slide swiper-slide-prev" style="width: 1158px;" data-swiper-slide-index="3">
+                        <div class="swiper-slide" style="width: 1158px;" data-title="{{__('slide.tab4')}}">
                             <div class="relative min-h-[calc(100vh-60px)] sm:min-h-[calc(100vh-92px-84px)]">
-                                <img alt="Slide two" src="/homeslide/homeslide4.jpg" decoding="async" data-nimg="fill" class="thumbnail absolute object-left sm:object-center w-full object-fill" sizes="100vw" style="position: absolute; height: 100%; width: 100%; inset: 0px; color: transparent;">
+                                <img alt="Slide two" src="/homeslide/homeslide4.webp" decoding="async" data-nimg="fill" class="hidden sm:block thumbnail absolute object-left sm:object-center w-full object-fill" sizes="100vw" style="position: absolute; height: 100%; width: 100%; inset: 0px; color: transparent;">
+                                <img alt="Slide two" src="/homeslide/homeslide_mobile4.webp" decoding="async" data-nimg="fill" class="block sm:hidden thumbnail absolute object-left sm:object-center w-full object-fill" sizes="100vw" style="position: absolute; height: 100%; width: 100%; inset: 0px; color: transparent;">
                             </div>
                         </div>
-                        <div class="swiper-slide swiper-slide-active" data-swiper-slide-index="4" style="width: 1158px;">
+                        <div class="swiper-slide" style="width: 1158px;" data-title="{{__('slide.tab5')}}">
                             <div class="relative min-h-[calc(100vh-60px)] sm:min-h-[calc(100vh-92px-84px)]">
-                                <img alt="Slide two" src="/homeslide/homeslide5.jpg" decoding="async" data-nimg="fill" class="thumbnail absolute object-left sm:object-center w-full object-fill" sizes="100vw" style="position: absolute; height: 100%; width: 100%; inset: 0px; color: transparent;">
+                                <img alt="Slide two" src="/homeslide/homeslide5.webp" decoding="async" data-nimg="fill" class="hidden sm:block thumbnail absolute object-left sm:object-center w-full object-fill" sizes="100vw" style="position: absolute; height: 100%; width: 100%; inset: 0px; color: transparent;">
+                                <img alt="Slide two" src="/homeslide/homeslide_mobile5.webp" decoding="async" data-nimg="fill" class="block sm:hidden thumbnail absolute object-left sm:object-center w-full object-fill" sizes="100vw" style="position: absolute; height: 100%; width: 100%; inset: 0px; color: transparent;">
                             </div>
                         </div>
                     </div>
@@ -56,16 +62,18 @@
                                         </svg>
                                     </div>
                                 </div>
-                                <div class="text-white text-base font-normal uppercase leading-tight">Bữa sáng phục vụ tận phòng</div>
+                                <div class="text-white text-base font-normal uppercase leading-tight" id="title_slide"></div>
                                 <h1 class="text-white font-normal uppercase leading-10 lantern-hotel-title text-[32px]">{{__('home.slider.title')}}</h1>
                             </div>
                         </div>
                         <button class="text-white text-base font-medium leading-tight">
-                            <div class="w-40 hover:bg-black/30 p-3 border border-white justify-center items-center gap-2.5 inline-flex">{{__('home.slider.buttonText')}}
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" width="20">
-                                    <path fill-rule="evenodd" d="M2 10a.75.75 0 01.75-.75h12.59l-2.1-1.95a.75.75 0 111.02-1.1l3.5 3.25a.75.75 0 010 1.1l-3.5 3.25a.75.75 0 11-1.02-1.1l2.1-1.95H2.75A.75.75 0 012 10z" clip-rule="evenodd"></path>
-                                </svg>
-                            </div>
+                            <a href="/services">
+                                <div class="w-40 hover:bg-black/30 p-3 border border-white justify-center items-center gap-2.5 inline-flex">{{__('home.slider.buttonText')}}
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" width="20">
+                                        <path fill-rule="evenodd" d="M2 10a.75.75 0 01.75-.75h12.59l-2.1-1.95a.75.75 0 111.02-1.1l3.5 3.25a.75.75 0 010 1.1l-3.5 3.25a.75.75 0 11-1.02-1.1l2.1-1.95H2.75A.75.75 0 012 10z" clip-rule="evenodd"></path>
+                                    </svg>
+                                </div>
+                            </a>
                         </button>
                     </div>
                 </div>
@@ -88,21 +96,37 @@
     <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function () {
-        var swiper = new Swiper('.swiper-container', {
-            loop: true, // Cho phép lặp lại các slide
-            navigation: {
-            nextEl: '.button-next-slide',
-            prevEl: '.button-prev-slide',
-            },
-            pagination: {
-            el: '.swiper-pagination',
-            clickable: true,
-            },
-            autoplay: {
-            delay: 3000,
-            disableOnInteraction: false,
-            },
-        });
+            var swiper = new Swiper('.swiper-container', {
+                loop: true,
+                initialSlide: 0, // Start at the first slide
+                loopAdditionalSlides: 0, // Set additional slides
+                navigation: {
+                    nextEl: '.button-next-slide',
+                    prevEl: '.button-prev-slide',
+                },
+                pagination: {
+                    el: '.swiper-pagination',
+                    clickable: true,
+                },
+                    autoplay: {
+                    delay: 3000,
+                    disableOnInteraction: false,
+                },
+
+            });
+
+            // Function to update title
+            const updateTitle = () => {
+                const activeSlide = document.querySelector('.swiper-slide-active');
+                const newTitle = activeSlide.getAttribute('data-title');
+                document.getElementById('title_slide').innerText = newTitle;
+            };
+
+            // Initial title update
+            updateTitle();
+
+            // Update title on slide change
+            swiper.on('slideChange', updateTitle);
         });
     </script>
 @endsection

@@ -272,6 +272,19 @@
 
     "placeholder.booking_date" : "チェックイン日 -> チェックアウト日",
 
+    "footer.title.About_us" : "企業概要",
+    "footer.About_us" : "ベトナムの名物をホテルのデザインに利用し、ローカルのホテル業界を革新を目指す新たなサービスを提供させていただきます。",
+    "footer.title.Explore" : "サイト案内",
+    "footer.title.Contact" : "お問い合わせ先",
+    "footer.Contact.phone" : "(+84) 28 3925 2691",
+    "footer.Contact.email" : "lantern@neo-hospitality.com",
+    "footer.Contact.address" : "122 Le Lai Street, Ben Thanh Ward, District 1, Ho Chi Minh City",
+
+    "slide.tab1" : "日本語と英語が可能なスタッフ",
+    "slide.tab2" : "落ち着いた部屋のデザイン",
+    "slide.tab3" : "現地の雰囲気",
+    "slide.tab4" : "インルームブレックファースト",
+    "slide.tab5" : "地元屋台のグルメツアー",
 
     "linh" : "123"
 }

@@ -5,7 +5,11 @@ export default {
     "./resources/**/*.js"
   ],
   theme: {
-    extend: {},
+    extend: {
+        width: {
+            'formClamp': 'clamp(16rem, 45vw, 34rem)',
+        },
+    },
   },
   plugins: [],
 }

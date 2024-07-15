@@ -1,5 +1,6 @@
 @extends('app_layout')
 @section('content')
+    @include('header')
     <section class="flex-1 flex flex-col">
         <main class="flex-1 flex flex-col ">
             <div class="flex flex-col gap-[32px] mb-[32px]  sm:gap-[60px] sm:mb-[60px]">
@@ -102,7 +103,7 @@
                                         </div>
                                         <div class="">
                                             <div class="w-[154px] h-[40px]">
-                                                <button type="button" class="font-medium	leading-tight flex justify-center w-full h-11 px-4 py-3 text-white bg-[#633511] hover:bg-[#7E502C]">{{__('button.booknow')}}</button>
+                                                <button type="button" class="btn-nook_now font-medium leading-tight flex justify-center w-full h-11 px-4 py-3 text-white bg-[#633511] hover:bg-[#7E502C]">{{__('button.booknow')}}</button>
                                             </div>
                                         </div>
                                     </div>
@@ -181,7 +182,7 @@
                                         </div>
                                         <div class="">
                                             <div class="w-[154px] h-[40px]">
-                                                <button type="button" class="font-medium leading-tight flex justify-center w-full h-11 px-4 py-3 text-white bg-[#633511] hover:bg-[#7E502C]">{{__('button.booknow')}}</button>
+                                                <button type="button" class="btn-nook_now font-medium leading-tight flex justify-center w-full h-11 px-4 py-3 text-white bg-[#633511] hover:bg-[#7E502C]">{{__('button.booknow')}}</button>
                                             </div>
                                         </div>
                                     </div>
@@ -259,7 +260,9 @@
                                             </div>
                                         </div>
                                         <div class="">
-                                            <div class="w-[154px] h-[40px]"><button type="button" class="font-medium	leading-tight flex justify-center w-full h-11 px-4 py-3 text-white bg-[#633511] hover:bg-[#7E502C]">{{__('button.booknow')}}</button></div>
+                                            <div class="w-[154px] h-[40px]">
+                                                <button type="button" class="btn-nook_now font-medium leading-tight flex justify-center w-full h-11 px-4 py-3 text-white bg-[#633511] hover:bg-[#7E502C]">{{__('button.booknow')}}</button>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -337,7 +340,7 @@
                                         </div>
                                         <div class="">
                                             <div class="w-[154px] h-[40px]">
-                                                <button type="button" class="font-medium leading-tight flex justify-center w-full h-11 px-4 py-3 text-white bg-[#633511] hover:bg-[#7E502C]">{{__('button.booknow')}}</button>
+                                                <button type="button" class="btn-nook_now font-medium leading-tight flex justify-center w-full h-11 px-4 py-3 text-white bg-[#633511] hover:bg-[#7E502C]">{{__('button.booknow')}}</button>
                                             </div>
                                         </div>
                                     </div>
@@ -416,7 +419,7 @@
                                         </div>
                                         <div class="">
                                             <div class="w-[154px] h-[40px]">
-                                                <button type="button" class="font-medium leading-tight flex justify-center w-full h-11 px-4 py-3 text-white bg-[#633511] hover:bg-[#7E502C]">{{__('button.booknow')}}</button>
+                                                <button type="button" class="btn-nook_now font-medium leading-tight flex justify-center w-full h-11 px-4 py-3 text-white bg-[#633511] hover:bg-[#7E502C]">{{__('button.booknow')}}</button>
                                             </div>
                                         </div>
                                     </div>
@@ -839,6 +842,10 @@
                 },
                 autoplay: false,
             });
+
+            $('.btn-nook_now').on('click', function(e) {
+                window.location.href = '/booking';
+            })
         });
     </script>
 @endsection
