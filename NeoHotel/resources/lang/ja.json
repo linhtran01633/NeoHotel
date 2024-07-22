@@ -286,5 +286,8 @@
     "slide.tab4" : "インルームブレックファースト",
     "slide.tab5" : "地元屋台のグルメツアー",
 
+    "booking_success" : "予約が成功しました",
+    "booking_false" : "予約に失敗しました",
+
     "linh" : "123"
 }

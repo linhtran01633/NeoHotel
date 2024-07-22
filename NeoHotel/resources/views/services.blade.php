@@ -41,47 +41,24 @@
                             </div>
                         </div>
                         <div class="contentWrapper-img flex-1 ">
-                            <div class="relative w-[320px] sm:w-[460px] m-auto">
+                            <div class="w-full w-[320px] sm:w-[460px] m-auto relative">
                                 <div class="swiper swiper-initialized swiper-horizontal swiper-ios mb-3 absolute z-0 swiper-backface-hidden" id="slide_services">
                                     <div class="swiper-wrapper" style="transform: translate3d(0px, 0px, 0px);">
-                                        <div class="swiper-slide overflow-hidden swiper-slide-active" style="width: 460px;" data-swiper-slide-index="0">
-                                            <img src="/serviceslide/serviceslideopt1.webp" loading="lazy" width="546" height="364" decoding="async" data-nimg="1" class="w-full min-w-[300px] h-full object-center object-cover aspect-[3/2] transform transition-transform duration-300 hover:scale-110" style="color: transparent;">
+                                        <div class="swiper-slide overflow-hidden w-full sm:w-[460px]">
+                                            <img src="/serviceslide/serviceslideopt1.webp" loading="lazy" decoding="async" data-nimg="1" class="w-full min-w-[300px] h-full object-center object-cover aspect-[3/2] transform transition-transform duration-300 hover:scale-110" style="color: transparent;">
                                         </div>
-                                        <div class="swiper-slide overflow-hidden swiper-slide-next" style="width: 460px;" data-swiper-slide-index="1">
-                                            <img src="/serviceslide/serviceslideopt2.webp" loading="lazy" width="546" height="364" decoding="async" data-nimg="1" class="w-full min-w-[300px] h-full object-center object-cover aspect-[3/2] transform transition-transform duration-300 hover:scale-110" style="color: transparent;">
+                                        <div class="swiper-slide overflow-hidden w-full sm:w-[460px]">
+                                            <img src="/serviceslide/serviceslideopt2.webp" loading="lazy" decoding="async" data-nimg="1" class="w-full min-w-[300px] h-full object-center object-cover aspect-[3/2] transform transition-transform duration-300 hover:scale-110" style="color: transparent;">
                                         </div>
-                                        <div class="swiper-slide overflow-hidden" style="width: 460px;" data-swiper-slide-index="2">
-                                            <img src="/serviceslide/serviceslideopt3.webp" loading="lazy" width="546" height="364" decoding="async" data-nimg="1" class="w-full min-w-[300px] h-full object-center object-cover aspect-[3/2] transform transition-transform duration-300 hover:scale-110" style="color: transparent;">
+                                        <div class="swiper-slide overflow-hidden w-full sm:w-[460px]">
+                                            <img src="/serviceslide/serviceslideopt3.webp" loading="lazy" decoding="async" data-nimg="1" class="w-full min-w-[300px] h-full object-center object-cover aspect-[3/2] transform transition-transform duration-300 hover:scale-110" style="color: transparent;">
                                         </div>
-                                        <div class="swiper-slide overflow-hidden" data-swiper-slide-index="3" style="width: 460px;">
-                                            <img src="/serviceslide/serviceslideopt4.webp" loading="lazy" width="546" height="364" decoding="async" data-nimg="1" class="w-full min-w-[300px] h-full object-center object-cover aspect-[3/2] transform transition-transform duration-300 hover:scale-110" style="color: transparent;">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="swiper swiper-initialized swiper-horizontal swiper-ios swiper-backface-hidden swiper-thumbs">
-                                    <div class="swiper-wrapper" style="transform: translate3d(0px, 0px, 0px);">
-                                        <div class="swiper-slide swiper-slide-visible swiper-slide-fully-visible swiper-slide-active swiper-slide-thumb-active" style="width: 109px; margin-right: 8px;">
-                                            <div class="h-[50px] sm:h-[102px] w-[131px]">
-                                                <img src="/serviceslide/serviceslideopt1.webp" loading="lazy" decoding="async" data-nimg="fill" class="w-full min-w-[100] h-full object-center object-cover aspect-[3/2]" sizes="10vw" style="position: absolute; height: 100%; width: 100%; inset: 0px; color: transparent;">
-                                            </div>
-                                        </div>
-                                        <div class="swiper-slide swiper-slide-visible swiper-slide-fully-visible swiper-slide-next" style="width: 109px; margin-right: 8px;">
-                                            <div class="h-[50px] sm:h-[102px] w-[131px]">
-                                                <img src="/serviceslide/serviceslideopt2.webp" loading="lazy" decoding="async" data-nimg="fill" class="w-full min-w-[100] h-full object-center object-cover aspect-[3/2]" sizes="10vw" style="position: absolute; height: 100%; width: 100%; inset: 0px; color: transparent;">
-                                            </div>
-                                        </div>
-                                        <div class="swiper-slide swiper-slide-visible swiper-slide-fully-visible" style="width: 109px; margin-right: 8px;">
-                                            <div class="h-[50px] sm:h-[102px] w-[131px]">
-                                                <img src="/serviceslide/serviceslideopt3.webp" loading="lazy" decoding="async" data-nimg="fill" class="w-full min-w-[100] h-full object-center object-cover aspect-[3/2]" sizes="10vw" style="position: absolute; height: 100%; width: 100%; inset: 0px; color: transparent;">
-                                            </div>
-                                        </div>
-                                        <div class="swiper-slide swiper-slide-visible swiper-slide-fully-visible" style="width: 109px; margin-right: 8px;">
-                                            <div class="h-[50px] sm:h-[102px] w-[131px]">
-                                                <img src="/serviceslide/serviceslideopt4.webp" loading="lazy" decoding="async" data-nimg="fill" class="w-full min-w-[100] h-full object-center object-cover aspect-[3/2]" sizes="10vw" style="position: absolute; height: 100%; width: 100%; inset: 0px; color: transparent;">
-                                            </div>
+                                        <div class="swiper-slide overflow-hidden w-full sm:w-[460px]">
+                                            <img src="/serviceslide/serviceslideopt4.webp" loading="lazy" decoding="async" data-nimg="1" class="w-full min-w-[300px] h-full object-center object-cover aspect-[3/2] transform transition-transform duration-300 hover:scale-110" style="color: transparent;">
                                         </div>
                                     </div>
                                 </div>
+                                <div class="swiper-pagination"></div>
                                 <button type="button" id="button-next-slide_services" class="absolute top-[50%] disabled:bg-black/30 left-0 z-10 arrow-left arrow ml-2 bg-black px-2 py-2 text-sm font-medium text-white hover:bg-black/30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/75">
                                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" width="20">
                                         <path fill-rule="evenodd" d="M18 10a.75.75 0 01-.75.75H4.66l2.1 1.95a.75.75 0 11-1.02 1.1l-3.5-3.25a.75.75 0 010-1.1l3.5-3.25a.75.75 0 111.02 1.1l-2.1 1.95h12.59A.75.75 0 0118 10z" clip-rule="evenodd"></path>
@@ -217,18 +194,54 @@
     <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function () {
-            var swiper_econowin = new Swiper('#slide_services', {
+            var thumbSlider = new Swiper('.thumb-slider', {
+                spaceBetween: 10,
+                slidesPerView: 'auto',
+                freeMode: true,
+                watchSlidesVisibility: true,
+                watchSlidesProgress: true,
+                slideToClickedSlide: true,
+            });
+
+            var slide_services = new Swiper('#slide_services', {
                 loop: true, // Cho phép lặp lại các slide
                 navigation: {
-                nextEl: '#button-next-slide_services',
-                prevEl: '#button-prev-slide_services',
+                    nextEl: '#button-next-slide_services',
+                    prevEl: '#button-prev-slide_services',
                 },
                 pagination: {
-                el: '.swiper-pagination',
-                clickable: true,
+                    el: '.swiper-pagination',
+                    clickable: true,
+                    renderBullet: function (index, className) {
+                        var images = [
+                            '/serviceslide/serviceslideopt1.webp',
+                            '/serviceslide/serviceslideopt2.webp',
+                            '/serviceslide/serviceslideopt3.webp',
+                            '/serviceslide/serviceslideopt4.webp',
+                        ];
+                        return '<span class="' + className + '" style="background-image:url(' + images[index] + ')"></span>';
+                    },
                 },
                 autoplay: false,
             });
+
+
+            // <div class="swiper-container thumb-slider">
+            //                         <div class="swiper-wrapper flex">
+            //                             <div class="w-[131px] h-[50px] sm:h-[102px] swiper-pagination">
+            //                                 <img src="/serviceslide/serviceslideopt1.webp" loading="lazy" decoding="async" data-nimg="fill" class="w-full min-w-[100px] h-full object-center object-cover aspect-[3/2]" sizes="10vw">
+            //                             </div>
+            //                             <div class="w-[131px] h-[50px] sm:h-[102px]">
+            //                                 <img src="/serviceslide/serviceslideopt2.webp" loading="lazy" decoding="async" data-nimg="fill" class="w-full min-w-[100px] h-full object-center object-cover aspect-[3/2]" sizes="10vw">
+            //                             </div>
+            //                             <div class="w-[131px] h-[50px] sm:h-[102px]">
+            //                                 <img src="/serviceslide/serviceslideopt3.webp" loading="lazy" decoding="async" data-nimg="fill" class="w-full min-w-[100px] h-full object-center object-cover aspect-[3/2]" sizes="10vw">
+            //                             </div>
+            //                             <div class="w-[131px] h-[50px] sm:h-[102px]">
+            //                                 <img src="/serviceslide/serviceslideopt4.webp" loading="lazy" decoding="async" data-nimg="fill" class="w-full min-w-[100px] h-full object-center object-cover aspect-[3/2]" sizes="10vw">
+            //                             </div>
+            //                         </div>
+            //                     </div>
         });
     </script>
 @endsection

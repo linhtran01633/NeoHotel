@@ -103,7 +103,7 @@
                                         </div>
                                         <div class="">
                                             <div class="w-[154px] h-[40px]">
-                                                <button type="button" class="btn-nook_now font-medium leading-tight flex justify-center w-full h-11 px-4 py-3 text-white bg-[#633511] hover:bg-[#7E502C]">{{__('button.booknow')}}</button>
+                                                <button type="button" data-room_type="0" class="btn-nook_now font-medium leading-tight flex justify-center w-full h-11 px-4 py-3 text-white bg-[#633511] hover:bg-[#7E502C]">{{__('button.booknow')}}</button>
                                             </div>
                                         </div>
                                     </div>
@@ -182,7 +182,7 @@
                                         </div>
                                         <div class="">
                                             <div class="w-[154px] h-[40px]">
-                                                <button type="button" class="btn-nook_now font-medium leading-tight flex justify-center w-full h-11 px-4 py-3 text-white bg-[#633511] hover:bg-[#7E502C]">{{__('button.booknow')}}</button>
+                                                <button type="button" data-room_type="1" class="btn-nook_now font-medium leading-tight flex justify-center w-full h-11 px-4 py-3 text-white bg-[#633511] hover:bg-[#7E502C]">{{__('button.booknow')}}</button>
                                             </div>
                                         </div>
                                     </div>
@@ -261,7 +261,7 @@
                                         </div>
                                         <div class="">
                                             <div class="w-[154px] h-[40px]">
-                                                <button type="button" class="btn-nook_now font-medium leading-tight flex justify-center w-full h-11 px-4 py-3 text-white bg-[#633511] hover:bg-[#7E502C]">{{__('button.booknow')}}</button>
+                                                <button type="button" data-room_type="2" class="btn-nook_now font-medium leading-tight flex justify-center w-full h-11 px-4 py-3 text-white bg-[#633511] hover:bg-[#7E502C]">{{__('button.booknow')}}</button>
                                             </div>
                                         </div>
                                     </div>
@@ -340,7 +340,7 @@
                                         </div>
                                         <div class="">
                                             <div class="w-[154px] h-[40px]">
-                                                <button type="button" class="btn-nook_now font-medium leading-tight flex justify-center w-full h-11 px-4 py-3 text-white bg-[#633511] hover:bg-[#7E502C]">{{__('button.booknow')}}</button>
+                                                <button type="button" data-room_type="3" class="btn-nook_now font-medium leading-tight flex justify-center w-full h-11 px-4 py-3 text-white bg-[#633511] hover:bg-[#7E502C]">{{__('button.booknow')}}</button>
                                             </div>
                                         </div>
                                     </div>
@@ -419,7 +419,7 @@
                                         </div>
                                         <div class="">
                                             <div class="w-[154px] h-[40px]">
-                                                <button type="button" class="btn-nook_now font-medium leading-tight flex justify-center w-full h-11 px-4 py-3 text-white bg-[#633511] hover:bg-[#7E502C]">{{__('button.booknow')}}</button>
+                                                <button type="button" data-room_type="4" class="btn-nook_now font-medium leading-tight flex justify-center w-full h-11 px-4 py-3 text-white bg-[#633511] hover:bg-[#7E502C]">{{__('button.booknow')}}</button>
                                             </div>
                                         </div>
                                     </div>
@@ -844,7 +844,8 @@
             });
 
             $('.btn-nook_now').on('click', function(e) {
-                window.location.href = '/booking';
+                let room_type = $(this).data('room_type');
+                window.location.href = `/booking?room_type=${room_type}&step=1`;
             })
         });
     </script>

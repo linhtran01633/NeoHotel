@@ -20,13 +20,52 @@
         .active-nav-link { background: #1947ee; }
         .nav-item:hover { background: #1947ee; }
         .account-link:hover { background: #3d68ff; }
+
+        /* Tùy chỉnh tiêu đề cột */
+        table.dataTable thead th {
+            background-color: #3d68ff; /* Màu nền của tiêu đề */
+            color: #fff; /* Màu chữ */
+            font-weight: bold;
+        }
+
+        /* Tùy chỉnh hàng dữ liệu */
+        table.dataTable tbody tr {
+            border-bottom: 1px solid #ddd;
+        }
+
+        /* Tùy chỉnh hàng khi hover */
+        table.dataTable tbody tr:hover {
+            background-color: #f0f0f0;
+        }
+
+        /* Tùy chỉnh các nút phân trang */
+        .dataTables_wrapper .dataTables_paginate .paginate_button {
+            padding: 0.5rem 1rem;
+            margin: 0.25rem;
+            border: 1px solid #ccc;
+            border-radius: 0.25rem;
+            background: #f9fafb;
+            color: #374151;
+        }
+
+        .dataTables_wrapper .dataTables_paginate .paginate_button:hover {
+            background: #e5e7eb;
+            border-color: #d1d5db;
+        }
+
+        .custom-grid {
+            grid-template-columns: 30fr 10fr 30fr 30fr;
+        }
     </style>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.1.0/css/select2.min.css" rel="stylesheet" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css">
-    <script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css">
+    <script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
+
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css" />
+
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.11.1/dist/cdn.min.js"></script>
 
 </head>
 <body class="bg-gray-100 font-family-karla flex">
@@ -58,11 +97,18 @@
                 Rooms
             </a>
 
-            <a href="{{route('admin.customer')}}" class="@if(isset($page_current) && $page_current == 'product') active-nav-link @endif flex items-center text-white py-4 pl-4 nav-item">
+            <a href="{{route('admin.booking_room')}}" class="@if(isset($page_current) && $page_current == 'category') active-nav-link @endif flex items-center text-white py-4 pl-4 nav-item">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 inline mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5.121 17.804A13.944 13.944 0 0112 15c2.761 0 5.278.894 7.121 2.404M12 7a4 4 0 110-8 4 4 0 010 8zm0 8a9 9 0 110 18 9 9 0 010-18z" />
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5h6M9 12h6m-7 7h8a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2z" />
                 </svg>
-                Customers
+                Booking Room
+            </a>
+
+            <a href="{{route('admin.service')}}" class="@if(isset($page_current) && $page_current == 'category') active-nav-link @endif flex items-center text-white py-4 pl-4 nav-item">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 inline mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5h6M9 12h6m-7 7h8a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                </svg>
+                Service
             </a>
 
             <a href="#" class="@if(isset($page_current) && $page_current == 'news') active-nav-link @endif flex items-center text-white py-4 pl-4 nav-item">
@@ -127,11 +173,11 @@
                         Rooms
                     </a>
 
-                    <a href="#" class="@if(isset($page_current) && $page_current == 'news') active-nav-link @endif flex items-center text-white py-4 pl-4 nav-item">
+                    <a href="#" class="@if(isset($page_current) && $page_current == 'category') active-nav-link @endif flex items-center text-white py-4 pl-4 nav-item">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 inline mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5.121 17.804A13.944 13.944 0 0112 15c2.761 0 5.278.894 7.121 2.404M12 7a4 4 0 110-8 4 4 0 010 8zm0 8a9 9 0 110 18 9 9 0 010-18z" />
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5h6M9 12h6m-7 7h8a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2z" />
                         </svg>
-                        Customers
+                        Booking Room
                     </a>
 
                     <a href="#" class="@if(isset($page_current) && $page_current == 'invoice') active-nav-link @endif flex items-center text-white py-4 pl-4 nav-item">

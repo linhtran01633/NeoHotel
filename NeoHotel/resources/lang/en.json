@@ -287,5 +287,8 @@
     "slide.tab4" : "In room breakfast - Local taste",
     "slide.tab5" : "Local street food tour",
 
+    "booking_success" : "Successful booking",
+    "booking_false" : "Reservation failed",
+
     "linh" : "123"
 }
