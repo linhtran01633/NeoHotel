@@ -42,7 +42,7 @@ class Booking extends Model
 
     public function bookingRoom()
     {
-        return $this->hasMany(\App\Models\BookingRoom::class,  'booking_id', 'id');
+        return $this->hasMany(\App\Models\BookingRoom::class,  'booking_id', 'id')->where('status', 0);
     }
 
     public function bookingService()

@@ -2,15 +2,49 @@
 @section('content')
     <div class="" x-data="{
         isCheck : false,
+        data_id : '',
         data: {
             price: '',
             end_date: '',
             room_name: '',
             start_date: '',
         },
+        data_detail : [],
         openFunction: function(id) {
             console.log(id);
             this.isCheck = true
+            this.data_id = id;
+
+            let url = '{{ route('admin.booking_service.get') }}';
+
+            fetch(url, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json, text-plain, */*',
+                    'X-Requested-With': 'XMLHttpRequest',
+                    'X-CSRF-TOKEN': document.head.querySelector('meta[name=csrf-token]').content
+                },
+                body: JSON.stringify({booking_id : id}),
+            })
+            .then((response) => response.json())
+            .then(data => {
+                console.log(data)
+                this.data_detail = data;
+            }).catch((error) => {
+                console.error('Error:', error);
+            });
+        },
+        cloneRow: function() {
+            this.data_detail.push({
+                    'service_id' : '',
+                    'sl' : 1,
+                    'price' : 0,
+                    'money' : 0,
+                });
+        },
+        removeRow: function() {
+            this.data_detail.pop();
         }
     }">
 
@@ -73,6 +107,7 @@
                 <div class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-3xl w-full">
                     <form action="{{route('admin.booking_service.save')}}" method="post" class="w-full">
                         @csrf
+                        <input type="hidden" name="id" x-model="data_id">
                         <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
                             <div class="w-full">
                                 <div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
@@ -89,48 +124,82 @@
                                         <div class="flex items-center">
                                             <h3>Service</h3>
                                             <div class="ml-4">
-                                                <button type="button" class="clone_service inline-flex items-center px-5 py-2.5 text-sm font-medium text-center text-white rounded-lg bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300">
+                                                <button type="button" x-on:click="cloneRow" class="inline-flex items-center px-5 py-2.5 text-sm font-medium text-center text-white rounded-lg bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300">
                                                     Add service
                                                 </button>
 
-                                                <button type="button" class="remove_service ml-2 inline-flex items-center px-5 py-2.5 text-sm font-medium text-center text-white rounded-lg bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300">
+                                                <button type="button" x-on:click="removeRow" class="ml-2 inline-flex items-center px-5 py-2.5 text-sm font-medium text-center text-white rounded-lg bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300">
                                                     Remove service
                                                 </button>
                                             </div>
                                         </div>
                                         <div>
-                                            {{-- grid-cols-[40fr,20fr,40fr] --}}
-                                            <div class="grid custom-grid gap-2 row-service">
-                                                <div class="w-full">
-                                                    <div class="w-full">Service name</div>
+                                            <template x-if="data_detail.length == 0">
+                                                <div class="grid custom-grid gap-2 row-service">
                                                     <div class="w-full">
-                                                        <select name="data[service_id][]" required class="select-service bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
-                                                            <option value="" data-price="0">Select option</option>
-                                                            @foreach ($service as $item)
-                                                                <option value="{{$item->id}}" data-price="{{$item->price}}">{{$item->service_name}}</option>
-                                                            @endforeach
-                                                        </select>
+                                                        <div class="w-full">Service name</div>
+                                                        <div class="w-full">
+                                                            <select name="data[service_id][]" required class="select-service bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
+                                                                <option value="" data-price="0">Select option</option>
+                                                                @foreach ($service as $item)
+                                                                    <option value="{{$item->id}}" data-price="{{$item->price}}">{{$item->service_name}}</option>
+                                                                @endforeach
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="w-full">
+                                                        <div class="w-full">SL</div>
+                                                        <div class="w-full">
+                                                            <input type="number" name="data[sl][]" value="1" min="1" class="input-sl text-right bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
+                                                        </div>
+                                                    </div>
+                                                    <div class="w-full">
+                                                        <div class="w-full">Price</div>
+                                                        <div class="w-full">
+                                                            <input type="number" name="data[price][]" required value="0" min="0" class="input-price text-right bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
+                                                        </div>
+                                                    </div>
+                                                    <div class="w-full">
+                                                        <div class="w-full">Money</div>
+                                                        <div class="w-full">
+                                                            <input type="number" name="data[money][]" required value="0" min="0" readonly class="input-money text-right bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
+                                                        </div>
                                                     </div>
                                                 </div>
-                                                <div class="w-full">
-                                                    <div class="w-full">SL</div>
+                                            </template>
+                                            <template x-for="(value, key) in data_detail" :key="key">
+                                                <div class="grid custom-grid gap-2 row-service">
                                                     <div class="w-full">
-                                                        <input type="number" name="data[sl][]" required value="1" min="1" class="input-sl text-right bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
+                                                        <div class="w-full">Service name</div>
+                                                        <div class="w-full">
+                                                            <select name="data[service_id][]" x-model="value.service_id" required class="select-service bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
+                                                                <option value="" data-price="0">Select option</option>
+                                                                @foreach ($service as $item)
+                                                                    <option value="{{$item->id}}" data-price="{{$item->price}}">{{$item->service_name}}</option>
+                                                                @endforeach
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="w-full">
+                                                        <div class="w-full">SL</div>
+                                                        <div class="w-full">
+                                                            <input type="number" name="data[sl][]" required x-model="value.sl" value="1" min="1" class="input-sl text-right bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
+                                                        </div>
+                                                    </div>
+                                                    <div class="w-full">
+                                                        <div class="w-full">Price</div>
+                                                        <div class="w-full">
+                                                            <input type="number" name="data[price][]" x-model="value.price" required value="0" min="0" class="input-price text-right bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
+                                                        </div>
+                                                    </div>
+                                                    <div class="w-full">
+                                                        <div class="w-full">Money</div>
+                                                        <div class="w-full">
+                                                            <input type="number" name="data[money][]" x-model="value.money" required value="0" min="0" readonly class="input-money text-right bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
+                                                        </div>
                                                     </div>
                                                 </div>
-                                                <div class="w-full">
-                                                    <div class="w-full">Price</div>
-                                                    <div class="w-full">
-                                                        <input type="number" name="data[price][]" required value="0" min="0" class="input-price text-right bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
-                                                    </div>
-                                                </div>
-                                                <div class="w-full">
-                                                    <div class="w-full">Money</div>
-                                                    <div class="w-full">
-                                                        <input type="number" name="data[money][]" required value="0" min="0" readonly class="input-money text-right bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
-                                                    </div>
-                                                </div>
-                                            </div>
+                                            </template>
                                         </div>
                                     </div>
                                 </div>
@@ -148,22 +217,6 @@
 @endsection
 @section('scripts')
     <script>
-        $('.clone_service').on('click', function(e){
-            let lastBlock  = $(".row-service").last()
-            let newBlock = lastBlock.clone();
-            newBlock.insertAfter( lastBlock );
-            console.log(newBlock);
-            newBlock.find(`.datepicker_nolimit_month`).val('');
-            newBlock.find(`.datepicker_nolimit_month`).attr("readonly", `true`);
-        });
-
-        $('.remove_service').on('click', function(e){
-            let length_row  = $(".row-service").length
-            if(length_row > 1) {
-                $(".row-service").last().remove();
-            }
-        });
-
         $(document).on("change", ".select-service", function() {
             var price = $(this).find(':selected').data('price');
             $(this).parents('.row-service').find('.input-sl').val(1);

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Booking;
 use App\Models\BookingRoom;
+use App\Models\BookingService;
 use App\Models\Room;
 use App\Models\Service;
 use Exception;
@@ -55,14 +56,15 @@ class AdminController extends Controller
             '3' => 'Deluxe Front',
             '4' => 'Executive',
         ];
+        $service = Service::all();
 
         if($request->ajax()) {
-            $table_data = Booking::select(
+            $table_data = Booking::with('bookingRoom', 'bookingRoom.room')
+            ->select(
                 'id',
                 'room_type as type',
                 'start_date',
                 'end_date',
-                'number_of_rooms',
                 'status',
                 DB::raw("CONCAT(c_first_name ,' ', c_last_name) as c_name")
             );
@@ -72,10 +74,24 @@ class AdminController extends Controller
             ->addColumn('room_type', function($row) use($room_type) {
                 return $room_type[$row->type];
             })
+            ->addColumn('number_of_rooms', function($row) use($room_type) {
+                $room = '';
+                foreach ($row->bookingRoom as $index=>$item) {
+                    if($item->room) {
+                        if($index == 0) {
+                            $room = $room . $item->room->room_code;
+                        } else {
+                            $room = $room . ', ' . $item->room->room_code;
+                        }
+                    }
+                }
+                return $room;
+            })
+
             ->make(true);
         }
 
-        return view('admin.booking')->with(['room_type' => $room_type]);
+        return view('admin.booking')->with(['room_type' => $room_type, 'service' => $service]);
     }
 
     public function saveBooking(Request $request)
@@ -222,6 +238,33 @@ class AdminController extends Controller
 
     public function saveBookingService(Request $request)
     {
-        return 1;
+
+        // dd($request->all());
+        try {
+            DB::transaction(function () use ($request) {
+                BookingService::where('booking_id', $request->id)->where('status', 0)->update(['status' => 1]);
+                foreach ($request->data['service_id'] as $index=>$item) {
+                    if (isset($item) && isset($request->data['sl'][$index]) && isset($request->data['price'][$index]) && isset($request->data['money'][$index])) {
+                        $newData = new BookingService();
+                        $newData->status = 0;
+                        $newData->service_id = $item;
+                        $newData->booking_id = $request->id;
+                        $newData->sl = $request->data['sl'][$index];
+                        $newData->price = $request->data['price'][$index];
+                        $newData->money = $request->data['money'][$index];
+                        $newData->save();
+                    }
+                }
+            });
+        } catch (Exception $e) {
+            Log::info($e->getMessage());
+            return redirect()->back()->with('message',  'save false');
+        }
+        return redirect()->back()->with('message',  'save success');
+    }
+
+    public function getBookingService(Request $request) {
+        $data = BookingService::where('booking_id', $request->booking_id)->where('status', 0)->get();
+        return response()->json($data);
     }
 }

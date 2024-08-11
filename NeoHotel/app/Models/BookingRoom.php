@@ -25,6 +25,6 @@ class BookingRoom extends Model
 
     public function room()
     {
-        return $this->hasOne(\App\Models\Room::class,  'id', 'room_id');
+        return $this->hasOne(\App\Models\Room::class,  'id', 'room_id')->where('status', 0);
     }
 }

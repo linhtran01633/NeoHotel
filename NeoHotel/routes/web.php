@@ -83,6 +83,7 @@ Route::prefix('dashboard')->group(function () {
     Route::get('service', [AdminController::class, 'service'])->name('admin.service');
     Route::post('service/save', [AdminController::class, 'saveService'])->name('admin.service.save');
     Route::post('service/booking_service', [AdminController::class, 'saveBookingService'])->name('admin.booking_service.save');
+    Route::post('service/get_booking_service', [AdminController::class, 'getBookingService'])->name('admin.booking_service.get');
 
 
 
