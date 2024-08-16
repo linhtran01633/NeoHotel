@@ -35,6 +35,27 @@
                 console.error('Error:', error);
             });
         },
+        checkOut: function(id) {
+            let url = '{{ route('admin.checkOutBookingRoom') }}';
+
+            fetch(url, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json, text-plain, */*',
+                    'X-Requested-With': 'XMLHttpRequest',
+                    'X-CSRF-TOKEN': document.head.querySelector('meta[name=csrf-token]').content
+                },
+                body: JSON.stringify({booking_id : id}),
+            })
+            .then((response) => response.json())
+            .then(data => {
+                console.log(data)
+                location.reload();
+            }).catch((error) => {
+                console.error('Error:', error);
+            });
+        },
         cloneRow: function() {
             this.data_detail.push({
                     'service_id' : '',
@@ -57,40 +78,49 @@
             </div>
         @endif
 
+        <div class="w-full flex items-center justify-center m-6">
+            <form action="{{route('admin.booking_room')}}" method="get" class="flex items-center justify-center">
+                <div>
+                    <input type="date" name="start_date" required value="{{$start_date}}" class="mx-2 p-1 border border-black rounded">
+                    <input type="date" name="end_date" required value="{{$end_date}}" class="mx-2 p-1 border border-black rounded">
+                </div>
+
+                <div>
+                    <input type="submit" class="px-6 py-1.5 bg-blue-500 text-white rounded" value="Search">
+                </div>
+            </form>
+        </div>
+
         <div class="py-2">
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                 @foreach ($listRooms as $item)
                     <div class="bg-white p-6 rounded-lg shadow-lg">
                         <div class="grid grid-cols-2">
-                            <div >
-                                Room number : {{$item->room->room_code}}
-                            </div>
-                            <div >
-                                Room name : {{$item->room->room_name}}
-                            </div>
+                            <div>Room : {{$item['room_code']}}</div>
+                            <div>name : {{$item['room_name']}}</div>
                         </div>
-                        <div>
-                            Customer name : {{$item->booking->c_first_name}} {{$item->booking->c_last_name}}
-                        </div>
-
-                        <div>
-                            Room type : {{$room_type[$item->room->room_type]}}
-                        </div>
-
+                        <div>Customer : {{$item['customer']}}</div>
+                        <div>Type : {{$room_type[$item['room_type']]}}</div>
                         <div class="grid grid-cols-2">
-                            <div>
-                                Start date: {{Carbon\Carbon::parse($item->booking->start_date)->format('d/m/Y')}}
-                            </div>
-                            <div>
-                                End date: {{Carbon\Carbon::parse($item->booking->end_date)->format('d/m/Y')}}
-                            </div>
+                            <div>Start date: {{$item['start_date']}}</div>
+                            <div>End date: {{$item['end_date']}}</div>
                         </div>
                         <div class="grid grid-cols-1">
                             <div>
                                 Status :
-                                <button type="button" x-on:click="openFunction('{{$item->id}}')" class="inline-flex items-center px-5 py-2.5 text-sm font-medium text-center text-white rounded-lg bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300">
-                                    Check
-                                </button>
+                                @if ($item['status'] == 1)
+                                    <button type="button" x-on:click="openFunction('{{$item['booking_id']}}')" class="inline-flex items-center px-5 py-1.5 text-sm font-medium text-center text-white rounded-lg bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300">
+                                        Invoice
+                                    </button>
+
+                                    <button type="button" x-on:click="checkOut('{{$item['booking_id']}}')" class="inline-flex items-center px-5 py-1.5 text-sm font-medium text-center text-white rounded-lg bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300">
+                                        check out
+                                    </button>
+                                @else
+                                    <button type="button" class="inline-flex items-center px-5 py-1.5 text-sm font-medium text-center text-white rounded-lg bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-red-300">
+                                        Empty
+                                    </button>
+                                @endif
                             </div>
                         </div>
                     </div>

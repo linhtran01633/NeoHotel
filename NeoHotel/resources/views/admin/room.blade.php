@@ -71,6 +71,10 @@
                         <div>
                             Room type : {{$room_type[$item->room_type]}}
                         </div>
+
+                        <div>
+                            Price : {{ number_format($item->price)}}
+                        </div>
                     </div>
                 @endforeach
             </div>

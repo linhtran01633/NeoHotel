@@ -78,6 +78,7 @@ Route::prefix('dashboard')->group(function () {
 
     Route::get('booking_room', [AdminController::class, 'booking_room'])->name('admin.booking_room');
     Route::post('bookingRoom', [AdminController::class, 'bookingRoom'])->name('admin.bookingRoom');
+    Route::post('checkOutBookingRoom', [AdminController::class, 'checkOutBookingRoom'])->name('admin.checkOutBookingRoom');
 
 
     Route::get('service', [AdminController::class, 'service'])->name('admin.service');

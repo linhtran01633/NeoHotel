@@ -7,6 +7,7 @@ use App\Models\BookingRoom;
 use App\Models\BookingService;
 use App\Models\Room;
 use App\Models\Service;
+use Carbon\Carbon;
 use Exception;
 use Faker\Calculator\Ean;
 use Illuminate\Http\Request;
@@ -188,6 +189,8 @@ class AdminController extends Controller
 
     public function booking_room(Request $request)
     {
+        $room_id = [];
+        $listRooms = [];
         $room_type = [
             '0' => 'Economy No Window',
             '1' => 'Standard',
@@ -196,10 +199,62 @@ class AdminController extends Controller
             '4' => 'Executive',
         ];
 
-        $listRooms = BookingRoom::with(['room', 'booking'])->where('status', 0)->get();
         $service = Service::all();
 
-        return view('admin.booking_room')->with(['room_type' => $room_type, 'listRooms' => $listRooms, 'service' => $service]);
+
+        $end_date = Carbon::now()->format('Y-m-d');
+        $start_date = Carbon::now()->format('Y-m-d');
+        if($request->end_date) $end_date = $request->end_date;
+        if($request->start_date) $start_date = $request->start_date;
+
+        $listBokking = BookingRoom::with(['room', 'booking'])->where('status', 0)
+        ->whereHas('booking', function($q) use($end_date, $start_date){
+            $q->where(function($query) use ($end_date, $start_date) {
+                $query->where('start_date', '<=', $end_date)
+                      ->where('end_date', '>=', $start_date);
+            });
+        })
+        ->get();
+
+
+        foreach ($listBokking as $item) {
+            $room_id[] = $item->room_id;
+            $listRooms[] = [
+                'status' => 1,
+                'booking_id' => $item->booking->id,
+                'room_code' => $item->room->room_code,
+                'room_name' => $item->room->room_name,
+                'room_type' => $item->room->room_type,
+                'end_date' => Carbon::parse($item->booking->end_date)->format('d/m/Y'),
+                'start_date' => Carbon::parse($item->booking->start_date)->format('d/m/Y'),
+                'customer' => $item->booking->c_first_name . ' ' . $item->booking->c_last_name,
+            ];
+        }
+
+        $rooms = Room::whereNotIn('id', $room_id)->get();
+
+        foreach ($rooms as $room) {
+            $listRooms[] = [
+                'status' => 0,
+                'booking_id' => 0,
+                'room_code' => $room->room_code,
+                'room_name' => $room->room_name,
+                'room_type' => $room->room_type,
+                'end_date' => '',
+                'start_date' => '',
+                'customer' => '',
+            ];
+        }
+
+        $withData = [
+            'service' => $service,
+            'end_date' => $end_date,
+            'room_type' => $room_type,
+            'listRooms' => $listRooms,
+            'start_date' => $start_date,
+        ];
+
+        return view('admin.booking_room')->with($withData);
     }
 
 
@@ -267,4 +322,10 @@ class AdminController extends Controller
         $data = BookingService::where('booking_id', $request->booking_id)->where('status', 0)->get();
         return response()->json($data);
     }
+
+    public function checkOutBookingRoom(Request $request) {
+        $data = BookingRoom::where('booking_id', $request->booking_id)->where('status', 0)->update(['status' => 1]);
+        return response()->json($data);
+    }
+
 }
