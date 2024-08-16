@@ -31,8 +31,8 @@ class Booking extends Model
 	];
 
     protected $casts = [
-		'start_date' => 'datetime',
-		'end_date' => 'datetime',
+        'end_date' => 'datetime:d-m-Y',
+        'start_date' => 'datetime:d-m-Y',
 	];
 
     protected function serializeDate(\DateTimeInterface $date)

@@ -70,8 +70,10 @@
 
         saveBookingRoom: function(){
             let value = Array.from(document.querySelectorAll(`input[name='room_id[]']:checked`)).map((el) => el.value)
-            if(value.length > 0) {
+
+            if(value.length == this.data.number_of_rooms) {
                 this.data.room_id = value;
+
                 let url_post = '{{ route("admin.bookingRoom") }}';
                 fetch(url_post, {
                     method: 'POST',
@@ -204,7 +206,7 @@
 
                     <div class="w-full">
                         <label for="number_of_rooms" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Number of rooms </label>
-                        <input type="number" name="number_of_rooms" id="number_of_rooms" value="" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="number of rooms" required="">
+                        <input type="number" name="number_of_rooms" id="number_of_rooms" min="1" value="" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="number of rooms" required="">
                     </div>
 
                     <div class="w-full">
@@ -339,7 +341,7 @@
 
                                             <div class="w-full">
                                                 <label for="number_of_rooms_edit" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Number of rooms </label>
-                                                <input type="number" x-model="data_edit.number_of_rooms" name="number_of_rooms" id="number_of_rooms_edit" value="" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="number of rooms" required="">
+                                                <input type="number" x-model="data_edit.number_of_rooms" min="1" name="number_of_rooms" id="number_of_rooms_edit" value="" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="number of rooms" required="">
                                             </div>
 
                                             <div class="w-full">
@@ -476,7 +478,7 @@
                         defaultContent: "",
                     },
                     {
-                        data: "number_of_rooms",
+                        data: "room_names",
                         className: "text-center",
                         defaultContent: "",
                     },
@@ -484,6 +486,8 @@
                         data: null,
                         className: "dt-center editor-delete flex justify-start",
                         render : function ( data, type, row ) {
+                            console.log(row);
+
                             let html =  ``;
                             if(row.status == 0) {
                                 html += `

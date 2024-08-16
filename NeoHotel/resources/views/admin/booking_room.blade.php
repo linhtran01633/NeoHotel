@@ -4,10 +4,13 @@
         isCheck : false,
         data_id : '',
         data: {
-            price: '',
+            amount: '',
+            room_amount: '',
             end_date: '',
             room_name: '',
             start_date: '',
+            start_date: '',
+            number_of_day: '',
         },
         data_detail : [],
         openFunction: function(id) {
@@ -30,7 +33,18 @@
             .then((response) => response.json())
             .then(data => {
                 console.log(data)
-                this.data_detail = data;
+                this.data = data.infomation;
+
+                if(data.service.length > 0) {
+                    this.data_detail = data.service;
+                } else {
+                    this.data_detail.push({
+                        'service_id' : '',
+                        'sl' : 1,
+                        'price' : 0,
+                        'money' : 0,
+                    });
+                }
             }).catch((error) => {
                 console.error('Error:', error);
             });
@@ -145,7 +159,7 @@
                                     <div class="mt-2">
                                         <div class="">
                                             Room : <span x-text="data.room_name"></span>
-                                            Price : <input type="number" name x-model="data.price">
+                                            Price : <input type="number" name x-model="data.room_amount">
                                         </div>
                                         <div>
                                             Start date: <span x-text="data.start_date"></span>
@@ -163,40 +177,39 @@
                                                 </button>
                                             </div>
                                         </div>
+
                                         <div>
-                                            <template x-if="data_detail.length == 0">
-                                                <div class="grid custom-grid gap-2 row-service">
+                                            <div class="grid custom-grid gap-2 row-service">
+                                                <div class="w-full">
+                                                    <div class="w-full">Service name</div>
                                                     <div class="w-full">
-                                                        <div class="w-full">Service name</div>
-                                                        <div class="w-full">
-                                                            <select name="data[service_id][]" required class="select-service bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
-                                                                <option value="" data-price="0">Select option</option>
-                                                                @foreach ($service as $item)
-                                                                    <option value="{{$item->id}}" data-price="{{$item->price}}">{{$item->service_name}}</option>
-                                                                @endforeach
-                                                            </select>
-                                                        </div>
+                                                        <select class="select-service bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
+                                                            <option value="">Room rate</option>
+                                                        </select>
                                                     </div>
+                                                    <div class="w-full"></div>
+                                                </div>
+                                                <div class="w-full">
+                                                    <div class="w-full">SL day</div>
                                                     <div class="w-full">
-                                                        <div class="w-full">SL</div>
-                                                        <div class="w-full">
-                                                            <input type="number" name="data[sl][]" value="1" min="1" class="input-sl text-right bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
-                                                        </div>
-                                                    </div>
-                                                    <div class="w-full">
-                                                        <div class="w-full">Price</div>
-                                                        <div class="w-full">
-                                                            <input type="number" name="data[price][]" required value="0" min="0" class="input-price text-right bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
-                                                        </div>
-                                                    </div>
-                                                    <div class="w-full">
-                                                        <div class="w-full">Money</div>
-                                                        <div class="w-full">
-                                                            <input type="number" name="data[money][]" required value="0" min="0" readonly class="input-money text-right bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
-                                                        </div>
+                                                        <input type="number" name="number_of_day" x-model="data.number_of_day" min="1" class="input-sl text-right bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
                                                     </div>
                                                 </div>
-                                            </template>
+                                                <div class="w-full">
+                                                    <div class="w-full">Price</div>
+                                                    <div class="w-full">
+                                                        <input type="number" name="room_amount" x-model="data.room_amount" required value="0" min="0" class="input-price text-right bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
+                                                    </div>
+                                                </div>
+                                                <div class="w-full">
+                                                    <div class="w-full">Money</div>
+                                                    <div class="w-full">
+                                                        <input type="number" name="amount" x-model="data.amount" required value="0" min="0" readonly class="input-money text-right bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div>
                                             <template x-for="(value, key) in data_detail" :key="key">
                                                 <div class="grid custom-grid gap-2 row-service">
                                                     <div class="w-full">

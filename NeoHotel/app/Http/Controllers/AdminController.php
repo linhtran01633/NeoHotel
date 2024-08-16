@@ -67,6 +67,7 @@ class AdminController extends Controller
                 'start_date',
                 'end_date',
                 'status',
+                'number_of_rooms',
                 DB::raw("CONCAT(c_first_name ,' ', c_last_name) as c_name")
             );
             $table_data->orderBy('status', 'asc');
@@ -75,7 +76,7 @@ class AdminController extends Controller
             ->addColumn('room_type', function($row) use($room_type) {
                 return $room_type[$row->type];
             })
-            ->addColumn('number_of_rooms', function($row) use($room_type) {
+            ->addColumn('room_names', function($row) use($room_type) {
                 $room = '';
                 foreach ($row->bookingRoom as $index=>$item) {
                     if($item->room) {
@@ -172,9 +173,18 @@ class AdminController extends Controller
             DB::transaction(function() use ($request){
                 if($request->room_id) {
                     foreach($request->room_id as $room) {
+
+                        $rooms = Room::where('id', $room)->first();
+                        $bookings = Booking::where('id', $request->id)->first();
+                        $startDate = Carbon::parse($bookings->start_date);
+                        $endDate = Carbon::parse($bookings->end_date);
+                        $number_of_day = $startDate->diffInDays($endDate);
+
                         $new_booking_room = new BookingRoom();
                         $new_booking_room->room_id = $room;
                         $new_booking_room->booking_id = $request->id;
+                        $new_booking_room->room_amount = $rooms->price;
+                        $new_booking_room->number_of_day = $number_of_day;
                         $new_booking_room->save();
                     }
 
@@ -293,10 +303,15 @@ class AdminController extends Controller
 
     public function saveBookingService(Request $request)
     {
-
         // dd($request->all());
         try {
             DB::transaction(function () use ($request) {
+                BookingRoom::where('booking_id', $request->id)->where('status', 0)->update([
+                    'amount' => $request->amount,
+                    'room_amount' => $request->room_amount,
+                    'number_of_day' => $request->number_of_day
+                ]);
+
                 BookingService::where('booking_id', $request->id)->where('status', 0)->update(['status' => 1]);
                 foreach ($request->data['service_id'] as $index=>$item) {
                     if (isset($item) && isset($request->data['sl'][$index]) && isset($request->data['price'][$index]) && isset($request->data['money'][$index])) {
@@ -319,8 +334,24 @@ class AdminController extends Controller
     }
 
     public function getBookingService(Request $request) {
-        $data = BookingService::where('booking_id', $request->booking_id)->where('status', 0)->get();
-        return response()->json($data);
+        $service = BookingService::where('booking_id', $request->booking_id)->where('status', 0)->get();
+        $infomation = BookingRoom::select(
+            'booking_room.id',
+            'booking_room.room_id',
+            'booking_room.booking_id',
+            'booking_room.number_of_day',
+            'booking_room.room_amount',
+            'booking_room.amount',
+            'bookings.start_date',
+            'bookings.end_date',
+            'rooms.room_name',
+        )
+        ->join('bookings', 'bookings.id', 'booking_room.booking_id')
+        ->join('rooms', 'rooms.id', 'booking_room.room_id')
+        ->where('booking_id', $request->booking_id)->first();
+
+        Log::info($infomation);
+        return response()->json(['service' => $service, 'infomation' => $infomation]);
     }
 
     public function checkOutBookingRoom(Request $request) {
