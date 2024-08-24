@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\CategoryRoomRequest;
+use App\Http\Requests\RoomRequest;
 use App\Models\Booking;
 use App\Models\BookingRoom;
 use App\Models\BookingService;
@@ -35,7 +36,7 @@ class AdminController extends Controller
         return view('admin.room')->with(['room_type' => $room_type, 'listRooms' => $listRooms]);
     }
 
-    public function saveRoom(Request $request)
+    public function saveRoom(RoomRequest $request)
     {
         try {
             DB::transaction(function () use ($request) {
@@ -45,9 +46,10 @@ class AdminController extends Controller
             });
         } catch (Exception $e) {
             Log::info($e->getMessage());
-            return redirect()->back()->with('message',  'save false');
+            return response()->json(['success' => false, 'message' => __('save_false')]);
         }
-        return redirect()->back()->with('message',  'save success');
+
+        return response()->json(['success' => true, 'message' => __('save_success')]);
     }
 
     public function booking(Request $request)

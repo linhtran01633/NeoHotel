@@ -19,6 +19,12 @@
                     booking.room_type = $('#room_type').val()
                     booking.start_date = $('#start_date').val()
                     booking.number_of_room = $('#number_of_room').val()
+
+                    let date1 = moment($('#end_date').val());
+                    let date2 = moment($('#start_date').val());
+
+                    booking.staylength = date1.diff(date2, 'days');
+
                     localStorage.setItem('booking', JSON.stringify(booking))
 
                     window.location.href = `/booking?room_type=${this.booking.room_type}&step=2`
@@ -264,7 +270,7 @@
                                                         </div>
                                                         <div>
                                                             <p class="text-[16px] leading-5 font-normal text-xsTitle mb-2">{{__('form.booking.staylength')}}</p>
-                                                            <p class="text-[16px] leading-5 font-medium text-xsContent">0</p>
+                                                            <p class="text-[16px] leading-5 font-medium text-xsContent" x-text="booking.staylength"></p>
                                                         </div>
                                                         <div>
                                                             <p class="text-[16px] leading-5 font-normal text-xsTitle mb-2">{{__('form.booking.people')}}</p>

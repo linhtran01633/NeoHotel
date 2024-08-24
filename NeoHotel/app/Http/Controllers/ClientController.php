@@ -26,6 +26,7 @@ class ClientController extends Controller
             DB::transaction(function () use ($request) {
                 $new_booking = new Booking();
                 $data = $request->only($new_booking->getFillable());
+                if(!$request->breakfast) $data['breakfast'] = 0;
                 $new_booking->fill($data)->save();
             });
         } catch (Exception $e) {

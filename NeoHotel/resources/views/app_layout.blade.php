@@ -48,7 +48,9 @@
             breakfast: localStorage.getItem('booking') ? JSON.parse(localStorage.getItem('booking')).breakfast : '',
             room_type: localStorage.getItem('booking') ? JSON.parse(localStorage.getItem('booking')).room_type : '',
             start_date: localStorage.getItem('booking') ? JSON.parse(localStorage.getItem('booking')).start_date : '',
+            staylength: localStorage.getItem('booking') ? JSON.parse(localStorage.getItem('booking')).staylength : '0',
             number_of_room: localStorage.getItem('booking') ? JSON.parse(localStorage.getItem('booking')).number_of_room : '',
+
         },
         closePopup(e) {
             if (this.isPopup && !this.$refs.popup.contains(e.target)) {

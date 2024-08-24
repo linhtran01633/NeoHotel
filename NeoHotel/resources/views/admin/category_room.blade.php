@@ -2,6 +2,7 @@
 @section('content')
     <div x-data='{
         data: {},
+        array_img: [],
         data_error: {},
         isSave : false,
         message_save: "",
@@ -60,6 +61,7 @@
         editRow: function(id) {
             console.log(id);
             this.data_errror = {};
+            this.message_save = "";
 
             let url_post = "{{ route("admin.infomation_category") }}";
 
@@ -78,12 +80,13 @@
                 console.log(data)
                 this.data = data;
                 this.isSave = true;
+                this.array_img = data.images.split(",");
             }).catch((error) => {
                 console.error("Error:", error)
             });
         }
     }'>
-        <button type="button" x-on:click="isSave = !isSave" class="inline-flex items-center px-5 py-2.5 mt-4 sm:mt-6 text-sm font-medium text-center text-white rounded-lg bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300">
+        <button type="button" x-on:click="isSave = !isSave; message_save = ''; data = {}; data_error = {}; array_img=[]" class="inline-flex items-center px-5 py-2.5 mt-4 sm:mt-6 text-sm font-medium text-center text-white rounded-lg bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300">
             Create Category
         </button>
 
@@ -261,7 +264,14 @@
                                         </div>
                                         <div class="my-2 grid grid-cols-1 gap-4">
                                             <div>
-                                                <input type="file" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
+                                                <input type="file"  id="image_extra" accept=".png, .jpg, .jpeg, .webp" multiple class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
+                                            </div>
+                                            <div class="mt-2 flex items-center flex-warp" id="preview_image_extra">
+                                                <template x-for="(value, key) in array_img" :key="key">
+                                                    <div class="w-20 h-20 border border-gray-300 rounded-lg mx-2 shadow">
+                                                        <img class="w-full h-full rounded-lg show_enlarge" :data-src="`/storage/${value}`" :src="`/storage/${value}`" alt="Preview">
+                                                    </div>
+                                                </template>
                                             </div>
                                         </div>
                                     </div>
@@ -269,7 +279,7 @@
                             </div>
                         </div>
                         <div class="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
-                            <button type="button" x-on:click="submitForm" class="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm">Save</button>
+                            <button type="button" x-on:click="submitForm" class="mt-3 w-full inline-flex justify-center rounded-md border border-blue-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-blue-700 hover:bg-blue-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm">Save</button>
                             <button type="button" x-on:click="isSave = false" class="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm">Close</button>
                         </div>
                     </div>
@@ -400,6 +410,55 @@
                         }
                     }
                 ],
+            });
+
+            var check_preview_image_extra = document.getElementById('image_extra');
+            if(check_preview_image_extra) {
+                document.getElementById('image_extra').addEventListener('change', function(event) {
+                    let files = event.target.files;
+                    let preview = document.getElementById('preview_image_extra');
+                    preview.innerHTML = ''; // Xóa bất kỳ hình ảnh trước đó nào trong phần xem trước
+
+                    for (let i = 0; i < files.length; i++) {
+                        let file = files[i];
+                        if (file) {
+                            let reader = new FileReader();
+
+                            reader.onload = function(e) {
+                                preview.innerHTML += `
+                                    <div class="w-20 h-20 border border-gray-300 rounded-lg mx-2 shadow">
+                                        <img class="w-full h-full rounded-lg show_enlarge" data-src="${e.target.result}" src="${e.target.result}" alt="Preview">
+                                    </div>
+                                `;
+                            }
+
+                            reader.readAsDataURL(file);
+                        }
+                    }
+                });
+            }
+
+            $(document).on('click', '.close_images', function(e) {
+                $(this).parent().parent().remove();
+            });
+
+            $(document).on('click', '.show_enlarge', function(e) {
+                // Tạo chuỗi HTML chứa div mới
+                var newDivHTML = `
+                    <div class="fixed z-50 w-full h-full">
+                        <div  class="relative mx-auto mt-16 border border-gray-300 rounded-lg mx-2 shadow bg-white" style="width:50%; aspect-ratio: 5/4">
+                            <button type="button" class="close_images absolute top-0 right-0 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-hide="default-modal">
+                                <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
+                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
+                                </svg>
+                            </button>
+                            <img src="${$(this).data('src')}" alt="Preview" class="rounded-lg w-full h-full">
+                        </div>
+                    </div>`;
+
+                // Thêm chuỗi HTML vào sau phần tử cuối cùng của body
+                document.body.insertAdjacentHTML('beforeend', newDivHTML);
+
             });
         });
     </script>

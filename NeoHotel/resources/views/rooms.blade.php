@@ -42,27 +42,19 @@
                                         } else if(__('lang') == 'VN') {
                                             $language = 'vn';
                                         }
+
+                                        $array_img = explode(',', $item->images);
                                     @endphp
                                     <div class="border border-[#cecece] flex flex-col md:flex-row">
                                         <div class="w-full flex-1 h-[280px] sm:h-[370px]">
                                             <div class="w-fuRll md:w-[490px] lg:w-[530px]">
                                                 <div class="swiper swiper-initialized swiper-horizontal h-[280px] sm:h-[370px]" id="slide_room_{{$index}}">
                                                     <div class="swiper-wrapper">
-                                                        <div class="swiper-slide">
-                                                            <img src="/room/econowin/econowin1.webp" class="object-cover w-full min-w-[300px] h-full aspect-[3/2] transform transition-transform duration-300 hover:scale-110">
-                                                        </div>
-                                                        <div class="swiper-slide">
-                                                            <img src="/room/econowin/econowin2.webp" class="object-cover w-full min-w-[300px] h-full aspect-[3/2] transform transition-transform duration-300 hover:scale-110">
-                                                        </div>
-                                                        <div class="swiper-slide">
-                                                            <img src="/room/econowin/econowin3.webp" class="object-cover w-full min-w-[300px] h-full aspect-[3/2] transform transition-transform duration-300 hover:scale-110">
-                                                        </div>
-                                                        <div class="swiper-slide">
-                                                            <img src="/room/common/shampoo.webp" class="object-cover w-full min-w-[300px] h-full aspect-[3/2] transform transition-transform duration-300 hover:scale-110">
-                                                        </div>
-                                                        <div class="swiper-slide">
-                                                            <img src="/room/common/towel.webp" class="object-cover w-full min-w-[300px] h-full aspect-[3/2] transform transition-transform duration-300 hover:scale-110">
-                                                        </div>
+                                                        @foreach ($array_img as $img)
+                                                            <div class="swiper-slide">
+                                                                <img src="{{ asset('/storage/'.$img) }}" class="object-cover w-full min-w-[300px] h-full aspect-[3/2] transform transition-transform duration-300 hover:scale-110">
+                                                            </div>
+                                                        @endforeach
                                                     </div>
                                                     <button type="button" id="button-next-slide_{{$index}}" class="absolute top-[50%] disabled:bg-black/30 left-0 z-10 arrow-left arrow ml-2 bg-black px-2 py-2 text-sm font-medium text-white hover:bg-black/30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/75">
                                                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" width="20">
