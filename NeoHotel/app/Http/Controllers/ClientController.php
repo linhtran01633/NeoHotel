@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Booking;
+use App\Models\CategoryRoom;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -33,4 +34,15 @@ class ClientController extends Controller
         }
         return redirect()->back()->with('message',   __('booking_success'));
     }
+
+    public function rooms(Request $request)
+    {
+        $categoryRooms = CategoryRoom::orderBy('id')->get();
+        return view('rooms', compact('categoryRooms'));
+
+    }
+
+
+
+
 }

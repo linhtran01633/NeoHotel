@@ -40,9 +40,7 @@ Route::get('/services', function () {
     return view('services');
 });
 
-Route::get('/rooms', function () {
-    return view('rooms');
-});
+Route::get('rooms', [ClientController::class, 'rooms'])->name('rooms');
 
 Route::get('/activities', function () {
     return view('activities');
@@ -87,7 +85,9 @@ Route::prefix('dashboard')->group(function () {
     Route::post('service/get_booking_service', [AdminController::class, 'getBookingService'])->name('admin.booking_service.get');
 
 
-
+    Route::get('category_room', [AdminController::class, 'categoryRoom'])->name('admin.category_room');
+    Route::post('infomation-category', [AdminController::class, 'infomationCategory'])->name('admin.infomation_category');
+    Route::post('save_category_room', [AdminController::class, 'saveCategoryRoom'])->name('admin.category_room.save');
 });
 
 

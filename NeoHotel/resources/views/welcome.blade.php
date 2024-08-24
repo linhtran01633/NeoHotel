@@ -108,7 +108,7 @@
                     el: '.swiper-pagination',
                     clickable: true,
                 },
-                    autoplay: {
+                autoplay: {
                     delay: 3000,
                     disableOnInteraction: false,
                 },

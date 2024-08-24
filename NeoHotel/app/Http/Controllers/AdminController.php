@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CategoryRoomRequest;
 use App\Models\Booking;
 use App\Models\BookingRoom;
 use App\Models\BookingService;
+use App\Models\CategoryRoom;
 use App\Models\Room;
 use App\Models\Service;
 use Carbon\Carbon;
@@ -192,6 +194,7 @@ class AdminController extends Controller
                 }
             });
         } catch (Exception $e) {
+            Log::info($e->getMessage());
             return response()->json($e->getMessage());
         }
         return response()->json('success');
@@ -303,7 +306,6 @@ class AdminController extends Controller
 
     public function saveBookingService(Request $request)
     {
-        // dd($request->all());
         try {
             DB::transaction(function () use ($request) {
                 BookingRoom::where('booking_id', $request->id)->where('status', 0)->update([
@@ -357,6 +359,72 @@ class AdminController extends Controller
     public function checkOutBookingRoom(Request $request) {
         $data = BookingRoom::where('booking_id', $request->booking_id)->where('status', 0)->update(['status' => 1]);
         return response()->json($data);
+    }
+
+    public function categoryRoom(Request $request) {
+
+        if($request->ajax()) {
+            $table_data = CategoryRoom::select('*');
+            // $table_data->orderBy('status', 'asc');
+
+            return DataTables::of($table_data)
+            ->make(true);
+        }
+
+        return view('admin.category_room');
+    }
+
+    public function saveCategoryRoom(CategoryRoomRequest $request) {
+
+        Log::info($request->all());
+        try {
+            DB::transaction(function () use($request) {
+
+                $imagePaths = [];
+
+                // Nếu có hình ảnh trong yêu cầu
+                if ($request->hasFile('images')) {
+                    // Lặp qua từng hình ảnh và lưu chúng
+                    foreach ($request->file('images') as $image) {
+                        $path = $image->store('images/rooms');
+                        $imagePaths[] = $path;
+                    }
+                }
+
+                $imagePaths = implode(',', $imagePaths);
+
+                if($request->id) {
+                    $check_category = CategoryRoom::where('id', $request->id)->first();
+                    if($check_category && Carbon::parse($check_category->updated_at)->format('Y-m-d H:i:s')  == Carbon::parse($request->updated_at)->format('Y-m-d H:i:s')) {
+                        $data = $request->only($check_category->getFillable());
+
+                        if($imagePaths == '') unset($data['images']);
+                        else $data['images'] = $imagePaths;
+                        $check_category->fill($data)->save();
+                    } else {
+                        throw new Exception( __('save_false'));
+                    }
+                } else {
+
+                    $new_category = new CategoryRoom();
+                    $data = $request->only($new_category->getFillable());
+                    $data['images'] = $imagePaths;
+                    $new_category->fill($data)->save();
+                }
+            });
+        } catch (Exception $e) {
+            Log::info($e->getMessage());
+            return response()->json(['success' => false, 'message' => __('save_false')]);
+        }
+
+        return response()->json(['success' => true, 'message' => __('save_success')]);
+    }
+
+    public function infomationCategory(Request $request) {
+        Log::info($request->all());
+
+        $data = CategoryRoom::where('id', $request->id)->first();
+        return response()->json(@$data);
     }
 
 }

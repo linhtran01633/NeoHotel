@@ -50,6 +50,9 @@ return new class extends Migration
             $table->foreignId('room_id')->references('id')->on('rooms')->onDelete('cascade');
             $table->foreignId('booking_id')->references('id')->on('bookings')->onDelete('cascade');
             $table->tinyInteger('status')->default(0)->nullable();
+            $table->decimal('amount', 20,0)->default(0)->nullable();
+            $table->decimal('room_amount', 20,0)->default(0)->nullable();
+            $table->tinyInteger('number_of_day')->default(1)->nullable();
 
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->useCurrent()->useCurrentOnUpdate();
@@ -74,6 +77,38 @@ return new class extends Migration
             $table->foreignId('service_id')->references('id')->on('services')->onDelete('cascade');
             $table->foreignId('booking_id')->references('id')->on('bookings')->onDelete('cascade');
             $table->tinyInteger('status')->default(0)->nullable();
+
+            $table->timestamp('created_at')->useCurrent();
+            $table->timestamp('updated_at')->useCurrent()->useCurrentOnUpdate();
+        });
+
+        Schema::create('category_room', function (Blueprint $table) {
+            $table->id();
+            $table->string('name_vn',256);
+            $table->string('name_en',256);
+            $table->string('name_jp',256);
+
+            $table->string('price_vn',256)->nullable();
+            $table->string('price_en',256)->nullable();
+            $table->string('price_jp',256)->nullable();
+
+            $table->string('detail_vn',1024)->nullable();
+            $table->string('detail_en',1024)->nullable();
+            $table->string('detail_jp',1024)->nullable();
+
+            $table->string('acreage_vn',256)->nullable();
+            $table->string('acreage_en',256)->nullable();
+            $table->string('acreage_jp',256)->nullable();
+
+            $table->string('bed_vn',256)->nullable();
+            $table->string('bed_en',256)->nullable();
+            $table->string('bed_jp',256)->nullable();
+
+            $table->string('area_vn',256)->nullable();
+            $table->string('area_en',256)->nullable();
+            $table->string('area_jp',256)->nullable();
+
+            $table->string('images',2056)->nullable();
 
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->useCurrent()->useCurrentOnUpdate();
