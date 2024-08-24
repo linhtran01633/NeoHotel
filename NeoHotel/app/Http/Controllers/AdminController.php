@@ -21,6 +21,97 @@ use Yajra\DataTables\Facades\DataTables;
 class AdminController extends Controller
 {
     //
+    public function index(Request $request) {
+        $labelses_chart = [];
+        for ($i = 0; $i < 6; $i++) {
+            $date = Carbon::now()->subMonths($i);
+            $labelses_chart[] = $date->format('Y-m');
+        }
+
+        $labelses_chart = array_reverse($labelses_chart);
+
+
+        // tổng số booking trong 6 tháng gần nhất
+        $total_booking = Booking::whereDate('created_at', '>=', Carbon::now()->subMonths(5))->get();
+        $chart1_temp = [];
+        foreach($total_booking as $booking) {
+            $chart1_temp[] = Carbon::parse($booking->created_at)->format('Y-m');
+        }
+
+        $chart1 = array_count_values($chart1_temp);
+
+        // Duyệt qua mảng các tháng cần kiểm tra
+        foreach ($labelses_chart as $month) {
+            if (!isset($chart1[$month])) $chart1[$month] = 0;
+        }
+
+        ksort($chart1);
+        $chart1 = array_values($chart1);
+
+
+        // tổng số booking bị huỷ trong 6 tháng gần nhất
+        $total_booking_cancel = Booking::where('status', 1)->whereDate('created_at', '>=', Carbon::now()->subMonths(5))->get();
+        $chart2_temp = [];
+        foreach($total_booking_cancel as $booking) {
+            $chart2_temp[] = Carbon::parse($booking->created_at)->format('Y-m');
+        }
+
+        $chart2 = array_count_values($chart2_temp);
+
+        // Duyệt qua mảng các tháng cần kiểm tra
+        foreach ($labelses_chart as $month) {
+            if (!isset($chart2[$month])) $chart2[$month] = 0;
+        }
+
+        ksort($chart2);
+        $chart2 = array_values($chart2);
+
+        // tổng số booking đã sử lý trong 6 tháng gần nhất
+        $total_booking_processed = Booking::where('status', 2)->whereDate('created_at', '>=', Carbon::now()->subMonths(5))->get();
+        $chart3_temp = [];
+        foreach($total_booking_processed as $booking) {
+            $chart3_temp[] = Carbon::parse($booking->created_at)->format('Y-m');
+        }
+
+        $chart3 = array_count_values($chart3_temp);
+
+        // Duyệt qua mảng các tháng cần kiểm tra
+        foreach ($labelses_chart as $month) {
+            if (!isset($chart3[$month])) $chart3[$month] = 0;
+        }
+
+        ksort($chart3);
+        $chart3 = array_values($chart3);
+
+
+        // tổng số booking chưa sử lý trong 6 tháng gần nhất
+        $total_booking_unprocessed = Booking::where('status', 0)->whereDate('created_at', '>=', Carbon::now()->subMonths(5))->get();
+        $chart4_temp = [];
+        foreach($total_booking_unprocessed as $booking) {
+            $chart4_temp[] = Carbon::parse($booking->created_at)->format('Y-m');
+        }
+
+        $chart4 = array_count_values($chart4_temp);
+
+        // Duyệt qua mảng các tháng cần kiểm tra
+        foreach ($labelses_chart as $month) {
+            if (!isset($chart4[$month])) $chart4[$month] = 0;
+        }
+
+        ksort($chart4);
+        $chart4 = array_values($chart4);
+
+        $widthData = [
+            'chart1' => $chart1,
+            'chart2' => $chart2,
+            'chart3' => $chart3,
+            'chart4' => $chart4,
+            'labelses_chart' => $labelses_chart,
+        ];
+
+        return view('admin.dashboard')->with($widthData);
+    }
+
     public function room()
     {
         $room_type = [
@@ -187,6 +278,7 @@ class AdminController extends Controller
                         $new_booking_room = new BookingRoom();
                         $new_booking_room->room_id = $room;
                         $new_booking_room->booking_id = $request->id;
+                        $new_booking_room->amount = $rooms->price * $number_of_day;
                         $new_booking_room->room_amount = $rooms->price;
                         $new_booking_room->number_of_day = $number_of_day;
                         $new_booking_room->save();

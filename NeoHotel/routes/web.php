@@ -57,14 +57,11 @@ Route::get('/contact', function () {
 Route::get('booking', [ClientController::class, 'booking'])->name('booking');
 Route::post('submit-booking', [ClientController::class, 'submitBooking'])->name('submit-booking');
 
-Route::get('/dashboard', function () {
-    $data = ['10', '20', '30', '5'];
-    $labelses = ['tháng3', 'tháng 4', 'tháng 5', 'tháng 6'];
-
-    return view('admin.dashboard')->with(['data' => $data, 'labelses' => $labelses]);
-})->name('dashboard');
 
 Route::prefix('dashboard')->group(function () {
+
+    Route::get('/', [AdminController::class, 'index'])->name('dashboard');
+
     Route::get('room', [AdminController::class, 'room'])->name('admin.room');
     Route::post('room/save', [AdminController::class, 'saveRoom'])->name('admin.room.save');
     Route::post('search/room', [AdminController::class, 'searchRoom'])->name('admin.room.search');

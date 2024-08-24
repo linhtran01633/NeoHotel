@@ -101,19 +101,55 @@
             return "rgb(" + r + "," + g + "," + b + "," + o +")";
         };
 
-        var datasets = {!! json_encode($data) !!};
-        var labelses = {!! json_encode($labelses) !!};
+        var chart1 = {!! json_encode($chart1) !!};
+        var chart2 = {!! json_encode($chart2) !!};
+        var chart3 = {!! json_encode($chart3) !!};
+        var chart4 = {!! json_encode($chart4) !!};
+        var labelses_chart = {!! json_encode($labelses_chart) !!};
 
         var backgroundColor = [];
-        for (var i in datasets) {
+        for (let i = 0; i < 6; i++ ) {
             backgroundColor.push(dynamicColors());
         }
 
-        var data = {
-            labels: labelses,
+        var data_chart1 = {
+            labels: labelses_chart,
             datasets: [{
-                label: 'Bookings',
-                data: datasets,
+                label: 'Number of bookings',
+                data: chart1,
+                backgroundColor: backgroundColor,
+                borderColor: backgroundColor,
+                borderWidth: 1
+            }]
+        };
+
+        var data_chart2 = {
+            labels: labelses_chart,
+            datasets: [{
+                label: 'Number of cancelled bookings',
+                data: chart2,
+                backgroundColor: backgroundColor,
+                borderColor: backgroundColor,
+                borderWidth: 1
+            }]
+        };
+
+        var data_chart3 = {
+            labels: labelses_chart,
+            datasets: [{
+                label: 'Number of bookings processed',
+                data: chart3,
+                backgroundColor: backgroundColor,
+                borderColor: backgroundColor,
+                borderWidth: 1
+            }]
+        };
+
+        var data_chart4 = {
+            labels: labelses_chart,
+            datasets: [{
+                label: 'Number of unprocessed bookings',
+                data: chart4,
                 backgroundColor: backgroundColor,
                 borderColor: backgroundColor,
                 borderWidth: 1
@@ -138,7 +174,7 @@
         var chart_check_in = document.getElementById('chart_check_in');
         new Chart(chart_booking, {
             type: 'bar',
-            data: data,
+            data: data_chart1,
             options: {
                 scales: {
                     yAxes: [{
@@ -152,7 +188,7 @@
 
         new Chart(chart_room, {
             type: 'bar',
-            data: data,
+            data: data_chart2,
             options: {
                 scales: {
                     yAxes: [{
@@ -166,7 +202,7 @@
 
         new Chart(chart_revenue, {
             type: 'bar',
-            data: data,
+            data: data_chart3,
             options: {
                 scales: {
                     yAxes: [{
@@ -180,7 +216,7 @@
 
         new Chart(chart_check_in, {
             type: 'bar',
-            data: data,
+            data: data_chart4,
             options: {
                 scales: {
                     yAxes: [{
