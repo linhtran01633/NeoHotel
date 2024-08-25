@@ -60,7 +60,7 @@
 
         editRow: function(id) {
             console.log(id);
-            this.data_errror = {};
+            this.data_error = {};
             this.message_save = "";
 
             let url_post = "{{ route("admin.infomation_category") }}";
