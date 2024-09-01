@@ -18,11 +18,6 @@
                 }
             }
 
-            let imageFile = document.querySelector(&apos;input[type="file"]&apos;).files[0];
-            if (imageFile) {
-                form_data.append("images", imageFile);
-            }
-
             let imageFiles = document.querySelector(&apos;input[type="file"]&apos;).files;
             if (imageFiles.length > 0) {
                 for (let i = 0; i < imageFiles.length; i++) {

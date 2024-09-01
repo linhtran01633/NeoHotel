@@ -27,13 +27,9 @@ Route::get('/test', function () {
     return view('test');
 });
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [ClientController::class, 'home'])->name('home');
 
-Route::get('/about-us', function () {
-    return view('about_us');
-});
+Route::get('/about-us', [ClientController::class, 'about_us'])->name('about_us');
 
 
 Route::get('/services', function () {
@@ -46,9 +42,7 @@ Route::get('/activities', function () {
     return view('activities');
 });
 
-Route::get('/faq', function () {
-    return view('faq');
-});
+Route::get('faq', [ClientController::class, 'faq'])->name('faq');
 
 Route::get('/contact', function () {
     return view('contact');
@@ -61,28 +55,21 @@ Route::post('submit-booking', [ClientController::class, 'submitBooking'])->name(
 Route::prefix('dashboard')->group(function () {
 
     Route::get('/', [AdminController::class, 'index'])->name('dashboard');
+    Route::get('home-slide', [AdminController::class, 'homeSlide'])->name('admin.home_slide');
+    Route::post('infomation_home_slide', [AdminController::class, 'infomationHomeSlide'])->name('admin.infomation_home_slide');
+    Route::post('save_home_slide', [AdminController::class, 'saveHomeSlide'])->name('admin.home_slide.save');
+    Route::post('delete_home_slide', [AdminController::class, 'deleteHomeSlide'])->name('admin.delete.home_slide');
 
-    Route::get('room', [AdminController::class, 'room'])->name('admin.room');
-    Route::post('room/save', [AdminController::class, 'saveRoom'])->name('admin.room.save');
-    Route::post('search/room', [AdminController::class, 'searchRoom'])->name('admin.room.search');
+    Route::get('about_us', [AdminController::class, 'aboutUs'])->name('admin.about_us');
+    Route::post('save_about_us', [AdminController::class, 'saveAboutUs'])->name('admin.about_us.save');
 
-    Route::get('booking', [AdminController::class, 'booking'])->name('admin.booking');
-    Route::post('booking/save', [AdminController::class, 'saveBooking'])->name('admin.booking.save');
-    Route::get('booking/delete/{id}', [AdminController::class, 'deleteBooking'])->name('admin.booking.delete');
-    Route::post('search/booking', [AdminController::class, 'searchBooking'])->name('admin.booking.search');
-
-    Route::get('booking_room', [AdminController::class, 'booking_room'])->name('admin.booking_room');
-    Route::post('bookingRoom', [AdminController::class, 'bookingRoom'])->name('admin.bookingRoom');
-    Route::post('checkOutBookingRoom', [AdminController::class, 'checkOutBookingRoom'])->name('admin.checkOutBookingRoom');
-
-
-    Route::get('service', [AdminController::class, 'service'])->name('admin.service');
-    Route::post('service/save', [AdminController::class, 'saveService'])->name('admin.service.save');
-    Route::post('service/booking_service', [AdminController::class, 'saveBookingService'])->name('admin.booking_service.save');
-    Route::post('service/get_booking_service', [AdminController::class, 'getBookingService'])->name('admin.booking_service.get');
+    Route::get('faq', [AdminController::class, 'faq'])->name('admin.faq');
+    Route::post('infomation_faq', [AdminController::class, 'infomationFaq'])->name('admin.infomation_faq');
+    Route::post('save_faq', [AdminController::class, 'saveFaq'])->name('admin.faq.save');
+    Route::post('delete_faq', [AdminController::class, 'deleteFaq'])->name('admin.delete.faq');
 
 
-    Route::get('category_room', [AdminController::class, 'categoryRoom'])->name('admin.category_room');
+    Route::get('category-room', [AdminController::class, 'categoryRoom'])->name('admin.category_room');
     Route::post('infomation-category', [AdminController::class, 'infomationCategory'])->name('admin.infomation_category');
     Route::post('save_category_room', [AdminController::class, 'saveCategoryRoom'])->name('admin.category_room.save');
 });

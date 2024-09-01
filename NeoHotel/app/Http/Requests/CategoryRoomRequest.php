@@ -22,8 +22,6 @@ class CategoryRoomRequest extends FormRequest
      */
     public function rules(FormRequest $request): array
     {
-        Log::info($request->all());
-
         $rules = [
             'name_vn' => ['required','max:256'],
             'name_en' => ['required','max:256'],

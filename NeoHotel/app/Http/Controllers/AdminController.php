@@ -2,12 +2,18 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\AboutUsRequest;
 use App\Http\Requests\CategoryRoomRequest;
+use App\Http\Requests\FaqRequest;
+use App\Http\Requests\HomeSlideRequest;
 use App\Http\Requests\RoomRequest;
+use App\Models\AboutUs;
 use App\Models\Booking;
 use App\Models\BookingRoom;
 use App\Models\BookingService;
 use App\Models\CategoryRoom;
+use App\Models\Faq;
+use App\Models\HomeSlide;
 use App\Models\Room;
 use App\Models\Service;
 use Carbon\Carbon;
@@ -112,28 +118,56 @@ class AdminController extends Controller
         return view('admin.dashboard')->with($widthData);
     }
 
-    public function room()
-    {
-        $room_type = [
-            '0' => 'Economy No Window',
-            '1' => 'Standard',
-            '2' => 'Deluxe Back',
-            '3' => 'Deluxe Front',
-            '4' => 'Executive',
-        ];
+    public function homeSlide(Request $request) {
+        if($request->ajax()) {
+            $table_data = HomeSlide::select('*')->where('delete_flag', 0)->orderBy('id', 'asc');
 
-        $listRooms = Room::get();
-
-        return view('admin.room')->with(['room_type' => $room_type, 'listRooms' => $listRooms]);
+            return DataTables::of($table_data)
+            ->make(true);
+        }
+        return view('admin.home_slide');
     }
 
-    public function saveRoom(RoomRequest $request)
-    {
+    public function saveHomeSlide(HomeSlideRequest $request) {
+
         try {
-            DB::transaction(function () use ($request) {
-                $new_room = new Room();
-                $data = $request->only($new_room->getFillable());
-                $new_room->fill($data)->save();
+            DB::transaction(function () use($request) {
+                $imagePaths = '';
+                $imagePathMobile = '';
+                // Nếu có hình ảnh trong yêu cầu
+                if ($request->hasFile('images')) {
+                    $path = $request->file('images')->store('images/home_slides');
+                    $imagePaths = $path;
+                }
+
+                if ($request->hasFile('images_mobile')) {
+                    $path_mobile = $request->file('images_mobile')->store('images/home_slides');
+                    $imagePathMobile = $path_mobile;
+                }
+
+                if($request->id) {
+                    $check_home_slide = HomeSlide::where('id', $request->id)->first();
+                    if($check_home_slide && Carbon::parse($check_home_slide->updated_at)->format('Y-m-d H:i:s')  == Carbon::parse($request->updated_at)->format('Y-m-d H:i:s')) {
+                        $data = $request->only($check_home_slide->getFillable());
+
+                        if($imagePaths == '') unset($data['images']);
+                        else $data['images'] = $imagePaths;
+
+                        if($imagePathMobile == '') unset($data['images_mobile']);
+                        else $data['images_mobile'] = $imagePathMobile;
+
+                        $check_home_slide->fill($data)->save();
+                    } else {
+                        throw new Exception( __('save_false'));
+                    }
+                } else {
+
+                    $new_home_slide = new HomeSlide();
+                    $data = $request->only($new_home_slide->getFillable());
+                    $data['images'] = $imagePaths;
+                    $data['images_mobile'] = $imagePathMobile;
+                    $new_home_slide->fill($data)->save();
+                }
             });
         } catch (Exception $e) {
             Log::info($e->getMessage());
@@ -143,317 +177,153 @@ class AdminController extends Controller
         return response()->json(['success' => true, 'message' => __('save_success')]);
     }
 
-    public function booking(Request $request)
-    {
-        $room_type = [
-            '0' => 'Economy No Window',
-            '1' => 'Standard',
-            '2' => 'Deluxe Back',
-            '3' => 'Deluxe Front',
-            '4' => 'Executive',
-        ];
-        $service = Service::all();
-
-        if($request->ajax()) {
-            $table_data = Booking::with('bookingRoom', 'bookingRoom.room')
-            ->select(
-                'id',
-                'room_type as type',
-                'start_date',
-                'end_date',
-                'status',
-                'number_of_rooms',
-                DB::raw("CONCAT(c_first_name ,' ', c_last_name) as c_name")
-            );
-            $table_data->orderBy('status', 'asc');
-
-            return DataTables::of($table_data)
-            ->addColumn('room_type', function($row) use($room_type) {
-                return $room_type[$row->type];
-            })
-            ->addColumn('room_names', function($row) use($room_type) {
-                $room = '';
-                foreach ($row->bookingRoom as $index=>$item) {
-                    if($item->room) {
-                        if($index == 0) {
-                            $room = $room . $item->room->room_code;
-                        } else {
-                            $room = $room . ', ' . $item->room->room_code;
-                        }
-                    }
-                }
-                return $room;
-            })
-
-            ->make(true);
+    public function deleteHomeSlide(Request $request) {
+        try {
+            DB::transaction(function () use($request) {
+                HomeSlide::where('id', $request->id)->update(['delete_flag' => 1]);
+            });
+        } catch (Exception $e) {
+            return response()->json(['success' => false, 'message' => __('save_false')]);
         }
 
-        return view('admin.booking')->with(['room_type' => $room_type, 'service' => $service]);
+        return response()->json(['success' => true, 'message' => __('save_success')]);
     }
 
-    public function saveBooking(Request $request)
-    {
+    public function infomationHomeSlide(Request $request) {
+        $data = HomeSlide::where('id', $request->id)->first();
+        return response()->json(@$data);
+    }
+
+    public function faq(Request $request) {
+        if($request->ajax()) {
+            $table_data = Faq::select('*')->where('delete_flag', 0)->orderBy('id', 'asc');
+
+            return DataTables::of($table_data)
+            ->make(true);
+        }
+        return view('admin.faq');
+    }
+
+    public function saveFaq(FaqRequest $request) {
+
         try {
-            DB::transaction(function () use ($request) {
+            DB::transaction(function () use($request) {
+
                 if($request->id) {
-                    $new_booking = Booking::find($request->id);
-                    $data = $request->only($new_booking->getFillable());
-                    $new_booking->fill($data)->save();
-                } else {
-                    $new_booking = new Booking();
-                    $data = $request->only($new_booking->getFillable());
-                    $new_booking->fill($data)->save();
-                }
-            });
-        } catch (Exception $e) {
-            Log::info($e->getMessage());
-            return redirect()->back()->with('message',  'save false');
-        }
-        return redirect()->back()->with('message',  'save success');
-    }
-
-
-    public function deleteBooking($id)
-    {
-        try {
-            DB::transaction(function () use ($id) {
-                $booking = Booking::where('id', $id)->first();
-                if($booking) {
-                    $booking->status = 1;
-                    $booking->save();
-                } else {
-                    throw new Exception('booking is not found');
-                }
-            });
-        } catch (Exception $e) {
-            Log::info($e->getMessage());
-            return redirect()->back()->with('message',  'delete false');
-        }
-        return redirect()->back()->with('message',  'delete success');
-    }
-
-
-    public function searchBooking(Request $request)
-    {
-        $booking = Booking::where('id', $request->id)->first();
-        return response()->json($booking);
-    }
-
-    public function searchRoom(Request $request)
-    {
-        $array_room = BookingRoom::with(['booking'])->where('status', 0)
-        ->whereHas('booking', function($q) use($request){
-            $q->where(function($q) use($request) {
-                $q->whereDate('start_date', '>=' , $request->start_date);
-                $q->whereDate('end_date', '>=' , $request->start_date);
-            });
-
-            $q->orWhere(function($q) use($request) {
-                $q->whereDate('start_date', '>=' , $request->end_date);
-                $q->whereDate('end_date', '>=' , $request->end_date);
-            });
-        })
-        ->get()->pluck('room_id')->toArray();
-
-        $listRooms = Room::orderBy('room_code')
-        ->whereNotIn('id', $array_room)
-        ->get()->toArray();
-
-        return response()->json($listRooms);
-    }
-
-    public function bookingRoom(Request $request)
-    {
-        try{
-            DB::transaction(function() use ($request){
-                if($request->room_id) {
-                    foreach($request->room_id as $room) {
-
-                        $rooms = Room::where('id', $room)->first();
-                        $bookings = Booking::where('id', $request->id)->first();
-                        $startDate = Carbon::parse($bookings->start_date);
-                        $endDate = Carbon::parse($bookings->end_date);
-                        $number_of_day = $startDate->diffInDays($endDate);
-
-                        $new_booking_room = new BookingRoom();
-                        $new_booking_room->room_id = $room;
-                        $new_booking_room->booking_id = $request->id;
-                        $new_booking_room->amount = $rooms->price * $number_of_day;
-                        $new_booking_room->room_amount = $rooms->price;
-                        $new_booking_room->number_of_day = $number_of_day;
-                        $new_booking_room->save();
+                    $check = Faq::where('id', $request->id)->first();
+                    if($check && Carbon::parse($check->updated_at)->format('Y-m-d H:i:s')  == Carbon::parse($request->updated_at)->format('Y-m-d H:i:s')) {
+                        $data = $request->only($check->getFillable());
+                        $check->fill($data)->save();
+                    } else {
+                        throw new Exception( __('save_false'));
                     }
+                } else {
 
-                    Booking::where('id', $request->id)->update(['status' => 2]);
+                    $new_home_slide = new Faq();
+                    $data = $request->only($new_home_slide->getFillable());
+                    $new_home_slide->fill($data)->save();
                 }
             });
         } catch (Exception $e) {
             Log::info($e->getMessage());
-            return response()->json($e->getMessage());
+            return response()->json(['success' => false, 'message' => __('save_false')]);
         }
-        return response()->json('success');
+
+        return response()->json(['success' => true, 'message' => __('save_success')]);
     }
 
-    public function booking_room(Request $request)
-    {
-        $room_id = [];
-        $listRooms = [];
-        $room_type = [
-            '0' => 'Economy No Window',
-            '1' => 'Standard',
-            '2' => 'Deluxe Back',
-            '3' => 'Deluxe Front',
-            '4' => 'Executive',
-        ];
-
-        $service = Service::all();
-
-
-        $end_date = Carbon::now()->format('Y-m-d');
-        $start_date = Carbon::now()->format('Y-m-d');
-        if($request->end_date) $end_date = $request->end_date;
-        if($request->start_date) $start_date = $request->start_date;
-
-        $listBokking = BookingRoom::with(['room', 'booking'])->where('status', 0)
-        ->whereHas('booking', function($q) use($end_date, $start_date){
-            $q->where(function($query) use ($end_date, $start_date) {
-                $query->where('start_date', '<=', $end_date)
-                      ->where('end_date', '>=', $start_date);
-            });
-        })
-        ->get();
-
-
-        foreach ($listBokking as $item) {
-            $room_id[] = $item->room_id;
-            $listRooms[] = [
-                'status' => 1,
-                'booking_id' => $item->booking->id,
-                'room_code' => $item->room->room_code,
-                'room_name' => $item->room->room_name,
-                'room_type' => $item->room->room_type,
-                'end_date' => Carbon::parse($item->booking->end_date)->format('d/m/Y'),
-                'start_date' => Carbon::parse($item->booking->start_date)->format('d/m/Y'),
-                'customer' => $item->booking->c_first_name . ' ' . $item->booking->c_last_name,
-            ];
-        }
-
-        $rooms = Room::whereNotIn('id', $room_id)->get();
-
-        foreach ($rooms as $room) {
-            $listRooms[] = [
-                'status' => 0,
-                'booking_id' => 0,
-                'room_code' => $room->room_code,
-                'room_name' => $room->room_name,
-                'room_type' => $room->room_type,
-                'end_date' => '',
-                'start_date' => '',
-                'customer' => '',
-            ];
-        }
-
-        $withData = [
-            'service' => $service,
-            'end_date' => $end_date,
-            'room_type' => $room_type,
-            'listRooms' => $listRooms,
-            'start_date' => $start_date,
-        ];
-
-        return view('admin.booking_room')->with($withData);
-    }
-
-
-
-    public function service(Request $request)
-    {
-        if($request->ajax()) {
-            $table_data = Service::select(
-                'id',
-                'price',
-                'service_name',
-            );
-            $table_data->orderBy('id', 'asc');
-
-            return DataTables::of($table_data)
-            ->make(true);
-        }
-        $service = Service::all();
-        return view('admin.service')->with(['service' => $service]);
-    }
-
-    public function saveService(Request $request)
-    {
+    public function deleteFaq(Request $request) {
         try {
-            DB::transaction(function () use ($request) {
-                $new_service = new Service();
-                $data = $request->only($new_service->getFillable());
-                $new_service->fill($data)->save();
+            DB::transaction(function () use($request) {
+                Faq::where('id', $request->id)->update(['delete_flag' => 1]);
             });
         } catch (Exception $e) {
-            Log::info($e->getMessage());
-            return redirect()->back()->with('message',  'save false');
+            return response()->json(['success' => false, 'message' => __('save_false')]);
         }
-        return redirect()->back()->with('message',  'save success');
+
+        return response()->json(['success' => true, 'message' => __('save_success')]);
     }
 
-    public function saveBookingService(Request $request)
-    {
-        try {
-            DB::transaction(function () use ($request) {
-                BookingRoom::where('booking_id', $request->id)->where('status', 0)->update([
-                    'amount' => $request->amount,
-                    'room_amount' => $request->room_amount,
-                    'number_of_day' => $request->number_of_day
-                ]);
+    public function infomationFaq(Request $request) {
+        $data = Faq::where('id', $request->id)->first();
+        return response()->json(@$data);
+    }
 
-                BookingService::where('booking_id', $request->id)->where('status', 0)->update(['status' => 1]);
-                foreach ($request->data['service_id'] as $index=>$item) {
-                    if (isset($item) && isset($request->data['sl'][$index]) && isset($request->data['price'][$index]) && isset($request->data['money'][$index])) {
-                        $newData = new BookingService();
-                        $newData->status = 0;
-                        $newData->service_id = $item;
-                        $newData->booking_id = $request->id;
-                        $newData->sl = $request->data['sl'][$index];
-                        $newData->price = $request->data['price'][$index];
-                        $newData->money = $request->data['money'][$index];
-                        $newData->save();
+
+    public function aboutUs(Request $request) {
+        $array_title1_images = [];
+        $array_title3_images = [];
+        $array_title4_images = [];
+
+        $aboutUs = AboutUs::select('*')->where('delete_flag', 0)->orderBy('id', 'asc')->first();
+
+        if($aboutUs) {
+            $array_title1_images[] = $aboutUs->title1_images;
+            $array_title3_images[] = $aboutUs->title3_images;
+            $array_title4_images[] = $aboutUs->title4_images;
+        }
+        return view('admin.about_us',compact('aboutUs', 'array_title1_images', 'array_title3_images', 'array_title4_images'));
+    }
+
+    public function saveAboutUs(AboutUsRequest $request) {
+
+        try {
+            DB::transaction(function () use($request) {
+                $imagePathTitle1 = '';
+                $imagePathTitle3 = '';
+                $imagePathTitle4 = '';
+
+                if ($request->hasFile('title1_images')) {
+                    $path_image1 = $request->file('title1_images')->store('images/about_us');
+                    $imagePathTitle1 = $path_image1;
+                }
+
+                if ($request->hasFile('title3_images')) {
+                    $path_image3 = $request->file('title3_images')->store('images/about_us');
+                    $imagePathTitle3 = $path_image3;
+                }
+
+                if ($request->hasFile('title4_images')) {
+                    $path_image4 = $request->file('title4_images')->store('images/about_us');
+                    $imagePathTitle4 = $path_image4;
+                }
+
+                if($request->id) {
+                    $check = AboutUs::where('id', $request->id)->first();
+                    if($check && Carbon::parse($check->updated_at)->format('Y-m-d H:i:s')  == Carbon::parse($request->updated_at)->format('Y-m-d H:i:s')) {
+                        $data = $request->only($check->getFillable());
+
+                        if($imagePathTitle1 == '') unset($data['title1_images']);
+                        else $data['title1_images'] = $imagePathTitle1;
+
+                        if($imagePathTitle3 == '') unset($data['title3_images']);
+                        else $data['title3_images'] = $imagePathTitle3;
+
+                        if($imagePathTitle4 == '') unset($data['title4_images']);
+                        else $data['title4_images'] = $imagePathTitle4;
+
+                        $check->fill($data)->save();
+                    } else {
+                        throw new Exception( __('save_false'));
                     }
+                } else {
+
+                    $new = new AboutUs();
+                    $data = $request->only($new->getFillable());
+                    $data['title1_images'] = $imagePathTitle1;
+                    $data['title3_images'] = $imagePathTitle3;
+                    $data['title4_images'] = $imagePathTitle4;
+                    $new->fill($data)->save();
                 }
             });
         } catch (Exception $e) {
             Log::info($e->getMessage());
-            return redirect()->back()->with('message',  'save false');
+            return response()->json(['success' => false, 'message' => __('save_false')]);
         }
-        return redirect()->back()->with('message',  'save success');
+
+        return response()->json(['success' => true, 'message' => __('save_success')]);
     }
 
-    public function getBookingService(Request $request) {
-        $service = BookingService::where('booking_id', $request->booking_id)->where('status', 0)->get();
-        $infomation = BookingRoom::select(
-            'booking_room.id',
-            'booking_room.room_id',
-            'booking_room.booking_id',
-            'booking_room.number_of_day',
-            'booking_room.room_amount',
-            'booking_room.amount',
-            'bookings.start_date',
-            'bookings.end_date',
-            'rooms.room_name',
-        )
-        ->join('bookings', 'bookings.id', 'booking_room.booking_id')
-        ->join('rooms', 'rooms.id', 'booking_room.room_id')
-        ->where('booking_id', $request->booking_id)->first();
-
-        Log::info($infomation);
-        return response()->json(['service' => $service, 'infomation' => $infomation]);
-    }
-
-    public function checkOutBookingRoom(Request $request) {
-        $data = BookingRoom::where('booking_id', $request->booking_id)->where('status', 0)->update(['status' => 1]);
-        return response()->json($data);
-    }
 
     public function categoryRoom(Request $request) {
 
@@ -515,8 +385,6 @@ class AdminController extends Controller
     }
 
     public function infomationCategory(Request $request) {
-        Log::info($request->all());
-
         $data = CategoryRoom::where('id', $request->id)->first();
         return response()->json(@$data);
     }

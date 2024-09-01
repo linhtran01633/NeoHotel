@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class RoomRequest extends FormRequest
+class FaqRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,10 +22,13 @@ class RoomRequest extends FormRequest
     public function rules(): array
     {
         $rules = [
-            'room_code' => ['required','max:256'],
-            'room_name' => ['required','max:256'],
-            'room_type' => ['required','max:256'],
-            'price' => ['required', 'integer'],
+            'question_vn' => ['required','max:256'],
+            'question_en' => ['required','max:256'],
+            'question_jp' => ['required','max:256'],
+
+            'answer_vn' => ['max:256', 'required'],
+            'answer_en' => ['max:256', 'required'],
+            'answer_jp' => ['max:256', 'required'],
         ];
 
         return $rules;
