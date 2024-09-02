@@ -1,6 +1,14 @@
 @extends('app_layout')
 @section('content')
     @include('header')
+    @php
+        $language = 'en';
+        if(__('lang') == 'JP') {
+            $language = 'jp';
+        } else if(__('lang') == 'VN') {
+            $language = 'vn';
+        }
+    @endphp
     <section class="flex-1 flex flex-col">
         <main class="flex-1 flex flex-col ">
             <div class="flex flex-col gap-[32px] mb-[32px]  sm:gap-[60px] sm:mb-[60px]">
@@ -91,7 +99,7 @@
                     <div class="faq-container max-w-[1080px] m-auto flex sm:flex-row px-smClamp">
                         <div class="w-full flex flex-col">
                             <div class="mb-smClamp">
-                                <h2 class="whitespace-pre-line text-headerClamp ">{{__('screen.title.contact')}}</h2>
+                                <h2 class="whitespace-pre-line text-headerClamp">@if(isset($data)) {!! $data['title_' . $language] !!}@endif</h2>
                                 <div class="w-12 h-0.5 bg-yellow-900 mt-2"></div>
                             </div>
                             <div class="flex gap-6 flex-col sm:flex-row mt-6">
@@ -110,8 +118,8 @@
                                         </svg>
                                     </div>
                                     <div class="flex flex-col flex-1">
-                                        <h4 class="text-xl">{{__('contact.phone')}}</h4>
-                                        <p class="  text-base font-normal">(+84) 28 3925 2691</p>
+                                        <h4 class="text-xl">@if(isset($data)) {!! $data['title_sub1_' . $language] !!}@endif</h4>
+                                        <p class="text-base font-normal">@if(isset($data)) {!! $data['comment1_' . $language] !!}@endif</p>
                                     </div>
                                 </div>
                                 <div class="px-5 py-2 w-full border flex gap-3 sm:w-[33%] items-center">
@@ -129,8 +137,8 @@
                                         </svg>
                                     </div>
                                     <div class="flex flex-col flex-1">
-                                        <h4 class="text-xl">{{__('contact.email')}}</h4>
-                                        <p class="  text-base font-normal">lantern@neo-hospitality.com</p>
+                                        <h4 class="text-xl">@if(isset($data)) {!! $data['title_sub2_' . $language] !!}@endif</h4>
+                                        <p class="  text-base font-normal">@if(isset($data)) {!! $data['comment2_' . $language] !!}@endif</p>
                                     </div>
                                 </div>
                                 <div class="px-5 py-2 w-full border flex gap-3 sm:w-[33%] items-center">
@@ -150,8 +158,8 @@
                                         </svg>
                                     </div>
                                     <div class="flex flex-col flex-1">
-                                        <h4 class="text-xl">{{__('contact.address')}}</h4>
-                                        <p class="  text-base font-normal">122 Le Lai Street, Ben Thanh Ward, District 1, Ho Chi Minh City</p>
+                                        <h4 class="text-xl">@if(isset($data)) {!! $data['title_sub3_' . $language] !!}@endif</h4>
+                                        <p class="text-base font-normal">@if(isset($data)) {!! $data['comment3_' . $language] !!}@endif</p>
                                     </div>
                                 </div>
                             </div>

@@ -23,7 +23,6 @@
                                 </div>
                             </div>
                         @endforeach
-
                     </div>
                 </div>
                 <div class="px-6 absolute z-[2] sm:flex top-0 h-full w-[70%] md:w-[40%] md:bg-stone-950 md:bg-opacity-80 md:backdrop-blur-[20px] flex items-center justify-center">
@@ -97,7 +96,7 @@
                 },
                 autoplay: {
                     delay: 3000,
-                    disableOnInteraction: false,
+                    disableOnInteraction: true,
                 },
 
             });

@@ -91,19 +91,39 @@
                 About us
             </a>
 
+            <a href="{{route('admin.service')}}" class="@if(isset($page_current) && $page_current == 'service') active-nav-link @endif flex items-center text-white py-4 pl-4 nav-item">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 inline mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5h6M9 12h6m-7 7h8a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                </svg>
+                Service
+            </a>
 
-            <a href="{{route('admin.faq')}}" class="@if(isset($page_current) && $page_current == 'category') active-nav-link @endif flex items-center text-white py-4 pl-4 nav-item">
+            <a href="{{route('admin.faq')}}" class="@if(isset($page_current) && $page_current == 'faq') active-nav-link @endif flex items-center text-white py-4 pl-4 nav-item">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 inline mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5h6M9 12h6m-7 7h8a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2z" />
                 </svg>
                 Faq
             </a>
 
-            <a href="{{route('admin.category_room')}}" class="@if(isset($page_current) && $page_current == 'news') active-nav-link @endif flex items-center text-white py-4 pl-4 nav-item">
+            <a href="{{route('admin.category_room')}}" class="@if(isset($page_current) && $page_current == 'category_room') active-nav-link @endif flex items-center text-white py-4 pl-4 nav-item">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 inline mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3v18h18M21 3L3 21M3 3h18v18" />
                 </svg>
                 Category Room
+            </a>
+
+            <a href="{{route('admin.room')}}" class="@if(isset($page_current) && $page_current == 'rooms') active-nav-link @endif flex items-center text-white py-4 pl-4 nav-item">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 inline mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3v18h18M21 3L3 21M3 3h18v18" />
+                </svg>
+                Room
+            </a>
+
+            <a href="{{route('admin.contract')}}" class="@if(isset($page_current) && $page_current == 'contract') active-nav-link @endif flex items-center text-white py-4 pl-4 nav-item">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 inline mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3v18h18M21 3L3 21M3 3h18v18" />
+                </svg>
+                Contract
             </a>
         </nav>
     </aside>
@@ -141,25 +161,54 @@
 
                 <!-- Dropdown Nav -->
                 <nav class="show_menu_admin hidden flex flex-col pt-4">
-                    <a href="#" class="@if(isset($page_current) && $page_current == 'home') active-nav-link @endif flex items-center text-white opacity-75 hover:opacity-100 py-4 pl-6 nav-item">
+                    <a href="{{route('admin.home_slide')}}" class="@if(isset($page_current) && $page_current == 'home_slide') active-nav-link @endif flex items-center text-white py-4 pl-4 nav-item">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 inline mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z" />
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5h6M9 12h6m-7 7h8a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2z" />
                         </svg>
-                        Dashboard
+                        Home Slide
                     </a>
 
-                    <a href="#" class="@if(isset($page_current) && $page_current == 'invoice') active-nav-link @endif flex items-center text-white py-4 pl-4 nav-item">
+                    <a href="{{route('admin.about_us')}}" class="@if(isset($page_current) && $page_current == 'about_us') active-nav-link @endif flex items-center text-white py-4 pl-4 nav-item">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 inline mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3v18h18M21 3L3 21M3 3h18v18" />
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5h6M9 12h6m-7 7h8a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2z" />
                         </svg>
-                        Home slide
+                        About us
                     </a>
 
-                    <a href="#" class="@if(isset($page_current) && $page_current == 'invoice') active-nav-link @endif flex items-center text-white py-4 pl-4 nav-item">
+                    <a href="{{route('admin.service')}}" class="@if(isset($page_current) && $page_current == 'service') active-nav-link @endif flex items-center text-white py-4 pl-4 nav-item">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 inline mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5h6M9 12h6m-7 7h8a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                        </svg>
+                        Service
+                    </a>
+
+
+                    <a href="{{route('admin.faq')}}" class="@if(isset($page_current) && $page_current == 'faq') active-nav-link @endif flex items-center text-white py-4 pl-4 nav-item">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 inline mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5h6M9 12h6m-7 7h8a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                        </svg>
+                        Faq
+                    </a>
+
+                    <a href="{{route('admin.category_room')}}" class="@if(isset($page_current) && $page_current == 'category_room') active-nav-link @endif flex items-center text-white py-4 pl-4 nav-item">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 inline mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3v18h18M21 3L3 21M3 3h18v18" />
                         </svg>
                         Category Room
+                    </a>
+
+                    <a href="{{route('admin.room')}}" class="@if(isset($page_current) && $page_current == 'rooms') active-nav-link @endif flex items-center text-white py-4 pl-4 nav-item">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 inline mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3v18h18M21 3L3 21M3 3h18v18" />
+                        </svg>
+                        Room
+                    </a>
+
+                    <a href="{{route('admin.contract')}}" class="@if(isset($page_current) && $page_current == 'contract') active-nav-link @endif flex items-center text-white py-4 pl-4 nav-item">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 inline mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3v18h18M21 3L3 21M3 3h18v18" />
+                        </svg>
+                        Contract
                     </a>
 
                     <form action="#" method="post">

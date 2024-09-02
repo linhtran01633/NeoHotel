@@ -1,6 +1,14 @@
 @extends('app_layout')
 @section('content')
     @include('header')
+    @php
+        $language = 'en';
+        if(__('lang') == 'JP') {
+            $language = 'jp';
+        } else if(__('lang') == 'VN') {
+            $language = 'vn';
+        }
+    @endphp
     <section class="flex-1 flex flex-col">
         <main class="flex-1 flex flex-col ">
             <div class="flex flex-col gap-[32px] mb-[32px]  sm:gap-[60px] sm:mb-[60px]">
@@ -29,13 +37,13 @@
                         <div class="contentWrapper-description flex-1 min-w-[300px]">
                             <div class="w-full flex flex-col">
                                 <div class="mb-smClamp">
-                                    <h2 class="whitespace-pre-line text-headerClamp lantern-hotel-title text-isLantern">{{__('home.slider.title')}}</h2>
+                                    <h2 class="whitespace-pre-line text-headerClamp lantern-hotel-title text-isLantern">@if(isset($data)) {!! $data['title_'. $language] !!} @endif</h2>
                                     <div class="w-12 h-0.5 bg-yellow-900 mt-2"></div>
                                 </div>
                                 <div class="flex flex-col pr-0 sm:pr-[24px]">
-                                    <h3 class="w-full text-2xl mb-[12px] font-medium leading-normal">{{__('screen.title.services')}}</h3>
+                                    <h3 class="w-full text-2xl mb-[12px] font-medium leading-normal">@if(isset($data)) {!! $data['title_sub_'. $language] !!}@endif</h3>
                                     <div class="flex-1 w-full   text-base font-light leading-tight">
-                                        <p class="whitespace-pre-line text-left">{!!__('services.contents')!!}</p>
+                                        <p class="whitespace-pre-line text-left">@if(isset($data)) {!! $data['comment_'. $language] !!}@endif</p>
                                     </div>
                                 </div>
                             </div>
@@ -44,18 +52,11 @@
                             <div class="w-full w-[320px] sm:w-[460px] m-auto relative">
                                 <div class="swiper swiper-initialized swiper-horizontal swiper-ios mb-3 absolute z-0 swiper-backface-hidden" id="slide_services">
                                     <div class="swiper-wrapper" style="transform: translate3d(0px, 0px, 0px);">
-                                        <div class="swiper-slide overflow-hidden w-full sm:w-[460px]">
-                                            <img src="/serviceslide/serviceslideopt1.webp" loading="lazy" decoding="async" data-nimg="1" class="w-full min-w-[300px] h-full object-center object-cover aspect-[3/2] transform transition-transform duration-300 hover:scale-110" style="color: transparent;">
-                                        </div>
-                                        <div class="swiper-slide overflow-hidden w-full sm:w-[460px]">
-                                            <img src="/serviceslide/serviceslideopt2.webp" loading="lazy" decoding="async" data-nimg="1" class="w-full min-w-[300px] h-full object-center object-cover aspect-[3/2] transform transition-transform duration-300 hover:scale-110" style="color: transparent;">
-                                        </div>
-                                        <div class="swiper-slide overflow-hidden w-full sm:w-[460px]">
-                                            <img src="/serviceslide/serviceslideopt3.webp" loading="lazy" decoding="async" data-nimg="1" class="w-full min-w-[300px] h-full object-center object-cover aspect-[3/2] transform transition-transform duration-300 hover:scale-110" style="color: transparent;">
-                                        </div>
-                                        <div class="swiper-slide overflow-hidden w-full sm:w-[460px]">
-                                            <img src="/serviceslide/serviceslideopt4.webp" loading="lazy" decoding="async" data-nimg="1" class="w-full min-w-[300px] h-full object-center object-cover aspect-[3/2] transform transition-transform duration-300 hover:scale-110" style="color: transparent;">
-                                        </div>
+                                        @foreach ($array_images as $value)
+                                            <div class="swiper-slide overflow-hidden w-full sm:w-[460px]">
+                                                <img src="{{ asset('/storage/'.$value) }}" loading="lazy" decoding="async" data-nimg="1" class="w-full min-w-[300px] h-full object-center object-cover aspect-[3/2] transform transition-transform duration-300 hover:scale-110" style="color: transparent;">
+                                            </div>
+                                        @endforeach
                                     </div>
                                 </div>
                                 <div class="swiper-pagination"></div>
@@ -76,113 +77,20 @@
                 <div class="w-full mt-5 sm:mt-0">
                     <div class="max-w-[1080px] m-auto flex flex-col sm:flex-row px-smClamp">
                         <div class="grid grid-cols-1 grid-rows-[9] sm:grid-rows-2 sm:grid-cols-3">
-                            <div class="flex flex-col pr-0 sm:pr-[24px]  sm:border-b sm:border-[#E6E6E6]-800 pb-[32px] sm:py-[40px]">
-                                <div class="w-full mb-[12px] flex-col items-center justify-center">
-                                    <svg width="33" height="32" viewBox="0 0 33 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M21.0948 12.6129C21.148 12.6595 21.1914 12.7161 21.2225 12.7796C21.2536 12.8431 21.2717 12.9122 21.2759 12.9827C21.28 13.0533 21.2701 13.124 21.2467 13.1907C21.2233 13.2574 21.1869 13.3188 21.1396 13.3713L15.5321 19.5948C15.4846 19.6475 15.427 19.6902 15.3627 19.7203C15.2984 19.7505 15.2288 19.7675 15.1578 19.7703C15.0869 19.7732 15.0161 19.7619 14.9496 19.7371C14.8831 19.7122 14.8222 19.6744 14.7705 19.6257L11.5257 16.5713C11.4284 16.4784 11.3694 16.3523 11.3605 16.218C11.3517 16.0837 11.3935 15.9509 11.4777 15.846C11.5232 15.7891 11.5798 15.742 11.644 15.7076C11.7082 15.6732 11.7787 15.6523 11.8513 15.646C11.9239 15.6397 11.997 15.6482 12.0662 15.6711C12.1353 15.6939 12.1991 15.7305 12.2537 15.7788L14.7711 18.0433C14.8762 18.1379 15.0145 18.1869 15.1558 18.1795C15.297 18.1721 15.4295 18.1089 15.5241 18.0038L20.3471 12.6561C20.4409 12.552 20.572 12.4891 20.712 12.4809C20.8519 12.4727 20.9894 12.5199 21.0948 12.6124V12.6129Z" fill="#633511"></path>
-                                        <circle cx="16.5" cy="16" r="15.5" stroke="#633511"></circle>
-                                    </svg>
+                            @foreach ($array_service as $item)
+                                <div class="flex flex-col pr-0 sm:pr-[24px]  sm:border-b sm:border-[#E6E6E6]-800 pb-[32px] sm:py-[40px]">
+                                    <div class="w-full mb-[12px] flex-col items-center justify-center">
+                                        <svg width="33" height="32" viewBox="0 0 33 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path fill-rule="evenodd" clip-rule="evenodd" d="M21.0948 12.6129C21.148 12.6595 21.1914 12.7161 21.2225 12.7796C21.2536 12.8431 21.2717 12.9122 21.2759 12.9827C21.28 13.0533 21.2701 13.124 21.2467 13.1907C21.2233 13.2574 21.1869 13.3188 21.1396 13.3713L15.5321 19.5948C15.4846 19.6475 15.427 19.6902 15.3627 19.7203C15.2984 19.7505 15.2288 19.7675 15.1578 19.7703C15.0869 19.7732 15.0161 19.7619 14.9496 19.7371C14.8831 19.7122 14.8222 19.6744 14.7705 19.6257L11.5257 16.5713C11.4284 16.4784 11.3694 16.3523 11.3605 16.218C11.3517 16.0837 11.3935 15.9509 11.4777 15.846C11.5232 15.7891 11.5798 15.742 11.644 15.7076C11.7082 15.6732 11.7787 15.6523 11.8513 15.646C11.9239 15.6397 11.997 15.6482 12.0662 15.6711C12.1353 15.6939 12.1991 15.7305 12.2537 15.7788L14.7711 18.0433C14.8762 18.1379 15.0145 18.1869 15.1558 18.1795C15.297 18.1721 15.4295 18.1089 15.5241 18.0038L20.3471 12.6561C20.4409 12.552 20.572 12.4891 20.712 12.4809C20.8519 12.4727 20.9894 12.5199 21.0948 12.6124V12.6129Z" fill="#633511"></path>
+                                            <circle cx="16.5" cy="16" r="15.5" stroke="#633511"></circle>
+                                        </svg>
+                                    </div>
+                                    <div class="w-full mb-[12px]">
+                                        <h5 class="font-medium">{!! $item['title_service_'. $language] !!}</h5>
+                                    </div>
+                                    <p class="flex-1 w-full text-base font-light leading-tight whitespace-pre-line text-justify">{!! $item['comment_service_'. $language] !!}</p>
                                 </div>
-                                <div class="w-full mb-[12px]">
-                                    <h5 class="font-medium">{{__('services.title.Location')}}</h5>
-                                </div>
-                                <p class="flex-1 w-full text-base font-light leading-tight whitespace-pre-line text-justify">{{__('services.Location')}}</p>
-                            </div>
-                            <div class="flex flex-col pr-0 sm:pr-[24px]  sm:border-b sm:border-[#E6E6E6]-800 pb-[32px] sm:py-[40px]">
-                                <div class="w-full mb-[12px] flex-col items-center justify-center">
-                                    <svg width="33" height="32" viewBox="0 0 33 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M21.0948 12.6129C21.148 12.6595 21.1914 12.7161 21.2225 12.7796C21.2536 12.8431 21.2717 12.9122 21.2759 12.9827C21.28 13.0533 21.2701 13.124 21.2467 13.1907C21.2233 13.2574 21.1869 13.3188 21.1396 13.3713L15.5321 19.5948C15.4846 19.6475 15.427 19.6902 15.3627 19.7203C15.2984 19.7505 15.2288 19.7675 15.1578 19.7703C15.0869 19.7732 15.0161 19.7619 14.9496 19.7371C14.8831 19.7122 14.8222 19.6744 14.7705 19.6257L11.5257 16.5713C11.4284 16.4784 11.3694 16.3523 11.3605 16.218C11.3517 16.0837 11.3935 15.9509 11.4777 15.846C11.5232 15.7891 11.5798 15.742 11.644 15.7076C11.7082 15.6732 11.7787 15.6523 11.8513 15.646C11.9239 15.6397 11.997 15.6482 12.0662 15.6711C12.1353 15.6939 12.1991 15.7305 12.2537 15.7788L14.7711 18.0433C14.8762 18.1379 15.0145 18.1869 15.1558 18.1795C15.297 18.1721 15.4295 18.1089 15.5241 18.0038L20.3471 12.6561C20.4409 12.552 20.572 12.4891 20.712 12.4809C20.8519 12.4727 20.9894 12.5199 21.0948 12.6124V12.6129Z" fill="#633511"></path>
-                                        <circle cx="16.5" cy="16" r="15.5" stroke="#633511"></circle>
-                                    </svg>
-                                </div>
-                                <div class="w-full mb-[12px]">
-                                    <h5 class="font-medium">{{__('services.title.Room')}}</h5>
-                                </div><p class="flex-1 w-full text-base font-light leading-tight whitespace-pre-line text-justify">{{__('services.Room')}}</p>
-                            </div>
-                            <div class="flex flex-col pr-0 sm:pr-[24px]  sm:border-b sm:border-[#E6E6E6]-800 pb-[32px] sm:py-[40px]">
-                                <div class="w-full mb-[12px] flex-col items-center justify-center">
-                                    <svg width="33" height="32" viewBox="0 0 33 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M21.0948 12.6129C21.148 12.6595 21.1914 12.7161 21.2225 12.7796C21.2536 12.8431 21.2717 12.9122 21.2759 12.9827C21.28 13.0533 21.2701 13.124 21.2467 13.1907C21.2233 13.2574 21.1869 13.3188 21.1396 13.3713L15.5321 19.5948C15.4846 19.6475 15.427 19.6902 15.3627 19.7203C15.2984 19.7505 15.2288 19.7675 15.1578 19.7703C15.0869 19.7732 15.0161 19.7619 14.9496 19.7371C14.8831 19.7122 14.8222 19.6744 14.7705 19.6257L11.5257 16.5713C11.4284 16.4784 11.3694 16.3523 11.3605 16.218C11.3517 16.0837 11.3935 15.9509 11.4777 15.846C11.5232 15.7891 11.5798 15.742 11.644 15.7076C11.7082 15.6732 11.7787 15.6523 11.8513 15.646C11.9239 15.6397 11.997 15.6482 12.0662 15.6711C12.1353 15.6939 12.1991 15.7305 12.2537 15.7788L14.7711 18.0433C14.8762 18.1379 15.0145 18.1869 15.1558 18.1795C15.297 18.1721 15.4295 18.1089 15.5241 18.0038L20.3471 12.6561C20.4409 12.552 20.572 12.4891 20.712 12.4809C20.8519 12.4727 20.9894 12.5199 21.0948 12.6124V12.6129Z" fill="#633511"></path>
-                                        <circle cx="16.5" cy="16" r="15.5" stroke="#633511"></circle>
-                                    </svg>
-                                </div>
-                                <div class="w-full mb-[12px]">
-                                    <h5 class="font-medium">{{__('services.title.Facilities')}}</h5>
-                                </div>
-                                <p class="flex-1 w-full   text-base font-light leading-tight whitespace-pre-line text-justify">{{__('services.Facilities')}}</p>
-                            </div>
-                            <div class="flex flex-col pr-0 sm:pr-[24px]  sm:border-b sm:border-[#E6E6E6]-800 pb-[32px] sm:py-[40px]">
-                                <div class="w-full mb-[12px] flex-col items-center justify-center">
-                                    <svg width="33" height="32" viewBox="0 0 33 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M21.0948 12.6129C21.148 12.6595 21.1914 12.7161 21.2225 12.7796C21.2536 12.8431 21.2717 12.9122 21.2759 12.9827C21.28 13.0533 21.2701 13.124 21.2467 13.1907C21.2233 13.2574 21.1869 13.3188 21.1396 13.3713L15.5321 19.5948C15.4846 19.6475 15.427 19.6902 15.3627 19.7203C15.2984 19.7505 15.2288 19.7675 15.1578 19.7703C15.0869 19.7732 15.0161 19.7619 14.9496 19.7371C14.8831 19.7122 14.8222 19.6744 14.7705 19.6257L11.5257 16.5713C11.4284 16.4784 11.3694 16.3523 11.3605 16.218C11.3517 16.0837 11.3935 15.9509 11.4777 15.846C11.5232 15.7891 11.5798 15.742 11.644 15.7076C11.7082 15.6732 11.7787 15.6523 11.8513 15.646C11.9239 15.6397 11.997 15.6482 12.0662 15.6711C12.1353 15.6939 12.1991 15.7305 12.2537 15.7788L14.7711 18.0433C14.8762 18.1379 15.0145 18.1869 15.1558 18.1795C15.297 18.1721 15.4295 18.1089 15.5241 18.0038L20.3471 12.6561C20.4409 12.552 20.572 12.4891 20.712 12.4809C20.8519 12.4727 20.9894 12.5199 21.0948 12.6124V12.6129Z" fill="#633511"></path>
-                                        <circle cx="16.5" cy="16" r="15.5" stroke="#633511"></circle>
-                                    </svg>
-                                </div>
-                                <div class="w-full mb-[12px]">
-                                    <h5 class="font-medium">{{__('services.title.Special_complimentary_service')}}</h5>
-                                </div>
-                                <p class="flex-1 w-full   text-base font-light leading-tight whitespace-pre-line text-justify">{{__('services.Special_complimentary_service')}}</p>
-                            </div>
-                            <div class="flex flex-col pr-0 sm:pr-[24px]  sm:border-b sm:border-[#E6E6E6]-800 pb-[32px] sm:py-[40px]">
-                                <div class="w-full mb-[12px] flex-col items-center justify-center">
-                                    <svg width="33" height="32" viewBox="0 0 33 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M21.0948 12.6129C21.148 12.6595 21.1914 12.7161 21.2225 12.7796C21.2536 12.8431 21.2717 12.9122 21.2759 12.9827C21.28 13.0533 21.2701 13.124 21.2467 13.1907C21.2233 13.2574 21.1869 13.3188 21.1396 13.3713L15.5321 19.5948C15.4846 19.6475 15.427 19.6902 15.3627 19.7203C15.2984 19.7505 15.2288 19.7675 15.1578 19.7703C15.0869 19.7732 15.0161 19.7619 14.9496 19.7371C14.8831 19.7122 14.8222 19.6744 14.7705 19.6257L11.5257 16.5713C11.4284 16.4784 11.3694 16.3523 11.3605 16.218C11.3517 16.0837 11.3935 15.9509 11.4777 15.846C11.5232 15.7891 11.5798 15.742 11.644 15.7076C11.7082 15.6732 11.7787 15.6523 11.8513 15.646C11.9239 15.6397 11.997 15.6482 12.0662 15.6711C12.1353 15.6939 12.1991 15.7305 12.2537 15.7788L14.7711 18.0433C14.8762 18.1379 15.0145 18.1869 15.1558 18.1795C15.297 18.1721 15.4295 18.1089 15.5241 18.0038L20.3471 12.6561C20.4409 12.552 20.572 12.4891 20.712 12.4809C20.8519 12.4727 20.9894 12.5199 21.0948 12.6124V12.6129Z" fill="#633511"></path>
-                                        <circle cx="16.5" cy="16" r="15.5" stroke="#633511"></circle>
-                                    </svg>
-                                </div>
-                                <div class="w-full mb-[12px]">
-                                    <h5 class="font-medium">{{__('services.title.Breakfast')}}</h5>
-                                </div>
-                                <p class="flex-1 w-full   text-base font-light leading-tight whitespace-pre-line text-justify">{{__('services.Breakfast')}}</p>
-                            </div>
-                            <div class="flex flex-col pr-0 sm:pr-[24px]  sm:border-b sm:border-[#E6E6E6]-800 pb-[32px] sm:py-[40px]">
-                                <div class="w-full mb-[12px] flex-col items-center justify-center">
-                                    <svg width="33" height="32" viewBox="0 0 33 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M21.0948 12.6129C21.148 12.6595 21.1914 12.7161 21.2225 12.7796C21.2536 12.8431 21.2717 12.9122 21.2759 12.9827C21.28 13.0533 21.2701 13.124 21.2467 13.1907C21.2233 13.2574 21.1869 13.3188 21.1396 13.3713L15.5321 19.5948C15.4846 19.6475 15.427 19.6902 15.3627 19.7203C15.2984 19.7505 15.2288 19.7675 15.1578 19.7703C15.0869 19.7732 15.0161 19.7619 14.9496 19.7371C14.8831 19.7122 14.8222 19.6744 14.7705 19.6257L11.5257 16.5713C11.4284 16.4784 11.3694 16.3523 11.3605 16.218C11.3517 16.0837 11.3935 15.9509 11.4777 15.846C11.5232 15.7891 11.5798 15.742 11.644 15.7076C11.7082 15.6732 11.7787 15.6523 11.8513 15.646C11.9239 15.6397 11.997 15.6482 12.0662 15.6711C12.1353 15.6939 12.1991 15.7305 12.2537 15.7788L14.7711 18.0433C14.8762 18.1379 15.0145 18.1869 15.1558 18.1795C15.297 18.1721 15.4295 18.1089 15.5241 18.0038L20.3471 12.6561C20.4409 12.552 20.572 12.4891 20.712 12.4809C20.8519 12.4727 20.9894 12.5199 21.0948 12.6124V12.6129Z" fill="#633511"></path>
-                                        <circle cx="16.5" cy="16" r="15.5" stroke="#633511"></circle>
-                                    </svg>
-                                </div>
-                                <div class="w-full mb-[12px]">
-                                    <h5 class="font-medium">{{__('services.title.Tour')}}</h5>
-                                </div>
-                                <p class="flex-1 w-full   text-base font-light leading-tight whitespace-pre-line text-justify">{{__('services.Tour')}}</p>
-                            </div>
-                            <div class="flex flex-col pr-0 sm:pr-[24px]   pb-[32px] sm:py-[40px]">
-                                <div class="w-full mb-[12px] flex-col items-center justify-center">
-                                    <svg width="33" height="32" viewBox="0 0 33 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M21.0948 12.6129C21.148 12.6595 21.1914 12.7161 21.2225 12.7796C21.2536 12.8431 21.2717 12.9122 21.2759 12.9827C21.28 13.0533 21.2701 13.124 21.2467 13.1907C21.2233 13.2574 21.1869 13.3188 21.1396 13.3713L15.5321 19.5948C15.4846 19.6475 15.427 19.6902 15.3627 19.7203C15.2984 19.7505 15.2288 19.7675 15.1578 19.7703C15.0869 19.7732 15.0161 19.7619 14.9496 19.7371C14.8831 19.7122 14.8222 19.6744 14.7705 19.6257L11.5257 16.5713C11.4284 16.4784 11.3694 16.3523 11.3605 16.218C11.3517 16.0837 11.3935 15.9509 11.4777 15.846C11.5232 15.7891 11.5798 15.742 11.644 15.7076C11.7082 15.6732 11.7787 15.6523 11.8513 15.646C11.9239 15.6397 11.997 15.6482 12.0662 15.6711C12.1353 15.6939 12.1991 15.7305 12.2537 15.7788L14.7711 18.0433C14.8762 18.1379 15.0145 18.1869 15.1558 18.1795C15.297 18.1721 15.4295 18.1089 15.5241 18.0038L20.3471 12.6561C20.4409 12.552 20.572 12.4891 20.712 12.4809C20.8519 12.4727 20.9894 12.5199 21.0948 12.6124V12.6129Z" fill="#633511"></path>
-                                        <circle cx="16.5" cy="16" r="15.5" stroke="#633511"></circle>
-                                    </svg>
-                                </div>
-                                <div class="w-full mb-[12px]">
-                                    <h5 class="font-medium">{{__('services.title.Team')}}</h5>
-                                </div>
-                                <p class="flex-1 w-full   text-base font-light leading-tight whitespace-pre-line text-justify">{{__('services.Team')}}</p>
-                            </div>
-                            <div class="flex flex-col pr-0 sm:pr-[24px]   pb-[32px] sm:py-[40px]">
-                                <div class="w-full mb-[12px] flex-col items-center justify-center">
-                                    <svg width="33" height="32" viewBox="0 0 33 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M21.0948 12.6129C21.148 12.6595 21.1914 12.7161 21.2225 12.7796C21.2536 12.8431 21.2717 12.9122 21.2759 12.9827C21.28 13.0533 21.2701 13.124 21.2467 13.1907C21.2233 13.2574 21.1869 13.3188 21.1396 13.3713L15.5321 19.5948C15.4846 19.6475 15.427 19.6902 15.3627 19.7203C15.2984 19.7505 15.2288 19.7675 15.1578 19.7703C15.0869 19.7732 15.0161 19.7619 14.9496 19.7371C14.8831 19.7122 14.8222 19.6744 14.7705 19.6257L11.5257 16.5713C11.4284 16.4784 11.3694 16.3523 11.3605 16.218C11.3517 16.0837 11.3935 15.9509 11.4777 15.846C11.5232 15.7891 11.5798 15.742 11.644 15.7076C11.7082 15.6732 11.7787 15.6523 11.8513 15.646C11.9239 15.6397 11.997 15.6482 12.0662 15.6711C12.1353 15.6939 12.1991 15.7305 12.2537 15.7788L14.7711 18.0433C14.8762 18.1379 15.0145 18.1869 15.1558 18.1795C15.297 18.1721 15.4295 18.1089 15.5241 18.0038L20.3471 12.6561C20.4409 12.552 20.572 12.4891 20.712 12.4809C20.8519 12.4727 20.9894 12.5199 21.0948 12.6124V12.6129Z" fill="#633511"></path>
-                                        <circle cx="16.5" cy="16" r="15.5" stroke="#633511"></circle>
-                                    </svg>
-                                </div>
-                                <div class="w-full mb-[12px]">
-                                    <h5 class="font-medium">{{__('services.title.Information')}}</h5>
-                                </div>
-                                <p class="flex-1 w-full   text-base font-light leading-tight whitespace-pre-line text-justify">{{__('services.Information')}}</p>
-                            </div>
-                            <div class="flex flex-col pr-0 sm:pr-[24px]   pb-[32px] sm:py-[40px]">
-                                <div class="w-full mb-[12px] flex-col items-center justify-center">
-                                    <svg width="33" height="32" viewBox="0 0 33 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M21.0948 12.6129C21.148 12.6595 21.1914 12.7161 21.2225 12.7796C21.2536 12.8431 21.2717 12.9122 21.2759 12.9827C21.28 13.0533 21.2701 13.124 21.2467 13.1907C21.2233 13.2574 21.1869 13.3188 21.1396 13.3713L15.5321 19.5948C15.4846 19.6475 15.427 19.6902 15.3627 19.7203C15.2984 19.7505 15.2288 19.7675 15.1578 19.7703C15.0869 19.7732 15.0161 19.7619 14.9496 19.7371C14.8831 19.7122 14.8222 19.6744 14.7705 19.6257L11.5257 16.5713C11.4284 16.4784 11.3694 16.3523 11.3605 16.218C11.3517 16.0837 11.3935 15.9509 11.4777 15.846C11.5232 15.7891 11.5798 15.742 11.644 15.7076C11.7082 15.6732 11.7787 15.6523 11.8513 15.646C11.9239 15.6397 11.997 15.6482 12.0662 15.6711C12.1353 15.6939 12.1991 15.7305 12.2537 15.7788L14.7711 18.0433C14.8762 18.1379 15.0145 18.1869 15.1558 18.1795C15.297 18.1721 15.4295 18.1089 15.5241 18.0038L20.3471 12.6561C20.4409 12.552 20.572 12.4891 20.712 12.4809C20.8519 12.4727 20.9894 12.5199 21.0948 12.6124V12.6129Z" fill="#633511"></path>
-                                        <circle cx="16.5" cy="16" r="15.5" stroke="#633511"></circle>
-                                    </svg>
-                                </div>
-                                <div class="w-full mb-[12px]">
-                                    <h5 class="font-medium">{{__('services.title.3G_sim')}}</h5>
-                                </div>
-                                <p class="flex-1 w-full   text-base font-light leading-tight whitespace-pre-line text-justify">{{__('services.3G_sim')}}</p>
-                            </div>
+                            @endforeach
                         </div>
                     </div>
                 </div>

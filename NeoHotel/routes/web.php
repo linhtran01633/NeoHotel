@@ -32,9 +32,7 @@ Route::get('/', [ClientController::class, 'home'])->name('home');
 Route::get('/about-us', [ClientController::class, 'about_us'])->name('about_us');
 
 
-Route::get('/services', function () {
-    return view('services');
-});
+Route::get('services', [ClientController::class, 'services'])->name('services');
 
 Route::get('rooms', [ClientController::class, 'rooms'])->name('rooms');
 
@@ -44,9 +42,7 @@ Route::get('/activities', function () {
 
 Route::get('faq', [ClientController::class, 'faq'])->name('faq');
 
-Route::get('/contact', function () {
-    return view('contact');
-});
+Route::get('contact', [ClientController::class, 'contact'])->name('contact');
 
 Route::get('booking', [ClientController::class, 'booking'])->name('booking');
 Route::post('submit-booking', [ClientController::class, 'submitBooking'])->name('submit-booking');
@@ -63,15 +59,24 @@ Route::prefix('dashboard')->group(function () {
     Route::get('about_us', [AdminController::class, 'aboutUs'])->name('admin.about_us');
     Route::post('save_about_us', [AdminController::class, 'saveAboutUs'])->name('admin.about_us.save');
 
+    Route::get('service', [AdminController::class, 'service'])->name('admin.service');
+    Route::post('save_service', [AdminController::class, 'saveService'])->name('admin.service.save');
+
     Route::get('faq', [AdminController::class, 'faq'])->name('admin.faq');
     Route::post('infomation_faq', [AdminController::class, 'infomationFaq'])->name('admin.infomation_faq');
     Route::post('save_faq', [AdminController::class, 'saveFaq'])->name('admin.faq.save');
     Route::post('delete_faq', [AdminController::class, 'deleteFaq'])->name('admin.delete.faq');
 
+    Route::get('contract', [AdminController::class, 'contract'])->name('admin.contract');
+    Route::post('save_contract', [AdminController::class, 'saveContract'])->name('admin.contract.save');
+
 
     Route::get('category-room', [AdminController::class, 'categoryRoom'])->name('admin.category_room');
     Route::post('infomation-category', [AdminController::class, 'infomationCategory'])->name('admin.infomation_category');
     Route::post('save_category_room', [AdminController::class, 'saveCategoryRoom'])->name('admin.category_room.save');
+
+    Route::get('room', [AdminController::class, 'room'])->name('admin.room');
+    Route::post('save_room', [AdminController::class, 'saveRoom'])->name('admin.room.save');
 });
 
 

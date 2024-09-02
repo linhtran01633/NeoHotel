@@ -4,14 +4,17 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\AboutUsRequest;
 use App\Http\Requests\CategoryRoomRequest;
+use App\Http\Requests\ContractRequest;
 use App\Http\Requests\FaqRequest;
 use App\Http\Requests\HomeSlideRequest;
 use App\Http\Requests\RoomRequest;
+use App\Http\Requests\ServiceRequest;
 use App\Models\AboutUs;
 use App\Models\Booking;
 use App\Models\BookingRoom;
 use App\Models\BookingService;
 use App\Models\CategoryRoom;
+use App\Models\Contract;
 use App\Models\Faq;
 use App\Models\HomeSlide;
 use App\Models\Room;
@@ -19,6 +22,7 @@ use App\Models\Service;
 use Carbon\Carbon;
 use Exception;
 use Faker\Calculator\Ean;
+use GuzzleHttp\Psr7\ServerRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
@@ -26,98 +30,6 @@ use Yajra\DataTables\Facades\DataTables;
 
 class AdminController extends Controller
 {
-    //
-    public function index(Request $request) {
-        $labelses_chart = [];
-        for ($i = 0; $i < 6; $i++) {
-            $date = Carbon::now()->subMonths($i);
-            $labelses_chart[] = $date->format('Y-m');
-        }
-
-        $labelses_chart = array_reverse($labelses_chart);
-
-
-        // tổng số booking trong 6 tháng gần nhất
-        $total_booking = Booking::whereDate('created_at', '>=', Carbon::now()->subMonths(5))->get();
-        $chart1_temp = [];
-        foreach($total_booking as $booking) {
-            $chart1_temp[] = Carbon::parse($booking->created_at)->format('Y-m');
-        }
-
-        $chart1 = array_count_values($chart1_temp);
-
-        // Duyệt qua mảng các tháng cần kiểm tra
-        foreach ($labelses_chart as $month) {
-            if (!isset($chart1[$month])) $chart1[$month] = 0;
-        }
-
-        ksort($chart1);
-        $chart1 = array_values($chart1);
-
-
-        // tổng số booking bị huỷ trong 6 tháng gần nhất
-        $total_booking_cancel = Booking::where('status', 1)->whereDate('created_at', '>=', Carbon::now()->subMonths(5))->get();
-        $chart2_temp = [];
-        foreach($total_booking_cancel as $booking) {
-            $chart2_temp[] = Carbon::parse($booking->created_at)->format('Y-m');
-        }
-
-        $chart2 = array_count_values($chart2_temp);
-
-        // Duyệt qua mảng các tháng cần kiểm tra
-        foreach ($labelses_chart as $month) {
-            if (!isset($chart2[$month])) $chart2[$month] = 0;
-        }
-
-        ksort($chart2);
-        $chart2 = array_values($chart2);
-
-        // tổng số booking đã sử lý trong 6 tháng gần nhất
-        $total_booking_processed = Booking::where('status', 2)->whereDate('created_at', '>=', Carbon::now()->subMonths(5))->get();
-        $chart3_temp = [];
-        foreach($total_booking_processed as $booking) {
-            $chart3_temp[] = Carbon::parse($booking->created_at)->format('Y-m');
-        }
-
-        $chart3 = array_count_values($chart3_temp);
-
-        // Duyệt qua mảng các tháng cần kiểm tra
-        foreach ($labelses_chart as $month) {
-            if (!isset($chart3[$month])) $chart3[$month] = 0;
-        }
-
-        ksort($chart3);
-        $chart3 = array_values($chart3);
-
-
-        // tổng số booking chưa sử lý trong 6 tháng gần nhất
-        $total_booking_unprocessed = Booking::where('status', 0)->whereDate('created_at', '>=', Carbon::now()->subMonths(5))->get();
-        $chart4_temp = [];
-        foreach($total_booking_unprocessed as $booking) {
-            $chart4_temp[] = Carbon::parse($booking->created_at)->format('Y-m');
-        }
-
-        $chart4 = array_count_values($chart4_temp);
-
-        // Duyệt qua mảng các tháng cần kiểm tra
-        foreach ($labelses_chart as $month) {
-            if (!isset($chart4[$month])) $chart4[$month] = 0;
-        }
-
-        ksort($chart4);
-        $chart4 = array_values($chart4);
-
-        $widthData = [
-            'chart1' => $chart1,
-            'chart2' => $chart2,
-            'chart3' => $chart3,
-            'chart4' => $chart4,
-            'labelses_chart' => $labelses_chart,
-        ];
-
-        return view('admin.dashboard')->with($widthData);
-    }
-
     public function homeSlide(Request $request) {
         if($request->ajax()) {
             $table_data = HomeSlide::select('*')->where('delete_flag', 0)->orderBy('id', 'asc');
@@ -125,7 +37,8 @@ class AdminController extends Controller
             return DataTables::of($table_data)
             ->make(true);
         }
-        return view('admin.home_slide');
+        $page_current = 'home_slide';
+        return view('admin.home_slide', compact('page_current'));
     }
 
     public function saveHomeSlide(HomeSlideRequest $request) {
@@ -201,7 +114,10 @@ class AdminController extends Controller
             return DataTables::of($table_data)
             ->make(true);
         }
-        return view('admin.faq');
+
+        $page_current = 'faq';
+
+        return view('admin.faq', compact('page_current'));
     }
 
     public function saveFaq(FaqRequest $request) {
@@ -262,7 +178,9 @@ class AdminController extends Controller
             $array_title3_images[] = $aboutUs->title3_images;
             $array_title4_images[] = $aboutUs->title4_images;
         }
-        return view('admin.about_us',compact('aboutUs', 'array_title1_images', 'array_title3_images', 'array_title4_images'));
+        $page_current = 'about_us';
+
+        return view('admin.about_us',compact('aboutUs', 'array_title1_images', 'array_title3_images', 'array_title4_images', 'page_current'));
     }
 
     public function saveAboutUs(AboutUsRequest $request) {
@@ -324,6 +242,68 @@ class AdminController extends Controller
         return response()->json(['success' => true, 'message' => __('save_success')]);
     }
 
+    public function service(Request $request) {
+
+        $array_images = [];
+        $array_service = [];
+
+        $data = Service::select('*')->where('delete_flag', 0)->orderBy('id', 'asc')->first();
+
+        if($data) {
+            $array_images = explode(',', $data->images);
+            $array_service = array_map(function($item) {
+                return json_decode($item, true);
+            }, $data->service_list);
+        }
+
+        $page_current = 'service';
+
+        return view('admin.service',compact('data', 'array_images', 'array_service', 'page_current'));
+    }
+
+    public function saveService(ServiceRequest $request) {
+        try {
+            DB::transaction(function () use($request) {
+                $imagePaths = [];
+
+                // Nếu có hình ảnh trong yêu cầu
+                if ($request->hasFile('images')) {
+                    // Lặp qua từng hình ảnh và lưu chúng
+                    foreach ($request->file('images') as $image) {
+                        $path = $image->store('images/service');
+                        $imagePaths[] = $path;
+                    }
+                }
+
+                $imagePaths = implode(',', $imagePaths);
+
+                if($request->id) {
+                    $check = Service::where('id', $request->id)->first();
+                    if($check && Carbon::parse($check->updated_at)->format('Y-m-d H:i:s')  == Carbon::parse($request->updated_at)->format('Y-m-d H:i:s')) {
+                        $data = $request->only($check->getFillable());
+
+                        if($imagePaths == '') unset($data['images']);
+                        else $data['images'] = $imagePaths;
+                        $check->fill($data)->save();
+                    } else {
+                        throw new Exception( __('save_false'));
+                    }
+                } else {
+
+                    $new = new Service();
+                    $data = $request->only($new->getFillable());
+                    $data['images'] = $imagePaths;
+                    $new->fill($data)->save();
+                }
+            });
+        } catch (Exception $e) {
+            Log::info($e->getMessage());
+            return response()->json(['success' => false, 'message' => __('save_false')]);
+        }
+
+        return response()->json(['success' => true, 'message' => __('save_success')]);
+    }
+
 
     public function categoryRoom(Request $request) {
 
@@ -334,13 +314,13 @@ class AdminController extends Controller
             return DataTables::of($table_data)
             ->make(true);
         }
+        $page_current = 'category_room';
 
-        return view('admin.category_room');
+        return view('admin.category_room', compact('page_current'));
     }
 
     public function saveCategoryRoom(CategoryRoomRequest $request) {
 
-        Log::info($request->all());
         try {
             DB::transaction(function () use($request) {
 
@@ -387,6 +367,84 @@ class AdminController extends Controller
     public function infomationCategory(Request $request) {
         $data = CategoryRoom::where('id', $request->id)->first();
         return response()->json(@$data);
+    }
+
+
+    public function contract() {
+        $data = Contract::where('delete_flag', 0)->first();
+        $page_current = 'contract';
+        return view('admin.contract', compact('data', 'page_current'));
+    }
+
+    public function saveContract(ContractRequest $request) {
+        try {
+            DB::transaction(function () use($request) {
+                if($request->id) {
+                    $check = Contract::where('id', $request->id)->first();
+                    if($check && Carbon::parse($check->updated_at)->format('Y-m-d H:i:s')  == Carbon::parse($request->updated_at)->format('Y-m-d H:i:s')) {
+                        $data = $request->only($check->getFillable());
+                        $check->fill($data)->save();
+                    } else {
+                        throw new Exception( __('save_false'));
+                    }
+                } else {
+
+                    $new = new Contract();
+                    $data = $request->only($new->getFillable());
+                    $new->fill($data)->save();
+                }
+            });
+        } catch (Exception $e) {
+            Log::info($e->getMessage());
+            return response()->json(['success' => false, 'message' => __('save_false')]);
+        }
+
+        return response()->json(['success' => true, 'message' => __('save_success')]);
+    }
+
+    public function room() {
+        $equipmentForRent = [];
+        $page_current = 'rooms';
+        $availableEquipment = [];
+        $data = Room::where('delete_flag', 0)->first();
+
+        if($data) {
+            $equipmentForRent = json_decode($data->equipment_for_rent, true);
+            $availableEquipment = json_decode($data->available_equipment, true);
+        }
+
+
+        return view('admin.room',compact('page_current', 'data', 'equipmentForRent', 'availableEquipment'));
+    }
+
+    public function saveRoom(RoomRequest $request) {
+        try {
+            DB::transaction(function () use($request) {
+                if($request->id) {
+                    $check = Room::where('id', $request->id)->first();
+                    if($check && Carbon::parse($check->updated_at)->format('Y-m-d H:i:s')  == Carbon::parse($request->updated_at)->format('Y-m-d H:i:s')) {
+                        $data = $request->only($check->getFillable());
+                        $data['equipment_for_rent'] = json_encode($request->equipment_for_rent);
+                        $data['available_equipment'] = json_encode($request->available_equipment);
+                        $check->fill($data)->save();
+                    } else {
+                        throw new Exception( __('save_false'));
+                    }
+                } else {
+
+                    $new = new Room();
+                    $data = $request->only($new->getFillable());
+                    $data['equipment_for_rent'] = json_encode($request->equipment_for_rent);
+                    $data['available_equipment'] = json_encode($request->available_equipment);
+                    $new->fill($data)->save();
+                }
+            });
+        } catch (Exception $e) {
+            Log::info($e->getMessage());
+            return response()->json(['success' => false, 'message' => __('save_false')]);
+        }
+
+        return response()->json(['success' => true, 'message' => __('save_success')]);
     }
 
 }
