@@ -5,7 +5,7 @@
         <main class="flex-1 flex flex-col ">
             <div>
                 <div class="relative h-[200px] w-full text-center bg-black bg-opacity-40">
-                    <img alt="header banner" loading="lazy" decoding="async" data-nimg="fill" class="absolute object-cover w-full" sizes="100vw" src="/headerbanner.webp" style="position: absolute; height: 100%; width: 100%; inset: 0px; color: transparent;">
+                    <img alt="header banner" loading="lazy" decoding="async" data-nimg="fill" class="absolute object-cover w-full" sizes="100vw"  @if(isset($banner_images)) src="{{ asset('/storage/'.$banner_images) }}" @else src="" @endif style="position: absolute; height: 100%; width: 100%; inset: 0px; color: transparent;">
                     <div class="absolute inset-0 bg-black bg-opacity-40"></div>
                     <div class="absolute left-[50%] translate-x-[-50%] translate-y-[-50%] top-[50%]">
                         <div class="flex flex-col gap-2">

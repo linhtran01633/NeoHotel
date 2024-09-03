@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\AboutUsRequest;
+use App\Http\Requests\BannerRequest;
 use App\Http\Requests\CategoryRoomRequest;
 use App\Http\Requests\ContractRequest;
 use App\Http\Requests\FaqRequest;
@@ -10,6 +11,7 @@ use App\Http\Requests\HomeSlideRequest;
 use App\Http\Requests\RoomRequest;
 use App\Http\Requests\ServiceRequest;
 use App\Models\AboutUs;
+use App\Models\Banner;
 use App\Models\Booking;
 use App\Models\BookingRoom;
 use App\Models\BookingService;
@@ -436,6 +438,48 @@ class AdminController extends Controller
                     $data = $request->only($new->getFillable());
                     $data['equipment_for_rent'] = json_encode($request->equipment_for_rent);
                     $data['available_equipment'] = json_encode($request->available_equipment);
+                    $new->fill($data)->save();
+                }
+            });
+        } catch (Exception $e) {
+            Log::info($e->getMessage());
+            return response()->json(['success' => false, 'message' => __('save_false')]);
+        }
+
+        return response()->json(['success' => true, 'message' => __('save_success')]);
+    }
+
+    public function banner() {
+        $array_images = [];
+        $data = Banner::where('delete_flag', 0)->first();
+        if($data) $array_images = [$data->images];
+        return view('admin.banner', compact('data', 'array_images'));
+    }
+
+    public function saveBanner(BannerRequest $request){
+        try {
+            DB::transaction(function () use($request) {
+                $imagePath = '';
+
+                if ($request->hasFile('images')) {
+                    $path_image = $request->file('images')->store('images/banner');
+                    $imagePath = $path_image;
+                }
+
+                if($request->id) {
+                    $check = Banner::where('id', $request->id)->first();
+                    if($check && Carbon::parse($check->updated_at)->format('Y-m-d H:i:s')  == Carbon::parse($request->updated_at)->format('Y-m-d H:i:s')) {
+                        $data = $request->only($check->getFillable());
+                        $data['images'] = $imagePath;
+                        $check->fill($data)->save();
+                    } else {
+                        throw new Exception( __('save_false'));
+                    }
+                } else {
+
+                    $new = new Banner();
+                    $data = $request->only($new->getFillable());
+                    $data['images'] = $imagePath;
                     $new->fill($data)->save();
                 }
             });

@@ -6,6 +6,8 @@ use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Lang;
 use Illuminate\Support\ServiceProvider;
 use App\Helpers\JsonFlatten;
+use App\Models\Banner;
+use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\View;
 
 class AppServiceProvider extends ServiceProvider
@@ -24,6 +26,21 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         //
+
+        $banner_images = '';
+
+        if (Schema::hasTable('banners')) {
+            $data = Banner::where('delete_flag', 0)->first();
+
+            if($data) $banner_images = $data->images;
+        }
+
+        View::composer([
+            '*',
+        ], function ($view) use($banner_images) {
+            $view->with('banner_images', $banner_images);
+        });
+
         View::composer([
             'welcome',
         ], function ($view) {

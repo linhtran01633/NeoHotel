@@ -77,6 +77,9 @@ Route::prefix('dashboard')->group(function () {
 
     Route::get('room', [AdminController::class, 'room'])->name('admin.room');
     Route::post('save_room', [AdminController::class, 'saveRoom'])->name('admin.room.save');
+
+    Route::get('banner', [AdminController::class, 'banner'])->name('admin.banner');
+    Route::post('save_banner', [AdminController::class, 'saveBanner'])->name('admin.banner.save');
 });
 
 

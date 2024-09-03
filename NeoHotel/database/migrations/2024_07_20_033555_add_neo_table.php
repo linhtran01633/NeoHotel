@@ -274,6 +274,16 @@ return new class extends Migration
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->useCurrent()->useCurrentOnUpdate();
         });
+
+
+        Schema::create('banners', function (Blueprint $table) {
+            $table->id();
+            $table->string('images',256);
+            $table->smallInteger('delete_flag')->default(0)->nullable();
+
+            $table->timestamp('created_at')->useCurrent();
+            $table->timestamp('updated_at')->useCurrent()->useCurrentOnUpdate();
+        });
     }
 
     /**
