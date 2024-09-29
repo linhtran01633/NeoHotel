@@ -32,6 +32,10 @@ use Yajra\DataTables\Facades\DataTables;
 
 class AdminController extends Controller
 {
+    public function index() {
+        return '';
+    }
+
     public function homeSlide(Request $request) {
         if($request->ajax()) {
             $table_data = HomeSlide::select('*')->where('delete_flag', 0)->orderBy('id', 'asc');
@@ -253,9 +257,12 @@ class AdminController extends Controller
 
         if($data) {
             $array_images = explode(',', $data->images);
-            $array_service = array_map(function($item) {
-                return json_decode($item, true);
-            }, $data->service_list);
+
+            if($data->service_list != null) {
+                $array_service = array_map(function($item) {
+                    return json_decode($item, true);
+                },$data->service_list);
+            }
         }
 
         $page_current = 'service';

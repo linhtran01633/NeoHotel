@@ -41,9 +41,12 @@ class ClientController extends Controller
 
         if($data) {
             $array_images = explode(',', $data->images);
-            $array_service = array_map(function($item) {
-                return json_decode($item, true);
-            }, $data->service_list);
+
+            if($data->service_list != null) {
+                $array_service = array_map(function($item) {
+                    return json_decode($item, true);
+                },$data->service_list);
+            }
         }
         return view('services',compact('data', 'array_images', 'array_service'));
     }
