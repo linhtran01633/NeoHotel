@@ -253,7 +253,7 @@ class AdminController extends Controller
         $array_images = [];
         $array_service = [];
 
-        $data = Service::select('*')->where('delete_flag', 0)->orderBy('id', 'asc')->first();
+        $data = Service::select('*')->where('delete_flag', 0)->orderBy('id', 'desc')->first();
 
         if($data) {
             $array_images = explode(',', $data->images);
@@ -286,22 +286,21 @@ class AdminController extends Controller
 
                 $imagePaths = implode(',', $imagePaths);
 
-                if($request->id) {
-                    $check = Service::where('id', $request->id)->first();
-                    if($check && Carbon::parse($check->updated_at)->format('Y-m-d H:i:s')  == Carbon::parse($request->updated_at)->format('Y-m-d H:i:s')) {
-                        $data = $request->only($check->getFillable());
+                $check = Service::orderBy('id', 'desc')->first();
+                if($check) {
+                    $data = $request->only($check->getFillable());
+                    if($imagePaths == '') unset($data['images']);
+                    else $data['images'] = $imagePaths;
+                    if($request->service_list == 'null')  $data['service_list'] = null ;
 
-                        if($imagePaths == '') unset($data['images']);
-                        else $data['images'] = $imagePaths;
-                        $check->fill($data)->save();
-                    } else {
-                        throw new Exception( __('save_false'));
-                    }
+                    $check->fill($data)->save();
+
                 } else {
 
                     $new = new Service();
                     $data = $request->only($new->getFillable());
                     $data['images'] = $imagePaths;
+                    if($request->service_list == 'null')  $data['service_list'] = null ;
                     $new->fill($data)->save();
                 }
             });

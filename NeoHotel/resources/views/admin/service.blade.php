@@ -21,6 +21,10 @@
                 form_data.append("service_list[]", JSON.stringify(service));
             });
 
+            if(this.array_service.length == 0) {
+                form_data.append("service_list", null);
+            }
+
             let images = document.querySelector("#images").files;
             if (images.length > 0) {
                 for (let i = 0; i < images.length; i++) {
