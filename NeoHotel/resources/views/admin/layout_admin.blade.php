@@ -72,7 +72,6 @@
         }
 
         .options {
-            display: none;
             position: absolute;
             background-color: white;
             border: 1px solid #ccc;
@@ -163,7 +162,7 @@
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 inline mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3v18h18M21 3L3 21M3 3h18v18" />
                 </svg>
-                Contract
+                Contact
             </a>
 
             <a href="{{route('admin.banner')}}" class="@if(isset($page_current) && $page_current == 'banner') active-nav-link @endif flex items-center text-white py-4 pl-4 nav-item">
@@ -255,7 +254,7 @@
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 inline mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3v18h18M21 3L3 21M3 3h18v18" />
                         </svg>
-                        Contract
+                        Contact
                     </a>
 
                     <a href="{{route('admin.banner')}}" class="@if(isset($page_current) && $page_current == 'banner') active-nav-link @endif flex items-center text-white py-4 pl-4 nav-item">

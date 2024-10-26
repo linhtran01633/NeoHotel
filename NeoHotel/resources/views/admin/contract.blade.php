@@ -69,7 +69,7 @@
                                         <div class="text-red-500" x-text="data_error.title_jp"></div>
                                     </div>
                                 </div>
-                                <div class="border border-black rounded p-2 mt-2">
+                                <div class="border border-gray-300 rounded-lg p-2 mt-2">
                                     <div class="my-2 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                                         <div>
                                             <div>Title sub 1 VietNam</div>
@@ -118,7 +118,7 @@
                                     </div>
                                 </div>
 
-                                <div class="border border-black rounded p-2 mt-2">
+                                <div class="border border-gray-300 rounded-lg p-2 mt-2">
                                     <div class="my-2 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                                         <div>
                                             <div>Title sub 2 VietNam</div>
@@ -167,7 +167,7 @@
                                     </div>
                                 </div>
 
-                                <div class="border border-black rounded p-2 mt-2">
+                                <div class="border border-gray-300 rounded-lg p-2 mt-2">
                                     <div class="my-2 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                                         <div>
                                             <div>Title sub 3 VietNam</div>

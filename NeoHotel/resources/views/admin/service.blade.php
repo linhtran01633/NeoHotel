@@ -98,84 +98,84 @@
                                         </template>
                                     </div>
                                 </div>
-                                <div class="my-2 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                                    <div>
-                                        <div>Title VietNam</div>
+                                <div class="border border-gray-300 rounded-lg p-2 mb-2">
+                                    <div class="my-2 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                                         <div>
-                                            <input type="text" x-model="data.title_vn" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
+                                            <div>Title VietNam</div>
+                                            <div>
+                                                <input type="text" x-model="data.title_vn" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
+                                            </div>
+                                            <div class="text-red-500" x-text="data_error.title_vn"></div>
                                         </div>
-                                        <div class="text-red-500" x-text="data_error.title_vn"></div>
+                                        <div>
+                                            <div>Title English</div>
+                                            <div>
+                                                <input type="text" x-model="data.title_en" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
+                                            </div>
+                                            <div class="text-red-500" x-text="data_error.title_en"></div>
+                                        </div>
+                                        <div>
+                                            <div>Title Japan</div>
+                                            <div>
+                                                <input type="text" x-model="data.title_jp" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
+                                            </div>
+                                            <div class="text-red-500" x-text="data_error.title_jp"></div>
+                                        </div>
                                     </div>
-                                    <div>
-                                        <div>Title English</div>
+                                    <div class="my-2 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                                         <div>
-                                            <input type="text" x-model="data.title_en" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
+                                            <div>Title sub VietNam</div>
+                                            <div>
+                                                <input type="text" x-model="data.title_sub_vn" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
+                                            </div>
+                                            <div class="text-red-500" x-text="data_error.title_sub_vn"></div>
                                         </div>
-                                        <div class="text-red-500" x-text="data_error.title_en"></div>
+                                        <div>
+                                            <div>Title sub English</div>
+                                            <div>
+                                                <input type="text" x-model="data.title_sub_en" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
+                                            </div>
+                                            <div class="text-red-500" x-text="data_error.title_sub_en"></div>
+                                        </div>
+                                        <div>
+                                            <div>Title sub Japan</div>
+                                            <div>
+                                                <input type="text" x-model="data.title_sub_jp" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
+                                            </div>
+                                            <div class="text-red-500" x-text="data_error.title_sub_jp"></div>
+                                        </div>
                                     </div>
-                                    <div>
-                                        <div>Title Japan</div>
+                                    <div class="my-2 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                                         <div>
-                                            <input type="text" x-model="data.title_jp" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
+                                            <div>Comment VietNam</div>
+                                            <div>
+                                                <textarea type="text" x-model="data.comment_vn" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"></textarea>
+                                            </div>
+                                            <div class="text-red-500" x-text="data_error.comment_vn"></div>
                                         </div>
-                                        <div class="text-red-500" x-text="data_error.title_jp"></div>
+                                        <div>
+                                            <div>Comment English</div>
+                                            <div>
+                                                <textarea type="text" x-model="data.comment_en" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"> </textarea>
+                                            </div>
+                                            <div class="text-red-500" x-text="data_error.comment_en"></div>
+                                        </div>
+                                        <div>
+                                            <div>Comment Japan</div>
+                                            <div>
+                                                <textarea type="text" x-model="data.comment_jp" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"></textarea>
+                                            </div>
+                                            <div class="text-red-500" x-text="data_error.comment_jp"></div>
+                                        </div>
                                     </div>
                                 </div>
-
-                                <div class="my-2 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                                    <div>
-                                        <div>Title sub VietNam</div>
-                                        <div>
-                                            <input type="text" x-model="data.title_sub_vn" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
-                                        </div>
-                                        <div class="text-red-500" x-text="data_error.title_sub_vn"></div>
-                                    </div>
-                                    <div>
-                                        <div>Title sub English</div>
-                                        <div>
-                                            <input type="text" x-model="data.title_sub_en" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
-                                        </div>
-                                        <div class="text-red-500" x-text="data_error.title_sub_en"></div>
-                                    </div>
-                                    <div>
-                                        <div>Title sub Japan</div>
-                                        <div>
-                                            <input type="text" x-model="data.title_sub_jp" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
-                                        </div>
-                                        <div class="text-red-500" x-text="data_error.title_sub_jp"></div>
-                                    </div>
-                                </div>
-                                <div class="my-2 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                                    <div>
-                                        <div>Comment VietNam</div>
-                                        <div>
-                                            <textarea type="text" x-model="data.comment_vn" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"></textarea>
-                                        </div>
-                                        <div class="text-red-500" x-text="data_error.comment_vn"></div>
-                                    </div>
-                                    <div>
-                                        <div>Comment English</div>
-                                        <div>
-                                            <textarea type="text" x-model="data.comment_en" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"> </textarea>
-                                        </div>
-                                        <div class="text-red-500" x-text="data_error.comment_en"></div>
-                                    </div>
-                                    <div>
-                                        <div>Comment Japan</div>
-                                        <div>
-                                            <textarea type="text" x-model="data.comment_jp" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"></textarea>
-                                        </div>
-                                        <div class="text-red-500" x-text="data_error.comment_jp"></div>
-                                    </div>
-                                </div>
-
                                 <div>
                                     <button x-on:click="addService" class="w-full inline-flex justify-center rounded-md border border-blue-300 shadow-sm px-4 py-2 bg-blue-700 text-base font-medium text-white hover:bg-blue-50 hover:text-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm">ADD</button>
                                 </div>
 
                                 <div class="mt-2">
                                     <template x-for="(value, index) in array_service" :key="index">
-                                        <div class="border border-black rounded p-2 mt-2">
+                                        <div class="border border-gray-300 rounded-lg p-2 mt-2">
                                             <button x-on:click="removeService(index)" class="w-full inline-flex justify-center rounded-md border border-red-300 shadow-sm px-4 py-2 bg-red-700 text-base font-medium text-white hover:bg-red-50 hover:text-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm">REMOVE</button>
                                             <div class="my-2 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                                                 <div>

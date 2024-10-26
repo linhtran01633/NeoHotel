@@ -67,7 +67,7 @@ Route::prefix('dashboard')->group(function () {
     Route::post('save_faq', [AdminController::class, 'saveFaq'])->name('admin.faq.save');
     Route::post('delete_faq', [AdminController::class, 'deleteFaq'])->name('admin.delete.faq');
 
-    Route::get('contract', [AdminController::class, 'contract'])->name('admin.contract');
+    Route::get('contact', [AdminController::class, 'contract'])->name('admin.contract');
     Route::post('save_contract', [AdminController::class, 'saveContract'])->name('admin.contract.save');
 
 
