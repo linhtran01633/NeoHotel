@@ -387,14 +387,10 @@ class AdminController extends Controller
     public function saveContract(ContractRequest $request) {
         try {
             DB::transaction(function () use($request) {
-                if($request->id) {
-                    $check = Contract::where('id', $request->id)->first();
-                    if($check && Carbon::parse($check->updated_at)->format('Y-m-d H:i:s')  == Carbon::parse($request->updated_at)->format('Y-m-d H:i:s')) {
-                        $data = $request->only($check->getFillable());
-                        $check->fill($data)->save();
-                    } else {
-                        throw new Exception( __('save_false'));
-                    }
+                $check = Contract::orderBy('id')->first();
+                if($check) {
+                    $data = $request->only($check->getFillable());
+                    $check->fill($data)->save();
                 } else {
 
                     $new = new Contract();
@@ -428,18 +424,13 @@ class AdminController extends Controller
     public function saveRoom(RoomRequest $request) {
         try {
             DB::transaction(function () use($request) {
-                if($request->id) {
-                    $check = Room::where('id', $request->id)->first();
-                    if($check && Carbon::parse($check->updated_at)->format('Y-m-d H:i:s')  == Carbon::parse($request->updated_at)->format('Y-m-d H:i:s')) {
-                        $data = $request->only($check->getFillable());
-                        $data['equipment_for_rent'] = json_encode($request->equipment_for_rent);
-                        $data['available_equipment'] = json_encode($request->available_equipment);
-                        $check->fill($data)->save();
-                    } else {
-                        throw new Exception( __('save_false'));
-                    }
+                $check = Room::orderBy('id')->first();
+                if($check) {
+                    $data = $request->only($check->getFillable());
+                    $data['equipment_for_rent'] = json_encode($request->equipment_for_rent);
+                    $data['available_equipment'] = json_encode($request->available_equipment);
+                    $check->fill($data)->save();
                 } else {
-
                     $new = new Room();
                     $data = $request->only($new->getFillable());
                     $data['equipment_for_rent'] = json_encode($request->equipment_for_rent);
@@ -472,17 +463,13 @@ class AdminController extends Controller
                     $imagePath = $path_image;
                 }
 
-                if($request->id) {
-                    $check = Banner::where('id', $request->id)->first();
-                    if($check && Carbon::parse($check->updated_at)->format('Y-m-d H:i:s')  == Carbon::parse($request->updated_at)->format('Y-m-d H:i:s')) {
-                        $data = $request->only($check->getFillable());
-                        $data['images'] = $imagePath;
-                        $check->fill($data)->save();
-                    } else {
-                        throw new Exception( __('save_false'));
-                    }
-                } else {
+                $check = Banner::orderBy('id')->first();
 
+                if($check) {
+                    $data = $request->only($check->getFillable());
+                    $data['images'] = $imagePath;
+                    $check->fill($data)->save();
+                } else {
                     $new = new Banner();
                     $data = $request->only($new->getFillable());
                     $data['images'] = $imagePath;

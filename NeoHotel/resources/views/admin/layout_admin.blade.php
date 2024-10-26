@@ -56,6 +56,46 @@
         .custom-grid {
             grid-template-columns: 30fr 10fr 30fr 30fr;
         }
+
+        .custom-select {
+            position: relative;
+            width: 200px;
+            font-family: Arial, sans-serif;
+            user-select: none;
+        }
+
+        .selected {
+            background-color: #f0f0f0;
+            padding: 10px;
+            border: 1px solid #ccc;
+            cursor: pointer;
+        }
+
+        .options {
+            display: none;
+            position: absolute;
+            background-color: white;
+            border: 1px solid #ccc;
+            width: 100%;
+            z-index: 99;
+        }
+
+        .option {
+            padding: 10px;
+            cursor: pointer;
+            background-repeat: no-repeat;
+            background-size: 20px 20px;
+            background-position: left center;
+            padding-left: 40px;
+        }
+
+        .option:hover {
+            background-color: #f0f0f0;
+        }
+
+        [ x-cloak ] {
+            display: none !important;
+        }
     </style>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.1.0/css/select2.min.css" rel="stylesheet" />
