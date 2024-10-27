@@ -73,8 +73,16 @@
                                 </div>
                                 <div>
                                     <div class="rounded-xl bg-white ring-white/60 ring-offset-2  focus:outline-none focus:ring-2" id="headlessui-tabs-panel-:r3:" role="tabpanel" tabindex="0" data-headlessui-state="selected" aria-labelledby="headlessui-tabs-tab-:r0:">
-                                        <div class="google-map-code w-full overflow-hidden">
+                                        <div x-show="buttonActiviti == 0" class="google-map-code w-full overflow-hidden">
                                             <iframe class="w-full h-[50vh] " src="https://www.google.com/maps/d/u/1/embed?mid=1gKW5_K6jrynKWHpsiMLGlcysJGzpQ48&amp;ehbc=2E312F&amp;noprof=1&amp;z=13&amp;ll=10.76956, 106.69214"></iframe>
+                                        </div>
+
+                                        <div x-show="buttonActiviti == 1" class="google-map-code w-full overflow-hidden">
+                                            <iframe class="w-full h-[50vh] " src="https://www.google.com/maps/d/u/1/embed?mid=110ciQ5yp3C5izkriB1h8r8xK4CN56q0&amp;ehbc=2E312F&amp;noprof=1&amp;z=13&amp;ll=10.76956, 106.69214"></iframe>
+                                        </div>
+
+                                        <div x-show="buttonActiviti == 2" class="google-map-code w-full overflow-hidden">
+                                            <iframe class="w-full h-[50vh]" src="https://www.google.com/maps/d/u/1/embed?mid=1hH2M84zsUC0O125BPOG07BPo0QWhLRM&amp;ehbc=2E312F&amp;noprof=1&amp;z=13&amp;ll=10.76956, 106.69214"></iframe>
                                         </div>
                                     </div>
                                     <span id="headlessui-tabs-panel-:r4:" role="tabpanel" tabindex="-1" style="position: fixed; top: 1px; left: 1px; width: 1px; height: 0px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px;" aria-labelledby="headlessui-tabs-tab-:r1:"></span>
