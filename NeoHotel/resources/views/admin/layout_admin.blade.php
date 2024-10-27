@@ -23,9 +23,9 @@
 
         /* Tùy chỉnh tiêu đề cột */
         table.dataTable thead th {
-            background-color: #3d68ff; /* Màu nền của tiêu đề */
-            color: #fff; /* Màu chữ */
             font-weight: bold;
+            color: #fff; /* Màu chữ */
+            background-color: #3d68ff; /* Màu nền của tiêu đề */
         }
 
         /* Tùy chỉnh hàng dữ liệu */
@@ -40,12 +40,12 @@
 
         /* Tùy chỉnh các nút phân trang */
         .dataTables_wrapper .dataTables_paginate .paginate_button {
-            padding: 0.5rem 1rem;
             margin: 0.25rem;
-            border: 1px solid #ccc;
-            border-radius: 0.25rem;
-            background: #f9fafb;
             color: #374151;
+            padding: 0.5rem 1rem;
+            background: #f9fafb;
+            border-radius: 0.25rem;
+            border: 1px solid #ccc;
         }
 
         .dataTables_wrapper .dataTables_paginate .paginate_button:hover {
@@ -58,34 +58,35 @@
         }
 
         .custom-select {
-            position: relative;
             width: 200px;
-            font-family: Arial, sans-serif;
             user-select: none;
+            position: relative;
+            font-family: Arial, sans-serif;
         }
 
         .selected {
-            background-color: #f0f0f0;
-            padding: 10px;
-            border: 1px solid #ccc;
+            padding: 5px;
             cursor: pointer;
+            border-radius: 7px;
+            border: 1px solid #ccc;
+            background-color: #f0f0f0;
         }
 
         .options {
-            position: absolute;
-            background-color: white;
-            border: 1px solid #ccc;
-            width: 100%;
+            width: 200px;
             z-index: 99;
+            position: absolute;
+            border: 1px solid #ccc;
+            background-color: white;
         }
 
         .option {
             padding: 10px;
             cursor: pointer;
-            background-repeat: no-repeat;
-            background-size: 20px 20px;
-            background-position: left center;
             padding-left: 40px;
+            background-size: 20px 20px;
+            background-repeat: no-repeat;
+            background-position: left center;
         }
 
         .option:hover {
