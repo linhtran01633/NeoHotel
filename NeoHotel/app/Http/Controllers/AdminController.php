@@ -38,10 +38,9 @@ class AdminController extends Controller
 
     public function homeSlide(Request $request) {
         if($request->ajax()) {
-            $table_data = HomeSlide::select('*')->where('delete_flag', 0)->orderBy('id', 'asc');
+            $table_data = HomeSlide::select('*')->where('delete_flag', 0)->orderBy('id', 'asc')->get();
 
-            return DataTables::of($table_data)
-            ->make(true);
+            return response()->json(@$table_data);
         }
         $page_current = 'home_slide';
         return view('admin.home_slide', compact('page_current'));
@@ -115,10 +114,8 @@ class AdminController extends Controller
 
     public function faq(Request $request) {
         if($request->ajax()) {
-            $table_data = Faq::select('*')->where('delete_flag', 0)->orderBy('id', 'asc');
-
-            return DataTables::of($table_data)
-            ->make(true);
+            $table_data = Faq::select('*')->where('delete_flag', 0)->orderBy('id', 'asc')->get();
+            return response()->json(@$table_data);
         }
 
         $page_current = 'faq';
@@ -316,11 +313,9 @@ class AdminController extends Controller
     public function categoryRoom(Request $request) {
 
         if($request->ajax()) {
-            $table_data = CategoryRoom::select('*');
-            // $table_data->orderBy('status', 'asc');
+            $table_data = CategoryRoom::select('*')->get();
 
-            return DataTables::of($table_data)
-            ->make(true);
+            return response()->json(@$table_data);
         }
         $page_current = 'category_room';
 

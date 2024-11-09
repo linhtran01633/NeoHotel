@@ -4,12 +4,12 @@
     <section class="flex-1 flex flex-col">
         <main class="flex-1 flex flex-col ">
             <div>
-                <div class="relative h-[200px] w-full text-center bg-black bg-opacity-40">
+                <div class="relative h-200px w-full text-center bg-black bg-opacity-40">
                     <img alt="header banner" loading="lazy" decoding="async" data-nimg="fill" class="absolute object-cover w-full" sizes="100vw"  @if(isset($banner_images)) src="{{ asset('/storage/'.$banner_images) }}" @else src="" @endif style="position: absolute; height: 100%; width: 100%; inset: 0px; color: transparent;">
                     <div class="absolute inset-0 bg-black bg-opacity-40"></div>
-                    <div class="absolute left-[50%] translate-x-[-50%] translate-y-[-50%] top-[50%]">
+                    <div class="w-full absolute translate-x--50p translate-y--50p top-50p">
                         <div class="flex flex-col gap-2">
-                            <h1 class="text-[28px] md:text-4xl text-white text-center">{{__('screen.title.activities')}}</h1>
+                            <h1 class="text-28px md:text-4xl text-white text-center">{{__('screen.title.activities')}}</h1>
                             <nav aria-label="Breadcrumb">
                                 <ol class="breadcrumbs_breadcrumbList___U1J7">
                                     <li class="breadcrumbs_crumbWrapper__r0ohj">
@@ -24,14 +24,14 @@
                     </div>
                 </div>
                 <div class="w-full py-xlClamp" x-data="{buttonActiviti: 0}">
-                    <div class="faq-container max-w-[1080px] m-auto flex flex-col sm:flex-row px-smClamp">
+                    <div class="faq-container max-width-1080px m-auto flex flex-col sm:flex-row px-smClamp">
                         <div class="w-full flex flex-col">
                             <div class="mb-smClamp">
                                 <h2 class="whitespace-pre-line text-headerClamp ">{{__('screen.title.activities')}}</h2>
                                 <div class="w-12 h-0.5 bg-yellow-900 mt-2"></div>
                             </div>
                             <div class="w-full flex-col px-2 sm:px-0">
-                                <div class="w-full flex space-x-1 bg-[#222222] p-1 mb-8" role="tablist" aria-orientation="horizontal">
+                                <div class="w-full flex space-x-1 bg-custom-dark p-1 mb-8" role="tablist" aria-orientation="horizontal">
                                     <button class="flex-1 w-full py-2.5 text-sm font-medium leading-5 ring-white/60 ring-offset-2  focus:outline-none" :class="buttonActiviti == 0  ? 'bg-white shadow' : 'text-white hover:bg-white/[0.12] hover:text-white'"  x-on:click="buttonActiviti = 0">
                                         <div class="flex gap-1 sm:gap-4 items-center justify-center">
                                             <svg width="17" height="17" viewBox="0 0 17 17" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -74,15 +74,15 @@
                                 <div>
                                     <div class="rounded-xl bg-white ring-white/60 ring-offset-2  focus:outline-none focus:ring-2" id="headlessui-tabs-panel-:r3:" role="tabpanel" tabindex="0" data-headlessui-state="selected" aria-labelledby="headlessui-tabs-tab-:r0:">
                                         <div x-show="buttonActiviti == 0" class="google-map-code w-full overflow-hidden">
-                                            <iframe class="w-full h-[50vh] " src="https://www.google.com/maps/d/u/1/embed?mid=1gKW5_K6jrynKWHpsiMLGlcysJGzpQ48&amp;ehbc=2E312F&amp;noprof=1&amp;z=13&amp;ll=10.76956, 106.69214"></iframe>
+                                            <iframe class="w-full h-50vh " src="https://www.google.com/maps/d/u/1/embed?mid=1gKW5_K6jrynKWHpsiMLGlcysJGzpQ48&amp;ehbc=2E312F&amp;noprof=1&amp;z=13&amp;ll=10.76956, 106.69214"></iframe>
                                         </div>
 
                                         <div x-show="buttonActiviti == 1" class="google-map-code w-full overflow-hidden">
-                                            <iframe class="w-full h-[50vh] " src="https://www.google.com/maps/d/u/1/embed?mid=110ciQ5yp3C5izkriB1h8r8xK4CN56q0&amp;ehbc=2E312F&amp;noprof=1&amp;z=13&amp;ll=10.76956, 106.69214"></iframe>
+                                            <iframe class="w-full h-50vh " src="https://www.google.com/maps/d/u/1/embed?mid=110ciQ5yp3C5izkriB1h8r8xK4CN56q0&amp;ehbc=2E312F&amp;noprof=1&amp;z=13&amp;ll=10.76956, 106.69214"></iframe>
                                         </div>
 
                                         <div x-show="buttonActiviti == 2" class="google-map-code w-full overflow-hidden">
-                                            <iframe class="w-full h-[50vh]" src="https://www.google.com/maps/d/u/1/embed?mid=1hH2M84zsUC0O125BPOG07BPo0QWhLRM&amp;ehbc=2E312F&amp;noprof=1&amp;z=13&amp;ll=10.76956, 106.69214"></iframe>
+                                            <iframe class="w-full h-50vh" src="https://www.google.com/maps/d/u/1/embed?mid=1hH2M84zsUC0O125BPOG07BPo0QWhLRM&amp;ehbc=2E312F&amp;noprof=1&amp;z=13&amp;ll=10.76956, 106.69214"></iframe>
                                         </div>
                                     </div>
                                     <span id="headlessui-tabs-panel-:r4:" role="tabpanel" tabindex="-1" style="position: fixed; top: 1px; left: 1px; width: 1px; height: 0px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; border-width: 0px;" aria-labelledby="headlessui-tabs-tab-:r1:"></span>

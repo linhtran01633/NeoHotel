@@ -1,7 +1,7 @@
-<header class="h-[60px] sm:h-[84px] z-[2] bg-black text-gray-100">
-    <div class="max-w-[1080px] h-[60px] sm:h-[84px] container flex justify-between mx-auto">
+<header class="h-60px sm-h-84px z-2 bg-black text-gray-100">
+    <div class="max-width-1080px h-60px sm-h-84px container flex justify-between mx-auto">
         <a aria-label="Back to homepage" class="flex items-center p-6" href="/">
-            <div class="relative w-[50px] h-[50px] sm:w-[75px] sm:h-[75px]">
+            <div class="relative w-50px h-50px sm-w-75px sm-h-75px">
                 <img alt="neo-hotel-logo" src="/logo/logo.webp" loading="lazy" decoding="async" data-nimg="fill" sizes="100vw" style="position: absolute; height: 100%; width: 100%; inset: 0px; color: transparent;">
             </div>
         </a>
@@ -30,7 +30,7 @@
                 </li>
             </ul>
         <div class="relative inline-block text-left" data-headlessui-state="" x-data="{ popup_local: false }">
-            <button @click="popup_local = ! popup_local" class="items-center inline-flex w-[80px] justify-center rounded-md bg-black/20 px-4 py-2 text-sm font-medium text-white hover:bg-black/30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/75" id="headlessui-menu-button-:r5e:" type="button" aria-haspopup="menu" aria-expanded="false" data-headlessui-state="">
+            <button @click="popup_local = ! popup_local" class="items-center inline-flex w-80px justify-center rounded-md bg-black/20 px-4 py-2 text-sm font-medium text-white hover:bg-black/30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/75" id="headlessui-menu-button-:r5e:" type="button" aria-haspopup="menu" aria-expanded="false" data-headlessui-state="">
                 <div class="w-5">
                     @if (__('lang') == 'VN')
                         <svg xmlns="http://www.w3.org/2000/svg" id="flag-icons-vn" viewBox="0 0 640 480">
@@ -66,10 +66,10 @@
                         </svg>
                     @endif
                 </div>
-                <span class="ml-2 text-white self-center hover:text-[#DBB98E]">{{ __('lang') }}</span>
+                <span class="ml-2 text-white self-center hover-text-DBB98E">{{ __('lang') }}</span>
             </button>
 
-            <div x-show="popup_local" class="absolute w-[140px] z-50 right-0 mt-2 origin-top-right divide-y divide-gray-100 rounded-md bg-white shadow-lg ring-1 ring-black/5 focus:outline-none hover:text-[#DBB98E] transform opacity-100 scale-100" aria-labelledby="headlessui-menu-button-:r5e:" id="headlessui-menu-items-:r5k:" role="menu" tabindex="0" data-headlessui-state="open">
+            <div x-show="popup_local" class="absolute w-140px z-50 right-0 mt-2 origin-top-right divide-y divide-gray-100 rounded-md bg-white shadow-lg ring-1 ring-black/5 focus:outline-none hover-text-DBB98E transform opacity-100 scale-100" aria-labelledby="headlessui-menu-button-:r5e:" id="headlessui-menu-items-:r5k:" role="menu" tabindex="0" data-headlessui-state="open">
                 <div class="px-1 py-1 " role="none">
                     <a class="text-gray-900 group flex w-full items-end rounded-md px-2 py-2 text-sm hover:bg-slate-100" id="headlessui-menu-item-:r5l:" role="menuitem" tabindex="-1" data-headlessui-state="" href="{{ url('locale/en') }}">
                         <div class="w-4 h-4">

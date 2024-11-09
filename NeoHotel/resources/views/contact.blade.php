@@ -11,13 +11,13 @@
     @endphp
     <section class="flex-1 flex flex-col">
         <main class="flex-1 flex flex-col ">
-            <div class="flex flex-col gap-[32px] mb-[32px]  sm:gap-[60px] sm:mb-[60px]">
-                <div class="relative h-[200px] w-full text-center bg-black bg-opacity-40">
+            <div class="flex flex-col gap-32px mb-32px  sm-gap-60px sm-mb-60px">
+                <div class="relative h-200px w-full text-center bg-black bg-opacity-40">
                     <img alt="header banner" loading="lazy" decoding="async" data-nimg="fill" class="absolute object-cover w-full" sizes="100vw"  @if(isset($banner_images)) src="{{ asset('/storage/'.$banner_images) }}" @else src="" @endif style="position: absolute; height: 100%; width: 100%; inset: 0px; color: transparent;">
                     <div class="absolute inset-0 bg-black bg-opacity-40"></div>
-                    <div class="absolute left-[50%] translate-x-[-50%] translate-y-[-50%] top-[50%]">
+                    <div class="w-full absolute translate-x--50p translate-y--50p top-50p">
                         <div class="flex flex-col gap-2">
-                            <h1 class="text-[28px] md:text-4xl text-white text-center">{{__('screen.title.contact')}}</h1>
+                            <h1 class="text-28px md:text-4xl text-white text-center">{{__('screen.title.contact')}}</h1>
                             <nav aria-label="Breadcrumb">
                                 <ol class="breadcrumbs_breadcrumbList___U1J7">
                                     <li class="breadcrumbs_crumbWrapper__r0ohj">
@@ -32,7 +32,7 @@
                     </div>
                 </div>
                 <div class="">
-                    <div class="faq-container max-w-[1080px] m-auto flex sm:flex-row px-smClamp">
+                    <div class="faq-container max-width-1080px m-auto flex sm:flex-row px-smClamp">
                         <div class="w-full flex flex-col">
                             <div class="mb-smClamp">
                                 <h2 class="whitespace-pre-line text-headerClamp ">{{__('contact.contact_form_section')}}</h2>
@@ -43,18 +43,18 @@
                                     <div class="grid grid-cols-1 grid-rows-4 md:grid-cols-2 md:grid-rows-2 gap-x-5 gap-y-5 sm:gap-y-10">
                                         <div class="flex flex-col gap-y-3 ">
                                             <label>
-                                                <span class="label inline font-medium text-[xsContent] text-[16px] line-clamp-5">{{__('contact.name')}}</span>
+                                                <span class="label inline font-medium  text-16px line-clamp-5">{{__('contact.name')}}</span>
                                                 <span class="text-red-600 ml-1">*</span>
                                             </label>
                                             <input placeholder="Type here" class="ant-input css-125enb3 sc-gsTDqH jWFWON css-125enb3" type="text" value="" name="name">
                                         </div>
                                         <div class="flex flex-col gap-y-3">
                                             <label>
-                                                <span class="label inline font-medium text-[xsContent] text-[16px] line-clamp-5">{{__('contact.sex')}}</span>
+                                                <span class="label inline font-medium  text-16px line-clamp-5">{{__('contact.sex')}}</span>
                                             </label>
                                             <div class="ant-select sc-bdfCDU iknHgW css-125enb3 ant-select-single ant-select-show-arrow" name="sex">
                                                 <div class="ant-select-selector">
-                                                    <select name="sex" class="w-full h-[44px] border border-[#d9d9d9]">
+                                                    <select name="sex" class="w-full h-44px border border-d9d9d9">
                                                         <option value="0">Ms.</option>
                                                         <option value="1">Mr.</option>
                                                     </select>
@@ -63,14 +63,14 @@
                                         </div>
                                         <div class="flex flex-col gap-y-3 ">
                                             <label>
-                                                <span class="label inline font-medium text-[xsContent] text-[16px] line-clamp-5">{{__('contact.email')}}</span>
+                                                <span class="label inline font-medium  text-16px line-clamp-5">{{__('contact.email')}}</span>
                                                 <span class="text-red-600 ml-1">*</span>
                                             </label>
                                             <input placeholder="Type here" class="ant-input css-125enb3 sc-gsTDqH jWFWON css-125enb3" type="text" value="" name="email">
                                         </div>
                                         <div class="flex flex-col gap-y-3 ">
                                             <label>
-                                                <span class="label inline font-medium text-[xsContent] text-[16px] line-clamp-5">{{__('contact.phone')}}</span>
+                                                <span class="label inline font-medium  text-16px line-clamp-5">{{__('contact.phone')}}</span>
                                                 <span class="text-red-600 ml-1">*</span>
                                             </label>
                                             <input placeholder="Type here" class="ant-input css-125enb3 sc-gsTDqH jWFWON css-125enb3" type="text" value="" name="phone">
@@ -79,14 +79,14 @@
                                     <div class="sm:col-span-2">
                                         <div class="flex flex-col gap-y-3 ">
                                             <label>
-                                                <span class="label inline font-medium text-[xsContent] text-[16px] line-clamp-5">{{__('contact.inquiry')}}</span>
+                                                <span class="label inline font-medium  text-16px line-clamp-5">{{__('contact.inquiry')}}</span>
                                                 <span class="text-red-600 ml-1">*</span>
                                             </label>
                                             <textarea name="inquiry" placeholder="Type here" class="ant-input css-125enb3" style="resize: none; height: 100px;"></textarea>
                                         </div>
                                     </div>
-                                    <div class="w-[154px] self-end">
-                                        <button class="disabled:bg-black/30 self-end font-medium	leading-tight flex justify-center w-full h-11 px-4 py-3 text-white bg-[#633511] hover:bg-[#7E502C]" type="submit">{{__('contact.button_submit')}}</button>
+                                    <div class="w-154px self-end">
+                                        <button class="disabled:bg-black/30 self-end font-medium	leading-tight flex justify-center w-full h-11 px-4 py-3 text-white bg-633511 hover-bg-7E502C" type="submit">{{__('contact.button_submit')}}</button>
                                     </div>
                                 </div>
                             </form>
@@ -96,14 +96,14 @@
                 </div>
 
                 <div class="">
-                    <div class="faq-container max-w-[1080px] m-auto flex sm:flex-row px-smClamp">
+                    <div class="faq-container max-width-1080px m-auto flex sm:flex-row px-smClamp">
                         <div class="w-full flex flex-col">
                             <div class="mb-smClamp">
                                 <h2 class="whitespace-pre-line text-headerClamp">@if(isset($data)) {!! $data['title_' . $language] !!}@endif</h2>
                                 <div class="w-12 h-0.5 bg-yellow-900 mt-2"></div>
                             </div>
                             <div class="flex gap-6 flex-col sm:flex-row mt-6">
-                                <div class="px-5 py-2 w-full border flex gap-3 sm:w-[33%] items-center">
+                                <div class="px-5 py-2 w-full border flex gap-3 sm-w-33p items-center">
                                     <div class="min-w-10">
                                         <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
                                             <g clip-path="url(#clip0_996_5004)">
@@ -122,7 +122,7 @@
                                         <p class="text-base font-normal">@if(isset($data)) {!! $data['comment1_' . $language] !!}@endif</p>
                                     </div>
                                 </div>
-                                <div class="px-5 py-2 w-full border flex gap-3 sm:w-[33%] items-center">
+                                <div class="px-5 py-2 w-full border flex gap-3 sm-w-33p items-center">
                                     <div class="min-w-10">
                                         <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
                                             <g clip-path="url(#clip0_996_5010)">
@@ -141,7 +141,7 @@
                                         <p class="  text-base font-normal">@if(isset($data)) {!! $data['comment2_' . $language] !!}@endif</p>
                                     </div>
                                 </div>
-                                <div class="px-5 py-2 w-full border flex gap-3 sm:w-[33%] items-center">
+                                <div class="px-5 py-2 w-full border flex gap-3 sm-w-33p items-center">
                                     <div class="min-w-10">
                                         <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
                                             <g clip-path="url(#clip0_996_5014)">

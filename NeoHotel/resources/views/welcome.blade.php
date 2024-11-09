@@ -17,7 +17,7 @@
                                 }
                             @endphp
                             <div class="swiper-slide" style="width: 1158px;" data-title="{{$item['title_'. $language]}}" data-name="{{$item['name_'. $language]}}">
-                                <div class="relative min-h-[calc(100vh-60px)] sm:min-h-[calc(100vh-92px-84px)]">
+                                <div class="relative min-h-calc-100vh-60px sm-min-h-calc-100vh-92px-84px">
                                     <img alt="Slide one" src="{{ asset('/storage/'.$item['images']) }}" decoding="async" data-nimg="fill" class="hidden sm:block thumbnail absolute object-left sm:object-center w-full object-fill" sizes="100vw" style="position: absolute; height: 100%; width: 100%; inset: 0px; color: transparent;">
                                     <img alt="Slide one" src="{{ asset('/storage/'.$item['images_mobile']) }}" decoding="async" data-nimg="fill" class="block sm:hidden thumbnail absolute object-left sm:object-center w-full object-fill" sizes="100vw" style="position: absolute; height: 100%; width: 100%; inset: 0px; color: transparent;">
                                 </div>
@@ -25,7 +25,7 @@
                         @endforeach
                     </div>
                 </div>
-                <div class="px-6 absolute z-[2] sm:flex top-0 h-full w-[70%] md:w-[40%] md:bg-stone-950 md:bg-opacity-80 md:backdrop-blur-[20px] flex items-center justify-center">
+                <div class="px-6 absolute z-2 sm:flex top-0 h-full w-70p md-w-40p md:bg-stone-950 md:bg-opacity-80 md:backdrop-blur-lg flex items-center justify-center">
                     <div class="w-72 flex-col justify-start items-start inline-flex md:gap-7">
                         <div class="pb-6 self-stretch h-44 flex-col justify-start items-start gap-3 flex flex-1">
                             <div class="flex-col justify-start items-start gap-4 flex">
@@ -49,7 +49,7 @@
                                     </div>
                                 </div>
                                 <div class="text-white text-base font-normal uppercase leading-tight" id="title_slide"></div>
-                                <h1 class="text-white font-normal uppercase leading-10 lantern-hotel-title text-[32px]" id="name_slide"></h1>
+                                <h1 class="text-white font-normal uppercase leading-10 lantern-hotel-title text-32px" id="name_slide"></h1>
                             </div>
                         </div>
                         <button class="text-white text-base font-medium leading-tight">
@@ -63,7 +63,7 @@
                         </button>
                     </div>
                 </div>
-                <div class="absolute right-0 top-[50%] z-[2]">
+                <div class="absolute right-0 top-50p z-2">
                     <button type="button" class="button-prev-slide disabled:bg-black/30 z-5 mr-2 arrow-left arrow ml-2 bg-black px-2 py-2 text-sm font-medium text-white hover:bg-black/30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/75">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" width="20">
                             <path fill-rule="evenodd" d="M18 10a.75.75 0 01-.75.75H4.66l2.1 1.95a.75.75 0 11-1.02 1.1l-3.5-3.25a.75.75 0 010-1.1l3.5-3.25a.75.75 0 111.02 1.1l-2.1 1.95h12.59A.75.75 0 0118 10z" clip-rule="evenodd"></path>

@@ -11,13 +11,13 @@
     @endphp
     <section class="flex-1 flex flex-col">
         <main class="flex-1 flex flex-col ">
-            <div class="flex flex-col gap-[32px] mb-[32px]  sm:gap-[60px] sm:mb-[60px]">
-                <div class="relative h-[200px] w-full text-center bg-black bg-opacity-40">
+            <div class="flex flex-col gap-32px mb-32px sm-gap-60px sm-mb-60px">
+                <div class="relative h-200px w-full text-center bg-black bg-opacity-40">
                     <img alt="header banner" loading="lazy" decoding="async" data-nimg="fill" class="absolute object-cover w-full" sizes="100vw"  @if(isset($banner_images)) src="{{ asset('/storage/'.$banner_images) }}" @else src="" @endif style="position: absolute; height: 100%; width: 100%; inset: 0px; color: transparent;">
                     <div class="absolute inset-0 bg-black bg-opacity-40"></div>
-                    <div class="absolute left-[50%] translate-x-[-50%] translate-y-[-50%] top-[50%]">
+                    <div class="w-full absolute translate-x--50p translate-y--50p top-50p">
                         <div class="flex flex-col gap-2">
-                            <h1 class="text-[28px] md:text-4xl text-white text-center">{{__('screen.title.rooms')}}</h1>
+                            <h1 class="text-28px md:text-4xl text-white text-center">{{__('screen.title.rooms')}}</h1>
                             <nav aria-label="Breadcrumb">
                                 <ol class="breadcrumbs_breadcrumbList___U1J7">
                                     <li class="breadcrumbs_crumbWrapper__r0ohj">
@@ -33,7 +33,7 @@
                 </div>
 
                 <div class="w-full py-xlClamp">
-                    <div class="max-w-[1080px] m-auto flex flex-col sm:flex-row px-smClamp">
+                    <div class="max-width-1080px m-auto flex flex-col sm:flex-row px-smClamp">
                         <div class="w-full flex flex-col">
                             <div class="mb-smClamp">
                                 <h2 class="whitespace-pre-line text-headerClamp ">@if(isset($rooms)) {!! $rooms['title_' . $language]!!} @endif</h2>
@@ -45,23 +45,23 @@
                                     @php
                                         $array_img = explode(',', $item->images);
                                     @endphp
-                                    <div class="border border-[#cecece] flex flex-col md:flex-row">
-                                        <div class="w-full flex-1 h-[280px] sm:h-[370px]">
-                                            <div class="w-fuRll md:w-[490px] lg:w-[530px]">
-                                                <div class="swiper swiper-initialized swiper-horizontal h-[280px] sm:h-[370px]" id="slide_room_{{$index}}">
+                                    <div class="border border-cecece flex flex-col md:flex-row">
+                                        <div class="w-full flex-1 h-280px sm-h-370px">
+                                            <div class="w-fuRll md-w-490px lg-w-530px">
+                                                <div class="swiper swiper-initialized swiper-horizontal h-280px sm-h-370px" id="slide_room_{{$index}}">
                                                     <div class="swiper-wrapper">
                                                         @foreach ($array_img as $img)
                                                             <div class="swiper-slide">
-                                                                <img src="{{ asset('/storage/'.$img) }}" class="object-cover w-full min-w-[300px] h-full aspect-[3/2] transform transition-transform duration-300 hover:scale-110">
+                                                                <img src="{{ asset('/storage/'.$img) }}" class="object-cover w-full min-w-300px h-full aspect-3-2 transform transition-transform duration-300 hover:scale-110">
                                                             </div>
                                                         @endforeach
                                                     </div>
-                                                    <button type="button" id="button-next-slide_{{$index}}" class="absolute top-[50%] disabled:bg-black/30 left-0 z-10 arrow-left arrow ml-2 bg-black px-2 py-2 text-sm font-medium text-white hover:bg-black/30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/75">
+                                                    <button type="button" id="button-next-slide_{{$index}}" class="absolute top-50p disabled:bg-black/30 left-0 z-10 arrow-left arrow ml-2 bg-black px-2 py-2 text-sm font-medium text-white hover:bg-black/30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/75">
                                                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" width="20">
                                                             <path fill-rule="evenodd" d="M18 10a.75.75 0 01-.75.75H4.66l2.1 1.95a.75.75 0 11-1.02 1.1l-3.5-3.25a.75.75 0 010-1.1l3.5-3.25a.75.75 0 111.02 1.1l-2.1 1.95h12.59A.75.75 0 0118 10z" clip-rule="evenodd"></path>
                                                         </svg>
                                                     </button>
-                                                    <button type="button" id="button-prev-slide_{{$index}}" class="absolute top-[50%] disabled:bg-black/30 right-0 z-10 arrow-right arrow mr-2 bg-black px-2 py-2 text-sm font-medium text-white hover:bg-black/30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/75">
+                                                    <button type="button" id="button-prev-slide_{{$index}}" class="absolute top-50p disabled:bg-black/30 right-0 z-10 arrow-right arrow mr-2 bg-black px-2 py-2 text-sm font-medium text-white hover:bg-black/30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/75">
                                                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" width="20">
                                                             <path fill-rule="evenodd" d="M2 10a.75.75 0 01.75-.75h12.59l-2.1-1.95a.75.75 0 111.02-1.1l3.5 3.25a.75.75 0 010 1.1l-3.5 3.25a.75.75 0 11-1.02-1.1l2.1-1.95H2.75A.75.75 0 012 10z" clip-rule="evenodd"></path>
                                                         </svg>
@@ -72,7 +72,7 @@
                                         <div class="room-info-wrapper flex-1 flex flex-col gap-5 px-smClamp py-6">
                                             <div class="flex flex-col">
                                                 <h3 class="text-2xl mb-1"> {{$item['name_'. $language]}}</h3>
-                                                <p class="font-semibold leading-5 text-[#633511] mb-3">{{$item['price_'. $language]}}</p>
+                                                <p class="font-semibold leading-5 text-633511 mb-3">{{$item['price_'. $language]}}</p>
                                                 <p class="leading-5 text-xsTitle text-justify">{{$item['detail_'. $language]}}</p>
                                             </div>
                                             <div class="flex flex-col gap-3">
@@ -105,8 +105,8 @@
                                                 </div>
                                             </div>
                                             <div class="">
-                                                <div class="w-[154px] h-[40px]">
-                                                    <button type="button" data-room_type="{{$index}}" class="btn-nook_now font-medium leading-tight flex justify-center w-full h-11 px-4 py-3 text-white bg-[#633511] hover:bg-[#7E502C]">{{__('button.booknow')}}</button>
+                                                <div class="w-154px h-40px">
+                                                    <button type="button" data-room_type="{{$index}}" class="btn-nook_now font-medium leading-tight flex justify-center w-full h-11 px-4 py-3 text-white bg-633511 hover-bg-7E502C">{{__('button.booknow')}}</button>
                                                 </div>
                                             </div>
                                         </div>
@@ -116,8 +116,8 @@
                             <div class="flex flex-col mt-8 gap-10">
                                 <div>
                                     <h4 class="mb-4">@if(isset($rooms)) {!! $rooms['title1_' . $language]!!} @endif</h4>
-                                    <div class="w-full border border-solid border-[#cecece] py-6 px-5">
-                                        <div class="pb-5 border-b border-[#cecece]">
+                                    <div class="w-full border border-solid border-cecece py-6 px-5">
+                                        <div class="pb-5 border-b border-cecece">
                                             <div>
                                                 <div class="flex">
                                                     <div class="shrink-0 min-w-6">
@@ -125,13 +125,13 @@
                                                             <path d="M13.6453 10.3469C13.6547 10.3313 13.6625 10.3156 13.6703 10.3C13.6823 10.2805 13.6927 10.2602 13.7016 10.2391C13.71 10.2183 13.7167 10.1969 13.7219 10.175C13.7281 10.1575 13.7333 10.1398 13.7375 10.1219C13.7531 10.0414 13.7531 9.95859 13.7375 9.87813C13.7332 9.86015 13.728 9.84242 13.7219 9.825C13.7168 9.80316 13.71 9.78174 13.7016 9.76094C13.6927 9.73986 13.6823 9.71949 13.6703 9.7C13.6703 9.68437 13.6547 9.66875 13.6453 9.65312C13.6219 9.61932 13.5957 9.58744 13.5672 9.55781L9.81719 5.80781C9.69991 5.69054 9.54085 5.62465 9.375 5.62465C9.20915 5.62465 9.05009 5.69054 8.93281 5.80781C8.81554 5.92509 8.74965 6.08415 8.74965 6.25C8.74965 6.41585 8.81554 6.57491 8.93281 6.69219L11.6156 9.375H3.125C2.95924 9.375 2.80027 9.44085 2.68306 9.55806C2.56585 9.67527 2.5 9.83424 2.5 10C2.5 10.1658 2.56585 10.3247 2.68306 10.4419C2.80027 10.5592 2.95924 10.625 3.125 10.625H11.6156L8.93281 13.3078C8.87474 13.3659 8.82868 13.4348 8.79725 13.5107C8.76583 13.5866 8.74965 13.6679 8.74965 13.75C8.74965 13.8321 8.76583 13.9134 8.79725 13.9893C8.82868 14.0652 8.87474 14.1341 8.93281 14.1922C8.99088 14.2503 9.05982 14.2963 9.13569 14.3277C9.21156 14.3592 9.29288 14.3753 9.375 14.3753C9.45712 14.3753 9.53844 14.3592 9.61431 14.3277C9.69018 14.2963 9.75912 14.2503 9.81719 14.1922L13.5672 10.4422C13.5958 10.4125 13.6219 10.3806 13.6453 10.3469ZM14.375 0H13.125C12.9592 0 12.8003 0.065848 12.6831 0.183058C12.5658 0.300269 12.5 0.45924 12.5 0.625C12.5 0.79076 12.5658 0.949732 12.6831 1.06694C12.8003 1.18415 12.9592 1.25 13.125 1.25H14.375C15.4105 1.25 16.25 2.08953 16.25 3.125V16.875C16.25 17.9105 15.4105 18.75 14.375 18.75H13.125C12.9592 18.75 12.8003 18.8158 12.6831 18.9331C12.5658 19.0503 12.5 19.2092 12.5 19.375C12.5 19.5408 12.5658 19.6997 12.6831 19.8169C12.8003 19.9342 12.9592 20 13.125 20H14.375C16.1009 20 17.5 18.6009 17.5 16.875V3.125C17.5 1.39906 16.1009 0 14.375 0Z" fill="#393939"></path>
                                                         </svg>
                                                     </div>
-                                                    <p class="ml-3 mr-6 w-[100px] font-medium">@if(isset($rooms)) {!! $rooms['title1_sub1_' . $language]!!} @endif</p>
+                                                    <p class="ml-3 mr-6 w-100px font-medium">@if(isset($rooms)) {!! $rooms['title1_sub1_' . $language]!!} @endif</p>
                                                     <p>@if(isset($rooms)) {!! $rooms['comment1_' . $language]!!} @endif</p>
                                                 </div>
                                             </div>
                                         </div>
 
-                                        <div class="py-5 border-b border-[#cecece]">
+                                        <div class="py-5 border-b border-cecece">
                                             <div>
                                                 <div class="flex">
                                                     <div class="shrink-0 min-w-6">
@@ -146,12 +146,12 @@
                                                             </defs>
                                                         </svg>
                                                     </div>
-                                                    <p class="ml-3 mr-6 w-[100px] font-medium">@if(isset($rooms)) {!! $rooms['title1_sub2_' . $language]!!} @endif</p>
+                                                    <p class="ml-3 mr-6 w-100px font-medium">@if(isset($rooms)) {!! $rooms['title1_sub2_' . $language]!!} @endif</p>
                                                     <p>@if(isset($rooms)) {!! $rooms['comment2_' . $language]!!} @endif</p>
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="py-5 border-b border-[#cecece]">
+                                        <div class="py-5 border-b border-cecece">
                                             <div>
                                                 <div class="flex">
                                                     <div class="shrink-0 min-w-6">
@@ -166,12 +166,12 @@
                                                             </defs>
                                                         </svg>
                                                     </div>
-                                                    <p class="ml-3 mr-6 w-[100px] font-medium">@if(isset($rooms)) {!! $rooms['title1_sub3_' . $language]!!} @endif</p>
+                                                    <p class="ml-3 mr-6 w-100px font-medium">@if(isset($rooms)) {!! $rooms['title1_sub3_' . $language]!!} @endif</p>
                                                     <p>@if(isset($rooms)) {!! $rooms['comment3_' . $language]!!} @endif</p>
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="py-5 border-b border-[#cecece]">
+                                        <div class="py-5 border-b border-cecece">
                                             <div>
                                                 <div class="flex">
                                                     <div class="shrink-0 min-w-6">
@@ -182,7 +182,7 @@
                                                             <rect x="13.6" y="13.6" width="9.8" height="9.8" stroke="#393939" stroke-width="1.2"></rect>
                                                         </svg>
                                                     </div>
-                                                    <p class="ml-3 mr-6 w-[100px] font-medium">@if(isset($rooms)) {!! $rooms['title1_sub4_' . $language]!!} @endif</p>
+                                                    <p class="ml-3 mr-6 w-100px font-medium">@if(isset($rooms)) {!! $rooms['title1_sub4_' . $language]!!} @endif</p>
                                                     <p>@if(isset($rooms)) {!! $rooms['comment4_' . $language]!!} @endif</p>
                                                 </div>
                                             </div>
@@ -195,7 +195,7 @@
                                                             <path stroke-linecap="round" stroke-linejoin="round" d="M8.288 15.038a5.25 5.25 0 017.424 0M5.106 11.856c3.807-3.808 9.98-3.808 13.788 0M1.924 8.674c5.565-5.565 14.587-5.565 20.152 0M12.53 18.22l-.53.53-.53-.53a.75.75 0 011.06 0z"></path>
                                                         </svg>
                                                     </div>
-                                                    <p class="ml-3 mr-6 w-[100px] font-medium">@if(isset($rooms)) {!! $rooms['title1_sub5_' . $language]!!} @endif</p>
+                                                    <p class="ml-3 mr-6 w-100px font-medium">@if(isset($rooms)) {!! $rooms['title1_sub5_' . $language]!!} @endif</p>
                                                     <p>@if(isset($rooms)) {!! $rooms['comment5_' . $language]!!} @endif</p>
                                                 </div>
                                             </div>
@@ -204,10 +204,10 @@
                                 </div>
                                 <div>
                                     <h4 class="mb-4">@if(isset($rooms)) {!! $rooms['title2_' . $language]!!} @endif</h4>
-                                    <div class="w-full border border-solid border-[#cecece] py-6 px-5">
+                                    <div class="w-full border border-solid border-cecece py-6 px-5">
                                         <div class="flex gap-x-4 gap-y-7 flex-wrap">
                                             @foreach ($equipmentForRent as $item)
-                                                <div class="w-[185px] flex gap-2">
+                                                <div class="w-185px flex gap-2">
                                                     <div class="shrink-0 min-w-6">
                                                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" width="20" color="#727272">
                                                             <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"></path>
@@ -221,10 +221,10 @@
                                 </div>
                                 <div>
                                     <h4 class="mb-4">@if(isset($rooms)) {!! $rooms['title3_' . $language]!!} @endif</h4>
-                                    <div class="w-full border border-solid border-[#cecece] py-6 px-5">
+                                    <div class="w-full border border-solid border-cecece py-6 px-5">
                                         <div class="flex gap-x-4 gap-y-7 flex-wrap">
                                             @foreach ($availableEquipment as $item)
-                                                <div class="w-[185px] flex gap-2">
+                                                <div class="w-185px flex gap-2">
                                                     <div class="shrink-0 min-w-6">
                                                         @php
                                                             $icon = '';

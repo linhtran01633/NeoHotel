@@ -1,0 +1,612 @@
+[x-cloak] {
+    display: none !important;
+}
+
+.breadcrumbs_breadcrumbList___U1J7 {
+    padding: 0;
+    margin: 0;
+    list-style-type: none;
+}
+
+.mb-smClamp {
+    margin-bottom: clamp(1.5rem, 3vw, 2.5rem);
+}
+
+.text-headerClamp {
+    font-size: clamp(1.875rem,4vw,2.25rem);
+}
+
+.breadcrumbs_crumbLink___SxmB {
+    color: #fff;
+    text-decoration: none;
+}
+
+.breadcrumbs_crumbWrapper__r0ohj:not(:first-of-type) {
+    margin-left: var(--spacing);
+}
+
+.breadcrumbs_crumbWrapper__r0ohj:not(:first-of-type):before {
+    content: " > ";
+    color: #fff;
+}
+
+.breadcrumbs_crumbWrapper__r0ohj {
+    display: inline;
+}
+
+:root {
+    --select-hover: #e6e6e6;
+}
+
+  /*
+    1. Use a more-intuitive box-sizing model.
+  */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+  /*
+    2. Remove default margin
+  */
+* {
+    margin: 0;
+}
+
+  /*
+    3. Allow percentage-based heights in the application
+  */
+html,
+body {
+    height: 100%;
+}
+
+  /*
+    Typographic tweaks!
+    4. Add accessible line-height
+    5. Improve text rendering
+  */
+body {
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+    background-color: black;
+}
+
+  /*
+    6. Improve media defaults
+  */
+img,
+picture,
+video,
+canvas,
+svg {
+    display: block;
+    max-width: 100%;
+}
+
+  /*
+    7. Remove built-in form typography styles
+  */
+input,
+button,
+textarea,
+select {
+    font: inherit;
+}
+
+  /*
+    8. Avoid text overflows
+  */
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    overflow-wrap: break-word;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    color: #1a1a1a;
+}
+
+h1 {
+    font-size: 2.25rem;
+    font-weight: 400;
+    line-height: 111%;
+    text-transform: uppercase;
+}
+
+h2 {
+    font-size: 2.25rem;
+    font-weight: 400;
+    line-height: 127%;
+}
+
+h3 {
+    font-size: 1.5rem;
+    font-weight: 400;
+    line-height: 2rem;
+}
+
+h4 {
+    font-size: 1.25rem;
+    font-weight: 400;
+    line-height: 1.75rem;
+}
+
+h5 {
+    font-size: 1.125rem;
+    font-weight: 400;
+    line-height: 1.75rem;
+}
+
+div,
+p,
+span,
+li,
+a {
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.25rem;
+}
+
+p,
+span {
+    color: #393939;
+}
+
+/*
+    9. Create a root stacking context
+*/
+    #root,
+#__next {
+    isolation: isolate;
+}
+
+main {
+    background-color: white;
+}
+
+.ant-select-item {
+    border-radius: 0 !important;
+    padding: 0;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 20px;
+}
+
+.ant-select-dropdown {
+    padding: 0 !important;
+    border-radius: 0 !important;
+}
+
+.ant-select-item-option-selected {
+    background-color: var(--select-hover) !important;
+}
+
+.customLi::before {
+    content: ".";
+    margin-right: 0.4em;
+    position: relative;
+    top: -0.25em;
+}
+
+.lantern-hotel-title {
+    text-transform: uppercase;
+}
+
+.px-smClamp {
+    padding-left: clamp(1rem, 3vw, 1.5rem);
+    padding-right: clamp(1rem, 3vw, 1.5rem);
+}
+
+
+:where(.css-125enb3).ant-input:placeholder-shown {
+    text-overflow: ellipsis;
+}
+:where(.css-125enb3).ant-input {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 4px 11px;
+    color: rgba(0, 0, 0, 0.88);
+    font-size: 14px;
+    line-height: 1.5714285714285714;
+    list-style: none;
+    position: relative;
+    display: inline-block;
+    width: 100%;
+    min-width: 0;
+    background-color: #ffffff;
+    background-image: none;
+    border-width: 1px;
+    border-style: solid;
+    border-color: #d9d9d9;
+    border-radius: 6px;
+    transition: all 0.2s;
+}
+
+.ant-input-number, .ant-input-number-group-addon, .ant-picker, .ant-select-selector, input, textarea {
+    height: 44px;
+    border-radius: 0 !important;
+}
+
+.py-xlClamp {
+    padding-top: clamp(2rem, 3vw, 3.75rem);
+    padding-bottom: clamp(2rem, 3vw, 3.75rem);
+}
+
+/* start custom css to taiwind */
+
+
+.bg-custom-dark {
+    background-color: #222222;
+}
+
+.max-w-108px {
+    max-width: 108px;
+}
+.max-width-1080px {
+    max-width: 1080px;
+}
+
+.min-w-60vw {
+    min-width: 60vw;
+}
+
+.text-E6E6E6 {
+    color: #e6e6e6;
+}
+
+.gap-10px {
+    gap: 10px;
+}
+
+.w-16px {
+    width: 16px;
+}
+
+.bg-1E1E1E {
+    background-color: #1E1E1E;
+}
+
+.h-120px {
+    height: 120px;
+}
+
+.h-50vh {
+    height: 50vh;
+}
+
+.h-60px {
+    height: 60px;
+}
+
+.z-2 {
+    z-index: 2;
+}
+
+.w-50px {
+    width: 50px;
+}
+
+.h-50px {
+    height: 50px;
+}
+
+.w-80px {
+    width: 80px;
+}
+
+.w-100px {
+    width: 100px;
+}
+
+.w-140px {
+    width: 140px;
+}
+
+.w-185px {
+    width: 185px;
+}
+
+.hover-text-DBB98E:hover {
+    color: #DBB98E;
+}
+
+
+.min-h-calc-100vh-60px {
+    min-height: calc(100vh - 60px);
+}
+
+.top-50p{
+    top: 50%;
+}
+
+.left-50p {
+    left: 50%;
+}
+
+.w-70p {
+    width: 70%;
+}
+
+.text-12px {
+    font-size: 12px;
+}
+
+.mb-12px {
+    margin-bottom: 12px;
+}
+
+.text-16px {
+    font-size: 16px;
+}
+
+.text-18px {
+    font-size: 18px;
+}
+
+.text-28px {
+    font-size: 28px;
+}
+
+.text-32px {
+    font-size: 32px;
+}
+
+.text-633511 {
+    color: #633511;
+}
+
+.bg-633511 {
+    background-color: #633511;
+}
+
+.min-w-195px {
+    min-width: 195px;
+}
+
+.flex-1-1-340px {
+    flex: 1 1 340px;
+}
+
+.min-w-140px {
+    min-width: 140px;
+}
+
+.hover-bg-7E502C:hover {
+    background-color: #7E502C;
+}
+
+.flex-1-1-165px {
+    flex: 1 1 165px;
+}
+
+.flex-1-1-155px {
+    flex: 1 1 155px;
+}
+
+.min-w-155px {
+    min-width: 155px;
+}
+
+.min-w-100px {
+    min-width: 100px;
+}
+
+.bg-FFFF {
+    background-color: #FFFF;
+}
+
+.hover-bg-DBB98E:hover {
+    background-color: #DBB98E;
+
+}
+
+.top--210px {
+    top: -210px;
+}
+
+.w-300px {
+    width: 300px;
+}
+
+.w-320px {
+    width: 320px;
+}
+
+
+.gap-32px {
+    gap: 32px;
+}
+
+.mb-32px {
+    margin-bottom: 32px;
+}
+
+.h-200px {
+    height: 200px;
+}
+
+.h-280px {
+    height: 280px;
+}
+
+.translate-x--50p {
+    transform: translateX(-50%);
+}
+
+.translate-y--50p {
+    transform: translateY(-50%);
+}
+
+.min-w-300px {
+    min-width: 300px;
+}
+
+.bg-F8F4F0 {
+    background-color: #F8F4F0;
+}
+
+.py-60px {
+    padding-top: 60px;
+    padding-bottom: 60px;
+}
+
+.mb-10px {
+    margin-bottom: 10px;
+}
+
+.text-1A1A1A {
+    color: #1A1A1A;
+}
+
+.aspect-3-2 {
+    aspect-ratio: 3/2;
+}
+
+.min-h-350px {
+    min-height: 350px;
+}
+
+.bg-F9F9F9 {
+    background-color: #F9F9F9;
+}
+
+.bg-4A4A4A {
+    background-color: #4A4A4A;
+}
+
+.my-15px {
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+.h-40px {
+    height: 40px;
+}
+
+.h-44px {
+    height: 44px;
+}
+
+.border-d9d9d9 {
+    border-color: #d9d9d9;
+}
+
+.border-cecece {
+    border-color: #cecece;
+}
+
+.bg-rgba-0-0-0-0_02 {
+    background-color: rgba(0, 0, 0, 0.02);
+}
+
+.w-154px {
+    width: 154px;
+}
+
+.focus-text-633511:focus {
+    color: #633511;
+}
+
+.pb-32px {
+    padding-bottom: 32px;
+}
+
+.grid-rows-9 {
+    grid-template-rows: repeat(9, 1fr);
+}
+@media (min-width: 1024px) {
+    .lg\:text-lg {
+        font-size: 1.125rem;
+        line-height: 1.75rem;
+    }
+
+    .lg-pl-20px {
+        padding-left: 20px;
+    }
+
+    .lg-w-530px {
+        width: 530px;
+    }
+}
+
+@media (min-width: 768px) {
+    .md-w-40p {
+        width: 40%;
+    }
+
+    .md-w-490px {
+        width: 490px;
+    }
+}
+
+@media (min-width: 640px) {
+    .sm\:text-sm {
+        font-size: .875rem;
+        line-height: 1.25rem;
+    }
+
+    .sm-h-160px {
+        height: 160px;
+    }
+
+    .sm-h-84px {
+        height: 84px;
+    }
+
+    .sm-w-75px {
+        width: 75px;
+    }
+
+    .sm-w-460px {
+        width: 460px;
+    }
+
+    .sm-h-75px {
+        height: 75px;
+    }
+
+    .sm-min-h-calc-100vh-92px-84px {
+        min-height: calc(100vh - 92px - 84px);
+    }
+
+    .sm-gap-60px {
+        gap: 60px;
+    }
+
+    .sm-mb-60px {
+        margin-bottom: 60px;
+    }
+
+    .sm-border-E6E6E6 {
+        border: 1px solid #E6E6E6;
+    }
+
+    .sm-pr-24px {
+        padding-right: 24px;
+    }
+
+    .sm-w-33p {
+        width: 33%;
+    }
+
+    .sm-h-370px {
+        height: 370px;
+    }
+
+    .sm-py-40px {
+        padding-top: 40px;
+        padding-bottom: 40px;
+    }
+}

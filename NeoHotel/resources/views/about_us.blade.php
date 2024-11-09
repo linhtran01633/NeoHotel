@@ -11,13 +11,13 @@
     @endphp
     <section class="flex-1 flex flex-col">
         <main class="flex-1 flex flex-col ">
-            <div class="flex flex-col gap-[32px] mb-[32px]  sm:gap-[60px] sm:mb-[60px]">
-                <div class="relative h-[200px] w-full text-center bg-black bg-opacity-40">
+            <div class="flex flex-col gap-32px mb-32px  sm-gap-60px sm-mb-60px">
+                <div class="relative h-200px w-full text-center bg-black bg-opacity-40">
                     <img alt="header banner" loading="lazy" decoding="async" data-nimg="fill" class="absolute object-cover w-full" sizes="100vw" @if(isset($banner_images)) src="{{ asset('/storage/'.$banner_images) }}" @else src="" @endif style="position: absolute; height: 100%; width: 100%; inset: 0px; color: transparent;">
                     <div class="absolute inset-0 bg-black bg-opacity-40"></div>
-                    <div class="absolute left-[50%] translate-x-[-50%] translate-y-[-50%] top-[50%]">
+                    <div class="w-full absolute translate-x--50p translate-y--50p top-50p">
                         <div class="flex flex-col gap-2">
-                            <h1 class="text-[28px] md:text-4xl text-white text-center">{{__('screen.title.aboutus')}}</h1>
+                            <h1 class="text-28px md:text-4xl text-white text-center">{{__('screen.title.aboutus')}}</h1>
                             <nav aria-label="Breadcrumb">
                                 <ol class="breadcrumbs_breadcrumbList___U1J7">
                                     <li class="breadcrumbs_crumbWrapper__r0ohj">
@@ -32,18 +32,18 @@
                     </div>
                 </div>
                 <div class="">
-                    <div class="max-w-[1080px] m-auto px-smClamp">
+                    <div class="max-width-1080px m-auto px-smClamp">
                         <div class="flex flex-wrap gap-8 p-x-8">
-                            <div class="contentWrapper-description flex-1 min-w-[300px]">
+                            <div class="contentWrapper-description flex-1 min-w-300px">
                                 <div class="w-full flex flex-col">
                                     <div class="mb-smClamp">
                                         <h2 class="whitespace-pre-line text-headerClamp">@if(isset($aboutUs)) {{$aboutUs['title1_'. $language]}}@endif</h2>
-                                        <div class="mb-[10px]">@if(isset($aboutUs)) {{$aboutUs['title1_sub1_'. $language]}}@endif</div>
+                                        <div class="mb-10px">@if(isset($aboutUs)) {{$aboutUs['title1_sub1_'. $language]}}@endif</div>
                                         <div class="w-12 h-0.5 bg-yellow-900 mt-2"></div>
                                     </div>
-                                    <p class="mb-5 font-medium text-[#1A1A1A]">@if(isset($aboutUs)) {{$aboutUs['title1_sub2_'. $language]}}@endif</p>
+                                    <p class="mb-5 font-medium text-1A1A1A">@if(isset($aboutUs)) {{$aboutUs['title1_sub2_'. $language]}}@endif</p>
                                     <div class="flex flex-col gap-6">
-                                        <div class="flex pr-0 gap-x-4 sm:pr-[24px] items-center">
+                                        <div class="flex pr-0 gap-x-4 sm-pr-24px items-center">
                                             <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                 <path fill-rule="evenodd" clip-rule="evenodd" d="M11.4507 6.84508C11.4507 6.56279 11.2123 6.33398 10.9182 6.33398H2.3996C2.10556 6.33398 1.86719 6.56279 1.86719 6.84508V23.2009C1.86719 23.4831 2.10556 23.712 2.3996 23.712H11.4507V6.84508Z" stroke="#633511" stroke-width="0.8" stroke-linecap="round" stroke-linejoin="round"></path>
                                                 <path d="M2.93359 6.3333V3.77772C2.93359 3.49544 3.17197 3.2666 3.46601 3.2666H9.85501C10.149 3.2666 10.3874 3.49544 10.3874 3.77772V6.3333" stroke="#633511" stroke-width="0.8" stroke-linecap="round" stroke-linejoin="round"></path>
@@ -60,7 +60,7 @@
                                             </svg>
                                             <p class="flex-1 w-full  whitespace-pre-line">@if(isset($aboutUs)) {{$aboutUs['title1_sub3_'. $language]}}@endif</p>
                                         </div>
-                                        <div class="flex pr-0 gap-x-4 sm:pr-[24px] items-center">
+                                        <div class="flex pr-0 gap-x-4 sm-pr-24px items-center">
                                             <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                 <path fill-rule="evenodd" clip-rule="evenodd" d="M14.0595 11.662C15.376 11.662 16.4432 10.5936 16.4432 9.27581C16.4432 7.95794 15.376 6.88965 14.0595 6.88965C12.743 6.88965 11.6758 7.95794 11.6758 9.27581C11.6758 10.5936 12.743 11.662 14.0595 11.662Z" stroke="#633511" stroke-width="0.8" stroke-linecap="round" stroke-linejoin="round"></path><path fill-rule="evenodd" clip-rule="evenodd" d="M14.0572 12.7227C12.3019 12.7227 10.8789 14.1471 10.8789 15.9042V18.5555H12.4681L12.9978 23.3278H15.1167L15.6464 18.5555H17.2356V15.9042C17.2356 14.1471 15.8126 12.7227 14.0572 12.7227Z" stroke="#633511" stroke-width="0.8" stroke-linecap="round" stroke-linejoin="round"></path>
                                                 <path fill-rule="evenodd" clip-rule="evenodd" d="M5.58147 10.0702C7.19053 10.0702 8.49491 8.76442 8.49491 7.15372C8.49491 5.54302 7.19053 4.2373 5.58147 4.2373C3.97238 4.2373 2.66797 5.54302 2.66797 7.15372C2.66797 8.76442 3.97238 10.0702 5.58147 10.0702Z" stroke="#633511" stroke-width="0.8" stroke-linecap="round" stroke-linejoin="round"></path><path d="M8.96164 13.311C8.24162 11.7174 6.5079 10.8432 4.80009 11.2125C3.09223 11.5818 1.87366 13.0944 1.875 14.8435V18.025H3.46417L3.99389 23.3276H7.1722L7.70196 18.025H8.76139" stroke="#633511" stroke-width="0.8" stroke-linecap="round" stroke-linejoin="round"></path>
@@ -68,7 +68,7 @@
                                             </svg>
                                             <p class="flex-1 w-full  whitespace-pre-line">@if(isset($aboutUs)) {{$aboutUs['title1_sub4_'. $language]}}@endif</p>
                                         </div>
-                                        <div class="flex pr-0 gap-x-4 sm:pr-[24px] items-center">
+                                        <div class="flex pr-0 gap-x-4 sm-pr-24px items-center">
                                             <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                 <g clip-path="url(#clip0_1378_7058)">
                                                     <path d="M13.6346 27.4065H0.56V0.593691H17.2676V5.43769C17.2676 5.59169 17.3936 5.71769 17.5476 5.71769H22.3916V12.4923C22.3916 12.6463 22.5176 12.7723 22.6716 12.7723C22.8256 12.7723 22.9516 12.6463 22.9516 12.4923V5.43769C22.9516 5.36349 22.9222 5.29209 22.869 5.24029L17.745 0.116291C17.6932 0.0644914 17.6218 0.0336914 17.5476 0.0336914H0.28C0.126 0.0336914 0 0.159691 0 0.313691V27.6865C0 27.8405 0.126 27.9665 0.28 27.9665H13.6346C13.7886 27.9665 13.9146 27.8405 13.9146 27.6865C13.9146 27.5325 13.7886 27.4065 13.6346 27.4065ZM17.8276 0.989891L21.9954 5.15769H17.8276V0.989891Z" fill="#633511"></path>
@@ -90,20 +90,20 @@
                             <div class="contentWrapper-img flex-1 ">
                                 <div class="overflow-hidden w-full h-full">
                                     @if(isset($aboutUs))
-                                        <img  src="{{ asset('/storage/'.$aboutUs['title1_images']) }}" alt="service provider" loading="lazy" width="546" height="364" decoding="async" data-nimg="1" class="w-full min-w-[300px] min-h-[350px] h-full object-center object-cover transform transition-transform duration-300 hover:scale-110" style="color: transparent;">
+                                        <img  src="{{ asset('/storage/'.$aboutUs['title1_images']) }}" alt="service provider" loading="lazy" width="546" height="364" decoding="async" data-nimg="1" class="w-full min-w-300px min-h-350px h-full object-center object-cover transform transition-transform duration-300 hover:scale-110" style="color: transparent;">
                                     @endif
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="bg-[#F8F4F0]  py-[60px]">
-                    <div class="max-w-[1080px] m-auto flex flex-col sm:flex-row px-6 items-center">
+                <div class="bg-F8F4F0  py-60px">
+                    <div class="max-width-1080px m-auto flex flex-col sm:flex-row px-6 items-center">
                         <div class="self-start sm:self-center flex-1 pr-4">
                             <h2>@if(isset($aboutUs)) {{$aboutUs['title2_'. $language]}}@endif</h2>
                             <div class="w-12 h-0.5 bg-yellow-900"></div>
                         </div>
-                        <div class=" w-full flex-1 flex flex-col gap-5 sm:border-solid justify-center py-0 px-6 sm:border-[#E6E6E6] sm:border-l-2 ">
+                        <div class=" w-full flex-1 flex flex-col gap-5 sm:border-solid justify-center py-0 px-6 sm-border-E6E6E6 sm:border-l-2 ">
                             <p class=" self-center">
                                 <svg width="61" height="60" viewBox="0 0 61 60" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M15.4984 27.324C15.4144 32.172 17.6944 36.78 21.6064 39.66C23.0584 40.74 23.8984 42.336 23.8984 44.064V47.988C23.8984 48.324 24.1624 48.588 24.4984 48.588H36.4984C36.8344 48.588 37.0984 48.324 37.0984 47.988V44.064C37.0984 42.336 37.9504 40.716 39.4384 39.612C43.2904 36.756 45.4984 32.364 45.4984 27.576C45.4984 23.46 43.8664 19.608 40.8904 16.752C37.9144 13.896 34.0144 12.42 29.8864 12.588C22.0984 12.9 15.6544 19.5 15.5104 27.3L15.4984 27.324ZM40.0504 17.64C42.7864 20.268 44.2984 23.796 44.2984 27.588C44.2984 31.992 42.2704 36.024 38.7184 38.652C36.9304 39.984 35.8984 41.952 35.8984 44.064V47.388H31.0984V28.2H35.2984C35.6344 28.2 35.8984 27.936 35.8984 27.6C35.8984 27.264 35.6344 27 35.2984 27H25.6984C25.3624 27 25.0984 27.264 25.0984 27.6C25.0984 27.936 25.3624 28.2 25.6984 28.2H29.8984V47.4H25.0984V44.076C25.0984 41.964 24.0904 40.008 22.3144 38.7C18.7144 36.048 16.6144 31.8 16.6984 27.348C16.8304 20.172 22.7584 14.1 29.9224 13.812C33.7144 13.644 37.3144 15.024 40.0504 17.652V17.64ZM36.4984 50.988H24.4984C24.1624 50.988 23.8984 51.252 23.8984 51.588V53.988C23.8984 54.7836 24.2145 55.5467 24.7771 56.1093C25.3397 56.6719 26.1028 56.988 26.8984 56.988H34.0984C34.8941 56.988 35.6572 56.6719 36.2198 56.1093C36.7824 55.5467 37.0984 54.7836 37.0984 53.988V51.588C37.0984 51.252 36.8344 50.988 36.4984 50.988ZM35.8984 53.988C35.8984 54.984 35.0944 55.788 34.0984 55.788H26.8984C25.9024 55.788 25.0984 54.984 25.0984 53.988V52.188H35.8984V53.988ZM30.4984 9C30.1624 9 29.8984 8.736 29.8984 8.4V3.6C29.8984 3.264 30.1624 3 30.4984 3C30.8344 3 31.0984 3.264 31.0984 3.6V8.4C31.0984 8.736 30.8344 9 30.4984 9ZM17.3464 13.596C17.5864 13.836 17.5864 14.208 17.3464 14.448C17.2921 14.5046 17.2269 14.5497 17.1547 14.5805C17.0826 14.6112 17.0049 14.6271 16.9264 14.6271C16.848 14.6271 16.7703 14.6112 16.6981 14.5805C16.626 14.5497 16.5608 14.5046 16.5064 14.448L13.1104 11.052C12.8704 10.812 12.8704 10.44 13.1104 10.2C13.3504 9.96 13.7224 9.96 13.9624 10.2L17.3584 13.596H17.3464ZM47.8984 44.148C48.1384 44.388 48.1384 44.76 47.8984 45C47.8441 45.0566 47.7789 45.1017 47.7067 45.1325C47.6346 45.1632 47.5569 45.1791 47.4784 45.1791C47.4 45.1791 47.3223 45.1632 47.2501 45.1325C47.178 45.1017 47.1128 45.0566 47.0584 45L43.6624 41.604C43.4224 41.364 43.4224 40.992 43.6624 40.752C43.9024 40.512 44.2744 40.512 44.5144 40.752L47.9104 44.148H47.8984ZM11.8984 27.6C11.8984 27.936 11.6344 28.2 11.2984 28.2H6.49844C6.16244 28.2 5.89844 27.936 5.89844 27.6C5.89844 27.264 6.16244 27 6.49844 27H11.2984C11.6344 27 11.8984 27.264 11.8984 27.6ZM49.6984 28.2C49.3624 28.2 49.0984 27.936 49.0984 27.6C49.0984 27.264 49.3624 27 49.6984 27H54.4984C54.8344 27 55.0984 27.264 55.0984 27.6C55.0984 27.936 54.8344 28.2 54.4984 28.2H49.6984ZM13.0984 44.148L16.4944 40.752C16.7344 40.512 17.1064 40.512 17.3464 40.752C17.5864 40.992 17.5864 41.364 17.3464 41.604L13.9504 45C13.8961 45.0566 13.8309 45.1017 13.7587 45.1325C13.6866 45.1632 13.6089 45.1791 13.5304 45.1791C13.452 45.1791 13.3743 45.1632 13.3021 45.1325C13.23 45.1017 13.1648 45.0566 13.1104 45C12.8704 44.76 12.8704 44.388 13.1104 44.148H13.0984ZM47.8984 11.052L44.5024 14.448C44.4481 14.5046 44.3829 14.5497 44.3107 14.5805C44.2386 14.6112 44.1609 14.6271 44.0824 14.6271C44.004 14.6271 43.9263 14.6112 43.8541 14.5805C43.782 14.5497 43.7168 14.5046 43.6624 14.448C43.4224 14.208 43.4224 13.836 43.6624 13.596L47.0584 10.2C47.2984 9.96 47.6704 9.96 47.9104 10.2C48.1504 10.44 48.1504 10.812 47.9104 11.052H47.8984Z" fill="#633511"></path>
@@ -111,7 +111,7 @@
                             </p>
                             <p class="text-center w-full text-md sm:text-sm lg:text-lg">@if(isset($aboutUs)) {!! $aboutUs['title2_sub1_'. $language] !!}@endif</p>
                         </div>
-                        <div class=" w-full flex-1 flex flex-col gap-5 sm:border-solid justify-center py-0 px-6 sm:border-[#E6E6E6] sm:border-l-2 ">
+                        <div class=" w-full flex-1 flex flex-col gap-5 sm:border-solid justify-center py-0 px-6 sm-border-E6E6E6 sm:border-l-2 ">
                             <p class=" self-center">
                                 <svg width="61" height="60" viewBox="0 0 61 60" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M41.4342 26.5556C41.3973 26.5556 41.3606 26.5511 41.3248 26.5421C41.2061 26.5131 41.1037 26.4382 41.0401 26.3338C40.9765 26.2294 40.9569 26.1041 40.9856 25.9853L43.5669 15.365C43.5797 15.3047 43.6045 15.2476 43.6398 15.197C43.6751 15.1465 43.7202 15.1035 43.7724 15.0707C43.8245 15.0379 43.8828 15.0159 43.9436 15.006C44.0045 14.9961 44.0667 14.9985 44.1266 15.013C44.1865 15.0276 44.2428 15.054 44.2923 15.0907C44.3419 15.1274 44.3835 15.1737 44.4148 15.2268C44.4461 15.2799 44.4665 15.3388 44.4746 15.3999C44.4828 15.461 44.4786 15.5231 44.4624 15.5825L41.881 26.2034C41.8567 26.3037 41.7995 26.3928 41.7184 26.4567C41.6374 26.5205 41.5374 26.5554 41.4342 26.5556Z" fill="#633511"></path>
@@ -124,7 +124,7 @@
                             </p>
                             <p class="text-center w-full text-md sm:text-sm lg:text-lg">@if(isset($aboutUs)) {!! $aboutUs['title2_sub2_'. $language] !!}@endif</p>
                         </div>
-                        <div class=" w-full flex-1 flex flex-col gap-5 sm:border-solid justify-center py-0 px-6 sm:border-[#E6E6E6] sm:border-l-2 sm:border-r-2">
+                        <div class=" w-full flex-1 flex flex-col gap-5 sm:border-solid justify-center py-0 px-6 sm-border-E6E6E6 sm:border-l-2 sm:border-r-2">
                             <p class=" self-center">
                                 <svg width="61" height="60" viewBox="0 0 61 60" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <g clip-path="url(#clip0_92_2903)">
@@ -153,22 +153,22 @@
                     </div>
                 </div>
                 <div class="">
-                    <div class="max-w-[1080px] m-auto px-smClamp">
+                    <div class="max-width-1080px m-auto px-smClamp">
                         <div class="flex flex-wrap-reverse gap-8 p-x-8">
                             <div class="contentWrapper-img flex-1 ">
                                 <div class="overflow-hidden w-full h-full">
                                     @if(isset($aboutUs))
-                                        <img  src="{{ asset('/storage/'.$aboutUs['title3_images']) }}" alt="to partners" loading="lazy" width="546" height="364" decoding="async" data-nimg="1" class="w-full min-w-[300px] h-full object-center object-cover aspect-[3/2] transform transition-transform duration-300 hover:scale-110" style="color: transparent;">
+                                        <img  src="{{ asset('/storage/'.$aboutUs['title3_images']) }}" alt="to partners" loading="lazy" width="546" height="364" decoding="async" data-nimg="1" class="w-full min-w-300px h-full object-center object-cover aspect-3-2 transform transition-transform duration-300 hover:scale-110" style="color: transparent;">
                                     @endif
                                 </div>
                             </div>
-                            <div class="contentWrapper-description flex-1 min-w-[300px]">
+                            <div class="contentWrapper-description flex-1 min-w-300px">
                                 <div class="w-full flex flex-col">
                                     <div class="mb-smClamp">
                                         <h2 class="whitespace-pre-line text-headerClamp ">@if(isset($aboutUs)) {!! $aboutUs['title3_'. $language] !!}@endif</h2>
                                         <div class="w-12 h-0.5 bg-yellow-900 mt-2"></div>
                                     </div>
-                                    <div class="flex flex-col pr-0 sm:pr-[24px]">
+                                    <div class="flex flex-col pr-0 sm-pr-24px">
                                         <div class="flex-1 w-full   text-base font-light leading-tight">
                                             <p class="whitespace-pre-line text-left">@if(isset($aboutUs)) {!! $aboutUs['title3_sub1_'. $language] !!}@endif</p>
                                         </div>
@@ -179,15 +179,15 @@
                     </div>
                 </div>
                 <div class="">
-                    <div class="max-w-[1080px] m-auto px-smClamp">
+                    <div class="max-width-1080px m-auto px-smClamp">
                         <div class="flex flex-wrap gap-8 p-x-8">
-                            <div class="contentWrapper-description flex-1 min-w-[300px]">
+                            <div class="contentWrapper-description flex-1 min-w-300px">
                                 <div class="w-full flex flex-col">
                                     <div class="mb-smClamp">
                                         <h2 class="whitespace-pre-line text-headerClamp ">@if(isset($aboutUs)) {!! $aboutUs['title4_'. $language] !!}@endif</h2>
                                         <div class="w-12 h-0.5 bg-yellow-900 mt-2"></div>
                                     </div>
-                                    <div class="flex flex-col pr-0 sm:pr-[24px]">
+                                    <div class="flex flex-col pr-0 sm-pr-24px">
                                         <div class="flex-1 w-full text-base font-light leading-tight">
                                             <p class="whitespace-pre-line text-left">@if(isset($aboutUs)) {!! $aboutUs['title4_sub1_'. $language] !!}@endif</p>
                                         </div>
@@ -197,7 +197,7 @@
                             <div class="contentWrapper-img flex-1 ">
                                 <div class="overflow-hidden w-full h-full">
                                     @if(isset($aboutUs))
-                                        <img  src="{{ asset('/storage/'.$aboutUs['title4_images']) }}" alt="to guests" loading="lazy" width="546" height="364" decoding="async" data-nimg="1" class="w-full min-w-[300px] h-full object-center object-cover aspect-[3/2] transform transition-transform duration-300 hover:scale-110" style="color: transparent;">
+                                        <img  src="{{ asset('/storage/'.$aboutUs['title4_images']) }}" alt="to guests" loading="lazy" width="546" height="364" decoding="async" data-nimg="1" class="w-full min-w-300px h-full object-center object-cover aspect-3-2 transform transition-transform duration-300 hover:scale-110" style="color: transparent;">
                                     @endif
                                 </div>
                             </div>
