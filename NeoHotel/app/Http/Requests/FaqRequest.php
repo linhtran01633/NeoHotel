@@ -26,9 +26,9 @@ class FaqRequest extends FormRequest
             'question_en' => ['required','max:256'],
             'question_jp' => ['required','max:256'],
 
-            'answer_vn' => ['max:256', 'required'],
-            'answer_en' => ['max:256', 'required'],
-            'answer_jp' => ['max:256', 'required'],
+            'answer_vn' => ['max:512', 'required'],
+            'answer_en' => ['max:512', 'required'],
+            'answer_jp' => ['max:512', 'required'],
         ];
 
         return $rules;

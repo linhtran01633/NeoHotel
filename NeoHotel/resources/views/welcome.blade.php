@@ -25,7 +25,7 @@
                         @endforeach
                     </div>
                 </div>
-                <div class="px-6 absolute z-2 sm:flex top-0 h-full w-70p md-w-40p md:bg-stone-950 md:bg-opacity-80 md:backdrop-blur-lg flex items-center justify-center">
+                <div class="px-6 absolute z-2 sm:flex top-0 h-full w-70p md-w-40p md:bg-stone-950 md:bg-opacity-80 md:backdrop-blur-lg md:backdrop-blur-[20px] flex items-center justify-center">
                     <div class="w-72 flex-col justify-start items-start inline-flex md:gap-7">
                         <div class="pb-6 self-stretch h-44 flex-col justify-start items-start gap-3 flex flex-1">
                             <div class="flex-col justify-start items-start gap-4 flex">

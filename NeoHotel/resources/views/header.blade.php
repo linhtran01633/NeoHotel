@@ -30,7 +30,7 @@
                 </li>
             </ul>
             <div class="relative inline-block text-left">
-                <button x-on:click="popup_local = ! popup_local" class="items-center inline-flex w-80px justify-center rounded-md bg-black/20 px-4 py-2 text-sm font-medium text-white hover:bg-black/30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/75" type="button" >
+                <button x-on:click.debounce.500ms="popup_local = ! popup_local" class="items-center inline-flex w-80px justify-center rounded-md bg-black/20 px-4 py-2 text-sm font-medium text-white hover:bg-black/30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/75" type="button" >
                     <div class="w-5">
                         @if (__('lang') == 'VN')
                             <svg xmlns="http://www.w3.org/2000/svg" id="flag-icons-vn" viewBox="0 0 640 480">
@@ -122,7 +122,7 @@
         <div x-data="{
             isPopupMenuMobile: false,
         }">
-            <button class="p-4 lg:hidden" x-on:click="isPopupMenuMobile = !isPopupMenuMobile">
+            <button class="p-4 lg:hidden" x-on:click.debounce.500ms="isPopupMenuMobile = !isPopupMenuMobile">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" class="h-7 w-7 text-gray-100">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"></path>
                 </svg>
@@ -130,7 +130,7 @@
 
             <div x-cloak x-show="isPopupMenuMobile" class="absolute z-50 top-0 right-0" @click.away="isPopupMenuMobile = false">
                 <div class="relative">
-                    <button type="button" x-on:click="isPopupMenuMobile = !isPopupMenuMobile" class="absolute top-0 right-0 z-10 rounded-md p-2.5">
+                    <button type="button" x-on:click.debounce.500ms="isPopupMenuMobile = !isPopupMenuMobile" class="absolute top-0 right-0 z-10 rounded-md p-2.5">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="h-7 w-7 color-393939">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
                         </svg>
@@ -162,7 +162,7 @@
                                 </li>
                             </ul>
                             <div class="relative inline-block text-left">
-                                <button x-on:click="popup_local = ! popup_local"  @click.away="popup_local = false" class="items-center inline-flex w-80px justify-center rounded-md bg-black/20 px-4 py-2 text-sm font-medium text-white hover:bg-black/30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/75" type="button" >
+                                <button x-on:click.debounce.500ms="popup_local = ! popup_local"  @click.away="popup_local = false" class="items-center inline-flex w-80px justify-center rounded-md bg-black/20 px-4 py-2 text-sm font-medium text-white hover:bg-black/30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/75" type="button" >
                                     <div class="w-5">
                                         @if (__('lang') == 'VN')
                                             <svg xmlns="http://www.w3.org/2000/svg" id="flag-icons-vn" viewBox="0 0 640 480">
