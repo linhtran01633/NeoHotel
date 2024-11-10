@@ -1,39 +1,44 @@
 @extends('app_layout')
 @section('content')
     @php
-        $room_type = 'economy';
-        if(request()->room_type == 0) $room_type = 'economy';
-        else if(request()->room_type == 1) $room_type = 'standard';
-        else if(request()->room_type == 2) $room_type = 'deluxe_back';
-        else if(request()->room_type == 3) $room_type = 'deluxe_front';
-        else if(request()->room_type == 4) $room_type = 'executive';
+        $language = 'en';
+        if(__('lang') == 'JP') {
+            $language = 'jp';
+        } else if(__('lang') == 'VN') {
+            $language = 'vn';
+        }
     @endphp
     <section class="flex-1 flex flex-col">
         <main class="flex-1 flex flex-col " x-data="{
             submit_step1: function() {
                 if (this.$refs.bookingForm.checkValidity()) {
-                     booking.adult = $('#adult').val()
+                    booking.adult = $('#adult').val()
                     booking.end_date = $('#end_date').val()
                     booking.children = $('#children').val()
                     booking.breakfast = $('#breakfast').val()
-                    booking.room_type = $('#room_type').val()
                     booking.start_date = $('#start_date').val()
                     booking.number_of_room = $('#number_of_room').val()
 
                     let date1 = moment($('#end_date').val());
                     let date2 = moment($('#start_date').val());
 
-                    booking.staylength = date1.diff(date2, 'days');
+                    booking.staylength = date1.diff(date2, 'days') + 1;
 
                     localStorage.setItem('booking', JSON.stringify(booking))
 
-                    window.location.href = `/booking?room_type=${this.booking.room_type}&step=2`
+                    window.location.href = `/booking?room_type={!!request()->room_type!!}&step=2`
                 } else {
                     this.$refs.bookingForm.reportValidity()
                 }
-            }
+            },
 
-        }">
+            load: function() {
+                console.log(localStorage.getItem('booking'));
+
+                console.log(booking)
+            },
+
+        }" x-init="load">
             <div class="w-full py-xlClamp bg-F9F9F9">
                 <div class="max-width-1080px min-w-60vw m-auto flex flex-col items-center px-smClamp">
                     <div class="relative w-full flex flex-col sm:flex-row justify-center mb-8 gap-y-3">
@@ -61,21 +66,21 @@
                     @endif
                     <div class="flex flex-col w-full">
                         <div class="w-full flex gap-6">
-                            <div class="font-medium flex flex-col sm:flex-row gap-y-2 max-w-108px  sm:max-w-full text-center">
+                            <div class="font-medium flex flex-col sm:flex-row gap-y-2 max-w-250px  sm:max-w-full text-center">
                                 <div class="relative w-12 h-12 flex flex-shrink-0 items-center self-center justify-center rounded-full  w-6 h-6 bg-green-600 text-white"><span class="absolute m-auto text-white">1</span></div>
                                 <p class="self-center ml-2">{{__('form.booking.stageone')}}</p>
                             </div>
                             <div class="flex-1">
                                 <hr class="bg-4A4A4A data-[orientation=horizontal]:h-px data-[orientation=horizontal]:w-full data-[orientation=vertical]:h-full data-[orientation=vertical]:w-px my-15px">
                             </div>
-                            <div class="font-medium flex flex-col sm:flex-row gap-y-2 max-w-108px  sm:max-w-full text-center">
+                            <div class="font-medium flex flex-col sm:flex-row gap-y-2 max-w-250px  sm:max-w-full text-center">
                                 <div class="relative w-12 h-12 flex flex-shrink-0 items-center self-center justify-center rounded-full  w-6 h-6 text-gray-600 border border-gray-500 @if($step == 1) bg-white @else bg-green-600 @endif"><span class="absolute m-auto @if($step == 1) text-gray-600 @else text-white @endif ">2</span></div>
                                 <p class="self-center ml-2">{{__('form.booking.stagetwo')}}</p>
                             </div>
                         </div>
                         <div class="flex flex-col sm:flex-row justify-between mt-8 ">
                             <div class="flex w-full flex-col sm:flex-row">
-                                <div class="w-full">
+                                <div class="w-full sm:w-1/2">
                                     @if ($step == 1)
                                         <form x-ref="bookingForm">
                                             @csrf
@@ -103,11 +108,9 @@
                                                         <div class="ant-select sc-bdfCDU iknHgW css-125enb3 ant-select-single ant-select-show-arrow">
                                                             <div class="ant-select-selector">
                                                                 <select class="w-full h-44px border border-d9d9d9 px-2" name="room_type" id="room_type" required>
-                                                                    <option value="0" @if(request()->room_type == 0) selected @endif>{{__('rooms.economy')}}</option>
-                                                                    <option value="1" @if(request()->room_type == 1) selected @endif>{{__('rooms.standard')}}</option>
-                                                                    <option value="2" @if(request()->room_type == 2) selected @endif>{{__('rooms.deluxe_back')}}</option>
-                                                                    <option value="3" @if(request()->room_type == 3) selected @endif>{{__('rooms.deluxe_front')}}</option>
-                                                                    <option value="4" @if(request()->room_type == 4) selected @endif>{{__('rooms.executive')}}</option>
+                                                                    @foreach ($categorys as $item)
+                                                                        <option value="{{$item->id}}" @if(request()->room_type == $item->id) selected @endif>{!! $item['name_' . $language] !!}</option>
+                                                                    @endforeach
                                                                 </select>
                                                             </div>
                                                         </div>
@@ -194,7 +197,7 @@
                                             <input type="hidden" name="children" x-model="booking.children">
                                             <input type="hidden" name="end_date" x-model="booking.end_date">
                                             <input type="hidden" name="number_of_room" x-model="booking.number_of_room">
-                                            <input type="hidden" name="room_type" x-model="booking.room_type">
+                                            <input type="hidden" name="room_type"  value="{{request()->room_type}}">
                                             <input type="hidden" name="start_date" x-model="booking.start_date">
                                             <div class="bg-white flex flex-col w-full sm:w-formClamp mb-8 md:mb-0 border py-6 px-smClamp border-neutral-200">
                                             <div class="text-2xl font-medium mb-6">{{__('form.booking.stagetwo')}}</div>
@@ -241,15 +244,15 @@
                                         </form>
                                     @endif
                                 </div>
-                                <div class="flex-1 lg-pl-20px">
+                                <div class="w-full sm:w-1/2  flex-1 lg-pl-20px">
                                     <div>
                                         <div class="mx-auto w-full sm:w-formClamp max-w-md bg-white border py-6 px-5 mb-3">
                                             <button class="rounded-none flex w-full justify-between bg-white-100 text-left text-sm font-medium text-dark-900 hover:bg-white-200 focus:outline-none focus-visible:ring focus-visible:ring-white-500/75" id="headlessui-disclosure-button-:rd:" type="button" aria-expanded="false" data-headlessui-state="">
                                                 <div class="flex flex-col gap-6">
                                                     <div>
                                                         <p class="text-sm  lantern-hotel-title">{{__('home.slider.title')}}</p>
-                                                        <p class="text-xl mb-3  font-medium">{{ __('rooms.' . $room_type) }}</p>
-                                                        <p class="text-base ">{{ __('rooms.' . $room_type . '.describe') }}</p>
+                                                        <p class="text-xl mb-3  font-medium">@if(isset($room_type)) {!! $room_type['name_' . $language] !!} @endif</p>
+                                                        <p class="text-base ">@if(isset($room_type)) {!! $room_type['detail_' . $language] !!} @endif</p>
                                                     </div>
                                                     <button class="self-start text-633511"><a href="/rooms">{{__('form.booking.retake')}}</a></button>
                                                 </div>

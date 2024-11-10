@@ -48,18 +48,11 @@
             end_date: localStorage.getItem('booking') ? JSON.parse(localStorage.getItem('booking')).end_date : '',
             children: localStorage.getItem('booking') ? JSON.parse(localStorage.getItem('booking')).children : '',
             breakfast: localStorage.getItem('booking') ? JSON.parse(localStorage.getItem('booking')).breakfast : '',
-            room_type: localStorage.getItem('booking') ? JSON.parse(localStorage.getItem('booking')).room_type : '',
             start_date: localStorage.getItem('booking') ? JSON.parse(localStorage.getItem('booking')).start_date : '',
             staylength: localStorage.getItem('booking') ? JSON.parse(localStorage.getItem('booking')).staylength : '0',
             number_of_room: localStorage.getItem('booking') ? JSON.parse(localStorage.getItem('booking')).number_of_room : '',
-
         },
-        closePopup(e) {
-            if (this.isPopup && !this.$refs.popup.contains(e.target)) {
-                this.isPopup = false;
-            }
-        }
-    }" x-on:click="closePopup($event)">
+    }">
         @yield('content')
     </div>
 
@@ -67,17 +60,68 @@
     <script>
         $('#date-range-picker').daterangepicker({
             autoApply: true, // Tự động áp dụng ngày khi chọn xong
-            format: 'dd/mm/yyyy', // Định dạng ngày (có thể thay đổi theo ý muốn)
+            format: 'DD/MM/YYYY', // Định dạng ngày (có thể thay đổi theo ý muốn)
             showOnFocus: true, // Hiển thị datepicker khi input được focus
             startDate: new Date(), // Ngày bắt đầu mặc định là ngày hiện tại
             minDate: new Date(), // Giới hạn ngày nhỏ nhất là ngày hiện tại
             opens: 'right',
-            drops: 'up'
+            drops: 'up',
+            locale: {
+                format: 'DD/MM/YYYY', // Cấu hình lại định dạng trong locale
+            }
         });
 
-        $('.btn-check_now').on('click', function(e){
-            window.location.href = '/rooms';
+
+
+        $('.adult_minus').on('click', function(e){
+            let adult = (Number($('#adult_popup').text()) ? Number($('#adult_popup').text()) : 0) - 1;
+
+            if(adult < 0) adult = 0;
+
+            $('#adult_popup').text(adult);
         })
+
+        $('.adult_plus').on('click', function(e){
+            let adult = (Number($('#adult_popup').text()) ? Number($('#adult_popup').text()) : 0) + 1;
+
+            if(adult < 0) adult = 0;
+
+            $('#adult_popup').text(adult);
+        })
+
+
+        $('.children_minus').on('click', function(e){
+            let children = (Number($('#children_popup').text()) ? Number($('#children_popup').text()) : 0) - 1;
+
+            if(children < 0) children = 0;
+
+            $('#children_popup').text(children);
+        })
+
+        $('.children_plus').on('click', function(e){
+            let children = (Number($('#children_popup').text()) ? Number($('#children_popup').text()) : 0) + 1;
+
+            if(children < 0) children = 0;
+
+            $('#children_popup').text(children);
+        })
+
+        $('.number_of_room_minus').on('click', function(e){
+            let number_of_room = (Number($('#number_of_room_popup').text()) ? Number($('#number_of_room_popup').text()) : 0) - 1;
+
+            if(number_of_room < 0) number_of_room = 0;
+
+            $('#number_of_room_popup').text(number_of_room);
+        })
+
+        $('.number_of_room_plus').on('click', function(e){
+            let number_of_room = (Number($('#number_of_room_popup').text()) ? Number($('#number_of_room_popup').text()) : 0) + 1;
+
+            if(number_of_room < 0) number_of_room = 0;
+
+            $('#number_of_room_popup').text(number_of_room);
+        })
+
     </script>
 </body>
 </html>

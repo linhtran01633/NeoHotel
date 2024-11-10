@@ -59,8 +59,12 @@ class ClientController extends Controller
     public function booking(Request $request)
     {
         $step = $request->step;
+        $categorys = CategoryRoom::where('delete_flag', 0)->orderBy('id')->get();
+        $room_type = CategoryRoom::where('delete_flag', 0)->where('id', $request->room_type)->first();
         return view('booking')->with([
             'step' => $step,
+            'room_type' => $room_type,
+            'categorys' => $categorys
         ]);
     }
 
