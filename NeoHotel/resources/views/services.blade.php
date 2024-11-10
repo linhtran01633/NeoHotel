@@ -76,7 +76,7 @@
                 </div>
                 <div class="w-full mt-5 sm:mt-0">
                     <div class="max-width-1080px m-auto flex flex-col sm:flex-row px-smClamp">
-                        <div class="w-full grid grid-cols-1 grid-rows-9 sm:grid-rows-2 sm:grid-cols-3">
+                        <div class="w-full grid grid-cols-1 sm:grid-cols-3">
                             @foreach ($array_service as $item)
                                 <div class="flex flex-col pr-0 sm-pr-24px  sm:border-b sm-border-E6E6E6 pb-32px sm-py-40px">
                                     <div class="w-full mb-12px flex-col items-center justify-center">
