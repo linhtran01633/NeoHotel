@@ -536,6 +536,11 @@ main {
     min-width: 2rem;
 }
 
+.text-orange-300 {
+    --tw-text-opacity: 1;
+    color: rgb(253 186 116 / var(--tw-text-opacity));
+}
+
 @media (min-width: 1024px) {
     .lg\:text-lg {
         font-size: 1.125rem;
