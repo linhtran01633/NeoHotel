@@ -66,6 +66,7 @@
 
         .selected {
             padding: 5px;
+            height: 37px;
             cursor: pointer;
             border-radius: 7px;
             border: 1px solid #ccc;

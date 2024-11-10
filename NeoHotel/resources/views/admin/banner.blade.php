@@ -60,6 +60,7 @@
                             <div class="mt-2">
                                 <input type="hidden" x-model="data.id" >
                                 <div class="my-2 grid grid-cols-1 gap-1">
+                                    <div>(Only 1 image can be selected)</div>
                                     <div>
                                         <input type="file" id="images" accept=".png, .jpg, .jpeg, .webp" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
                                     </div>
