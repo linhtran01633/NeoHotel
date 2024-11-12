@@ -129,13 +129,13 @@
 					</svg>
 				</div>
 				<div class="flex-1-1-155px min-w-100px">
-                    <button type="button" x-on:click.debounce.500ms="btn_check_now()" class="rounded-none w-full h-11 bg-FFFF hover-bg-DBB98E text-yellow-900 text-base font-medium">{{__('button.booknow')}}</button>
+                    <button type="button" x-on:click="btn_check_now()" class="rounded-none w-full h-11 bg-FFFF hover-bg-DBB98E text-yellow-900 text-base font-medium">{{__('button.booknow')}}</button>
                 </div>
 			</div>
 		</div>
 		<div class="sm:hidden w-full">
 			<div>
-                <button type="button" x-on:click.debounce.500ms="btn_check_now()" class="p-4 w-full">
+                <button type="button" x-on:click="btn_check_now()" class="p-4 w-full">
                     <span class="text-white font-medium">{{__('button.booknow')}}</span>
                 </button>
             </div>

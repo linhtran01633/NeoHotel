@@ -185,7 +185,7 @@
                                                     </label>
                                                 </div>
                                                 <div class="w-154px mt-8 self-end">
-                                                    <button type="button" x-on:click.debounce.5000ms="submit_step1()" class="font-medium leading-tight flex justify-center w-full h-11 px-4 py-3 text-white bg-633511 hover-bg-7E502C">{{__('button.next')}}</button>
+                                                    <button type="button" x-on:click="submit_step1()" class="font-medium leading-tight flex justify-center w-full h-11 px-4 py-3 text-white bg-633511 hover-bg-7E502C">{{__('button.next')}}</button>
                                                 </div>
                                             </div>
                                         </form>

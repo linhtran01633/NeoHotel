@@ -6,7 +6,9 @@
         data_error: {},
         isSave : false,
         message_save: "",
+        isSubmitting: false,
         submitForm: function() {
+            this.isSubmitting = true;
             let url_post = "{{ route("admin.category_room.save") }}";
 
             let form_data = new FormData();
@@ -45,8 +47,11 @@
                     );
                 }
 
+                this.isSubmitting = false;
+
             }).catch((error) => {
                 console.error("Error:", error)
+                this.isSubmitting = false;
             });
         },
         reloadTable: function() {
@@ -275,7 +280,7 @@
                             </div>
                         </div>
                         <div class="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
-                            <button type="button" x-on:click.debounce.5000ms="submitForm" class="mt-3 w-full inline-flex justify-center rounded-md border border-blue-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-blue-700 hover:bg-blue-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm">Save</button>
+                            <button type="button" :disabled="isSubmitting" x-on:click="submitForm" class="mt-3 w-full inline-flex justify-center rounded-md border border-blue-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-blue-700 hover:bg-blue-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm">Save</button>
                             <button type="button" x-on:click="isSave = false" class="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm">Close</button>
                         </div>
                     </div>

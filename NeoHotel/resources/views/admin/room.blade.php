@@ -7,7 +7,9 @@
         data_error: {},
         isSave : false,
         message_save: "",
+        isSubmitting: false,
         submitForm: function() {
+            this.isSubmitting = true;
             let url_post = "{{ route("admin.room.save") }}";
 
             this.data.equipment_for_rent = this.equipmentForRent;
@@ -37,8 +39,11 @@
                         Object.entries(data.errors).map(([key, value]) => [key, value[0]])
                     );
                 }
+                this.isSubmitting = false;
+
             }).catch((error) => {
                 console.error("Error:", error)
+                this.isSubmitting = false;
             });
         },
         addType2: function() {
@@ -404,13 +409,13 @@
                                     </div>
                                 </div>
                                 <div class="mt-2">
-                                    <button x-on:click.debounce.500ms="addType2" class="w-full inline-flex justify-center rounded-md border border-blue-300 shadow-sm px-4 py-2 bg-blue-700 text-base font-medium text-white hover:bg-blue-50 hover:text-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm">ADD TITLE 2</button>
+                                    <button x-on:click="addType2" class="w-full inline-flex justify-center rounded-md border border-blue-300 shadow-sm px-4 py-2 bg-blue-700 text-base font-medium text-white hover:bg-blue-50 hover:text-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm">ADD TITLE 2</button>
                                 </div>
 
                                 <div class="mt-2">
                                     <template x-for="(value, index) in equipmentForRent" :key="index">
                                         <div class="border border-gray-300 rounded-lg p-2 mt-2">
-                                            <button x-on:click.debounce.500ms="removeType2(index)" class="w-full inline-flex justify-center rounded-md border border-red-300 shadow-sm px-4 py-2 bg-red-700 text-base font-medium text-white hover:bg-red-50 hover:text-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm">REMOVE</button>
+                                            <button x-on:click="removeType2(index)" class="w-full inline-flex justify-center rounded-md border border-red-300 shadow-sm px-4 py-2 bg-red-700 text-base font-medium text-white hover:bg-red-50 hover:text-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm">REMOVE</button>
                                             <div class="my-2 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                                                 <div>
                                                     <div>Title 2 sub VietNam</div>
@@ -469,12 +474,12 @@
                                     </div>
                                 </div>
                                 <div class="mt-2">
-                                    <button x-on:click.debounce.500ms="addType3" class="w-full inline-flex justify-center rounded-md border border-blue-300 shadow-sm px-4 py-2 bg-blue-700 text-base font-medium text-white hover:bg-blue-50 hover:text-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm">ADD TITLE 3</button>
+                                    <button x-on:click="addType3" class="w-full inline-flex justify-center rounded-md border border-blue-300 shadow-sm px-4 py-2 bg-blue-700 text-base font-medium text-white hover:bg-blue-50 hover:text-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm">ADD TITLE 3</button>
                                 </div>
                                 <div class="mt-2">
                                     <template x-for="(value, index) in availableEquipment" :key="index">
                                         <div class="border border-gray-300 rounded-lg p-2 mt-2">
-                                            <button x-on:click.debounce.500ms="removeType3(index)" class="w-full inline-flex justify-center rounded-md border border-red-300 shadow-sm px-4 py-2 bg-red-700 text-base font-medium text-white hover:bg-red-50 hover:text-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm">REMOVE</button>
+                                            <button x-on:click="removeType3(index)" class="w-full inline-flex justify-center rounded-md border border-red-300 shadow-sm px-4 py-2 bg-red-700 text-base font-medium text-white hover:bg-red-50 hover:text-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm">REMOVE</button>
                                             <div class="my-2 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
                                                 <div>
                                                     <div>Icon</div>
@@ -504,7 +509,7 @@
                                                         }' x-model="value.icon">
 
                                                             <!-- Selected option -->
-                                                            <div x-on:click.debounce.500ms="open = !open" x-html="selectedOption" class="selected"></div>
+                                                            <div x-on:click="open = !open" x-html="selectedOption" class="selected"></div>
 
                                                             <!-- Dropdown options -->
                                                             <div x-show="open" class="options" x-on:click.away="open = false">
@@ -553,7 +558,7 @@
                     </div>
                 </div>
                 <div class="bg-gray-50 px-4 py-3 flex justify-center">
-                    <button type="button" x-on:click.debounce.5000ms="submitForm" class="mt-3 w-full inline-flex justify-center rounded-md border border-blue-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-blue-700 hover:bg-blue-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm">Save</button>
+                    <button type="button" :disabled="isSubmitting" x-on:click="submitForm" class="mt-3 w-full inline-flex justify-center rounded-md border border-blue-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-blue-700 hover:bg-blue-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm">Save</button>
                 </div>
             </div>
         </div>
