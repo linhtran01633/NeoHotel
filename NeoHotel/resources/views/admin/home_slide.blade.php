@@ -46,6 +46,10 @@
                 this.message_save = data.message
                 if(data.success == true) {
                     this.reloadTable();
+                    window.scrollTo({
+                        top: 0,
+                        behavior: "smooth" // Cuộn mượt mà
+                    });
                 } else {
                     this.data_error = Object.fromEntries(
                         Object.entries(data.errors).map(([key, value]) => [key, value[0]])
@@ -92,6 +96,10 @@
                 this.isSave = true;
                 this.array_img = data.images.split(",");
                 this.array_img_mobile = data.images_mobile.split(",");
+                window.scrollTo({
+                    top: 0,
+                    behavior: "smooth" // Cuộn mượt mà
+                });
 
             }).catch((error) => {
                 console.error("Error:", error)

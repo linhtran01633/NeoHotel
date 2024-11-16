@@ -74,6 +74,7 @@ Route::prefix('dashboard')->group(function () {
     Route::get('category-room', [AdminController::class, 'categoryRoom'])->name('admin.category_room');
     Route::post('infomation-category', [AdminController::class, 'infomationCategory'])->name('admin.infomation_category');
     Route::post('save_category_room', [AdminController::class, 'saveCategoryRoom'])->name('admin.category_room.save');
+    Route::post('delete_category_room', [AdminController::class, 'deleteCategoryRoom'])->name('admin.category_room.delete');
 
     Route::get('room', [AdminController::class, 'room'])->name('admin.room');
     Route::post('save_room', [AdminController::class, 'saveRoom'])->name('admin.room.save');

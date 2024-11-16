@@ -41,7 +41,7 @@
                                     <div class="w-12 h-0.5 bg-yellow-900 mt-2"></div>
                                 </div>
                                 <div class="flex flex-col pr-0 sm-pr-24px">
-                                    <h3 class="w-full text-2xl mb-12px font-medium leading-normal">@if(isset($data)) {!! $data['title_sub_'. $language] !!}@endif</h3>
+                                    <h3 class="whitespace-pre-line w-full text-2xl mb-12px font-medium leading-normal">@if(isset($data)) {!! $data['title_sub_'. $language] !!}@endif</h3>
                                     <div class="flex-1 w-full   text-base font-light leading-tight">
                                         <p class="whitespace-pre-line text-left">@if(isset($data)) {!! $data['comment_'. $language] !!}@endif</p>
                                     </div>
@@ -86,7 +86,7 @@
                                         </svg>
                                     </div>
                                     <div class="w-full mb-12px">
-                                        <h5 class="font-medium">{!! $item['title_service_'. $language] !!}</h5>
+                                        <h5 class="font-medium whitespace-pre-line">{!! $item['title_service_'. $language] !!}</h5>
                                     </div>
                                     <p class="flex-1 w-full text-base font-light leading-tight whitespace-pre-line text-justify">{!! $item['comment_service_'. $language] !!}</p>
                                 </div>
@@ -102,6 +102,8 @@
     <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function () {
+            var array_images = @json($array_images);
+
             var thumbSlider = new Swiper('.thumb-slider', {
                 spaceBetween: 10,
                 slidesPerView: 'auto',
@@ -121,13 +123,7 @@
                     el: '.swiper-pagination',
                     clickable: true,
                     renderBullet: function (index, className) {
-                        var images = [
-                            '/serviceslide/serviceslideopt1.webp',
-                            '/serviceslide/serviceslideopt2.webp',
-                            '/serviceslide/serviceslideopt3.webp',
-                            '/serviceslide/serviceslideopt4.webp',
-                        ];
-                        return '<span class="' + className + '" style="background-image:url(' + images[index] + ')"></span>';
+                        return '<span class="' + className + '" style="background-image:url(/storage/' + array_images[index] + ')"></span>';
                     },
                 },
                 autoplay: false,

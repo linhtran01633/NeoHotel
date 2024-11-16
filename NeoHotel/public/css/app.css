@@ -691,3 +691,27 @@ main {
         padding-bottom: 40px;
     }
 }
+
+
+.swiper-pagination-bullet {
+    width: 100px !important;
+    height: 100px !important;
+    background-size: cover !important;
+    background-position: center !important;
+    border: 2px solid transparent !important;
+    border-radius: 0px !important;
+    margin: 0 5px;
+    opacity: 0.8 !important;
+}
+
+.swiper-pagination-bullet-active {
+    opacity: 1 !important; /* Tăng độ rõ nét khi được chọn */
+}
+  
+.swiper-pagination-bullet-active {
+    border-color: #007aff; /* Màu sắc viền khi được chọn */
+}
+
+.swiper-pagination {
+    bottom: -120px !important;
+}

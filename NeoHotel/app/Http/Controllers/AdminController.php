@@ -313,7 +313,7 @@ class AdminController extends Controller
     public function categoryRoom(Request $request) {
 
         if($request->ajax()) {
-            $table_data = CategoryRoom::select('*')->get();
+            $table_data = CategoryRoom::select('*')->where('delete_flag', 0)->get();
 
             return response()->json(@$table_data);
         }
@@ -365,6 +365,20 @@ class AdminController extends Controller
         }
 
         return response()->json(['success' => true, 'message' => __('save_success')]);
+    }
+
+    public function deleteCategoryRoom(Request $request) {
+        try {
+            DB::transaction(function () use($request) {
+                CategoryRoom::where('id', $request->id)->update(['delete_flag'=> 1]);
+            });
+        } catch (Exception $e) {
+            Log::info($e->getMessage());
+            return response()->json(['success' => false, 'message' => __('save_false')]);
+        }
+
+        return response()->json(['success' => true, 'message' => __('save_false')]);
+
     }
 
     public function infomationCategory(Request $request) {

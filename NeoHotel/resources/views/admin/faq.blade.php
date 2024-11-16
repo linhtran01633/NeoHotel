@@ -25,6 +25,10 @@
                 this.message_save = data.message
                 if(data.success == true) {
                     this.reloadTable();
+                    window.scrollTo({
+                        top: 0,
+                        behavior: "smooth" // Cuộn mượt mà
+                    });
                 } else {
                     this.data_error = Object.fromEntries(
                         Object.entries(data.errors).map(([key, value]) => [key, value[0]])
@@ -68,6 +72,10 @@
                 console.log(data)
                 this.data = data;
                 this.isSave = true;
+                window.scrollTo({
+                    top: 0,
+                    behavior: "smooth" // Cuộn mượt mà
+                });
             }).catch((error) => {
                 console.error("Error:", error)
             });

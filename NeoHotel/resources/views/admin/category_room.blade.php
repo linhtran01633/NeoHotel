@@ -40,6 +40,10 @@
             .then(data => {
                 this.message_save = data.message
                 if(data.success == true) {
+                    window.scrollTo({
+                        top: 0,
+                        behavior: "smooth" // Cuộn mượt mà
+                    });
                     this.reloadTable();
                 } else {
                     this.data_error = Object.fromEntries(
@@ -81,6 +85,31 @@
                 this.data = data;
                 this.isSave = true;
                 this.array_img = data.images.split(",");
+                window.scrollTo({
+                    top: 0,
+                    behavior: "smooth" // Cuộn mượt mà
+                });
+            }).catch((error) => {
+                console.error("Error:", error)
+            });
+        },
+
+        deleteRow: function(id) {
+            console.log(id);
+            let url_post = "{{ route("admin.category_room.delete") }}";
+            fetch(url_post, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Accept": "application/json, text-plain, */*",
+                    "X-Requested-With": "XMLHttpRequest",
+                    "X-CSRF-TOKEN": document.head.querySelector("meta[name=csrf-token]").content
+                },
+                body: JSON.stringify({id : id}),
+            })
+            .then((response) => response.json())
+            .then(data => {
+                this.reloadTable();
             }).catch((error) => {
                 console.error("Error:", error)
             });
@@ -128,21 +157,21 @@
                                             <div>
                                                 <div>name VietNam</div>
                                                 <div>
-                                                    <input type="text" x-model="data.name_vn" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
+                                                    <textarea type="text" x-model="data.name_vn" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"></textarea>
                                                 </div>
                                                 <div class="text-red-500" x-text="data_error.name_vn"></div>
                                             </div>
                                             <div>
                                                 <div>name English</div>
                                                 <div>
-                                                    <input type="text" x-model="data.name_en" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
+                                                    <textarea type="text" x-model="data.name_en" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"></textarea>
                                                 </div>
                                                 <div class="text-red-500" x-text="data_error.name_en"></div>
                                             </div>
                                             <div>
                                                 <div>name Japan</div>
                                                 <div>
-                                                    <input type="text" x-model="data.name_jp" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
+                                                    <textarea type="text" x-model="data.name_jp" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"></textarea>
                                                 </div>
                                                 <div class="text-red-500" x-text="data_error.name_jp"></div>
                                             </div>
@@ -151,21 +180,21 @@
                                             <div>
                                                 <div>price VietNam</div>
                                                 <div>
-                                                    <input type="text" x-model="data.price_vn" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
+                                                    <textarea type="text" x-model="data.price_vn" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"></textarea>
                                                 </div>
                                                 <div class="text-red-500" x-text="data_error.price_vn"></div>
                                             </div>
                                             <div>
                                                 <div>price English</div>
                                                 <div>
-                                                    <input type="text" x-model="data.price_en" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
+                                                    <textarea type="text" x-model="data.price_en" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"></textarea>
                                                 </div>
                                                 <div class="text-red-500" x-text="data_error.price_en"></div>
                                             </div>
                                             <div>
                                                 <div>price Japan</div>
                                                 <div>
-                                                    <input type="text" x-model="data.price_jp" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
+                                                    <textarea type="text" x-model="data.price_jp" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"></textarea>
                                                 </div>
                                                 <div class="text-red-500" x-text="data_error.price_jp"></div>
                                             </div>
@@ -174,21 +203,21 @@
                                             <div>
                                                 <div>detail VietNam</div>
                                                 <div>
-                                                    <input type="text" x-model="data.detail_vn" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
+                                                    <textarea type="text" x-model="data.detail_vn" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"></textarea>
                                                 </div>
                                                 <div class="text-red-500" x-text="data_error.detail_vn"></div>
                                             </div>
                                             <div>
                                                 <div>detail English</div>
                                                 <div>
-                                                    <input type="text" x-model="data.detail_en" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
+                                                    <textarea type="text" x-model="data.detail_en" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"></textarea>
                                                 </div>
                                                 <div class="text-red-500" x-text="data_error.detail_en"></div>
                                             </div>
                                             <div>
                                                 <div>detail Japan</div>
                                                 <div>
-                                                    <input type="text" x-model="data.detail_jp" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
+                                                    <textarea type="text" x-model="data.detail_jp" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"></textarea>
                                                 </div>
                                                 <div class="text-red-500" x-text="data_error.detail_jp"></div>
                                             </div>
@@ -197,21 +226,21 @@
                                             <div>
                                                 <div>acreage VietNam</div>
                                                 <div>
-                                                    <input type="text" x-model="data.acreage_vn" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
+                                                    <textarea type="text" x-model="data.acreage_vn" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"></textarea>
                                                 </div>
                                                 <div class="text-red-500" x-text="data_error.acreage_vn"></div>
                                             </div>
                                             <div>
                                                 <div>acreage English</div>
                                                 <div>
-                                                    <input type="text" x-model="data.acreage_en" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
+                                                    <textarea type="text" x-model="data.acreage_en" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"></textarea>
                                                 </div>
                                                 <div class="text-red-500" x-text="data_error.acreage_en"></div>
                                             </div>
                                             <div>
                                                 <div>acreage Japan</div>
                                                 <div>
-                                                    <input type="text" x-model="data.acreage_jp" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
+                                                    <textarea type="text" x-model="data.acreage_jp" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"></textarea>
                                                 </div>
                                                 <div class="text-red-500" x-text="data_error.acreage_jp"></div>
                                             </div>
@@ -220,21 +249,21 @@
                                             <div>
                                                 <div>bed VietNam</div>
                                                 <div>
-                                                    <input type="text" x-model="data.bed_vn" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
+                                                    <textarea type="text" x-model="data.bed_vn" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"></textarea>
                                                 </div>
                                                 <div class="text-red-500" x-text="data_error.bed_vn"></div>
                                             </div>
                                             <div>
                                                 <div>bed English</div>
                                                 <div>
-                                                    <input type="text" x-model="data.bed_en" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
+                                                    <textarea type="text" x-model="data.bed_en" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"></textarea>
                                                 </div>
                                                 <div class="text-red-500" x-text="data_error.bed_en"></div>
                                             </div>
                                             <div>
                                                 <div>bed Japan</div>
                                                 <div>
-                                                    <input type="text" x-model="data.bed_jp" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
+                                                    <textarea type="text" x-model="data.bed_jp" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"></textarea>
                                                 </div>
                                                 <div class="text-red-500" x-text="data_error.bed_jp"></div>
                                             </div>
@@ -243,21 +272,21 @@
                                             <div>
                                                 <div>area VietNam</div>
                                                 <div>
-                                                    <input type="text" x-model="data.area_vn" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
+                                                    <textarea type="text" x-model="data.area_vn" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"></textarea>
                                                 </div>
                                                 <div class="text-red-500" x-text="data_error.area_vn"></div>
                                             </div>
                                             <div>
                                                 <div>area English</div>
                                                 <div>
-                                                    <input type="text" x-model="data.area_en" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
+                                                    <textarea type="text" x-model="data.area_en" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"></textarea>
                                                 </div>
                                                 <div class="text-red-500" x-text="data_error.area_en"></div>
                                             </div>
                                             <div>
                                                 <div>area Japan</div>
                                                 <div>
-                                                    <input type="text" x-model="data.area_jp" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
+                                                    <textarea type="text" x-model="data.area_jp" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"></textarea>
                                                 </div>
                                                 <div class="text-red-500" x-text="data_error.area_jp"></div>
                                             </div>
@@ -406,8 +435,12 @@
                         className: "dt-center editor-delete flex justify-start",
                         render : function ( data, type, row ) {
                             let html =  `
-                                <button type="button" x-on:click="editRow('${row.id}')" class="inline-flex items-center px-5 py-2.5 mx-1 text-sm font-medium text-center text-white rounded-lg bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300">
+                                <button type="button" x-on:click="editRow('${row.id}')" class="inline-flex items-center px-5 py-2.5 mx-1 text-sm font-medium text-center text-white rounded-lg bg-yellow-700 hover:bg-yellow-800 focus:ring-4 focus:ring-yellow-300">
                                     EDIT
+                                </button>
+
+                                 <button type="button" x-on:click="deleteRow('${row.id}')" class="inline-flex items-center px-5 py-2.5 mx-1 text-sm font-medium text-center text-white rounded-lg bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300">
+                                    DELETE
                                 </button>
                                 `;
 
