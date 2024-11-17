@@ -707,11 +707,15 @@ main {
 .swiper-pagination-bullet-active {
     opacity: 1 !important; /* Tăng độ rõ nét khi được chọn */
 }
-  
+
 .swiper-pagination-bullet-active {
     border-color: #007aff; /* Màu sắc viền khi được chọn */
 }
 
 .swiper-pagination {
     bottom: -120px !important;
+}
+
+.explore-wrapper ul li {
+    color: white;
 }
