@@ -12,7 +12,7 @@
                         </svg>
                     </div>
                     <div class="ml-4">
-                        <h3 class="text-lg font-semibold">Total Bookings</h3>
+                        <h3 class="text-lg font-bold">Total Bookings</h3>
                         <p class="text-2xl">150</p>
                     </div>
                 </div>
@@ -25,7 +25,7 @@
                         </svg>
                     </div>
                     <div class="ml-4">
-                        <h3 class="text-lg font-semibold">Room Occupancy</h3>
+                        <h3 class="text-lg font-bold">Room Occupancy</h3>
                         <p class="text-2xl">75%</p>
                     </div>
                 </div>
@@ -38,7 +38,7 @@
                         </svg>
                     </div>
                     <div class="ml-4">
-                        <h3 class="text-lg font-semibold">Revenue</h3>
+                        <h3 class="text-lg font-bold">Revenue</h3>
                         <p class="text-2xl">$25,000</p>
                     </div>
                 </div>
@@ -51,7 +51,7 @@
                         </svg>
                     </div>
                     <div class="ml-4">
-                        <h3 class="text-lg font-semibold">Pending Check-ins</h3>
+                        <h3 class="text-lg font-bold">Pending Check-ins</h3>
                         <p class="text-2xl">10</p>
                     </div>
                 </div>

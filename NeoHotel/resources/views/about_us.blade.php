@@ -41,7 +41,7 @@
                                         <div class="mb-10px">@if(isset($aboutUs)) {!! $aboutUs['title1_sub1_'. $language] !!}@endif</div>
                                         <div class="w-12 h-0.5 bg-yellow-900 mt-2"></div>
                                     </div>
-                                    <p class="whitespace-pre-line mb-5 font-medium text-1A1A1A">@if(isset($aboutUs)) {!! $aboutUs['title1_sub2_'. $language] !!}@endif</p>
+                                    <p class="whitespace-pre-line mb-5 font-semibold text-1A1A1A">@if(isset($aboutUs)) {!! $aboutUs['title1_sub2_'. $language] !!}@endif</p>
                                     <div class="flex flex-col gap-6">
                                         <div class="flex pr-0 gap-x-4 sm-pr-24px items-center">
                                             <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">

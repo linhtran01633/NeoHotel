@@ -29,7 +29,7 @@
                  <li><a class="flex text-white self-baseline h-full  hover:text-customColor items-center mx-4 mb-1 " href="/en/contact">Contact</a></li>
               </ul>
               <div class="relative inline-block text-left" data-headlessui-state="">
-                 <button class="items-center inline-flex w-[80px] justify-center rounded-md bg-black/20 px-4 py-2 text-sm font-medium text-white hover:bg-black/30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/75" id="headlessui-menu-button-:R34dta:" type="button" aria-haspopup="menu" aria-expanded="false" data-headlessui-state="">
+                 <button class="items-center inline-flex w-[80px] justify-center rounded-md bg-black/20 px-4 py-2 text-sm font-semibold text-white hover:bg-black/30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/75" id="headlessui-menu-button-:R34dta:" type="button" aria-haspopup="menu" aria-expanded="false" data-headlessui-state="">
                     <div class="w-5">
                        <svg xmlns="http://www.w3.org/2000/svg" id="flag-icons-gb" viewBox="0 0 640 480">
                           <path fill="#012169" d="M0 0h640v480H0z"></path>
@@ -79,7 +79,7 @@
                              <li class="list-none"><a class="block text-xsContent rounded-lg text-base font-normal leading-tight hover:text-customColor " href="/en/faq">FAQ</a></li>
                              <li class="list-none"><a class="block text-xsContent rounded-lg text-base font-normal leading-tight hover:text-customColor " href="/en/contact">Contact</a></li>
                              <div class="relative inline-block text-left" data-headlessui-state="">
-                                <button class="flex justify-start text-sm font-medium items-center" id="headlessui-menu-button-:rk:" type="button" aria-haspopup="menu" aria-expanded="false" data-headlessui-state="">
+                                <button class="flex justify-start text-sm font-semibold items-center" id="headlessui-menu-button-:rk:" type="button" aria-haspopup="menu" aria-expanded="false" data-headlessui-state="">
                                    <div class="w-5">
                                       <svg xmlns="http://www.w3.org/2000/svg" id="flag-icons-gb" viewBox="0 0 640 480">
                                          <path fill="#012169" d="M0 0h640v480H0z"></path>

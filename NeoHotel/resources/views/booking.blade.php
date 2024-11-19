@@ -66,14 +66,14 @@
                     @endif
                     <div class="flex flex-col w-full">
                         <div class="w-full flex gap-6">
-                            <div class="font-medium flex flex-col sm:flex-row gap-y-2 max-w-250px  sm:max-w-full text-center">
+                            <div class="font-semibold flex flex-col sm:flex-row gap-y-2 max-w-250px  sm:max-w-full text-center">
                                 <div class="relative w-12 h-12 flex flex-shrink-0 items-center self-center justify-center rounded-full  w-6 h-6 bg-green-600 text-white"><span class="absolute m-auto text-white">1</span></div>
                                 <p class="self-center ml-2">{{__('form.booking.stageone')}}</p>
                             </div>
                             <div class="flex-1">
                                 <hr class="bg-4A4A4A data-[orientation=horizontal]:h-px data-[orientation=horizontal]:w-full data-[orientation=vertical]:h-full data-[orientation=vertical]:w-px my-15px">
                             </div>
-                            <div class="font-medium flex flex-col sm:flex-row gap-y-2 max-w-250px  sm:max-w-full text-center">
+                            <div class="font-semibold flex flex-col sm:flex-row gap-y-2 max-w-250px  sm:max-w-full text-center">
                                 <div class="relative w-12 h-12 flex flex-shrink-0 items-center self-center justify-center rounded-full  w-6 h-6 text-gray-600 border border-gray-500 @if($step == 1) bg-white @else bg-green-600 @endif"><span class="absolute m-auto @if($step == 1) text-gray-600 @else text-white @endif ">2</span></div>
                                 <p class="self-center ml-2">{{__('form.booking.stagetwo')}}</p>
                             </div>
@@ -85,11 +85,11 @@
                                         <form x-ref="bookingForm">
                                             @csrf
                                             <div class="bg-white flex flex-col w-full sm:w-formClamp mb-8 md:mb-0 border py-6 px-smClamp border-neutral-200">
-                                                <div class="text-2xl font-medium mb-6">{{__('form.booking.stageone')}}</div>
+                                                <div class="text-2xl font-semibold mb-6">{{__('form.booking.stageone')}}</div>
                                                 <div class="flex flex-col gap-6">
                                                     <div class="flex flex-col gap-y-3">
                                                         <label>
-                                                            <span class="label inline font-medium  text-16px line-clamp-5">{{__('form.booking.hotelname')}}</span>
+                                                            <span class="label inline font-semibold  text-16px line-clamp-5">{{__('form.booking.hotelname')}}</span>
                                                             <span class="text-red-600 ml-1">*</span>
                                                         </label>
                                                         <div class="ant-select sc-bdfCDU iknHgW css-125enb3 ant-select-single ant-select-show-arrow" name="hotelName">
@@ -102,7 +102,7 @@
                                                     </div>
                                                     <div class="flex flex-col gap-y-3">
                                                         <label>
-                                                            <span class="label inline font-medium  text-16px line-clamp-5">{{__('form.booking.roomtype')}}</span>
+                                                            <span class="label inline font-semibold  text-16px line-clamp-5">{{__('form.booking.roomtype')}}</span>
                                                             <span class="text-red-600 ml-1">*</span>
                                                         </label>
                                                         <div class="ant-select sc-bdfCDU iknHgW css-125enb3 ant-select-single ant-select-show-arrow">
@@ -117,7 +117,7 @@
                                                     </div>
                                                     <div class="flex flex-col gap-y-3">
                                                         <label>
-                                                            <span class="label inline font-medium  text-16px line-clamp-5">{{__('form.booking.checkin')}}</span>
+                                                            <span class="label inline font-semibold  text-16px line-clamp-5">{{__('form.booking.checkin')}}</span>
                                                             <span class="text-red-600 ml-1">*</span>
                                                         </label>
                                                         <div class="ant-picker css-125enb3 sc-eCstZk NZCqe w-full">
@@ -128,7 +128,7 @@
                                                     </div>
                                                     <div class="flex flex-col gap-y-3">
                                                         <label>
-                                                            <span class="label inline font-medium  text-16px line-clamp-5">{{__('form.booking.checkout')}}</span>
+                                                            <span class="label inline font-semibold  text-16px line-clamp-5">{{__('form.booking.checkout')}}</span>
                                                             <span class="text-red-600 ml-1">*</span>
                                                         </label>
                                                         <div class="ant-picker css-125enb3 sc-eCstZk NZCqe w-full">
@@ -138,15 +138,15 @@
                                                         </div>
                                                     </div>
                                                     <div class="guest-wrapper flex flex-col">
-                                                        <div class="font-medium">
-                                                            <label class="font-medium">{{__('form.booking.numberofguest')}}</label>
+                                                        <div class="font-semibold">
+                                                            <label class="font-semibold">{{__('form.booking.numberofguest')}}</label>
                                                             <span class="text-red-600 ml-1">*</span>
                                                             <p class="text-12px ">{{__('form.booking.desc_guest_field')}}</p>
                                                         </div>
                                                         <div class="flex gap-3">
                                                             <div class="flex flex-col gap-y-3 ">
                                                                 <label>
-                                                                    <span class="label inline font-medium  text-16px line-clamp-5"></span>
+                                                                    <span class="label inline font-semibold  text-16px line-clamp-5"></span>
                                                                 </label>
                                                                 <div class="ant-input-number-group-wrapper sc-dlfmHC jlwJDi css-125enb3">
                                                                     <div class="grid grid-cols-2 gap-0">
@@ -158,7 +158,7 @@
                                                                 </div>
                                                             </div>
                                                             <div class="flex flex-col gap-y-3 ">
-                                                                <label><span class="label inline font-medium  text-16px line-clamp-5"></span></label>
+                                                                <label><span class="label inline font-semibold  text-16px line-clamp-5"></span></label>
                                                                 <div class="ant-input-number-group-wrapper sc-dlfmHC jlwJDi css-125enb3">
                                                                     <div class="grid grid-cols-2 gap-0">
                                                                         <div class="w-full">
@@ -172,7 +172,7 @@
                                                     </div>
                                                     <div class="flex flex-col gap-y-3 ">
                                                         <label>
-                                                            <span class="label inline font-medium  text-16px line-clamp-5">{{__('bookingbanner.numberofrooms')}}</span>
+                                                            <span class="label inline font-semibold  text-16px line-clamp-5">{{__('bookingbanner.numberofrooms')}}</span>
                                                             <span class="text-red-600 ml-1">*</span>
                                                         </label>
                                                         <div class="full">
@@ -185,7 +185,7 @@
                                                     </label>
                                                 </div>
                                                 <div class="w-154px mt-8 self-end">
-                                                    <button type="button" x-on:click="submit_step1()" class="font-medium leading-tight flex justify-center w-full h-11 px-4 py-3 text-white bg-633511 hover-bg-7E502C">{{__('button.next')}}</button>
+                                                    <button type="button" x-on:click="submit_step1()" class="font-semibold leading-tight flex justify-center w-full h-11 px-4 py-3 text-white bg-633511 hover-bg-7E502C">{{__('button.next')}}</button>
                                                 </div>
                                             </div>
                                         </form>
@@ -200,45 +200,45 @@
                                             <input type="hidden" name="room_type"  value="{{request()->room_type}}">
                                             <input type="hidden" name="start_date" x-model="booking.start_date">
                                             <div class="bg-white flex flex-col w-full sm:w-formClamp mb-8 md:mb-0 border py-6 px-smClamp border-neutral-200">
-                                            <div class="text-2xl font-medium mb-6">{{__('form.booking.stagetwo')}}</div>
+                                            <div class="text-2xl font-semibold mb-6">{{__('form.booking.stagetwo')}}</div>
                                             <div class="flex flex-col gap-6">
                                                 <div class="flex flex-col gap-y-3 ">
                                                     <label>
-                                                        <span class="label inline font-medium  text-16px line-clamp-5">{{__('form.common.firstname')}}</span>
+                                                        <span class="label inline font-semibold  text-16px line-clamp-5">{{__('form.common.firstname')}}</span>
                                                         <span class="text-red-600 ml-1">*</span>
                                                     </label>
                                                     <input placeholder="Type here" required class="ant-input css-125enb3 sc-gsTDqH jWFWON css-125enb3" type="text" value="" name="c_first_name">
                                                 </div>
                                                 <div class="flex flex-col gap-y-3 ">
                                                     <label>
-                                                        <span class="label inline font-medium  text-16px line-clamp-5">{{__('form.common.lastname')}}</span>
+                                                        <span class="label inline font-semibold  text-16px line-clamp-5">{{__('form.common.lastname')}}</span>
                                                         <span class="text-red-600 ml-1">*</span>
                                                     </label>
                                                     <input placeholder="Type here" required class="ant-input css-125enb3 sc-gsTDqH jWFWON css-125enb3" type="text" value="" name="c_last_name">
                                                 </div>
                                                 <div class="flex flex-col gap-y-3 ">
                                                     <label>
-                                                        <span class="label inline font-medium  text-16px line-clamp-5">{{__('form.common.email')}}</span>
+                                                        <span class="label inline font-semibold  text-16px line-clamp-5">{{__('form.common.email')}}</span>
                                                         <span class="text-red-600 ml-1">*</span>
                                                     </label>
                                                     <input placeholder="Type here" required class="ant-input css-125enb3 sc-gsTDqH jWFWON css-125enb3" type="text" value="" name="c_email">
                                                 </div>
                                                 <div class="flex flex-col gap-y-3 ">
                                                     <label>
-                                                        <span class="label inline font-medium  text-16px line-clamp-5">{{__('form.common.phone')}}</span>
+                                                        <span class="label inline font-semibold  text-16px line-clamp-5">{{__('form.common.phone')}}</span>
                                                         <span class="text-red-600 ml-1">*</span>
                                                     </label>
                                                     <input placeholder="Type here" required class="ant-input css-125enb3 sc-gsTDqH jWFWON css-125enb3" type="tel" value="" name="c_phone">
                                                 </div>
                                                 <div class="flex flex-col gap-y-3 ">
                                                     <label>
-                                                        <span class="label inline font-medium  text-16px line-clamp-5">{{__('form.booking.request')}}</span>
+                                                        <span class="label inline font-semibold  text-16px line-clamp-5">{{__('form.booking.request')}}</span>
                                                     </label>
                                                     <textarea name="c_request" placeholder="Type here" class="ant-input css-125enb3" style="resize: none; height: 100px;"></textarea>
                                                 </div>
                                             </div>
                                             <div class="w-154px mt-8 self-end">
-                                                    <button class="disabled:bg-black/30 self-end di font-medium	leading-tight flex justify-center w-full h-11 px-4 py-3 text-white bg-633511 hover-bg-7E502C" type="submit">{{__('button.send')}}</button>
+                                                    <button class="disabled:bg-black/30 self-end di font-semibold	leading-tight flex justify-center w-full h-11 px-4 py-3 text-white bg-633511 hover-bg-7E502C" type="submit">{{__('button.send')}}</button>
                                                 </div>
                                             </div>
                                         </form>
@@ -247,11 +247,11 @@
                                 <div class="w-full sm:w-1/2  flex-1 lg-pl-20px">
                                     <div>
                                         <div class="mx-auto w-full sm:w-formClamp max-w-md bg-white border py-6 px-5 mb-3">
-                                            <button class="rounded-none flex w-full justify-between bg-white-100 text-left text-sm font-medium text-dark-900 hover:bg-white-200 focus:outline-none focus-visible:ring focus-visible:ring-white-500/75" id="headlessui-disclosure-button-:rd:" type="button" aria-expanded="false" data-headlessui-state="">
+                                            <button class="rounded-none flex w-full justify-between bg-white-100 text-left text-sm font-semibold text-dark-900 hover:bg-white-200 focus:outline-none focus-visible:ring focus-visible:ring-white-500/75" id="headlessui-disclosure-button-:rd:" type="button" aria-expanded="false" data-headlessui-state="">
                                                 <div class="flex flex-col gap-6">
                                                     <div>
                                                         <p class="text-sm  lantern-hotel-title">{{__('home.slider.title')}}</p>
-                                                        <p class="text-xl mb-3  font-medium">@if(isset($room_type)) {!! $room_type['name_' . $language] !!} @endif</p>
+                                                        <p class="text-xl mb-3  font-semibold">@if(isset($room_type)) {!! $room_type['name_' . $language] !!} @endif</p>
                                                         <p class="text-base ">@if(isset($room_type)) {!! $room_type['detail_' . $language] !!} @endif</p>
                                                     </div>
                                                     <button class="self-start text-633511"><a href="/rooms">{{__('form.booking.retake')}}</a></button>
@@ -260,24 +260,24 @@
                                         </div>
                                         @if ($step == 2)
                                             <div class="mx-auto w-full sm:w-formClamp max-w-md bg-white border py-6 px-5">
-                                                <div class="rounded-none flex flex-col w-full justify-between bg-white-100 text-left text-sm font-medium text-dark-900 hover:bg-white-200 focus:outline-none focus-visible:ring focus-visible:ring-white-500/75">
-                                                    <p class="text-lg font-medium  mb-6">{{__('screen.title.bookingdetail')}}</p>
+                                                <div class="rounded-none flex flex-col w-full justify-between bg-white-100 text-left text-sm font-semibold text-dark-900 hover:bg-white-200 focus:outline-none focus-visible:ring focus-visible:ring-white-500/75">
+                                                    <p class="text-lg font-semibold  mb-6">{{__('screen.title.bookingdetail')}}</p>
                                                     <div class="grid grid-cols-2 gap-y-4 gap-x-2">
                                                         <div>
                                                             <p class="text-16px leading-5 font-normal  mb-2">{{__('form.booking.checkin')}}</p>
-                                                            <p class="text-16px leading-5 font-medium " x-text="booking.start_date"></p>
+                                                            <p class="text-16px leading-5 font-semibold " x-text="booking.start_date"></p>
                                                         </div>
                                                         <div>
                                                             <p class="text-16px leading-5 font-normal  mb-2">{{__('form.booking.checkout')}}</p>
-                                                            <p class="text-16px leading-5 font-medium " x-text="booking.end_date"></p>
+                                                            <p class="text-16px leading-5 font-semibold " x-text="booking.end_date"></p>
                                                         </div>
                                                         <div>
                                                             <p class="text-16px leading-5 font-normal  mb-2">{{__('form.booking.staylength')}}</p>
-                                                            <p class="text-16px leading-5 font-medium " x-text="booking.staylength"></p>
+                                                            <p class="text-16px leading-5 font-semibold " x-text="booking.staylength"></p>
                                                         </div>
                                                         <div>
                                                             <p class="text-16px leading-5 font-normal  mb-2">{{__('form.booking.people')}}</p>
-                                                            <p class="text-16px leading-5 font-medium "><span  x-text="booking.number_of_room"></span> {{__('form.booking.rooms')}} <span  x-text="booking.adult"></span> {{__('form.booking.adults')}}</p>
+                                                            <p class="text-16px leading-5 font-semibold "><span  x-text="booking.number_of_room"></span> {{__('form.booking.rooms')}} <span  x-text="booking.adult"></span> {{__('form.booking.adults')}}</p>
                                                         </div>
                                                     </div>
                                                 </div>

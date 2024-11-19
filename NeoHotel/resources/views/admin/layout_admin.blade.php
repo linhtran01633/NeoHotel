@@ -113,11 +113,11 @@
 
     <aside class="fixed bg-sidebar h-screen w-64 hidden sm:block shadow-xl">
         <div class="p-6">
-            <a href="#" class="text-white text-3xl font-semibold uppercase hover:text-gray-300">
+            <a href="#" class="text-white text-3xl font-bold uppercase hover:text-gray-300">
                 ADMIN
             </a>
         </div>
-        <nav class="text-white text-base font-semibold pt-3">
+        <nav class="text-white text-base font-bold pt-3">
             <a href="{{route('admin.home_slide')}}" class="@if(isset($page_current) && $page_current == 'home_slide') active-nav-link @endif flex items-center text-white py-4 pl-4 nav-item">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 inline mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5h6M9 12h6m-7 7h8a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2z" />
@@ -198,7 +198,7 @@
             <!-- Mobile Header & Nav -->
             <header class="w-full bg-sidebar py-5 px-6 sm:hidden">
                 <div class="flex items-center justify-between">
-                    <a href="#" class="text-white text-3xl font-semibold uppercase hover:text-gray-300">
+                    <a href="#" class="text-white text-3xl font-bold uppercase hover:text-gray-300">
                        ADMIN
                     </a>
                     <button class="text-white text-3xl focus:outline-none show_button_menu">
