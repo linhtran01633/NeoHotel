@@ -6,7 +6,7 @@
         <main class="flex-1 flex flex-col ">
             <div class="isolate slide-container relative flex-1">
                 <div class="swiper swiper-container swiper-initialized swiper-horizontal swiper-backface-hidden" id="main">
-                    <div class="swiper-wrapper" style="transition-duration: 2000ms; transform: translate3d(-4632px, 0px, 0px);">
+                    <div class="swiper-wrapper">
                         @foreach ($homeSlide as $item)
                             @php
                                 $language = 'en';
@@ -18,8 +18,8 @@
                             @endphp
                             <div class="swiper-slide" style="width: 1158px;" data-title="{{$item['title_'. $language]}}" data-name="{{$item['name_'. $language]}}">
                                 <div class="relative min-h-calc-100vh-60px sm-min-h-calc-100vh-92px-84px">
-                                    <img alt="Slide one" src="{{ asset('/storage/'.$item['images']) }}" decoding="async" data-nimg="fill" class="hidden sm:block thumbnail absolute object-left sm:object-center w-full object-fill" sizes="100vw" style="position: absolute; height: 100%; width: 100%; inset: 0px; color: transparent;">
-                                    <img alt="Slide one" src="{{ asset('/storage/'.$item['images_mobile']) }}" decoding="async" data-nimg="fill" class="block sm:hidden thumbnail absolute object-left sm:object-center w-full object-fill" sizes="100vw" style="position: absolute; height: 100%; width: 100%; inset: 0px; color: transparent;">
+                                    <img alt="Slide one" src="{{ asset('/storage/'.$item['images']) }}" decoding="async" data-nimg="fill" class="hidden sm:block thumbnail absolute object-left sm:object-center w-full object-fill" sizes="100vw">
+                                    <img alt="Slide one" src="{{ asset('/storage/'.$item['images_mobile']) }}" decoding="async" data-nimg="fill" class="block sm:hidden thumbnail absolute object-left sm:object-center w-full object-fill" sizes="100vw">
                                 </div>
                             </div>
                         @endforeach
@@ -83,9 +83,7 @@
     <script>
         document.addEventListener('DOMContentLoaded', function () {
             const swiperContainer = document.querySelector('.swiper-container');
-            const slideCount = swiperContainer.querySelectorAll('.swiper-slide').length;
             var swiper = new Swiper(swiperContainer, {
-                // effect: 'fade',
                 loop: true, // Chỉ bật loop nếu có nhiều hơn 1 slide
                 spaceBetween: 0,
                 slidesPerView: 1,
