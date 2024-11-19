@@ -85,7 +85,11 @@
             const swiperContainer = document.querySelector('.swiper-container');
             const slideCount = swiperContainer.querySelectorAll('.swiper-slide').length;
             var swiper = new Swiper(swiperContainer, {
-                loop: slideCount > 1, // Chỉ bật loop nếu có nhiều hơn 1 slide
+                // effect: 'fade',
+                loop: true, // Chỉ bật loop nếu có nhiều hơn 1 slide
+                spaceBetween: 0,
+                slidesPerView: 1,
+                lazyPreloadPrevNext: 1,
                 navigation: {
                     nextEl: '.button-next-slide',
                     prevEl: '.button-prev-slide',
@@ -96,8 +100,9 @@
                 },
                 autoplay: {
                     delay: 3000,
-                    disableOnInteraction: true,
+                    disableOnInteraction: false,
                 },
+                speed: 2000,
 
             });
 
@@ -112,7 +117,7 @@
             };
 
             // Initial title update
-            updateTitle();
+            // updateTitle();
 
             // Update title on slide change
             swiper.on('slideChange', updateTitle);

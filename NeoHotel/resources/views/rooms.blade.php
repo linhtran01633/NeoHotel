@@ -71,7 +71,7 @@
                                         </div>
                                         <div class="room-info-wrapper flex-1 flex flex-col gap-5 px-smClamp py-6">
                                             <div class="flex flex-col">
-                                                <h3 class="whitespace-pre-line text-2xl mb-1"> {!! $item['name_'. $language] !!}</h3>
+                                                <h3 class="whitespace-pre-line text-3xl mb-1 font-cambria"> {!! $item['name_'. $language] !!}</h3>
                                                 <p class="whitespace-pre-line font-bold leading-5 text-633511 mb-3">{!! $item['price_'. $language] !!}</p>
                                                 <p class="whitespace-pre-line leading-5 text-xsTitle text-justify">{!! $item['detail_'. $language] !!}</p>
                                             </div>

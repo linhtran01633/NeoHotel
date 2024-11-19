@@ -700,7 +700,7 @@ main {
 
 .swiper-pagination-bullet {
     width: 100px !important;
-    height: 100px !important;
+    height: 80px !important;
     background-size: cover !important;
     background-position: center !important;
     border: 2px solid transparent !important;
@@ -718,7 +718,7 @@ main {
 }
 
 .swiper-pagination {
-    bottom: -120px !important;
+    position: unset !important;
 }
 
 .explore-wrapper ul li {
@@ -739,5 +739,9 @@ main {
 }
 
 .font-title {
+    font-family: 'Cambria', serif;
+}
+
+.font-cambria {
     font-family: 'Cambria', serif;
 }
