@@ -23,9 +23,15 @@
     <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 
     <style>
+        @font-face {
+            font-family: 'Cambria';
+            src: url('/fonts/Cambria.ttf') format('truetype');
+            font-weight: normal;
+            font-style: normal;
+        }
         body {
             /* font-family: "M PLUS 1p", serif; */
-            font-family: "Noto Serif", "M PLUS 1p", serif;
+            font-family: "M PLUS 1p", serif;
             font-style: normal;
         }
         .swiper-container {

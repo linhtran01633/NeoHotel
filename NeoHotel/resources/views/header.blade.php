@@ -8,25 +8,25 @@
         <div class="items-center justify-end flex-shrink-0 hidden lg:flex lg:flex-1">
             <ul class="items-stretch hidden lg:flex">
                 <li>
-                    <a class="flex text-white self-baseline h-full hover:text-customColor items-center mx-4 mb-1 @if($tab == 1)active border-customColor text-customColor border-b-2 @endif" href="/">{{ __('screen.title.home') }}</a>
+                    <a class="flex text-white self-baseline h-full text-customColor items-center mx-4 mb-1 @if($tab == 1)active border-customColor text-customColor border-b-2 @endif" href="/">{{ __('screen.title.home') }}</a>
                 </li>
                 <li>
-                    <a class="flex text-white self-baseline h-full  hover:text-customColor items-center mx-4 mb-1 @if($tab == 2)active border-customColor text-customColor border-b-2 @endif" href="/about-us">{{ __('screen.title.aboutus') }}</a>
+                    <a class="flex text-white self-baseline h-full text-customColor items-center mx-4 mb-1 @if($tab == 2)active border-customColor text-customColor border-b-2 @endif" href="/about-us">{{ __('screen.title.aboutus') }}</a>
                 </li>
                 <li>
-                    <a class="flex text-white self-baseline h-full  hover:text-customColor items-center mx-4 mb-1 @if($tab == 3)active border-customColor text-customColor border-b-2 @endif" href="/services">{{ __('screen.title.services') }}</a>
+                    <a class="flex text-white self-baseline h-full text-customColor items-center mx-4 mb-1 @if($tab == 3)active border-customColor text-customColor border-b-2 @endif" href="/services">{{ __('screen.title.services') }}</a>
                 </li>
                 <li>
-                    <a class="flex text-white self-baseline h-full  hover:text-customColor items-center mx-4 mb-1 @if($tab == 4)active border-customColor text-customColor border-b-2 @endif" href="/rooms">{{ __('screen.title.rooms') }}</a>
+                    <a class="flex text-white self-baseline h-full text-customColor items-center mx-4 mb-1 @if($tab == 4)active border-customColor text-customColor border-b-2 @endif" href="/rooms">{{ __('screen.title.rooms') }}</a>
                 </li>
                 <li>
-                    <a class="flex text-white self-baseline h-full  hover:text-customColor items-center mx-4 mb-1 @if($tab == 5)active border-customColor text-customColor border-b-2 @endif" href="/activities">{{ __('screen.title.activities') }}</a>
+                    <a class="flex text-white self-baseline h-full text-customColor items-center mx-4 mb-1 @if($tab == 5)active border-customColor text-customColor border-b-2 @endif" href="/activities">{{ __('screen.title.activities') }}</a>
                 </li>
                 <li>
-                    <a class="flex text-white self-baseline h-full  hover:text-customColor items-center mx-4 mb-1 @if($tab == 6)active border-customColor text-customColor border-b-2 @endif" href="/faq">{{ __('screen.title.faq') }}</a>
+                    <a class="flex text-white self-baseline h-full text-customColor items-center mx-4 mb-1 @if($tab == 6)active border-customColor text-customColor border-b-2 @endif" href="/faq">{{ __('screen.title.faq') }}</a>
                 </li>
                 <li>
-                    <a class="flex text-white self-baseline h-full  hover:text-customColor items-center mx-4 mb-1 @if($tab == 7)active border-customColor text-customColor border-b-2 @endif" href="/contact">{{ __('screen.title.contact') }}</a>
+                    <a class="flex text-white self-baseline h-full text-customColor items-center mx-4 mb-1 @if($tab == 7)active border-customColor text-customColor border-b-2 @endif" href="/contact">{{ __('screen.title.contact') }}</a>
                 </li>
             </ul>
             <div class="relative inline-block text-left">

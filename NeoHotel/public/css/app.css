@@ -71,6 +71,7 @@ body {
     line-height: 1.5;
     -webkit-font-smoothing: antialiased;
     background-color: black;
+    color: #4a4a4a;
 }
 
   /*
@@ -202,6 +203,7 @@ main {
 
 .lantern-hotel-title {
     text-transform: uppercase;
+    font-family: 'Cambria', serif;
 }
 
 .px-smClamp {
@@ -482,6 +484,9 @@ main {
     background-color: #F9F9F9;
 }
 
+.text-4a4a4a {
+    color: #4a4a4a;
+}
 .bg-4A4A4A {
     background-color: #4A4A4A;
 }
@@ -718,4 +723,21 @@ main {
 
 .explore-wrapper ul li {
     color: white;
+}
+
+.border-customColor {
+    border-color: #dbb98e;
+}
+
+.text-customColor:hover {
+    color: #dbb98e;
+}
+
+
+.text-78350f {
+    color: #78350f;
+}
+
+.font-title {
+    font-family: 'Cambria', serif;
 }
