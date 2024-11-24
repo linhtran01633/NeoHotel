@@ -18,8 +18,8 @@
                             @endphp
                             <div class="swiper-slide" style="width: 1158px;" data-title="{{$item['title_'. $language]}}" data-name="{{$item['name_'. $language]}}">
                                 <div class="relative min-h-calc-100vh-60px sm-min-h-calc-100vh-92px-84px">
-                                    <img alt="Slide one" src="{{ asset('/storage/'.$item['images']) }}" decoding="async" data-nimg="fill" class="hidden sm:block thumbnail absolute object-left sm:object-center w-full object-fill" sizes="100vw">
-                                    <img alt="Slide one" src="{{ asset('/storage/'.$item['images_mobile']) }}" decoding="async" data-nimg="fill" class="block sm:hidden thumbnail absolute object-left sm:object-center w-full object-fill" sizes="100vw">
+                                    <img alt="Slide one" src="{{ asset('/storage/'.$item['images']) }}" decoding="async" data-nimg="fill" class="hidden sm:block thumbnail absolute object-left sm:object-center w-full object-fill" sizes="100vw" style="position: absolute; height: 100%; width: 100%; left: 0;top: 0; right: 0; bottom: 0; color: transparent;">
+                                    <img alt="Slide one" src="{{ asset('/storage/'.$item['images_mobile']) }}" decoding="async" data-nimg="fill" class="block sm:hidden thumbnail absolute object-left sm:object-center w-full object-fill" sizes="100vw" style="position: absolute; height: 100%; width: 100%; left: 0;top: 0; right: 0; bottom: 0; color: transparent;">
                                 </div>
                             </div>
                         @endforeach
