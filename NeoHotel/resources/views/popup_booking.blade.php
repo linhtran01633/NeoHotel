@@ -47,7 +47,7 @@
                     </div>
                 </div>
 				<div class="flex-1-1-340px min-w-140px relative">
-					<button type="button" x-on:click.stop="isPopup = !isPopup" class="flex !justify-start border font-semibold	leading-tight flex justify-center w-full h-11 px-4 py-3 text-white bg-633511 hover-bg-7E502C">
+					<button type="button" x-on:click.stop="isPopup = !isPopup" class="flex !justify-start border font-medium	leading-tight flex justify-center w-full h-11 px-4 py-3 text-white bg-633511 hover-bg-7E502C">
 						<p class="text-E6E6E6 text-base font-normal leading-tight">{{__('bookingbanner.guests')}}</p>
 					</button>
 					<svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg" class="absolute right-2 top-6 transform -translate-y-1/2" style="fill: white;">
@@ -59,7 +59,7 @@
                             <div class="relative p-4 w-300px bg-white rounded shadow-md">
                                 <div class="flex flex-col gap-4">
                                     <div class="flex gap-2">
-                                       <div class="font-semibold text-xsContent">{{__('bookingbanner.rooms')}}</div>
+                                       <div class="font-medium text-xsContent">{{__('bookingbanner.rooms')}}</div>
                                     </div>
                                     <div class="flex justify-between">
                                         <p class="flex-1 self-center">{{__('bookingbanner.numberofrooms')}}</p>
@@ -81,7 +81,7 @@
                                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" width="20">
                                             <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z"></path>
                                         </svg>
-                                        <div class="font-semibold">{{__('bookingbanner.guests')}}</div>
+                                        <div class="font-medium">{{__('bookingbanner.guests')}}</div>
                                     </div>
                                     <div class="flex justify-between">
                                        <p class="flex-1 self-center">{{__('bookingbanner.adults')}}</p>
@@ -121,7 +121,7 @@
                     </div>
 				</div>
 				<div class="flex-1-1-165px min-w-155px relative ">
-					<button type="button" class="border flex !justify-start font-semibold	leading-tight flex justify-center w-full h-11 px-4 py-3 text-white bg-633511 hover-bg-7E502C">
+					<button type="button" class="border flex !justify-start font-medium	leading-tight flex justify-center w-full h-11 px-4 py-3 text-white bg-633511 hover-bg-7E502C">
 						<p class="text-E6E6E6 text-base font-normal leading-tight lantern-hotel-title">{{__('home.slider.title')}}</p>
 					</button>
 					<svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg" class="absolute right-2 top-6 transform -translate-y-1/2" style="fill: white;">
@@ -129,14 +129,14 @@
 					</svg>
 				</div>
 				<div class="flex-1-1-155px min-w-100px">
-                    <button type="button" x-on:click="btn_check_now()" class="rounded-none w-full h-11 bg-FFFF hover-bg-DBB98E text-yellow-900 text-base font-semibold">{{__('button.booknow')}}</button>
+                    <button type="button" x-on:click="btn_check_now()" class="rounded-none w-full h-11 bg-FFFF hover-bg-DBB98E text-yellow-900 text-base font-medium">{{__('button.booknow')}}</button>
                 </div>
 			</div>
 		</div>
 		<div class="sm:hidden w-full">
 			<div>
                 <button type="button" x-on:click="btn_check_now()" class="p-4 w-full">
-                    <span class="text-white font-semibold">{{__('button.booknow')}}</span>
+                    <span class="text-white font-medium">{{__('button.booknow')}}</span>
                 </button>
             </div>
 		</div>

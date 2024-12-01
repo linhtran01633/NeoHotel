@@ -46,14 +46,14 @@
                                     <div class="grid grid-cols-1 grid-rows-4 md:grid-cols-2 md:grid-rows-2 gap-x-5 gap-y-5 sm:gap-y-10">
                                         <div class="flex flex-col gap-y-3 ">
                                             <label>
-                                                <span class="label inline font-semibold  text-16px line-clamp-5">{{__('contact.name')}}</span>
+                                                <span class="label inline font-medium  text-16px line-clamp-5">{{__('contact.name')}}</span>
                                                 <span class="text-red-600 ml-1">*</span>
                                             </label>
                                             <input placeholder="Type here" class="ant-input css-125enb3 sc-gsTDqH jWFWON css-125enb3" type="text" value="" name="name">
                                         </div>
                                         <div class="flex flex-col gap-y-3">
                                             <label>
-                                                <span class="label inline font-semibold  text-16px line-clamp-5">{{__('contact.sex')}}</span>
+                                                <span class="label inline font-medium  text-16px line-clamp-5">{{__('contact.sex')}}</span>
                                             </label>
                                             <div class="ant-select sc-bdfCDU iknHgW css-125enb3 ant-select-single ant-select-show-arrow" name="sex">
                                                 <div class="ant-select-selector">
@@ -66,14 +66,14 @@
                                         </div>
                                         <div class="flex flex-col gap-y-3 ">
                                             <label>
-                                                <span class="label inline font-semibold  text-16px line-clamp-5">{{__('contact.email')}}</span>
+                                                <span class="label inline font-medium  text-16px line-clamp-5">{{__('contact.email')}}</span>
                                                 <span class="text-red-600 ml-1">*</span>
                                             </label>
                                             <input placeholder="Type here" class="ant-input css-125enb3 sc-gsTDqH jWFWON css-125enb3" type="text" value="" name="email">
                                         </div>
                                         <div class="flex flex-col gap-y-3 ">
                                             <label>
-                                                <span class="label inline font-semibold  text-16px line-clamp-5">{{__('contact.phone')}}</span>
+                                                <span class="label inline font-medium  text-16px line-clamp-5">{{__('contact.phone')}}</span>
                                                 <span class="text-red-600 ml-1">*</span>
                                             </label>
                                             <input placeholder="Type here" class="ant-input css-125enb3 sc-gsTDqH jWFWON css-125enb3" type="text" value="" name="phone">
@@ -82,14 +82,14 @@
                                     <div class="sm:col-span-2">
                                         <div class="flex flex-col gap-y-3 ">
                                             <label>
-                                                <span class="label inline font-semibold  text-16px line-clamp-5">{{__('contact.inquiry')}}</span>
+                                                <span class="label inline font-medium  text-16px line-clamp-5">{{__('contact.inquiry')}}</span>
                                                 <span class="text-red-600 ml-1">*</span>
                                             </label>
                                             <textarea name="inquiry" placeholder="Type here" class="ant-input css-125enb3" style="resize: none; height: 100px;"></textarea>
                                         </div>
                                     </div>
                                     <div class="w-154px self-end">
-                                        <button class="disabled:bg-black/30 self-end font-semibold	leading-tight flex justify-center w-full h-11 px-4 py-3 text-white bg-633511 hover-bg-7E502C" type="submit">{{__('contact.button_submit')}}</button>
+                                        <button class="disabled:bg-black/30 self-end font-medium	leading-tight flex justify-center w-full h-11 px-4 py-3 text-white bg-633511 hover-bg-7E502C" type="submit">{{__('contact.button_submit')}}</button>
                                     </div>
                                 </div>
                             </form>

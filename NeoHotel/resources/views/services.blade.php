@@ -44,7 +44,7 @@
                                     <div class="w-12 h-0.5 bg-yellow-900 mt-2"></div>
                                 </div>
                                 <div class="flex flex-col pr-0 sm-pr-24px">
-                                    <h3 class="whitespace-pre-line w-full text-2xl mb-12px font-semibold leading-normal">@if(isset($data)) {!! $data['title_sub_'. $language] !!}@endif</h3>
+                                    <h3 class="whitespace-pre-line w-full text-2xl mb-12px font-medium leading-normal">@if(isset($data)) {!! $data['title_sub_'. $language] !!}@endif</h3>
                                     <div class="flex-1 w-full   text-base font-light leading-tight">
                                         <p class="whitespace-pre-line text-left">@if(isset($data)) {!! $data['comment_'. $language] !!}@endif</p>
                                     </div>
@@ -63,12 +63,12 @@
                                     </div>
                                 </div>
                                 <div class="swiper-pagination flex"></div>
-                                <button type="button" id="button-next-slide_services" class="absolute top-50p disabled:bg-black/30 left-0 z-10 arrow-left arrow ml-2 bg-black px-2 py-2 text-sm font-semibold text-white hover:bg-black/30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/75">
+                                <button type="button" id="button-next-slide_services" class="absolute top-50p disabled:bg-black/30 left-0 z-10 arrow-left arrow ml-2 bg-black px-2 py-2 text-sm font-medium text-white hover:bg-black/30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/75">
                                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" width="20">
                                         <path fill-rule="evenodd" d="M18 10a.75.75 0 01-.75.75H4.66l2.1 1.95a.75.75 0 11-1.02 1.1l-3.5-3.25a.75.75 0 010-1.1l3.5-3.25a.75.75 0 111.02 1.1l-2.1 1.95h12.59A.75.75 0 0118 10z" clip-rule="evenodd"></path>
                                     </svg>
                                 </button>
-                                <button type="button" id="button-prev-slide_services" class="absolute top-50p disabled:bg-black/30 right-0 z-10 arrow-right arrow mr-2 bg-black px-2 py-2 text-sm font-semibold text-white hover:bg-black/30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/75">
+                                <button type="button" id="button-prev-slide_services" class="absolute top-50p disabled:bg-black/30 right-0 z-10 arrow-right arrow mr-2 bg-black px-2 py-2 text-sm font-medium text-white hover:bg-black/30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/75">
                                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" width="20">
                                         <path fill-rule="evenodd" d="M2 10a.75.75 0 01.75-.75h12.59l-2.1-1.95a.75.75 0 111.02-1.1l3.5 3.25a.75.75 0 010 1.1l-3.5 3.25a.75.75 0 11-1.02-1.1l2.1-1.95H2.75A.75.75 0 012 10z" clip-rule="evenodd"></path>
                                     </svg>
@@ -89,7 +89,7 @@
                                         </svg>
                                     </div>
                                     <div class="w-full mb-12px">
-                                        <h5 class="font-semibold whitespace-pre-line">{!! $item['title_service_'. $language] !!}</h5>
+                                        <h5 class="font-medium whitespace-pre-line">{!! $item['title_service_'. $language] !!}</h5>
                                     </div>
                                     <p class="flex-1 w-full text-base font-light leading-tight whitespace-pre-line text-justify">{!! $item['comment_service_'. $language] !!}</p>
                                 </div>

@@ -71,7 +71,7 @@
                 <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
                     <div class="w-full">
                         <div class="mt-3 sm:mt-0 sm:ml-4 text-left">
-                            <h3 class="text-lg leading-6 font-semibold text-gray-900 flex items-center justify-center">About us</h3>
+                            <h3 class="text-lg leading-6 font-medium text-gray-900 flex items-center justify-center">About us</h3>
                             <div class="text-red-500 my-2 px-2" x-text="message_save"></div>
                             <div class="mt-2">
                                 <input type="hidden" x-model="data.id" >
@@ -468,7 +468,7 @@
                     </div>
                 </div>
                 <div class="bg-gray-50 px-4 py-3 flex justify-center">
-                    <button type="button" :disabled="isSubmitting"  x-on:click="submitForm" class="mt-3 w-full inline-flex justify-center rounded-md border border-blue-300 shadow-sm px-4 py-2 bg-white text-base font-semibold text-blue-700 hover:bg-blue-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm">Save</button>
+                    <button type="button" :disabled="isSubmitting"  x-on:click="submitForm" class="mt-3 w-full inline-flex justify-center rounded-md border border-blue-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-blue-700 hover:bg-blue-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm">Save</button>
                 </div>
             </div>
         </div>

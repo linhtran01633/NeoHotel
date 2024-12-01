@@ -6,7 +6,7 @@
                     <div class="about-us-wrapper col-span-full sm:col-span-full sm:row-span-1 lg:col-span-2 lg:row-span-1">
                         <div class=" justify-center pt-4 space-x-4 lg:pt-0 lg:col-end-13">
                             <div class="flex flex-col gap-5">
-                                <p class="text-xl font-semibold text-orange-300">{{__('footer.title.About_us')}}</p>
+                                <p class="text-xl font-medium text-orange-300">{{__('footer.title.About_us')}}</p>
                                 <p class="text-E6E6E6 text-base font-normal leading-tight text-justify">{{__('footer.About_us')}}</p>
                                 <div class="w-12 h-0.5 bg-yellow-900"></div>
                             </div>
@@ -30,7 +30,7 @@
                         </div>
                     </div>
                     <div class="explore-wrapper grid-rows-4 grid-flow-col col-span-full sm:row-start-2 sm:col-span-1 lg:col-span-2 lg:row-span-1 ">
-                        <p class="text-xl font-semibold text-orange-300 mb-5">{{__('footer.title.Explore')}}</p>
+                        <p class="text-xl font-medium text-orange-300 mb-5">{{__('footer.title.Explore')}}</p>
                         <ul class="grid grid-rows-4 grid-flow-col !list-inside gap-10px">
                             <li class="customLi hover:text-customColor"><a href="/"><span class="text-E6E6E6 text-base font-normal leading-tight text-E6E6E6 hover:text-customColor">{{ __('screen.title.home') }}</span></a></li>
                             <li class="customLi hover:text-customColor"><a href="/about-us"><span class="text-E6E6E6 text-base font-normal leading-tight text-E6E6E6 hover:text-customColor">{{ __('screen.title.aboutus') }}</span></a></li>
@@ -42,7 +42,7 @@
                         </ul>
                     </div>
                     <div class="contact-wrapper col-span-full sm:row-span-2 sm:col-start-2 lg:col-span-2 lg:row-span-1">
-                        <p class="text-xl font-semibold text-orange-300 mb-5">{{__('footer.title.Contact')}}</p>
+                        <p class="text-xl font-medium text-orange-300 mb-5">{{__('footer.title.Contact')}}</p>
                         <div class="flex flex-col gap-5">
                             <div class="items-start flex gap-3">
                                 <div class="w-16px">

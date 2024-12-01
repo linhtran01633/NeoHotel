@@ -30,7 +30,7 @@
                 </li>
             </ul>
             <div class="relative inline-block text-left">
-                <button x-on:click="popup_local = ! popup_local" class="items-center inline-flex w-80px justify-center rounded-md bg-black/20 px-4 py-2 text-sm font-semibold text-white hover:bg-black/30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/75" type="button" >
+                <button x-on:click="popup_local = ! popup_local" class="items-center inline-flex w-80px justify-center rounded-md bg-black/20 px-4 py-2 text-sm font-medium text-white hover:bg-black/30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/75" type="button" >
                     <div class="w-5">
                         @if (__('lang') == 'VN')
                             <svg xmlns="http://www.w3.org/2000/svg" id="flag-icons-vn" viewBox="0 0 640 480">
@@ -162,7 +162,7 @@
                                 </li>
                             </ul>
                             <div class="relative inline-block text-left">
-                                <button x-on:click="popup_local = ! popup_local"  @click.away="popup_local = false" class="items-center inline-flex w-80px justify-center rounded-md bg-black/20 px-4 py-2 text-sm font-semibold text-white hover:bg-black/30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/75" type="button" >
+                                <button x-on:click="popup_local = ! popup_local"  @click.away="popup_local = false" class="items-center inline-flex w-80px justify-center rounded-md bg-black/20 px-4 py-2 text-sm font-medium text-white hover:bg-black/30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/75" type="button" >
                                     <div class="w-5">
                                         @if (__('lang') == 'VN')
                                             <svg xmlns="http://www.w3.org/2000/svg" id="flag-icons-vn" viewBox="0 0 640 480">
