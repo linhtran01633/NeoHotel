@@ -160,6 +160,9 @@
                                     <div class="text-red-500 my-2 px-2" x-text="message_save"></div>
                                     <div class="mt-2">
                                         <input type="hidden" x-model="data.id" >
+                                        <input type="color" x-model="data.color_mobile">
+                                        <span>select name color on mobile interface</span>
+
                                         <div class="my-2 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                                             <div>
                                                 <div>Name VietNam</div>

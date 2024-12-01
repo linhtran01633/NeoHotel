@@ -13,7 +13,10 @@
         <main class="flex-1 flex flex-col ">
             <div class="flex flex-col gap-32px mb-32px sm-gap-60px sm-mb-60px">
                 <div class="relative h-200px w-full text-center bg-black bg-opacity-40">
-                    <img alt="header banner" loading="lazy" decoding="async" data-nimg="fill" class="absolute object-cover w-full" sizes="100vw"  @if(isset($banner_images)) src="{{ asset('/storage/'.$banner_images) }}" @else src="" @endif style="position: absolute; height: 100%; width: 100%; inset: 0px; color: transparent;">
+
+                    <img alt="header banner" loading="lazy" decoding="async" data-nimg="fill" class="hidden sm:block absolute object-cover w-full" sizes="100vw"  @if(isset($banner_images)) src="{{ asset('/storage/'.$banner_images) }}" @else src="" @endif style="position: absolute; height: 100%; width: 100%; inset: 0px; color: transparent;">
+                    <img alt="header banner" loading="lazy" decoding="async" data-nimg="fill" class="block sm:hidden absolute object-cover w-full" sizes="100vw"  @if(isset($banner_images)) src="{{ asset('/storage/'.$banner_images_mobile) }}" @else src="" @endif style="position: absolute; height: 100%; width: 100%; inset: 0px; color: transparent;">
+
                     <div class="absolute inset-0 bg-black bg-opacity-40"></div>
                     <div class="w-full absolute translate-x--50p translate-y--50p top-50p">
                         <div class="flex flex-col gap-2">

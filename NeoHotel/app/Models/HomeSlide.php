@@ -22,5 +22,7 @@ class HomeSlide extends Model
 
         'images',
         'images_mobile',
+
+        'color_mobile',
     ];
 }

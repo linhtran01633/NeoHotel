@@ -13,5 +13,6 @@ class Banner extends Model
     public $keyType = 'string';
     protected $fillable = [
         'images',
+        'images_mobile',
     ];
 }

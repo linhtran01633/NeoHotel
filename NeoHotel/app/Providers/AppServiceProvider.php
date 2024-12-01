@@ -28,17 +28,22 @@ class AppServiceProvider extends ServiceProvider
         //
 
         $banner_images = '';
+        $banner_images_mobile = '';
 
         if (Schema::hasTable('banners')) {
             $data = Banner::where('delete_flag', 0)->first();
 
-            if($data) $banner_images = $data->images;
+            if($data) {
+                $banner_images = $data->images;
+                $banner_images_mobile = $data->images_mobile;
+            }
         }
 
         View::composer([
             '*',
-        ], function ($view) use($banner_images) {
+        ], function ($view) use($banner_images, $banner_images_mobile) {
             $view->with('banner_images', $banner_images);
+            $view->with('banner_images_mobile', $banner_images_mobile);
         });
 
         View::composer([

@@ -457,31 +457,49 @@ class AdminController extends Controller
 
     public function banner() {
         $array_images = [];
+        $array_images_mobile = [];
         $data = Banner::where('delete_flag', 0)->first();
-        if($data) $array_images = [$data->images];
-        return view('admin.banner', compact('data', 'array_images'));
+        if($data) {
+            $array_images = [$data->images];
+            $array_images_mobile = [$data->images_mobile];
+        }
+        return view('admin.banner', compact('data', 'array_images', 'array_images_mobile'));
     }
 
     public function saveBanner(BannerRequest $request){
         try {
             DB::transaction(function () use($request) {
+
+
                 $imagePath = '';
+                $imageMobilePath = '';
 
                 if ($request->hasFile('images')) {
                     $path_image = $request->file('images')->store('images/banner');
                     $imagePath = $path_image;
                 }
 
+                if ($request->hasFile('images_mobile')) {
+                    $path_image_mobile = $request->file('images_mobile')->store('images/banner');
+                    $imageMobilePath = $path_image_mobile;
+                }
+
                 $check = Banner::orderBy('id')->first();
 
                 if($check) {
                     $data = $request->only($check->getFillable());
-                    $data['images'] = $imagePath;
+                    if($imagePath == '') unset($data['images']);
+                    else $data['images'] = $imagePath;
+
+                    if($imageMobilePath == '') unset($data['images_mobile']);
+                    else $data['images_mobile'] = $imageMobilePath;
+
                     $check->fill($data)->save();
                 } else {
                     $new = new Banner();
                     $data = $request->only($new->getFillable());
                     $data['images'] = $imagePath;
+                    $data['images_mobile'] = $imageMobilePath;
                     $new->fill($data)->save();
                 }
             });

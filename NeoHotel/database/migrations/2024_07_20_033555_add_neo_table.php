@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('home_slide', function (Blueprint $table) {
             $table->id();
+
             $table->string('name_vn',256);
             $table->string('name_en',256);
             $table->string('name_jp',256);
@@ -20,6 +21,7 @@ return new class extends Migration
             $table->string('title_vn',256)->nullable();
             $table->string('title_en',256)->nullable();
             $table->string('title_jp',256)->nullable();
+            $table->string('color_mobile',256)->nullable();
 
             $table->string('images',2056)->nullable();
             $table->string('images_mobile',2056)->nullable();
@@ -279,6 +281,7 @@ return new class extends Migration
         Schema::create('banners', function (Blueprint $table) {
             $table->id();
             $table->string('images',256);
+            $table->string('images_mobile',256);
             $table->smallInteger('delete_flag')->default(0)->nullable();
 
             $table->timestamp('created_at')->useCurrent();

@@ -3,6 +3,7 @@
     <div x-data='{
         data: {!! htmlspecialchars(json_encode($data ?? new stdClass), ENT_QUOTES, 'UTF-8') !!},
         array_images : {!! htmlspecialchars(json_encode($array_images ?? new stdClass), ENT_QUOTES, 'UTF-8') !!},
+        array_images_mobile : {!! htmlspecialchars(json_encode($array_images_mobile ?? new stdClass), ENT_QUOTES, 'UTF-8') !!},
         data_error: {},
         isSave : false,
         message_save: "",
@@ -21,6 +22,11 @@
             let images = document.querySelector("#images").files[0];
             if (images) {
                 form_data.append("images", images);
+            }
+
+            let images_mobile = document.querySelector("#images_mobile").files[0];
+            if (images_mobile) {
+                form_data.append("images_mobile", images_mobile);
             }
 
             fetch(url_post, {
@@ -65,13 +71,28 @@
                             <div class="mt-2">
                                 <input type="hidden" x-model="data.id" >
                                 <div class="my-2 grid grid-cols-1 gap-1">
-                                    <div>(Only 1 image can be selected)</div>
+                                    <div>Image on pc (Only 1 image can be selected)</div>
                                     <div>
                                         <input type="file" id="images" accept=".png, .jpg, .jpeg, .webp" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
                                     </div>
                                     <div class="text-red-500" x-text="data_error.images"></div>
                                     <div class="mt-2 flex items-center flex-warp" id="preview_images">
                                         <template x-for="(value, key) in array_images" :key="key">
+                                            <div class="w-20 h-20 border border-gray-300 rounded-lg mx-2 shadow">
+                                                <img class="w-full h-full rounded-lg show_enlarge" :data-src="`/storage/${value}`" :src="`/storage/${value}`" alt="Preview">
+                                            </div>
+                                        </template>
+                                    </div>
+                                </div>
+
+                                <div class="my-2 grid grid-cols-1 gap-1">
+                                    <div>Image on sm (Only 1 image can be selected)</div>
+                                    <div>
+                                        <input type="file" id="images_mobile" accept=".png, .jpg, .jpeg, .webp" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
+                                    </div>
+                                    <div class="text-red-500" x-text="data_error.images_mobile"></div>
+                                    <div class="mt-2 flex items-center flex-warp" id="preview_images_mobile">
+                                        <template x-for="(value, key) in array_images_mobile" :key="key">
                                             <div class="w-20 h-20 border border-gray-300 rounded-lg mx-2 shadow">
                                                 <img class="w-full h-full rounded-lg show_enlarge" :data-src="`/storage/${value}`" :src="`/storage/${value}`" alt="Preview">
                                             </div>
@@ -117,6 +138,30 @@
                 });
             }
 
+            var check_preview_images = document.getElementById('images_mobile');
+            if(check_preview_images) {
+                document.getElementById('images_mobile').addEventListener('change', function(event) {
+                    let files = event.target.files;
+                    let preview = document.getElementById('preview_images_mobile');
+                    preview.innerHTML = ''; // Xóa bất kỳ hình ảnh trước đó nào trong phần xem trước
+
+                    for (let i = 0; i < files.length; i++) {
+                        let file = files[i];
+                        if (file) {
+                            let reader = new FileReader();
+
+                            reader.onload = function(e) {
+                                preview.innerHTML += `
+                                    <div class="w-20 h-20 border border-gray-300 rounded-lg mx-2 shadow">
+                                        <img class="w-full h-full rounded-lg show_enlarge" data-src="${e.target.result}" src="${e.target.result}" alt="Preview">
+                                    </div>
+                                `;
+                            }
+                            reader.readAsDataURL(file);
+                        }
+                    }
+                });
+            }
 
             $(document).on('click', '.close_images', function(e) {
                 $(this).parent().parent().remove();

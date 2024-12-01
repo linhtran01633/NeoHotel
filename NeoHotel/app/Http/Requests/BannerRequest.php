@@ -22,7 +22,8 @@ class BannerRequest extends FormRequest
     public function rules(): array
     {
         $rules = [
-            'images' => ['max:7056', 'required'],
+            'images' => ['max:7056'],
+            'images_mobile' => ['max:7056'],
         ];
 
         return $rules;

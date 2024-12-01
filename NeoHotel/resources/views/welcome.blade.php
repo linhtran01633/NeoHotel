@@ -16,7 +16,7 @@
                                     $language = 'vn';
                                 }
                             @endphp
-                            <div class="swiper-slide" style="width: 1158px;" data-title="{{$item['title_'. $language]}}" data-name="{{$item['name_'. $language]}}">
+                            <div class="swiper-slide" style="width: 1158px;" data-title="{{$item['title_'. $language]}}" data-name="{{$item['name_'. $language]}}" data-color="{{$item['color_mobile']}}">
                                 <div class="relative min-h-calc-100vh-60px sm-min-h-calc-100vh-92px-84px">
                                     <img alt="Slide one" src="{{ asset('/storage/'.$item['images']) }}" decoding="async" data-nimg="fill" class="hidden sm:block thumbnail absolute object-left sm:object-center w-full object-fill" sizes="100vw" style="position: absolute; height: 100%; width: 100%; left: 0;top: 0; right: 0; bottom: 0; color: transparent;">
                                     <img alt="Slide one" src="{{ asset('/storage/'.$item['images_mobile']) }}" decoding="async" data-nimg="fill" class="block sm:hidden thumbnail absolute object-left sm:object-center w-full object-fill" sizes="100vw" style="position: absolute; height: 100%; width: 100%; left: 0;top: 0; right: 0; bottom: 0; color: transparent;">
@@ -49,7 +49,7 @@
                                     </div>
                                 </div>
                                 <div class="text-white text-base font-normal uppercase leading-tight" id="title_slide"></div>
-                                <h1 class="text-white font-normal uppercase leading-10 lantern-hotel-title text-32px" id="name_slide"></h1>
+                                <h1 class="text-white font-normal uppercase leading-10 lantern-hotel-title text-32px"  id="name_slide"></h1>
                             </div>
                         </div>
                         <button class="text-white text-base font-semibold leading-tight">
@@ -101,24 +101,31 @@
                     disableOnInteraction: false,
                 },
                 speed: 2000,
-
             });
+
+            swiper.on('transitionStart', function () {
+                updateTitle();
+            });
+
 
             // Function to update title
             const updateTitle = () => {
                 const activeSlide = document.querySelector('.swiper-slide-active');
-                const newTitle = activeSlide.getAttribute('data-title');
-                const newName = activeSlide.getAttribute('data-name');
-                document.getElementById('title_slide').innerText = newTitle;
-                document.getElementById('name_slide').innerText = newName;
+                if (activeSlide) {
+                    const newTitle = activeSlide.getAttribute('data-title') || 'Default Title';
+                    const newName = activeSlide.getAttribute('data-name') || 'Default Name';
+                    const color_mobile = activeSlide.getAttribute('data-color') || 'white';
+                    document.getElementById('title_slide').innerText = newTitle;
+                    document.getElementById('name_slide').innerText = newName;
 
+                    if (window.innerWidth < 780) {
+                        document.getElementById('name_slide').style.color = color_mobile; // Thay đổi màu nếu đúng
+                    }
+                }
             };
 
             // Initial title update
-            // updateTitle();
-
-            // Update title on slide change
-            swiper.on('slideChange', updateTitle);
+            updateTitle();
         });
     </script>
 @endsection
