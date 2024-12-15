@@ -12,8 +12,10 @@ use App\Models\Room;
 use App\Models\Service;
 use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Mail;
 
 class ClientController extends Controller
 {
@@ -72,10 +74,44 @@ class ClientController extends Controller
     {
         try {
             DB::transaction(function () use ($request) {
-                // $new_booking = new Booking();
-                // $data = $request->only($new_booking->getFillable());
-                // if(!$request->breakfast) $data['breakfast'] = 0;
-                // $new_booking->fill($data)->save();
+                $roomType = '';
+                $room_type = CategoryRoom::where('delete_flag', 0)->where('id', $request->room_type)->first();
+
+                if($room_type) {
+                    $roomType = $room_type->name_en;
+                }
+
+                $details = [
+                    'roomType' => $roomType,
+                    'adults'=> $request->adult,
+                    'email' => $request->c_email,
+                    'phone' => $request->c_phone,
+                    'children'=> $request->children,
+                    'request'=> $request->c_request,
+                    'hotelName'=> $request->hotelName,
+                    'bookingId' => $request->bookingId,
+                    'numberOfRoom'=> $request->number_of_room,
+                    'name' => $request->c_first_name . ' ' . $request->c_last_name,
+                    'checkout'=> Carbon::parse($request->end_date)->format('F jS Y, h:i:s a'),
+                    'checkin' => Carbon::parse($request->start_date)->format('F jS Y, h:i:s a'),
+                ];
+
+                Mail::send('mail.merchant', ['details' => $details], function ($message) use ($details) {
+                    $message->to(env('EMAIL_MERCHANT_1')) // Địa chỉ "to"
+                            ->cc(env('EMAIL_MERCHANT_2')) // Địa chỉ "cc"
+                            ->bcc([env('EMAIL_MERCHANT_3'), 'baont@kimei.vn']) // Các địa chỉ "bcc"
+                            ->from('noreply.smtp.server1912@gmail.com') // Địa chỉ "from"
+                            ->replyTo('noreply.smtp.server1912@gmail.com') // Địa chỉ "replyTo"
+                            ->subject('Hotel Booking Info - ' . $details['name'] . ' - Booking ID [' . $details['bookingId'] . ']'); // Tiêu đề email
+                });
+
+
+                Mail::send('mail.guest', ['details' => $details], function ($message) use ($details) {
+                    $message->to($details['email']) // Địa chỉ "to"
+                            ->from('noreply.smtp.server1912@gmail.com') // Địa chỉ "from"
+                            ->replyTo('noreply.smtp.server1912@gmail.com') // Địa chỉ "replyTo"
+                            ->subject('Hotel Booking Info'); // Tiêu đề email
+                });
             });
         } catch (Exception $e) {
             Log::info($e->getMessage());

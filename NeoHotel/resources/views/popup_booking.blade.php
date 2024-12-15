@@ -13,6 +13,9 @@
             let startDate = dates[0] ? moment(dates[0], 'DD/MM/YYYY') : moment();
             let endDate = dates[1] ? moment(dates[1], 'DD/MM/YYYY') : moment();
 
+
+
+
             // Kiểm tra ngày hợp lệ và tính toán thời gian lưu trú
             if (startDate.isValid() && endDate.isValid()) {
                 // Định dạng ngày trước khi lưu vào booking
@@ -35,9 +38,38 @@
 
             window.location.href = `/rooms`
 
+        },
+        load: function() {
+            const bookingData = localStorage.getItem('booking');
+            if (bookingData) {
+                const parsedBooking = JSON.parse(bookingData);
+                let startDate = moment(parsedBooking.start_date, 'YYYY-MM-DD').format('DD/MM/YYYY');
+                let endDate = moment(parsedBooking.end_date, 'YYYY-MM-DD').format('DD/MM/YYYY');
+                if (moment(startDate, 'DD/MM/YYYY').isSameOrAfter(moment(), 'day') &&
+                    moment(endDate, 'DD/MM/YYYY').isSameOrAfter(moment(), 'day')) {
+
+                    $('#date-range-picker').data('daterangepicker').setStartDate(startDate);
+                    $('#date-range-picker').data('daterangepicker').setEndDate(endDate);
+                    $('#date-range-picker').val(startDate + ' - ' + endDate);
+                } else {
+                    let startDateCurent = moment().format('DD/MM/YYYY');
+                    let endDateCurent = moment().add(1, 'days').format('DD/MM/YYYY');
+
+                    $('#date-range-picker').data('daterangepicker').setStartDate(startDateCurent);
+                    $('#date-range-picker').data('daterangepicker').setEndDate(endDateCurent);
+                    $('#date-range-picker').val(startDateCurent + ' - ' + endDateCurent);
+                }
+            } else {
+                let startDate = moment().format('DD/MM/YYYY');
+                let endDate = moment().add(1, 'days').format('DD/MM/YYYY');
+
+                $('#date-range-picker').data('daterangepicker').setStartDate(startDate);
+                $('#date-range-picker').data('daterangepicker').setEndDate(endDate);
+                $('#date-range-picker').val(startDate + ' - ' + endDate);
+            }
         }
 
-    }">
+    }" x-init="load">
 	<div class="h-5 sm:h-full flex max-width-1080px m-auto items-center justify-center gap-5 py-6 px-4">
 		<div class="hidden sm:block w-full">
 			<div class="w-full grid sm:grid-flow-col sm:grid-rows-1 gap-3">

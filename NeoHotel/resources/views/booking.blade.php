@@ -9,22 +9,23 @@
         }
     @endphp
     <section class="flex-1 flex flex-col">
-        <main class="flex-1 flex flex-col " x-data="{
+        <main class="flex-1 flex flex-col " x-data='{
+            appLocale1: @json(app()->getLocale()),
             submit_step1: function() {
                 if (this.$refs.bookingForm.checkValidity()) {
-                    booking.adult = $('#adult').val()
-                    booking.end_date = $('#end_date').val()
-                    booking.children = $('#children').val()
-                    booking.breakfast = $('#breakfast').val()
-                    booking.start_date = $('#start_date').val()
-                    booking.number_of_room = $('#number_of_room').val()
+                    booking.adult = $("#adult").val()
+                    booking.end_date = $("#end_date").val()
+                    booking.children = $("#children").val()
+                    booking.breakfast = $("#breakfast").val()
+                    booking.start_date = $("#start_date").val()
+                    booking.number_of_room = $("#number_of_room").val()
 
-                    let date1 = moment($('#end_date').val());
-                    let date2 = moment($('#start_date').val());
+                    let date1 = moment($("#end_date").val());
+                    let date2 = moment($("#start_date").val());
 
-                    booking.staylength = date1.diff(date2, 'days') + 1;
+                    booking.staylength = date1.diff(date2, "days") + 1;
 
-                    localStorage.setItem('booking', JSON.stringify(booking))
+                    localStorage.setItem("booking", JSON.stringify(booking))
 
                     window.location.href = `/booking?room_type={!!request()->room_type!!}&step=2`
                 } else {
@@ -32,13 +33,45 @@
                 }
             },
 
-            load: function() {
-                console.log(localStorage.getItem('booking'));
-
-                console.log(booking)
+            changeRoomType: function() {
+                window.location.href = `/booking?room_type=${$("#room_type").val()}&step=1`
             },
 
-        }" x-init="load">
+            change_end_date : function() {
+                booking.end_date = $("#end_date").val()
+            },
+
+            change_start_date : function() {
+                booking.start_date = $("#start_date").val()
+            },
+
+            load: function() {
+                let end_date = "";
+                let start_date = "";
+                if (moment(booking.end_date, "MMM D, YYYY", true).isValid()) {
+                    end_date = moment(booking.end_date, "MMM D, YYYY").format("YYYY-MM-DD");
+                    start_date = moment(booking.start_date, "MMM D, YYYY").format("YYYY-MM-DD");
+                } else if(moment(booking.end_date, "YYYY年MM月DD日", true).isValid()) {
+                    end_date = moment(booking.end_date, "YYYY年MM月DD日").format("YYYY-MM-DD");
+                    start_date = moment(booking.start_date, "YYYY年MM月DD日").format("YYYY-MM-DD");
+                } else {
+                    end_date = moment(booking.end_date, "YYYY-MM-DD").format("YYYY-MM-DD");
+                    start_date = moment(booking.start_date, "YYYY-MM-DD").format("YYYY-MM-DD");
+                }
+
+                if(this.appLocale1 == "ja") {
+                    $("#end_date").val(moment(end_date,"YYYY-MM-DD").format("YYYY年MM月DD日"));
+                    $("#start_date").val(moment(start_date,"YYYY-MM-DD").format("YYYY年MM月DD日"));
+                } else if(this.appLocale1 == "en") {
+                    $("#end_date").val(moment(end_date,"YYYY-MM-DD").format("MMM D, YYYY"));
+                    $("#start_date").val(moment(start_date,"YYYY-MM-DD").format("MMM D, YYYY"));
+                } else {
+                    $("#end_date").val(moment(end_date,"YYYY-MM-DD").format("YYYY-MM-DD"));
+                    $("#start_date").val(moment(start_date,"YYYY-MM-DD").format("YYYY-MM-DD"));
+                }
+            },
+
+        }' x-init="load">
             <div class="w-full py-xlClamp bg-F9F9F9">
                 <div class="max-width-1080px min-w-60vw m-auto flex flex-col items-center px-smClamp">
                     <div class="relative w-full flex flex-col sm:flex-row justify-center mb-8 gap-y-3">
@@ -107,7 +140,7 @@
                                                         </label>
                                                         <div class="ant-select sc-bdfCDU iknHgW css-125enb3 ant-select-single ant-select-show-arrow">
                                                             <div class="ant-select-selector">
-                                                                <select class="w-full h-44px border border-d9d9d9 px-2" name="room_type" id="room_type" required>
+                                                                <select class="w-full h-44px border border-d9d9d9 px-2" x-on:change="changeRoomType" name="room_type" id="room_type" required>
                                                                     @foreach ($categorys as $item)
                                                                         <option value="{{$item->id}}" @if(request()->room_type == $item->id) selected @endif>{!! $item['name_' . $language] !!}</option>
                                                                     @endforeach
@@ -122,7 +155,7 @@
                                                         </label>
                                                         <div class="ant-picker css-125enb3 sc-eCstZk NZCqe w-full">
                                                             <div class="ant-picker-input">
-                                                                <input type="date" class="w-full h-44px border border-d9d9d9 px-2" size="12" x-model="booking.start_date" id="start_date" name="start_date" required>
+                                                                <input type="text" class="w-full h-44px border border-d9d9d9 px-2" size="12" x-on:change="change_start_date" id="start_date" name="start_date" required>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -133,7 +166,7 @@
                                                         </label>
                                                         <div class="ant-picker css-125enb3 sc-eCstZk NZCqe w-full">
                                                             <div class="ant-picker-input">
-                                                                <input type="date" class="w-full h-44px border border-d9d9d9 px-2" x-model="booking.end_date" id="end_date" name="end_date" required>
+                                                                <input type="text" class="w-full h-44px border border-d9d9d9 px-2" id="end_date" x-on:change="change_end_date" name="end_date" required>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -190,15 +223,36 @@
                                             </div>
                                         </form>
                                     @elseif($step == 2)
-                                        <form action="{{route('submit-booking')}}" method="post">
+                                        <form action="{{route('submit-booking')}}" method="post" x-data='{
+                                            end_date_custom : "",
+                                            start_date_custom : "",
+                                            custom_date: function() {
+                                                let end_date = moment(booking.end_date, "MMM D, YYYY", true);
+                                                let start_date = moment(booking.start_date, "MMM D, YYYY", true);
+                                                if (end_date.isValid()) {
+                                                 console.log(booking.end_date);
+                                                    this.end_date_custom = moment(booking.end_date, "MMM D, YYYY").format("YYYY-MM-DD");
+                                                } else {
+                                                    this.end_date_custom = moment(booking.end_date, "YYYY-MM-DD").format("YYYY-MM-DD");
+                                                }
+
+                                                if (start_date.isValid()) {
+                                                    this.start_date_custom = moment(booking.start_date, "MMM D, YYYY").format("YYYY-MM-DD");
+                                                } else {
+                                                    this.start_date_custom = moment(booking.start_date, "YYYY-MM-DD").format("YYYY-MM-DD");
+                                                }
+
+                                            }
+                                        }' x-init="custom_date">
                                             @csrf
+                                            <input type="hidden" name="hotelName" value="{{__('home.slider.title')}}">
                                             <input type="hidden" name="adult" x-model="booking.adult">
                                             <input type="hidden" name="breakfast" x-model="booking.breakfast">
                                             <input type="hidden" name="children" x-model="booking.children">
-                                            <input type="hidden" name="end_date" x-model="booking.end_date">
+                                            <input type="hidden" name="end_date" x-model="end_date_custom">
                                             <input type="hidden" name="number_of_room" x-model="booking.number_of_room">
                                             <input type="hidden" name="room_type"  value="{{request()->room_type}}">
-                                            <input type="hidden" name="start_date" x-model="booking.start_date">
+                                            <input type="hidden" name="start_date" x-model="start_date_custom">
                                             <div class="bg-white flex flex-col w-full sm:w-formClamp mb-8 md:mb-0 border py-6 px-smClamp border-neutral-200">
                                             <div class="text-2xl font-medium mb-6">{{__('form.booking.stagetwo')}}</div>
                                             <div class="flex flex-col gap-6">
@@ -221,7 +275,7 @@
                                                         <span class="label inline font-medium  text-16px line-clamp-5">{{__('form.common.email')}}</span>
                                                         <span class="text-red-600 ml-1">*</span>
                                                     </label>
-                                                    <input placeholder="Type here" required class="ant-input css-125enb3 sc-gsTDqH jWFWON css-125enb3" type="text" value="" name="c_email">
+                                                    <input placeholder="Type here" required class="ant-input css-125enb3 sc-gsTDqH jWFWON css-125enb3" type="email" value="" name="c_email">
                                                 </div>
                                                 <div class="flex flex-col gap-y-3 ">
                                                     <label>
