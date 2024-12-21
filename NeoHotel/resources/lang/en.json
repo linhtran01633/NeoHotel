@@ -94,7 +94,7 @@
     "footer.Contact.email" : "lantern@neo-hospitality.com",
     "footer.Contact.address" : "122 Le Lai Street, Ben Thanh Ward, District 1, Ho Chi Minh City",
 
-    "booking_success" : "Successful booking",
+    "booking_success" : "Thank you for your reservation. Our staff will contact to you within 6 hours.",
     "booking_false" : "Reservation failed",
 
     "linh" : "123"

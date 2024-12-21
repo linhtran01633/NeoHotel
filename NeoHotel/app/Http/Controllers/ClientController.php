@@ -13,7 +13,9 @@ use App\Models\Service;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
 
@@ -81,15 +83,17 @@ class ClientController extends Controller
                     $roomType = $room_type->name_en;
                 }
 
+                $bookingId = Config::get('bookingId.current', 61);
+
                 $details = [
                     'roomType' => $roomType,
+                    'bookingId' => $bookingId,
                     'adults'=> $request->adult,
                     'email' => $request->c_email,
                     'phone' => $request->c_phone,
                     'children'=> $request->children,
                     'request'=> $request->c_request,
                     'hotelName'=> $request->hotelName,
-                    'bookingId' => $request->bookingId,
                     'numberOfRoom'=> $request->number_of_room,
                     'name' => $request->c_first_name . ' ' . $request->c_last_name,
                     'checkout'=> Carbon::parse($request->end_date)->format('F jS Y, h:i:s a'),
@@ -97,7 +101,7 @@ class ClientController extends Controller
                 ];
 
                 Mail::send('mail.merchant', ['details' => $details], function ($message) use ($details) {
-                    $message->to(env('EMAIL_MERCHANT_1')) // Địa chỉ "to"
+                    $message->to([env('EMAIL_MERCHANT_1'), env('EMAIL_MERCHANT_2')]) // Địa chỉ "to"
                             ->cc(env('EMAIL_MERCHANT_2')) // Địa chỉ "cc"
                             ->bcc([env('EMAIL_MERCHANT_3'), 'baont@kimei.vn']) // Các địa chỉ "bcc"
                             ->from('noreply.smtp.server1912@gmail.com') // Địa chỉ "from"
@@ -112,12 +116,31 @@ class ClientController extends Controller
                             ->replyTo('noreply.smtp.server1912@gmail.com') // Địa chỉ "replyTo"
                             ->subject('Hotel Booking Info'); // Tiêu đề email
                 });
+
+
+                // Xử lý logic tăng bookingId
+                $newBookingId = $bookingId + 1;
+
+                // Cập nhật giá trị mới vào file cấu hình
+                $this->updateBookingIdConfig($newBookingId);
             });
         } catch (Exception $e) {
             Log::info($e->getMessage());
             return redirect()->back()->with('message',  __('booking_false'));
         }
         return redirect()->back()->with('message',   __('booking_success'));
+    }
+
+    protected function updateBookingIdConfig($newBookingId)
+    {
+        // Đường dẫn tới file cấu hình bookingId.php
+        $filePath = config_path('bookingId.php');
+
+        // Nội dung mới của file cấu hình
+        $content = "<?php\n\nreturn [\n    'current' => {$newBookingId},\n];";
+
+        // Ghi nội dung mới vào file
+        File::put($filePath, $content);
     }
 
     public function rooms(Request $request)

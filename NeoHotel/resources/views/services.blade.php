@@ -91,7 +91,7 @@
                                     <div class="w-full mb-12px">
                                         <h5 class="font-medium whitespace-pre-line">{!! $item['title_service_'. $language] !!}</h5>
                                     </div>
-                                    <p class="flex-1 w-full text-base font-light leading-tight whitespace-pre-line text-justify">{!! $item['comment_service_'. $language] !!}</p>
+                                    <p class="flex-1 w-full text-base font-normal leading-tight whitespace-pre-line text-justify">{!! $item['comment_service_'. $language] !!}</p>
                                 </div>
                             @endforeach
                         </div>

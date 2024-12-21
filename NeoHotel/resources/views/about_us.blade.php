@@ -40,7 +40,7 @@
                             <div class="contentWrapper-description flex-1 min-w-300px">
                                 <div class="w-full flex flex-col">
                                     <div class="mb-smClamp">
-                                        <h2 class="whitespace-pre-line text-headerClamp">@if(isset($aboutUs)) {!! $aboutUs['title1_'. $language] !!}@endif</h2>
+                                        <h2 class="whitespace-pre-line text-3xl">@if(isset($aboutUs)) {!! $aboutUs['title1_'. $language] !!}@endif</h2>
                                         <div class="mb-10px">@if(isset($aboutUs)) {!! $aboutUs['title1_sub1_'. $language] !!}@endif</div>
                                         <div class="w-12 h-0.5 bg-yellow-900 mt-2"></div>
                                     </div>
@@ -168,7 +168,7 @@
                             <div class="contentWrapper-description flex-1 min-w-300px">
                                 <div class="w-full flex flex-col">
                                     <div class="mb-smClamp">
-                                        <h2 class="whitespace-pre-line text-headerClamp ">@if(isset($aboutUs)) {!! $aboutUs['title3_'. $language] !!}@endif</h2>
+                                        <h2 class="whitespace-pre-line text-3xl">@if(isset($aboutUs)) {!! $aboutUs['title3_'. $language] !!}@endif</h2>
                                         <div class="w-12 h-0.5 bg-yellow-900 mt-2"></div>
                                     </div>
                                     <div class="flex flex-col pr-0 sm-pr-24px">
@@ -187,7 +187,7 @@
                             <div class="contentWrapper-description flex-1 min-w-300px">
                                 <div class="w-full flex flex-col">
                                     <div class="mb-smClamp">
-                                        <h2 class="whitespace-pre-line text-headerClamp ">@if(isset($aboutUs)) {!! $aboutUs['title4_'. $language] !!}@endif</h2>
+                                        <h2 class="whitespace-pre-line text-3xl">@if(isset($aboutUs)) {!! $aboutUs['title4_'. $language] !!}@endif</h2>
                                         <div class="w-12 h-0.5 bg-yellow-900 mt-2"></div>
                                     </div>
                                     <div class="flex flex-col pr-0 sm-pr-24px">
