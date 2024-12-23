@@ -13,9 +13,6 @@
             let startDate = dates[0] ? moment(dates[0], 'DD/MM/YYYY') : moment();
             let endDate = dates[1] ? moment(dates[1], 'DD/MM/YYYY') : moment();
 
-
-
-
             // Kiểm tra ngày hợp lệ và tính toán thời gian lưu trú
             if (startDate.isValid() && endDate.isValid()) {
                 // Định dạng ngày trước khi lưu vào booking
@@ -42,16 +39,33 @@
         load: function() {
             const bookingData = localStorage.getItem('booking');
             if (bookingData) {
-                const parsedBooking = JSON.parse(bookingData);
-                let startDate = moment(parsedBooking.start_date, 'YYYY-MM-DD').format('DD/MM/YYYY');
-                let endDate = moment(parsedBooking.end_date, 'YYYY-MM-DD').format('DD/MM/YYYY');
-                if (moment(startDate, 'DD/MM/YYYY').isSameOrAfter(moment(), 'day') &&
-                    moment(endDate, 'DD/MM/YYYY').isSameOrAfter(moment(), 'day')) {
 
+                const parsedBooking = JSON.parse(bookingData);
+                let startDate = '';
+                let endDate = '';
+
+                if (moment(parsedBooking.end_date, 'MMM D, YYYY', true).isValid()) {
+                    startDate = moment(parsedBooking.end_date, 'MMM D, YYYY').format('DD/MM/YYYY');
+                    endDate = moment(parsedBooking.start_date, 'MMM D, YYYY').format('DD/MM/YYYY');
+                } else if(moment(parsedBooking.end_date, 'YYYY年MM月DD日', true).isValid()) {
+                    endDate = moment(parsedBooking.end_date, 'YYYY年MM月DD日').format('DD/MM/YYYY');
+                    startDate = moment(parsedBooking.start_date, 'YYYY年MM月DD日').format('DD/MM/YYYY');
+                } else {
+                    endDate = moment(parsedBooking.end_date, 'YYYY-MM-DD').format('DD/MM/YYYY');
+                    startDate = moment(parsedBooking.start_date, 'YYYY-MM-DD').format('DD/MM/YYYY');
+                }
+                console.log(endDate);
+                console.log(startDate);
+                console.log(bookingData);
+
+                if (startDate != '' && endDate != '') {
+                    console.log(bookingData);
                     $('#date-range-picker').data('daterangepicker').setStartDate(startDate);
                     $('#date-range-picker').data('daterangepicker').setEndDate(endDate);
                     $('#date-range-picker').val(startDate + ' - ' + endDate);
                 } else {
+                    console.log('no booking 1');
+
                     let startDateCurent = moment().format('DD/MM/YYYY');
                     let endDateCurent = moment().add(1, 'days').format('DD/MM/YYYY');
 
@@ -60,6 +74,8 @@
                     $('#date-range-picker').val(startDateCurent + ' - ' + endDateCurent);
                 }
             } else {
+                    console.log('no booking');
+
                 let startDate = moment().format('DD/MM/YYYY');
                 let endDate = moment().add(1, 'days').format('DD/MM/YYYY');
 

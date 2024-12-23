@@ -90,6 +90,30 @@
         // document.getElementById("datepicker").addEventListener("focus", function(event) {
         //     event.preventDefault(); // Ngừng sự kiện focus mặc định của trình duyệt
         // });
+
+        var formatDate = 'Y-m-d';
+        var appLocale = @json(app()->getLocale());
+        if(appLocale == 'ja') {
+            formatDate = 'Y年m月d日';
+        } else if(appLocale == 'en') {
+            formatDate = 'M d, Y';
+        } else {
+            appLocale = 'vi';
+        }
+
+        $('#date-range-picker').daterangepicker({
+            autoApply: true, // Tự động áp dụng ngày khi chọn xong
+            format: formatDate, // Định dạng ngày (có thể thay đổi theo ý muốn)
+            showOnFocus: true, // Hiển thị datepicker khi input được focus
+            startDate: moment(),
+            endDate: moment().add(1, 'days'),
+            minDate: moment(),
+            opens: 'right',
+            drops: 'up',
+            locale: {
+                format: 'DD/MM/YYYY',  // Định dạng ngày (có thể thay đổi theo yêu cầu)
+            }
+        });
         document.addEventListener("DOMContentLoaded", function() {
             $('.adult_minus').on('click', function(e){
                 let adult = (Number($('#adult_popup').text()) ? Number($('#adult_popup').text()) : 0) - 1;
@@ -139,31 +163,6 @@
 
                 $('#number_of_room_popup').text(number_of_room);
             })
-
-
-            var formatDate = 'Y-m-d';
-            var appLocale = @json(app()->getLocale());
-            if(appLocale == 'ja') {
-                formatDate = 'Y年m月d日';
-            } else if(appLocale == 'en') {
-                formatDate = 'M d, Y';
-            } else {
-                appLocale = 'vi';
-            }
-
-            $('#date-range-picker').daterangepicker({
-                autoApply: true, // Tự động áp dụng ngày khi chọn xong
-                format: formatDate, // Định dạng ngày (có thể thay đổi theo ý muốn)
-                showOnFocus: true, // Hiển thị datepicker khi input được focus
-                startDate: moment(),
-                endDate: moment().add(1, 'days'),
-                minDate: moment(),
-                opens: 'right',
-                drops: 'up',
-                locale: {
-                    format: 'DD/MM/YYYY',  // Định dạng ngày (có thể thay đổi theo yêu cầu)
-                }
-            });
 
             // Khởi tạo flatpickr cho start_date
             flatpickr("#start_date", {
