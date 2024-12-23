@@ -161,4 +161,35 @@ class ClientController extends Controller
 
     }
 
+    public function submitContact(Request $request)
+    {
+        try {
+            DB::transaction(function () use ($request) {
+                $bookingId = Config::get('bookingId.current', 61);
+
+                $details = [
+                    'sex'=> $request->sex,
+                    'name'=> $request->name,
+                    'bookingId' => $bookingId,
+                    'phone'=> $request->phone,
+                    'email'=> $request->email,
+                    'inquiry'=> $request->inquiry,
+                    'hotelName' => 'LANTERN HOTEL',
+                ];
+
+                Mail::send('mail.contact', ['details' => $details], function ($message) use ($details) {
+                    $message->to([env('EMAIL_MERCHANT_1'), env('EMAIL_MERCHANT_2')]) // Địa chỉ "to"
+                            ->cc(env('EMAIL_MERCHANT_2')) // Địa chỉ "cc"
+                            ->bcc([env('EMAIL_MERCHANT_3'), 'baont@kimei.vn']) // Các địa chỉ "bcc"
+                            ->from('noreply.smtp.server1912@gmail.com') // Địa chỉ "from"
+                            ->replyTo('noreply.smtp.server1912@gmail.com') // Địa chỉ "replyTo"
+                            ->subject('Contact Info'); // Tiêu đề email
+                });
+            });
+        } catch (Exception $e) {
+            Log::info($e->getMessage());
+            return redirect()->back()->with('message',  __('booking_false'));
+        }
+        return redirect()->back()->with('message',   __('booking_success'));
+    }
 }

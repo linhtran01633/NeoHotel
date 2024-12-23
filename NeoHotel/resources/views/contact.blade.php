@@ -41,7 +41,17 @@
                                 <h2 class="whitespace-pre-line text-headerClamp ">{{__('contact.contact_form_section')}}</h2>
                                 <div class="w-12 h-0.5 bg-yellow-900 mt-2"></div>
                             </div>
-                            <form>
+
+                            @if (Session::has('message'))
+                                <div class="text-red-500 p-2">
+                                    {{ Session::get('message') }}
+                                    @php
+                                        Session::forget('message');
+                                    @endphp
+                                </div>
+                            @endif
+                            <form action="{{route('submit-contact')}}" method="post">
+                                @csrf
                                 <div class="flex flex-col gap-y-5 sm:gap-y-10 mt-4">
                                     <div class="grid grid-cols-1 grid-rows-4 md:grid-cols-2 md:grid-rows-2 gap-x-5 gap-y-5 sm:gap-y-10">
                                         <div class="flex flex-col gap-y-3 ">
@@ -49,7 +59,7 @@
                                                 <span class="label inline font-medium  text-16px line-clamp-5">{{__('contact.name')}}</span>
                                                 <span class="text-red-600 ml-1">*</span>
                                             </label>
-                                            <input placeholder="Type here" class="ant-input css-125enb3 sc-gsTDqH jWFWON css-125enb3" type="text" value="" name="name">
+                                            <input placeholder="Type here" required class="ant-input css-125enb3 sc-gsTDqH jWFWON css-125enb3" type="text" value="" name="name">
                                         </div>
                                         <div class="flex flex-col gap-y-3">
                                             <label>
@@ -57,9 +67,9 @@
                                             </label>
                                             <div class="ant-select sc-bdfCDU iknHgW css-125enb3 ant-select-single ant-select-show-arrow" name="sex">
                                                 <div class="ant-select-selector">
-                                                    <select name="sex" class="w-full h-44px border border-d9d9d9">
-                                                        <option value="0">Ms.</option>
-                                                        <option value="1">Mr.</option>
+                                                    <select name="sex" required class="w-full h-44px border border-d9d9d9">
+                                                        <option value="Ms.">Ms.</option>
+                                                        <option value="Mr.">Mr.</option>
                                                     </select>
                                                 </div>
                                             </div>
@@ -69,14 +79,14 @@
                                                 <span class="label inline font-medium  text-16px line-clamp-5">{{__('contact.email')}}</span>
                                                 <span class="text-red-600 ml-1">*</span>
                                             </label>
-                                            <input placeholder="Type here" class="ant-input css-125enb3 sc-gsTDqH jWFWON css-125enb3" type="text" value="" name="email">
+                                            <input placeholder="Type here" required class="ant-input css-125enb3 sc-gsTDqH jWFWON css-125enb3" type="email" value="" name="email">
                                         </div>
                                         <div class="flex flex-col gap-y-3 ">
                                             <label>
                                                 <span class="label inline font-medium  text-16px line-clamp-5">{{__('contact.phone')}}</span>
                                                 <span class="text-red-600 ml-1">*</span>
                                             </label>
-                                            <input placeholder="Type here" class="ant-input css-125enb3 sc-gsTDqH jWFWON css-125enb3" type="text" value="" name="phone">
+                                            <input placeholder="Type here" required class="ant-input css-125enb3 sc-gsTDqH jWFWON css-125enb3" type="tel" value="" name="phone">
                                         </div>
                                     </div>
                                     <div class="sm:col-span-2">
@@ -85,7 +95,7 @@
                                                 <span class="label inline font-medium  text-16px line-clamp-5">{{__('contact.inquiry')}}</span>
                                                 <span class="text-red-600 ml-1">*</span>
                                             </label>
-                                            <textarea name="inquiry" placeholder="Type here" class="ant-input css-125enb3" style="resize: none; height: 100px;"></textarea>
+                                            <textarea name="inquiry" required placeholder="Type here" class="ant-input css-125enb3" style="resize: none; height: 100px;"></textarea>
                                         </div>
                                     </div>
                                     <div class="w-154px self-end">

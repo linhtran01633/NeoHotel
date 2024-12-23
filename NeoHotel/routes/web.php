@@ -46,6 +46,7 @@ Route::get('contact', [ClientController::class, 'contact'])->name('contact');
 
 Route::get('booking', [ClientController::class, 'booking'])->name('booking');
 Route::post('submit-booking', [ClientController::class, 'submitBooking'])->name('submit-booking');
+Route::post('submit-contact', [ClientController::class, 'submitContact'])->name('submit-contact');
 
 
 Route::prefix('dashboard')->group(function () {
