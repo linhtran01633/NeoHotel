@@ -97,6 +97,11 @@
     "booking_success" : "Cảm ơn quý khách đã đặt phòng.\nNhân viên khách sạn sẽ liên hệ về tình trạng phòng trống và giá trong vòng 6 tiếng. Mong quý khách thông cảm.",
     "booking_false" : "Đặt phòng thất bại",
 
+    "contact_success" : "Cảm ơn quý khách đã gửi yêu cầu.\nNhân viên khách sạn sẽ liên hệ trong vòng 6 tiếng. Mong quý khách thông cảm.",
+    "contact_false": "Gửi yêu cầu thất bại",
+
+    "spam_mail" : "Bạn đã gửi quá nhiều yêu cầu, vui lòng thử lại sau.",
+
     "linh" : "123"
 }
 

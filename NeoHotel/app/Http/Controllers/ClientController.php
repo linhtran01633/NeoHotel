@@ -13,6 +13,7 @@ use App\Models\Service;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
@@ -74,6 +75,19 @@ class ClientController extends Controller
 
     public function submitBooking(Request $request)
     {
+        if (!empty($request->honeypot)) {
+            return redirect()->back()->with('message', __('spam_mail'));
+        }
+
+        $ip = $request->ip();
+        $attempts = Cache::get("booking-attempts-{$ip}", 0) + 1;
+
+        if ($attempts > 3) {
+            return redirect()->back()->with('message', __('spam_mail'));
+        }
+
+        Cache::put("booking-attempts-{$ip}", $attempts, 600); // Reset sau 60 giây
+
         try {
             DB::transaction(function () use ($request) {
                 $roomType = '';
@@ -103,7 +117,7 @@ class ClientController extends Controller
                 Mail::send('mail.merchant', ['details' => $details], function ($message) use ($details) {
                     $message->to([env('EMAIL_MERCHANT_1'), env('EMAIL_MERCHANT_2')]) // Địa chỉ "to"
                             ->cc(env('EMAIL_MERCHANT_2')) // Địa chỉ "cc"
-                            ->bcc([env('EMAIL_MERCHANT_3'), 'baont@kimei.vn']) // Các địa chỉ "bcc"
+                            ->bcc([env('EMAIL_MERCHANT_3')]) // Các địa chỉ "bcc"
                             ->from('noreply.smtp.server1912@gmail.com') // Địa chỉ "from"
                             ->replyTo('noreply.smtp.server1912@gmail.com') // Địa chỉ "replyTo"
                             ->subject('Hotel Booking Info - ' . $details['name'] . ' - Booking ID [' . $details['bookingId'] . ']'); // Tiêu đề email
@@ -163,6 +177,20 @@ class ClientController extends Controller
 
     public function submitContact(Request $request)
     {
+
+        if (!empty($request->honeypot)) {
+            return redirect()->back()->with('message', __('spam_mail'));
+        }
+
+        $ip = $request->ip();
+        $attempts = Cache::get("contact-attempts-{$ip}", 0) + 1;
+
+        if ($attempts > 3) {
+            return redirect()->back()->with('message', __('spam_mail'));
+        }
+
+        Cache::put("contact-attempts-{$ip}", $attempts, 600); // Reset sau 60 giây
+
         try {
             DB::transaction(function () use ($request) {
                 $bookingId = Config::get('bookingId.current', 61);
@@ -180,7 +208,7 @@ class ClientController extends Controller
                 Mail::send('mail.contact', ['details' => $details], function ($message) use ($details) {
                     $message->to([env('EMAIL_MERCHANT_1'), env('EMAIL_MERCHANT_2')]) // Địa chỉ "to"
                             ->cc(env('EMAIL_MERCHANT_2')) // Địa chỉ "cc"
-                            ->bcc([env('EMAIL_MERCHANT_3'), 'baont@kimei.vn']) // Các địa chỉ "bcc"
+                            ->bcc([env('EMAIL_MERCHANT_3')]) // Các địa chỉ "bcc"
                             ->from('noreply.smtp.server1912@gmail.com') // Địa chỉ "from"
                             ->replyTo('noreply.smtp.server1912@gmail.com') // Địa chỉ "replyTo"
                             ->subject('Contact Info'); // Tiêu đề email
@@ -188,8 +216,8 @@ class ClientController extends Controller
             });
         } catch (Exception $e) {
             Log::info($e->getMessage());
-            return redirect()->back()->with('message',  __('booking_false'));
+            return redirect()->back()->with('message',  __('contact_false'));
         }
-        return redirect()->back()->with('message',   __('booking_success'));
+        return redirect()->back()->with('message',   __('contact_success'));
     }
 }

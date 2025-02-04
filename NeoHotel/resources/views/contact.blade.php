@@ -52,6 +52,7 @@
                             @endif
                             <form action="{{route('submit-contact')}}" method="post">
                                 @csrf
+                                <input type="text" name="honeypot" style="display:none;">
                                 <div class="flex flex-col gap-y-5 sm:gap-y-10 mt-4">
                                     <div class="grid grid-cols-1 grid-rows-4 md:grid-cols-2 md:grid-rows-2 gap-x-5 gap-y-5 sm:gap-y-10">
                                         <div class="flex flex-col gap-y-3 ">

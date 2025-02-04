@@ -245,6 +245,7 @@
                                             }
                                         }' x-init="custom_date">
                                             @csrf
+                                            <input type="text" name="honeypot" style="display:none;">
                                             <input type="hidden" name="hotelName" value="{{__('home.slider.title')}}">
                                             <input type="hidden" name="adult" x-model="booking.adult">
                                             <input type="hidden" name="breakfast" x-model="booking.breakfast">

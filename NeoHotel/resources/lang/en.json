@@ -97,5 +97,11 @@
     "booking_success" : "Thank you for your reservation. Our staff will contact to you within 6 hours.",
     "booking_false" : "Reservation failed",
 
+
+    "contact_success" : "Thank you for your inquiry. Our staff will contact to you within 6 hours.",
+    "contact_false": "Contact failed",
+
+    "spam_mail" : "You have sent too many requests, please try again later.",
+
     "linh" : "123"
 }
