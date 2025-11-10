@@ -315,7 +315,8 @@
 
             $('.btn-nook_now').on('click', function(e) {
                 let room_type = $(this).data('room_type');
-                window.location.href = `/booking?room_type=${room_type}&step=1`;
+                let lang = @json(app()->getLocale());
+                window.location.href = `/${lang}/booking?room_type=${room_type}&step=1`;
             })
         });
     </script>

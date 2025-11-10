@@ -48,10 +48,10 @@
                                             <button x-on:click="showQuestion = !showQuestion" class="flex w-full justify-between rounded-lg bg-white-100 px-4 py-2 text-left text-18px font-medium text-black focus:outline-none focus-visible:ring focus-text-633511" id="headlessui-disclosure-button-:r17:" type="button" aria-expanded="false" >
                                                 <h5 class="whitespace-pre-line text-lg " :class="showQuestion ? 'text-633511' : 'text-4a4a4a' ">{{$item['question_'. $language]}}</h5>
                                                 <div class="text-sm w-6">
-                                                    <svg x-show="showQuestion == false" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                                                    <svg x-show="showQuestion == false" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6" style="min-width: 3vh">
                                                         <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
                                                     </svg>
-                                                    <svg x-show="showQuestion == true" gxmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                                                    <svg x-show="showQuestion == true" gxmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6" style="min-width: 3vh">
                                                         <path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14" />
                                                     </svg>
                                                 </div>

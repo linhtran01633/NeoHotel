@@ -3,6 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lantern hotel - A boutique hotel with high standard and tourist-friendly service in Ho Chi Minh City Center</title>
+    <meta name="keywords" content="Vietnam, Ho Chi Minh, HCMC, hotel, Lantern hotel, free laundry, ベトナム、ホーチミン、ホテル、宿、日本語、日本人向け、ランタンホテル、ホーチミン都心, Hồ Chí Minh, Quận 1, khách sạn, miễn phí giặt, khách sạn Nhật, tiếng Nhật">
+    
+    <meta name="description" content="A perfect base for sight-seeing, the hotel is close to Ben Thanh Market. With tourist-friendly facilities and free laundry, your trip will be more comfortable.">
+
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Lantern hotel - Vision</title>
 
@@ -65,6 +70,45 @@
             height: 100px; /* Đặt chiều cao tùy ý cho slide thumbnail */
             margin-top: 20px;
         }
+        
+        /** Loading animation */
+
+        .icon-loadding {
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 100;
+            display: none;
+            position: fixed;
+        }
+        .loadding-animation {
+            top: 50%;
+            left: 50%;
+            position: fixed;
+            transform: translate(-50%, -50%);
+        }
+
+        .loadding-animation:after {
+            content: " ";
+            display: block;
+            width: 45px;
+            height: 45px;
+            margin: 8px;
+            border-radius: 50%;
+            border: 5px solid #fff;
+            border-color: #633511 transparent #633511 transparent;
+            animation: loadding-animation 1.2s linear infinite;
+        }
+
+        @keyframes loadding-animation {
+            0% {
+            transform: rotate(0deg);
+            }
+            100% {
+            transform: rotate(360deg);
+            }
+        }
 
     </style>
 </head>
@@ -81,6 +125,9 @@
             number_of_room: localStorage.getItem('booking') ? JSON.parse(localStorage.getItem('booking')).number_of_room : '',
         },
     }">
+        <div class="icon-loadding">
+            <div class="loadding-animation"></div>
+        </div>
         @yield('content')
     </div>
 

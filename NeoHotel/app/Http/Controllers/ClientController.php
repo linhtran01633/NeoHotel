@@ -19,26 +19,28 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\App;
 
 class ClientController extends Controller
 {
 
-    public function home() {
+    public function home(Request $request) {
         $homeSlide = HomeSlide::where('delete_flag', 0)->orderBy('id')->get();
         return view('welcome', compact('homeSlide'));
     }
 
-    public function faq() {
+    public function faq(Request $request) {
         $faq =  Faq::where('delete_flag', 0)->orderBy('id')->get();
         return view('faq', compact('faq'));
     }
 
-    public function about_us() {
+    public function about_us(Request $request) {
         $aboutUs = AboutUs::select('*')->where('delete_flag', 0)->orderBy('id', 'asc')->first();
         return view('about_us', compact('aboutUs'));
     }
 
-    public function services() {
+    public function services(Request $request) {
         $array_images = [];
         $array_service = [];
 
@@ -56,7 +58,7 @@ class ClientController extends Controller
         return view('services',compact('data', 'array_images', 'array_service'));
     }
 
-    public function contact() {
+    public function contact(Request $request) {
         $data = Contract::where('delete_flag', 0)->first();
         return view('contact', compact('data'));
     }
@@ -110,8 +112,8 @@ class ClientController extends Controller
                     'hotelName'=> $request->hotelName,
                     'numberOfRoom'=> $request->number_of_room,
                     'name' => $request->c_first_name . ' ' . $request->c_last_name,
-                    'checkout'=> Carbon::parse($request->end_date)->format('F jS Y, h:i:s a'),
-                    'checkin' => Carbon::parse($request->start_date)->format('F jS Y, h:i:s a'),
+                    'checkout'=> Carbon::parse($request->end_date)->setTime(12, 0, 0)->format('F jS Y, h:i:s a'),
+                    'checkin' => Carbon::parse($request->start_date)->setTime(14, 0, 0)->format('F jS Y, h:i:s a'),
                 ];
 
                 Mail::send('mail.merchant', ['details' => $details], function ($message) use ($details) {

@@ -1,91 +1,184 @@
-<div class="fixed z-50 bottom-0 booking-wrapper w-full bg-633511 backdrop-blur-lg " x-data="{
+<div class="fixed z-50 bottom-0 booking-wrapper w-full bg-633511 backdrop-blur-lg " x-data='{
+        appLocale1: @json(app()->getLocale()),
         btn_check_now: function() {
-
-            let dateRange = $('#date-range-picker').val();
-            let dates = dateRange.split(' - '); // Tách chuỗi thành mảng hai phần tử
+            const today = moment().startOf("day"); // Ngày hiện tại (không tính giờ phút)
+            let dateRange = $("#date-range-picker").val();
+            let dates = dateRange.split(" - "); // Tách chuỗi thành mảng hai phần tử
+        
+            // Khởi tạo thông tin booking
+            booking.breakfast = 0;
+            booking.adult = Number($("#adult_popup").text()) || 1;
+            booking.children = Number($("#children_popup").text()) || 0;
+            booking.number_of_room = Number($("#number_of_room_popup").text()) || 1;
+        
+            // Parse ngày từ input
+            let startDate = dates[0] ? moment(dates[0], "DD/MM/YYYY").startOf("day") : today;
+            let endDate = dates[1] ? moment(dates[1], "DD/MM/YYYY").startOf("day") : today.clone().add(1, "days");
+        
+            // Kiểm tra và điều chỉnh ngày
+            if (!startDate.isValid()) startDate = today;
+            if (!endDate.isValid()) endDate = today.clone().add(1, "days");
+        
+            // Đảm bảo startDate không nhỏ hơn ngày hiện tại
+            if (startDate.isBefore(today)) {
+                startDate = today.clone();
+            }
+        
+            // Đảm bảo endDate không nhỏ hơn ngày hiện tại và lớn hơn startDate
+            if (endDate.isBefore(today)) {
+                endDate = today.clone().add(1, "days");
+            } else if (endDate.isSameOrBefore(startDate)) {
+                endDate = startDate.clone().add(1, "days");
+            }
+        
+            // Lưu thông tin ngày đã được validate
+            booking.start_date = startDate.format("YYYY-MM-DD");
+            booking.end_date = endDate.format("YYYY-MM-DD");
+            booking.staylength = endDate.diff(startDate, "days");
+        
+            // Lưu vào localStorage và chuyển hướng
+            localStorage.setItem("booking", JSON.stringify(booking));
+            console.log("Booking data:", booking);
+        
+            window.location.href = `/${this.appLocale1}/rooms`;
+        },
+        
+        btn_check_now_old: function() {
+            let dateRange = $("#date-range-picker").val();
+            let dates = dateRange.split(" - "); // Tách chuỗi thành mảng hai phần tử
 
             booking.breakfast = 0;
-            booking.adult = Number($('#adult_popup').text()) ? Number($('#adult_popup').text()) : 1;
-            booking.children = Number($('#children_popup').text()) ? Number($('#children_popup').text()) : 0;
-            booking.number_of_room = Number($('#number_of_room_popup').text()) ? Number($('#number_of_room_popup').text()) : 1;
+            booking.adult = Number($("#adult_popup").text()) ? Number($("#adult_popup").text()) : 1;
+            booking.children = Number($("#children_popup").text()) ? Number($("#children_popup").text()) : 0;
+            booking.number_of_room = Number($("#number_of_room_popup").text()) ? Number($("#number_of_room_popup").text()) : 1;
 
 
-            let startDate = dates[0] ? moment(dates[0], 'DD/MM/YYYY') : moment();
-            let endDate = dates[1] ? moment(dates[1], 'DD/MM/YYYY') : moment();
+            let startDate = dates[0] ? moment(dates[0], "DD/MM/YYYY") : moment();
+            let endDate = dates[1] ? moment(dates[1], "DD/MM/YYYY") : moment();
 
             // Kiểm tra ngày hợp lệ và tính toán thời gian lưu trú
             if (startDate.isValid() && endDate.isValid()) {
                 // Định dạng ngày trước khi lưu vào booking
-                booking.start_date = moment(startDate).format('YYYY-MM-DD');
-                booking.end_date = moment(endDate).format('YYYY-MM-DD');
+                booking.start_date = moment(startDate).format("YYYY-MM-DD");
+                booking.end_date = moment(endDate).format("YYYY-MM-DD");
 
                 // Tính thời gian lưu trú và bao gồm cả ngày đầu tiên
-                booking.staylength = endDate.diff(startDate, 'days') + 1;
+                booking.staylength = endDate.diff(startDate, "days") + 1;
             } else {
                 // Trường hợp ngày không hợp lệ
-                booking.start_date = moment().format('YYYY-MM-DD');
-                booking.end_date = moment().format('YYYY-MM-DD');
+                booking.start_date = moment().format("YYYY-MM-DD");
+                booking.end_date = moment().format("YYYY-MM-DD");
 
                 booking.staylength = 1; // Thời gian lưu trú tối thiểu là 1 ngày
             }
 
 
-            localStorage.setItem('booking', JSON.stringify(booking))
-            console.log(booking);
+            localStorage.setItem("booking", JSON.stringify(booking))
 
-            window.location.href = `/rooms`
+            window.location.href = `/${this.appLocale1}/rooms`;
 
         },
+        
         load: function() {
-            const bookingData = localStorage.getItem('booking');
+            const bookingData = localStorage.getItem("booking");
+            const today = moment().startOf("day"); // Ngày hiện tại, bỏ qua giờ phút
+            let startDate, endDate;
+        
+            if (bookingData) {
+                const parsedBooking = JSON.parse(bookingData);
+                
+                // Parse dates from different formats
+                if (moment(parsedBooking.end_date, "MMM D, YYYY", true).isValid()) {
+                    startDate = moment(parsedBooking.start_date, "MMM D, YYYY").startOf("day");
+                    endDate = moment(parsedBooking.end_date, "MMM D, YYYY").startOf("day");
+                } else if (moment(parsedBooking.end_date, "YYYY年MM月DD日", true).isValid()) {
+                    startDate = moment(parsedBooking.start_date, "YYYY年MM月DD日").startOf("day");
+                    endDate = moment(parsedBooking.end_date, "YYYY年MM月DD日").startOf("day");
+                } else {
+                    startDate = moment(parsedBooking.start_date, "YYYY-MM-DD").startOf("day");
+                    endDate = moment(parsedBooking.end_date, "YYYY-MM-DD").startOf("day");
+                }
+        
+                // Đảm bảo startDate không nhỏ hơn ngày hiện tại
+                if (startDate.isBefore(today)) {
+                    startDate = today.clone();
+                }
+        
+                // Đảm bảo endDate không nhỏ hơn ngày hiện tại và lớn hơn startDate
+                if (endDate.isBefore(today)) {
+                    endDate = today.clone().add(1, "days");
+                } else if (endDate.isSameOrBefore(startDate)) {
+                    endDate = startDate.clone().add(1, "days");
+                }
+        
+                // Format dates for display
+                const formattedStart = startDate.format("DD/MM/YYYY");
+                const formattedEnd = endDate.format("DD/MM/YYYY");
+        
+                console.log("Start Date:", formattedStart);
+                console.log("End Date:", formattedEnd);
+                console.log("Booking Data:", bookingData);
+        
+                $("#date-range-picker").data("daterangepicker").setStartDate(formattedStart);
+                $("#date-range-picker").data("daterangepicker").setEndDate(formattedEnd);
+                $("#date-range-picker").val(formattedStart + " - " + formattedEnd);
+            } else {
+                console.log("no booking");
+        
+                // Default dates (today and tomorrow)
+                startDate = today;
+                endDate = today.clone().add(1, "days");
+        
+                const formattedStart = startDate.format("DD/MM/YYYY");
+                const formattedEnd = endDate.format("DD/MM/YYYY");
+        
+                $("#date-range-picker").data("daterangepicker").setStartDate(formattedStart);
+                $("#date-range-picker").data("daterangepicker").setEndDate(formattedEnd);
+                $("#date-range-picker").val(formattedStart + " - " + formattedEnd);
+            }
+        },
+        
+        load_old: function() {
+            const bookingData = localStorage.getItem("booking");
             if (bookingData) {
 
                 const parsedBooking = JSON.parse(bookingData);
-                let startDate = '';
-                let endDate = '';
+                let startDate = "";
+                let endDate = "";
 
-                if (moment(parsedBooking.end_date, 'MMM D, YYYY', true).isValid()) {
-                    startDate = moment(parsedBooking.end_date, 'MMM D, YYYY').format('DD/MM/YYYY');
-                    endDate = moment(parsedBooking.start_date, 'MMM D, YYYY').format('DD/MM/YYYY');
-                } else if(moment(parsedBooking.end_date, 'YYYY年MM月DD日', true).isValid()) {
-                    endDate = moment(parsedBooking.end_date, 'YYYY年MM月DD日').format('DD/MM/YYYY');
-                    startDate = moment(parsedBooking.start_date, 'YYYY年MM月DD日').format('DD/MM/YYYY');
+                if (moment(parsedBooking.end_date, "MMM D, YYYY", true).isValid()) {
+                    startDate = moment(parsedBooking.end_date, "MMM D, YYYY").format("DD/MM/YYYY");
+                    endDate = moment(parsedBooking.start_date, "MMM D, YYYY").format("DD/MM/YYYY");
+                } else if(moment(parsedBooking.end_date, "YYYY年MM月DD日", true).isValid()) {
+                    endDate = moment(parsedBooking.end_date, "YYYY年MM月DD日").format("DD/MM/YYYY");
+                    startDate = moment(parsedBooking.start_date, "YYYY年MM月DD日").format("DD/MM/YYYY");
                 } else {
-                    endDate = moment(parsedBooking.end_date, 'YYYY-MM-DD').format('DD/MM/YYYY');
-                    startDate = moment(parsedBooking.start_date, 'YYYY-MM-DD').format('DD/MM/YYYY');
+                    endDate = moment(parsedBooking.end_date, "YYYY-MM-DD").format("DD/MM/YYYY");
+                    startDate = moment(parsedBooking.start_date, "YYYY-MM-DD").format("DD/MM/YYYY");
                 }
-                console.log(endDate);
-                console.log(startDate);
-                console.log(bookingData);
 
-                if (startDate != '' && endDate != '') {
-                    console.log(bookingData);
-                    $('#date-range-picker').data('daterangepicker').setStartDate(startDate);
-                    $('#date-range-picker').data('daterangepicker').setEndDate(endDate);
-                    $('#date-range-picker').val(startDate + ' - ' + endDate);
+                if (startDate != "" && endDate != "") {
+                    $("#date-range-picker").data("daterangepicker").setStartDate(startDate);
+                    $("#date-range-picker").data("daterangepicker").setEndDate(endDate);
+                    $("#date-range-picker").val(startDate + " - " + endDate);
                 } else {
-                    console.log('no booking 1');
+                    let startDateCurent = moment().format("DD/MM/YYYY");
+                    let endDateCurent = moment().add(1, "days").format("DD/MM/YYYY");
 
-                    let startDateCurent = moment().format('DD/MM/YYYY');
-                    let endDateCurent = moment().add(1, 'days').format('DD/MM/YYYY');
-
-                    $('#date-range-picker').data('daterangepicker').setStartDate(startDateCurent);
-                    $('#date-range-picker').data('daterangepicker').setEndDate(endDateCurent);
-                    $('#date-range-picker').val(startDateCurent + ' - ' + endDateCurent);
+                    $("#date-range-picker").data("daterangepicker").setStartDate(startDateCurent);
+                    $("#date-range-picker").data("daterangepicker").setEndDate(endDateCurent);
+                    $("#date-range-picker").val(startDateCurent + " - " + endDateCurent);
                 }
             } else {
-                    console.log('no booking');
+                let startDate = moment().format("DD/MM/YYYY");
+                let endDate = moment().add(1, "days").format("DD/MM/YYYY");
 
-                let startDate = moment().format('DD/MM/YYYY');
-                let endDate = moment().add(1, 'days').format('DD/MM/YYYY');
-
-                $('#date-range-picker').data('daterangepicker').setStartDate(startDate);
-                $('#date-range-picker').data('daterangepicker').setEndDate(endDate);
-                $('#date-range-picker').val(startDate + ' - ' + endDate);
+                $("#date-range-picker").data("daterangepicker").setStartDate(startDate);
+                $("#date-range-picker").data("daterangepicker").setEndDate(endDate);
+                $("#date-range-picker").val(startDate + " - " + endDate);
             }
         }
-
-    }" x-init="load">
+    }' x-init="load">
 	<div class="h-5 sm:h-full flex max-width-1080px m-auto items-center justify-center gap-5 py-6 px-4">
 		<div class="hidden sm:block w-full">
 			<div class="w-full grid sm:grid-flow-col sm:grid-rows-1 gap-3">

@@ -17,16 +17,19 @@ class SetLocale
      */
     public function handle(Request $request, Closure $next): Response
     {
-        // Kiểm tra xem có tham số 'locale' trong request không
-        if ($request->has('locale')) {
-            $locale = $request->get('locale');
-            Session::put('locale', $locale);
+        $locale = $request->route('locale');
+        if (!in_array($locale, ['en', 'ja', 'vn'])) {
+            if(!Session::get('locale')){
+                $locale = 'en'; // Giá trị mặc định nếu không hợp lệ
+            }else {
+                $locale = Session::get('locale'); 
+            }
+            
         }
 
-
         // Lấy ngôn ngữ từ session hoặc sử dụng ngôn ngữ mặc định
-        $locale = Session::get('locale', config('app.locale'));
-        App::setLocale($locale);
+        App::setLocale($locale); // Cập nhật ngôn ngữ
+        Session::put('locale', $locale); // Lưu vào session để dùng sau
 
         return $next($request);
     }

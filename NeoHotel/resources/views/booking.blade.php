@@ -23,29 +23,149 @@
                     let date1 = moment($("#end_date").val());
                     let date2 = moment($("#start_date").val());
 
-                    booking.staylength = date1.diff(date2, "days") + 1;
+                    booking.staylength = date1.diff(date2, "days");
 
                     localStorage.setItem("booking", JSON.stringify(booking))
 
-                    window.location.href = `/booking?room_type={!!request()->room_type!!}&step=2`
+                    window.location.href = `/${this.appLocale1}/booking?room_type={!!request()->room_type!!}&step=2`
                 } else {
                     this.$refs.bookingForm.reportValidity()
                 }
             },
 
             changeRoomType: function() {
-                window.location.href = `/booking?room_type=${$("#room_type").val()}&step=1`
+                window.location.href = `/${this.appLocale1}/booking?room_type=${$("#room_type").val()}&step=1`
+            },
+            
+            change_end_date: function() {
+                const today = moment().startOf("day");
+                let endDate = moment($("#end_date").val());
+                let startDate = moment($("#start_date").val());
+                
+                // Nếu ngày không hợp lệ, đặt lại thành ngày hiện tại + 1
+                if (!endDate.isValid()) {
+                    endDate = today.clone().add(1, "days");
+                }
+                
+                // Đảm bảo endDate không nhỏ hơn ngày hiện tại
+                if (endDate.isBefore(today)) {
+                    endDate = today.clone().add(1, "days");
+                }
+                
+                // Đảm bảo endDate > startDate
+                if (endDate.isSameOrBefore(startDate)) {
+                    endDate = startDate.clone().add(1, "days");
+                }
+                
+                // Cập nhật giá trị input
+                if(this.appLocale1 == "ja") {
+                    $("#end_date").val(endDate.format("YYYY年MM月DD日"));
+                } else if(this.appLocale1 == "en") {
+                    $("#end_date").val(endDate.format("MMM D, YYYY"));
+                } else {
+                    $("#end_date").val(endDate.format("YYYY-MM-DD"));
+                }
+                
+                booking.end_date = endDate.format("YYYY-MM-DD");
             },
 
-            change_end_date : function() {
-                booking.end_date = $("#end_date").val()
-            },
-
-            change_start_date : function() {
-                booking.start_date = $("#start_date").val()
+            change_start_date: function() {
+                const today = moment().startOf("day");
+                let startDate = moment($("#start_date").val());
+                let endDate = moment($("#end_date").val());
+                
+                // Nếu ngày không hợp lệ, đặt lại thành ngày hiện tại
+                if (!startDate.isValid()) {
+                    startDate = today.clone();
+                }
+                
+                // Đảm bảo startDate không nhỏ hơn ngày hiện tại
+                if (startDate.isBefore(today)) {
+                    startDate = today.clone();
+                }
+                
+                // Đảm bảo endDate > startDate
+                if (endDate.isSameOrBefore(startDate)) {
+                    endDate = startDate.clone().add(1, "days");
+                    if(this.appLocale1 == "ja") {
+                        $("#end_date").val(endDate.format("YYYY年MM月DD日"));
+                    } else if(this.appLocale1 == "en") {
+                        $("#end_date").val(endDate.format("MMM D, YYYY"));
+                    } else {
+                        $("#end_date").val(endDate.format("YYYY-MM-DD"));
+                    }
+                    booking.end_date = endDate.format("YYYY-MM-DD");
+                }
+                
+                // Cập nhật giá trị input
+                if(this.appLocale1 == "ja") {
+                    $("#start_date").val(startDate.format("YYYY年MM月DD日"));
+                } else if(this.appLocale1 == "en") {
+                    $("#start_date").val(startDate.format("MMM D, YYYY"));
+                } else {
+                    $("#start_date").val(startDate.format("YYYY-MM-DD"));
+                }
+                
+                booking.start_date = startDate.format("YYYY-MM-DD");
             },
 
             load: function() {
+                const today = moment().startOf("day");
+                let end_date = "";
+                let start_date = "";
+                
+                // Parse ngày từ booking data
+                if (moment(booking.end_date, "MMM D, YYYY", true).isValid()) {
+                    end_date = moment(booking.end_date, "MMM D, YYYY");
+                    start_date = moment(booking.start_date, "MMM D, YYYY");
+                } else if(moment(booking.end_date, "YYYY年MM月DD日", true).isValid()) {
+                    end_date = moment(booking.end_date, "YYYY年MM月DD日");
+                    start_date = moment(booking.start_date, "YYYY年MM月DD日");
+                } else {
+                    end_date = moment(booking.end_date, "YYYY-MM-DD");
+                    start_date = moment(booking.start_date, "YYYY-MM-DD");
+                }
+                
+                // Kiểm tra và điều chỉnh ngày
+                if (!start_date.isValid()) start_date = today.clone();
+                if (!end_date.isValid()) end_date = today.clone().add(1, "days");
+                
+                // Đảm bảo start_date không nhỏ hơn ngày hiện tại
+                if (start_date.isBefore(today)) {
+                    start_date = today.clone();
+                }
+                
+                // Đảm bảo end_date > start_date
+                if (end_date.isSameOrBefore(start_date)) {
+                    end_date = start_date.clone().add(1, "days");
+                }
+                
+                // Cập nhật giá trị input theo ngôn ngữ
+                if(this.appLocale1 == "ja") {
+                    $("#end_date").val(end_date.format("YYYY年MM月DD日"));
+                    $("#start_date").val(start_date.format("YYYY年MM月DD日"));
+                } else if(this.appLocale1 == "en") {
+                    $("#end_date").val(end_date.format("MMM D, YYYY"));
+                    $("#start_date").val(start_date.format("MMM D, YYYY"));
+                } else {
+                    $("#end_date").val(end_date.format("YYYY-MM-DD"));
+                    $("#start_date").val(start_date.format("YYYY-MM-DD"));
+                }
+                
+                // Cập nhật lại booking data
+                booking.end_date = end_date.format("YYYY-MM-DD");
+                booking.start_date = start_date.format("YYYY-MM-DD");
+            },
+
+            change_end_date_old : function() {
+                booking.end_date = $("#end_date").val()
+            },
+
+            change_start_date_old : function() {
+                booking.start_date = $("#start_date").val()
+            },
+
+            load_old: function() {
                 let end_date = "";
                 let start_date = "";
                 if (moment(booking.end_date, "MMM D, YYYY", true).isValid()) {
@@ -76,7 +196,7 @@
                 <div class="max-width-1080px min-w-60vw m-auto flex flex-col items-center px-smClamp">
                     <div class="relative w-full flex flex-col sm:flex-row justify-center mb-8 gap-y-3">
                         <div class=" top-0 left-0 flex w-fit">
-                            <a href="/rooms">
+                            <a href="/{{app()->getLocale()}}/rooms">
                                 <button class="flex m-auto items-center">
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" class="self-center" width="20">
                                         <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5"></path>
@@ -243,7 +363,7 @@
                                                 }
 
                                             }
-                                        }' x-init="custom_date">
+                                        }' x-on:submit.prevent="if ($el.checkValidity()) { $('.icon-loadding').show(); $el.submit(); }" x-init="custom_date">
                                             @csrf
                                             <input type="text" name="honeypot" style="display:none;">
                                             <input type="hidden" name="hotelName" value="{{__('home.slider.title')}}">

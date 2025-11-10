@@ -20,31 +20,49 @@ Route::get('locale/{locale}', function ($locale) {
     if (in_array($locale, ['en', 'ja', 'vn'])) {
         Session::put('locale', $locale);
     }
-    return redirect()->back();
+     
+    $previousUrl = url()->previous();
+
+    $parsedUrl = parse_url($previousUrl);
+    parse_str($parsedUrl['query'] ?? '', $queryParams);
+
+    $queryParams['lang'] = $locale;
+
+    $newUrl = $parsedUrl['path'] . '?' . http_build_query($queryParams);
+
+    return redirect($newUrl);
+    
 });
 
-Route::get('/test', function () {
-    return view('test');
+Route::get('/', function () {
+    
+    $locale = Session::get('locale'); 
+
+    return redirect()->to($locale);
 });
 
-Route::get('/', [ClientController::class, 'home'])->name('home');
-
-Route::get('/about-us', [ClientController::class, 'about_us'])->name('about_us');
-
-
-Route::get('services', [ClientController::class, 'services'])->name('services');
-
-Route::get('rooms', [ClientController::class, 'rooms'])->name('rooms');
-
-Route::get('/activities', function () {
-    return view('activities');
+Route::get('/sitemap.xml', function () {
+    $content = view('sitemap')->render();
+    return response($content, 200)->header('Content-Type', 'application/xml');
 });
 
-Route::get('faq', [ClientController::class, 'faq'])->name('faq');
+Route::group(['prefix' => '{locale}', 'where' => ['locale' => 'en|ja|vn']], function () {
+    Route::get('/', [ClientController::class, 'home'])->name('home');
+    Route::get('/about-us', [ClientController::class, 'about_us'])->name('about_us');
 
-Route::get('contact', [ClientController::class, 'contact'])->name('contact');
+    Route::get('services', [ClientController::class, 'services'])->name('services');
+    
+    Route::get('rooms', [ClientController::class, 'rooms'])->name('rooms');
+    
+    Route::get('/activities', function () {return view('activities');})->name('activities');
+    
+    Route::get('faq', [ClientController::class, 'faq'])->name('faq');
+    
+    Route::get('contact', [ClientController::class, 'contact'])->name('contact');
+    
+    Route::get('booking', [ClientController::class, 'booking'])->name('booking');
+});
 
-Route::get('booking', [ClientController::class, 'booking'])->name('booking');
 Route::post('submit-booking', [ClientController::class, 'submitBooking'])->name('submit-booking');
 Route::post('submit-contact', [ClientController::class, 'submitContact'])->name('submit-contact');
 

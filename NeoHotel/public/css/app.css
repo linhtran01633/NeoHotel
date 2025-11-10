@@ -597,6 +597,7 @@ main {
     --tw-backdrop-sepia: ;
 }
 
+
 @media (min-width: 1024px) {
     .lg\:text-lg {
         font-size: 1.125rem;
@@ -745,3 +746,4 @@ main {
 .font-cambria {
     font-family: 'Cambria', serif;
 }
+

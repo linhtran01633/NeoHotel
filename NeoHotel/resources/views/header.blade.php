@@ -1,6 +1,6 @@
 <header class="h-60px sm-h-84px z-2 bg-black text-gray-100">
     <div class="max-width-1080px h-60px sm-h-84px container flex justify-between mx-auto"  x-data="{ popup_local: false }">
-        <a aria-label="Back to homepage" class="flex items-center p-6" href="/">
+        <a aria-label="Back to homepage" class="flex items-center p-6" href="/{{app()->getLocale()}}">
             <div class="relative w-50px h-50px sm-w-75px sm-h-75px">
                 <img alt="neo-hotel-logo" src="/logo/logo.webp" loading="lazy" decoding="async" data-nimg="fill" sizes="100vw" style="position: absolute; height: 100%; width: 100%; inset: 0px; color: transparent;">
             </div>
@@ -8,25 +8,25 @@
         <div class="items-center justify-end flex-shrink-0 hidden lg:flex lg:flex-1">
             <ul class="items-stretch hidden lg:flex">
                 <li>
-                    <a class="flex text-white self-baseline h-full text-customColor items-center mx-4 mb-1 @if($tab == 1)active border-customColor text-customColor border-b-2 @endif" href="/">{{ __('screen.title.home') }}</a>
+                    <a class="flex text-white self-baseline h-full text-customColor items-center mx-4 mb-1 @if($tab == 1)active border-customColor text-customColor border-b-2 @endif" href="/{{app()->getLocale()}}">{{ __('screen.title.home') }}</a>
                 </li>
                 <li>
-                    <a class="flex text-white self-baseline h-full text-customColor items-center mx-4 mb-1 @if($tab == 2)active border-customColor text-customColor border-b-2 @endif" href="/about-us">{{ __('screen.title.aboutus') }}</a>
+                    <a class="flex text-white self-baseline h-full text-customColor items-center mx-4 mb-1 @if($tab == 2)active border-customColor text-customColor border-b-2 @endif" href="/{{app()->getLocale()}}/about-us">{{ __('screen.title.aboutus') }}</a>
                 </li>
                 <li>
-                    <a class="flex text-white self-baseline h-full text-customColor items-center mx-4 mb-1 @if($tab == 3)active border-customColor text-customColor border-b-2 @endif" href="/services">{{ __('screen.title.services') }}</a>
+                    <a class="flex text-white self-baseline h-full text-customColor items-center mx-4 mb-1 @if($tab == 3)active border-customColor text-customColor border-b-2 @endif" href="/{{app()->getLocale()}}/services">{{ __('screen.title.services') }}</a>
                 </li>
                 <li>
-                    <a class="flex text-white self-baseline h-full text-customColor items-center mx-4 mb-1 @if($tab == 4)active border-customColor text-customColor border-b-2 @endif" href="/rooms">{{ __('screen.title.rooms') }}</a>
+                    <a class="flex text-white self-baseline h-full text-customColor items-center mx-4 mb-1 @if($tab == 4)active border-customColor text-customColor border-b-2 @endif" href="/{{app()->getLocale()}}/rooms">{{ __('screen.title.rooms') }}</a>
                 </li>
                 <li>
-                    <a class="flex text-white self-baseline h-full text-customColor items-center mx-4 mb-1 @if($tab == 5)active border-customColor text-customColor border-b-2 @endif" href="/activities">{{ __('screen.title.activities') }}</a>
+                    <a class="flex text-white self-baseline h-full text-customColor items-center mx-4 mb-1 @if($tab == 5)active border-customColor text-customColor border-b-2 @endif" href="/{{app()->getLocale()}}/activities">{{ __('screen.title.activities') }}</a>
                 </li>
                 <li>
-                    <a class="flex text-white self-baseline h-full text-customColor items-center mx-4 mb-1 @if($tab == 6)active border-customColor text-customColor border-b-2 @endif" href="/faq">{{ __('screen.title.faq') }}</a>
+                    <a class="flex text-white self-baseline h-full text-customColor items-center mx-4 mb-1 @if($tab == 6)active border-customColor text-customColor border-b-2 @endif" href="/{{app()->getLocale()}}/faq">{{ __('screen.title.faq') }}</a>
                 </li>
                 <li>
-                    <a class="flex text-white self-baseline h-full text-customColor items-center mx-4 mb-1 @if($tab == 7)active border-customColor text-customColor border-b-2 @endif" href="/contact">{{ __('screen.title.contact') }}</a>
+                    <a class="flex text-white self-baseline h-full text-customColor items-center mx-4 mb-1 @if($tab == 7)active border-customColor text-customColor border-b-2 @endif" href="/{{app()->getLocale()}}/contact">{{ __('screen.title.contact') }}</a>
                 </li>
             </ul>
             <div class="relative inline-block text-left">
@@ -71,7 +71,7 @@
 
                 <div x-show="popup_local" class="absolute w-140px z-50 right-0 mt-2 origin-top-right divide-y divide-gray-100 rounded-md bg-white shadow-lg ring-1 ring-black/5 focus:outline-none hover-text-DBB98E transform opacity-100 scale-100" tabindex="0" >
                     <div class="px-1 py-1">
-                        <a class="text-gray-900 group flex w-full items-end rounded-md px-2 py-2 text-sm hover:bg-slate-100" id="headlessui-menu-item-:r5l:" role="menuitem" tabindex="-1" href="{{ url('locale/en') }}">
+                        <a rel="alternate" hreflang="en" class="text-gray-900 group flex w-full items-end rounded-md px-2 py-2 text-sm hover:bg-slate-100" id="headlessui-menu-item-:r5l:" role="menuitem" tabindex="-1" href="{{ url(str_replace(app()->getLocale(), 'en', request()->path())) }}">
                             <div class="w-4 h-4">
                                 <svg xmlns="http://www.w3.org/2000/svg" id="flag-icons-gb" viewBox="0 0 640 480">
                                     <path fill="#012169" d="M0 0h640v480H0z"></path>
@@ -82,7 +82,7 @@
                             </div>
                             <div class="ml-2   text-base font-normal leading-tight">English</div>
                         </a>
-                        <a class="text-gray-900 group flex w-full items-end rounded-md px-2 py-2 text-sm hover:bg-slate-100" id="headlessui-menu-item-:r5m:" role="menuitem" tabindex="-1" href="{{ url('locale/ja') }}">
+                        <a rel="alternate" hreflang="jp" class="text-gray-900 group flex w-full items-end rounded-md px-2 py-2 text-sm hover:bg-slate-100" id="headlessui-menu-item-:r5m:" role="menuitem" tabindex="-1" href="{{ url(str_replace(app()->getLocale(), 'ja', request()->path())) }}">
                             <div class="w-4 h-4">
                                 <svg xmlns="http://www.w3.org/2000/svg" id="flag-icons-jp" viewBox="0 0 640 480">
                                     <defs>
@@ -98,7 +98,7 @@
                             </div>
                             <div class="ml-2   text-base font-normal leading-tight">日本語</div>
                         </a>
-                        <a class="text-gray-900 group flex w-full items-end rounded-md px-2 py-2 text-sm hover:bg-slate-100" id="headlessui-menu-item-:r5n:" role="menuitem" tabindex="-1" href="{{ url('locale/vn') }}">
+                        <a rel="alternate" hreflang="vi" class="text-gray-900 group flex w-full items-end rounded-md px-2 py-2 text-sm hover:bg-slate-100" id="headlessui-menu-item-:r5n:" role="menuitem" tabindex="-1" href="{{ url(str_replace(app()->getLocale(), 'vn', request()->path())) }}">
                             <div class="w-4 h-4 ">
                                 <svg xmlns="http://www.w3.org/2000/svg" id="flag-icons-vn" viewBox="0 0 640 480">
                                     <defs>
@@ -140,25 +140,25 @@
                         <div class="flex flex-col gap-4">
                             <ul class="items-stretch">
                                 <li class="py-3">
-                                    <a class="flex color-393939 self-baseline h-full hover:text-customColor items-center mx-4 mb-1 @if($tab == 1)active border-customColor text-customColor border-b-2 @endif" href="/">{{ __('screen.title.home') }}</a>
+                                    <a class="flex color-393939 self-baseline h-full hover:text-customColor items-center mx-4 mb-1 @if($tab == 1)active border-customColor text-customColor border-b-2 @endif" href="/{{app()->getLocale()}}">{{ __('screen.title.home') }}</a>
                                 </li>
                                 <li class="py-3">
-                                    <a class="flex color-393939 self-baseline h-full  hover:text-customColor items-center mx-4 mb-1 @if($tab == 2)active border-customColor text-customColor border-b-2 @endif" href="/about-us">{{ __('screen.title.aboutus') }}</a>
+                                    <a class="flex color-393939 self-baseline h-full  hover:text-customColor items-center mx-4 mb-1 @if($tab == 2)active border-customColor text-customColor border-b-2 @endif" href="/{{app()->getLocale()}}/about-us">{{ __('screen.title.aboutus') }}</a>
                                 </li>
                                 <li class="py-3">
-                                    <a class="flex color-393939 self-baseline h-full  hover:text-customColor items-center mx-4 mb-1 @if($tab == 3)active border-customColor text-customColor border-b-2 @endif" href="/services">{{ __('screen.title.services') }}</a>
+                                    <a class="flex color-393939 self-baseline h-full  hover:text-customColor items-center mx-4 mb-1 @if($tab == 3)active border-customColor text-customColor border-b-2 @endif" href="/{{app()->getLocale()}}/services">{{ __('screen.title.services') }}</a>
                                 </li>
                                 <li class="py-3">
-                                    <a class="flex color-393939 self-baseline h-full  hover:text-customColor items-center mx-4 mb-1 @if($tab == 4)active border-customColor text-customColor border-b-2 @endif" href="/rooms">{{ __('screen.title.rooms') }}</a>
+                                    <a class="flex color-393939 self-baseline h-full  hover:text-customColor items-center mx-4 mb-1 @if($tab == 4)active border-customColor text-customColor border-b-2 @endif" href="/{{app()->getLocale()}}/rooms">{{ __('screen.title.rooms') }}</a>
                                 </li>
                                 <li class="py-3">
-                                    <a class="flex color-393939 self-baseline h-full  hover:text-customColor items-center mx-4 mb-1 @if($tab == 5)active border-customColor text-customColor border-b-2 @endif" href="/activities">{{ __('screen.title.activities') }}</a>
+                                    <a class="flex color-393939 self-baseline h-full  hover:text-customColor items-center mx-4 mb-1 @if($tab == 5)active border-customColor text-customColor border-b-2 @endif" href="/{{app()->getLocale()}}/activities">{{ __('screen.title.activities') }}</a>
                                 </li>
                                 <li class="py-3">
-                                    <a class="flex color-393939 self-baseline h-full  hover:text-customColor items-center mx-4 mb-1 @if($tab == 6)active border-customColor text-customColor border-b-2 @endif" href="/faq">{{ __('screen.title.faq') }}</a>
+                                    <a class="flex color-393939 self-baseline h-full  hover:text-customColor items-center mx-4 mb-1 @if($tab == 6)active border-customColor text-customColor border-b-2 @endif" href="/{{app()->getLocale()}}/faq">{{ __('screen.title.faq') }}</a>
                                 </li>
                                 <li class="py-3">
-                                    <a class="flex color-393939 self-baseline h-full  hover:text-customColor items-center mx-4 mb-1 @if($tab == 7)active border-customColor text-customColor border-b-2 @endif" href="/contact">{{ __('screen.title.contact') }}</a>
+                                    <a class="flex color-393939 self-baseline h-full  hover:text-customColor items-center mx-4 mb-1 @if($tab == 7)active border-customColor text-customColor border-b-2 @endif" href="/{{app()->getLocale()}}/contact">{{ __('screen.title.contact') }}</a>
                                 </li>
                             </ul>
                             <div class="relative inline-block text-left">
@@ -203,7 +203,7 @@
 
                                 <div x-show="popup_local" class="absolute w-140px z-50 left-0 mt-2 origin-top-right divide-y divide-gray-100 rounded-md bg-white shadow-lg ring-1 ring-black/5 focus:outline-none hover-text-DBB98E transform opacity-100 scale-100" tabindex="0" >
                                     <div class="px-1 py-1">
-                                        <a class="text-gray-900 group flex w-full items-end rounded-md px-2 py-2 text-sm hover:bg-slate-100" id="headlessui-menu-item-:r5l:" role="menuitem" tabindex="-1" href="{{ url('locale/en') }}">
+                                        <a rel="alternate" hreflang="en" class="text-gray-900 group flex w-full items-end rounded-md px-2 py-2 text-sm hover:bg-slate-100" id="headlessui-menu-item-:r5l:" role="menuitem" tabindex="-1" href="{{ url(str_replace(app()->getLocale(), 'en', request()->path())) }}">
                                             <div class="w-4 h-4">
                                                 <svg xmlns="http://www.w3.org/2000/svg" id="flag-icons-gb" viewBox="0 0 640 480">
                                                     <path fill="#012169" d="M0 0h640v480H0z"></path>
@@ -214,7 +214,7 @@
                                             </div>
                                             <div class="ml-2   text-base font-normal leading-tight">English</div>
                                         </a>
-                                        <a class="text-gray-900 group flex w-full items-end rounded-md px-2 py-2 text-sm hover:bg-slate-100" id="headlessui-menu-item-:r5m:" role="menuitem" tabindex="-1" href="{{ url('locale/ja') }}">
+                                        <a rel="alternate" hreflang="jp" class="text-gray-900 group flex w-full items-end rounded-md px-2 py-2 text-sm hover:bg-slate-100" id="headlessui-menu-item-:r5m:" role="menuitem" tabindex="-1" href="{{ url(str_replace(app()->getLocale(), 'ja', request()->path())) }}">
                                             <div class="w-4 h-4">
                                                 <svg xmlns="http://www.w3.org/2000/svg" id="flag-icons-jp" viewBox="0 0 640 480">
                                                     <defs>
@@ -230,7 +230,7 @@
                                             </div>
                                             <div class="ml-2   text-base font-normal leading-tight">日本語</div>
                                         </a>
-                                        <a class="text-gray-900 group flex w-full items-end rounded-md px-2 py-2 text-sm hover:bg-slate-100" id="headlessui-menu-item-:r5n:" role="menuitem" tabindex="-1" href="{{ url('locale/vn') }}">
+                                        <a rel="alternate" hreflang="vn" class="text-gray-900 group flex w-full items-end rounded-md px-2 py-2 text-sm hover:bg-slate-100" id="headlessui-menu-item-:r5n:" role="menuitem" tabindex="-1" href="{{ url(str_replace(app()->getLocale(), 'vn', request()->path())) }}">
                                             <div class="w-4 h-4 ">
                                                 <svg xmlns="http://www.w3.org/2000/svg" id="flag-icons-vn" viewBox="0 0 640 480">
                                                     <defs>
